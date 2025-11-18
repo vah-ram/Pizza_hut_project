@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css"
-import "./App.css";
+import "swiper/css/navigation"
+import { Navigation } from "swiper/modules"
+import "./App.css"
 
 function App() {
   
@@ -46,7 +48,7 @@ function App() {
               
               <img 
                   src="./Img/moped-icon.png" 
-                  className="w-[23px] h-[20px]"
+                  className="w-[18px] h-[18px]"
                   alt=""/>
 
               <p className="text-[15px] font-sans">
@@ -148,7 +150,7 @@ function App() {
 
                   <div className="flex">
                       <button 
-                          className="w-[40px] h-[40px] flex items-center justify-center border-1 border-gray-300 rounded-tl-[10px] rounded-bl-[10px] cursor-pointer">
+                          className="prev-btn w-[40px] h-[40px] flex items-center justify-center border-1 border-gray-300 rounded-tl-[10px] rounded-bl-[10px] cursor-pointer">
                           <img 
                               src="https://cdn1.iconfinder.com/data/icons/arrows-i/24/Material_icons-02-05-512.png" 
                               className="w-[33px] h-[33px]" 
@@ -156,7 +158,7 @@ function App() {
                       </button>
 
                       <button 
-                          className="w-[40px] h-[40px] flex items-center justify-center border-1 border-gray-300 rounded-tr-[10px] rounded-br-[10px] cursor-pointer">
+                          className="next-btn w-[40px] h-[40px] flex items-center justify-center border-1 border-gray-300 rounded-tr-[10px] rounded-br-[10px] cursor-pointer">
                           <img 
                               src="https://cdn1.iconfinder.com/data/icons/arrows-i/24/Material_icons-02-06-512.png" 
                               className="w-[33px] h-[33px]" 
@@ -172,7 +174,12 @@ function App() {
 
               <Swiper 
                       spaceBetween={20}
-                      slidesPerView={6}>
+                      slidesPerView={6}
+                      modules={[ Navigation ]}
+                      navigation={{
+                        prevEl: ".prev-btn",
+                        nextEl: ".next-btn"
+                      }}>
 
                 <SwiperSlide>
                   <div className="w-[266px] h-[266px] shrink-[0] relative rounded-[25px] overflow-hidden">
@@ -345,7 +352,7 @@ function App() {
 
                   <div className="flex">
                       <button 
-                          className="w-[40px] h-[40px] flex items-center justify-center border-1 border-gray-300 rounded-tl-[10px] rounded-bl-[10px] cursor-pointer">
+                          className="pizza-prev-btn w-[40px] h-[40px] flex items-center justify-center border-1 border-gray-300 rounded-tl-[10px] rounded-bl-[10px] cursor-pointer">
                           <img 
                               src="https://cdn1.iconfinder.com/data/icons/arrows-i/24/Material_icons-02-05-512.png" 
                               className="w-[33px] h-[33px]"  
@@ -353,7 +360,7 @@ function App() {
                       </button>
 
                       <button 
-                          className="w-[40px] h-[40px] flex items-center justify-center border-1 border-gray-300 rounded-tr-[10px] rounded-br-[10px] cursor-pointer">
+                          className="pizza-next-btn w-[40px] h-[40px] flex items-center justify-center border-1 border-gray-300 rounded-tr-[10px] rounded-br-[10px] cursor-pointer">
                           <img 
                               src="https://cdn1.iconfinder.com/data/icons/arrows-i/24/Material_icons-02-06-512.png" 
                               className="w-[33px] h-[33px]" 
@@ -370,7 +377,12 @@ function App() {
 
               <Swiper
                     spaceBetween={20}
-                    slidesPerView={5}>
+                    slidesPerView={5}
+                    modules={[ Navigation ]}
+                    navigation={{
+                        prevEl: ".pizza-prev-btn",
+                        nextEl: ".pizza-next-btn"
+                    }}>
                 
                 <SwiperSlide>
                   <div 
