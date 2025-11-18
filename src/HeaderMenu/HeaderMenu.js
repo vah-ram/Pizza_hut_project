@@ -7,7 +7,7 @@ function HeaderMenu({ isMobile, modeValue, callDarkAndLightMode }) {
         <>
             <header 
               className="w-full h-[80px] flex items-center justify-between px-20 fixed
-               top-0 bg-[#FFF] z-[10] duration-300 max-lg:px-7 max-md:shadow-md max-md:h-[60px]">
+               top-0 bg-[#FFF] z-[10] duration-300 max-lg:px-7 max-md:shadow-md max-md:h-[60px] max-sm:px-2">
               <div className="w-auto h-full flex gap-2 items-center">
                   <img 
                       src="./Img/pizza-hut-logo.png" 
