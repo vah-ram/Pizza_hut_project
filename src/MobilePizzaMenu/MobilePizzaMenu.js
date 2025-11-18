@@ -2,7 +2,7 @@
 function MobilePizzaMenu() {
     return (
         <>
-            <section className='w-full h-full flex-col mt-[60px] p-5 pb-[14rem] hidden max-md:flex'>
+            <section className='w-full h-full flex-col mt-[60px] p-5 pb-[14rem] hidden max-md:flex max-sm:p-2 max-sm:mt-[70px] max-sm:pb-[13rem]'>
                 <div className="w-full h-full grid grid-cols-2 gap-[5px]">
                     <div className="w-full h-full max-h-[300px] shrink-[0] relative rounded-[50px]
                         overflow-hidden max-sm:max-h-[250px] max-sm:rounded-[30px]">
