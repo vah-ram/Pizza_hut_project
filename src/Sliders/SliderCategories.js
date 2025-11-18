@@ -14,7 +14,7 @@ function SliderCategories({ isMobile }) {
                             className="w-[35px] h-[35px]" 
                             alt="categories icon"/>
                         <p className="text-[25px] text-[#515151]
-                         [main.dark_&]:text-white font-[600] ">
+                         [body.dark_&]:text-white font-[600] ">
                             CATEGORIES
                         </p>
                     </div>

@@ -14,7 +14,7 @@ function SliderOffers({ isMobile }) {
                             className="w-[35px] h-[35px]" 
                             alt="categories icon"/>
                         <p className="text-[25px] text-[#515151] 
-                        font-[600] [main.dark_&]:text-white">
+                        font-[600] [body.dark_&]:text-white">
                             SPECIAL OFFERS
                         </p>
                     </div>
@@ -75,7 +75,8 @@ function SliderOffers({ isMobile }) {
                             </span>
 
                             <div className="w-full h-auto flex justify-center items-center mt-2">
-                                <p className="[main.dark_&]:text-white text-black font-[600] text-[18px] uppercase">
+                                <p className="[body.dark_&]:text-white text-black font-[600]
+                                 text-[18px] uppercase">
                                     Combo for Meat Lovers
                                 </p>
                             </div>
@@ -123,7 +124,8 @@ function SliderOffers({ isMobile }) {
                             </span>
 
                             <div className="w-full h-auto flex justify-center items-center mt-2">
-                                <p className="[main.dark_&]:text-white text-black font-[600] text-[18px] uppercase">
+                                <p className="[body.dark_&]:text-white text-black font-[600]
+                                 text-[18px] uppercase">
                                     Combo with 3 27 cm pizzas 
                                 </p>
                             </div>
@@ -171,7 +173,8 @@ function SliderOffers({ isMobile }) {
                             </span>
                             
                             <div className="w-full h-auto flex justify-center items-center mt-2">
-                                <p className="[main.dark_&]:text-white text-black font-[600] text-[18px] uppercase">
+                                <p className="[body.dark_&]:text-white text-black font-[600]
+                                 text-[18px] uppercase">
                                     Combo with 3 27 cm pizzas
                                 </p>
                             </div>
@@ -220,7 +223,8 @@ function SliderOffers({ isMobile }) {
                             
 
                             <div className="w-full h-auto flex justify-center items-center mt-2">
-                                <p className="[main.dark_&]:text-white text-black font-[600] text-[18px] uppercase">
+                                <p className="[body.dark_&]:text-white text-black font-[600]
+                                 text-[18px] uppercase">
                                     Combo Pizza x Nuggets Box
                                 </p>
                             </div>
@@ -268,7 +272,8 @@ function SliderOffers({ isMobile }) {
                             </span>
 
                             <div className="w-full h-auto flex justify-center items-center mt-2">
-                                <p className="[main.dark_&]:text-white text-black font-[600] text-[18px] uppercase">
+                                <p className="[body.dark_&]:text-white text-black font-[600]
+                                text-[18px] uppercase">
                                     Cheese bites combo
                                 </p>
                             </div>
@@ -316,7 +321,8 @@ function SliderOffers({ isMobile }) {
                             </span>
 
                             <div className="w-full h-auto flex justify-center items-center mt-2">
-                                <p className="[main.dark_&]:text-white text-black font-[600] text-[18px] uppercase">
+                                <p className="[body.dark_&]:text-white text-black font-[600]
+                                 text-[18px] uppercase">
                                     My Box Veggie
                                 </p>
                             </div>
@@ -364,7 +370,8 @@ function SliderOffers({ isMobile }) {
                             </span>
 
                             <div className="w-full h-auto flex justify-center items-center mt-2">
-                                <p className="[main.dark_&]:text-white text-black font-[600] text-[18px] uppercase">
+                                <p className="[body.dark_&]:text-white text-black font-[600]
+                                 text-[18px] uppercase">
                                     My Box Pepperoni
                                 </p>
                             </div>
@@ -412,7 +419,8 @@ function SliderOffers({ isMobile }) {
                             </span>
 
                             <div className="w-full h-auto flex justify-center items-center mt-2">
-                                <p className="[main.dark_&]:text-white text-black font-[600] text-[18px] uppercase">
+                                <p className="[body.dark_&]:text-white text-black font-[600]
+                                 text-[18px] uppercase">
                                     My Box Chicken BBQ
                                 </p>
                             </div>
@@ -460,7 +468,8 @@ function SliderOffers({ isMobile }) {
                             </span>
 
                             <div className="w-full h-auto flex justify-center items-center mt-2">
-                                <p className="[main.dark_&]:text-white text-black font-[600] text-[18px] uppercase">
+                                <p className="[body.dark_&]:text-white text-black font-[600]
+                                 text-[18px] uppercase">
                                     Popular Combo
                                 </p>
                             </div>
@@ -508,7 +517,8 @@ function SliderOffers({ isMobile }) {
                             </span>
                             
                             <div className="w-full h-auto flex justify-center items-center mt-2">
-                                <p className="[main.dark_&]:text-white text-black font-[600] text-[18px] uppercase">
+                                <p className="[body.dark_&]:text-white text-black font-[600]
+                                 text-[18px] uppercase">
                                     Combo Pepperoni
                                 </p>
                             </div>

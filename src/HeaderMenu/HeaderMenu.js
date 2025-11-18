@@ -1,19 +1,37 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react"
 
-function HeaderMenu({ isMobile, modeValue, callDarkAndLightMode }) {
+function HeaderMenu({ isMobile }) {
     const navigate = useNavigate();
+
+    const [ modeValue, setModeValue ] = useState('');
+
+    const callDarkAndLightMode = () => {
+        const body = document.querySelector('body');
+
+        if (!body.classList.contains('dark')) {
+            body.classList.add('dark');
+            setModeValue(true);
+        } else {
+            body.classList.remove('dark');
+            setModeValue(false)
+        }
+    }
 
     return (
         <>
             <header 
               className="w-full h-[80px] flex items-center justify-between px-20 fixed
-               top-0 bg-[#FFF] z-[10] duration-300 max-lg:px-7 max-md:shadow-md max-md:h-[60px] max-sm:px-2">
-              <div className="w-auto h-full flex gap-2 items-center">
+               top-0 bg-[#FFF] z-[10] duration-300 max-lg:px-7 max-md:shadow-md max-md:h-[60px]
+               max-sm:px-2 [body.dark_&]:bg-[#2e2e2e]">
+              <div
+                    className="w-auto h-full flex gap-2 items-center cursor-pointer"
+                    onClick={() => navigate('/')}>
                   <img 
                       src="./Img/pizza-hut-logo.png" 
                       className="w-[40px] h-[40px]" 
                       alt="pizza hut logo"/>
-    
+
                   <div className="flex-col gap-[-10px]">
                       <p className="text-[15px] text-[#9d9d9d] font-[700] leading-[19px]">
                           Welcome to
@@ -69,7 +87,13 @@ function HeaderMenu({ isMobile, modeValue, callDarkAndLightMode }) {
                           alt=""/>
                   </button>
     
-                  <button className="w-auto h-auto cursor-pointer relative after:content-['0'] after:absolute after:right-[-5px] after:top-[-5px] after:w-[20px] after:h-[20px] after:rounded-full after:bg-[#e33b41] after:flex after:justify-center after:items-center after:text-white max-md:hidden">
+                  <button
+                        className="w-auto h-auto cursor-pointer
+                         relative after:content-['0'] after:absolute
+                          after:right-[-5px] after:top-[-5px] after:w-[20px] after:h-[20px]
+                          after:rounded-full after:bg-[#e33b41] after:flex after:justify-center
+                           after:items-center after:text-white max-md:hidden"
+                        onClick={() => navigate('/basket')}>
                       <img 
                           src="./Img/store-icon.svg" 
                           className="w-[25px] h-[25px]"

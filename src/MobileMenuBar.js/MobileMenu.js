@@ -7,7 +7,9 @@ function MobileMenu() {
         <>
             <footer className="hidden items-center justify-around fixed z-[100] w-full h-auto
              absolute bottom-0 max-md:flex bg-white p-2 [main.dark_&]:bg-[#3d3d3d]">
-                <button className="flex flex-col gap-1 justify-center items-center cursor-pointer">
+                <button
+                        className="flex flex-col gap-1 justify-center items-center cursor-pointer"
+                        onClick={() => navigate("/")}>
                     <img 
                         src="https://www.pizza-hut.am/assets/images/app_2/home.svg" 
                         className="w-[27px] h-[27px]" 
@@ -18,7 +20,9 @@ function MobileMenu() {
                         </p>
                 </button>
 
-                <button className="flex flex-col gap-1 justify-center items-center cursor-pointer mr-3">
+                <button
+                        className="flex flex-col gap-1 justify-center items-center cursor-pointer mr-3"
+                        onClick={() => navigate("/about")}>
                     <img 
                         src="https://www.pizza-hut.am/assets/images/app_2/aboutUs.svg" 
                         className="w-[27px] h-[27px]" 
@@ -42,7 +46,8 @@ function MobileMenu() {
                     className="flex flex-col gap-1 justify-center items-center relative
                     after:content-['0'] after:absolute after:w-[17px] after:h-[17px]
                     after:flex after:justify-center after:items-center after:text-[#515151]
-                     after:text-[11px] after:top-[-7px] after:right-[3px] cursor-pointer ml-3">
+                     after:text-[11px] after:top-[-7px] after:right-[3px] cursor-pointer ml-3"
+                    onClick={() => navigate("/basket")}>
                     <img 
                         src="https://bonee.blob.core.windows.net/company-type/Assets/basket.svg" 
                         className="w-[27px] h-[27px]" 

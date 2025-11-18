@@ -10,23 +10,10 @@ body::-webkit-scrollbar-thumb {
     background: #202020;
 }
 
-main.dark {
+body.dark {
     background: #2e2e2e;
 }
 
-main.dark header{
-    background: #2e2e2e;
-}
-
-main.dark #last_about--part {
-    background: #2e2e2e;
-}
-
-main.dark #search__input {
-    color: #FFF;
-    border-color: #464646;
-}
-
-main.dark #search__input::-webkit-input-placeholder{
+body.dark #search__input::-webkit-input-placeholder{
     color: #8b8b8b;
 }
