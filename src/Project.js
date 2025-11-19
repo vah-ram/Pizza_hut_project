@@ -4,8 +4,39 @@ import SliderOffers from "./Sliders/SliderOffers";
 import MobileMenu from "./MobileMenuBar.js/MobileMenu";
 import MobilePizzaMenu from "./MobilePizzaMenu/MobilePizzaMenu";
 import AboutMenu from "./AboutMenu/AboutMenu";
+import { verifyProfileHost } from "./utils/Hosts.js";
+import {useEffect, useState} from "react";
+import axios from "axios";
 
 function Project({ isMobile }) {
+
+    const [ isRegistered, setIsRegistered ] = useState(null);
+    const [ currentUser, setCurrentUser ] = useState(null);
+
+    useEffect(() => {
+
+        const callBackFunc = async() => {
+            if(localStorage.getItem("token")) {
+                setIsRegistered(true);
+
+                const res = await axios.get(verifyProfileHost, {
+                    params: { token: localStorage.getItem("token") }
+                });
+
+                if(res.data.status) {
+                    setCurrentUser(JSON.stringify(res.data.user));
+                } else {
+                    setIsRegistered(false);
+                    setCurrentUser('');
+                }
+
+            } else {
+                setIsRegistered(false)
+            }
+        };
+
+        callBackFunc();
+    }, []);
 
   return (
       <main className="duration-300 relative">
