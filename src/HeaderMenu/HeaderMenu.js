@@ -30,7 +30,7 @@ function HeaderMenu({ isMobile }) {
                   <img 
                       src="./Img/pizza-hut-logo.png" 
                       className="w-[40px] h-[40px]" 
-                      alt="pizza hut logo"/>
+                      alt="pizza hut log"/>
 
                   <div className="flex-col gap-[-10px]">
                       <p className="text-[15px] text-[#9d9d9d] font-[700] leading-[19px]">
