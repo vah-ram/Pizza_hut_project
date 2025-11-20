@@ -75,7 +75,7 @@ function SliderOffers({ isMobile }) {
                             </span>
 
                             <div className="w-full h-auto flex justify-center items-center mt-2">
-                                <p className="[body.dark_&]:text-white text-black font-[600]
+                                <p className="[body.dark_&]:text-white text-[#515151] font-[600]
                                  text-[18px] uppercase">
                                     Combo for Meat Lovers
                                 </p>
@@ -124,7 +124,7 @@ function SliderOffers({ isMobile }) {
                             </span>
 
                             <div className="w-full h-auto flex justify-center items-center mt-2">
-                                <p className="[body.dark_&]:text-white text-black font-[600]
+                                <p className="[body.dark_&]:text-white text-[#515151] font-[600]
                                  text-[18px] uppercase">
                                     Combo with 3 27 cm pizzas 
                                 </p>
@@ -173,7 +173,7 @@ function SliderOffers({ isMobile }) {
                             </span>
                             
                             <div className="w-full h-auto flex justify-center items-center mt-2">
-                                <p className="[body.dark_&]:text-white text-black font-[600]
+                                <p className="[body.dark_&]:text-white text-[#515151] font-[600]
                                  text-[18px] uppercase">
                                     Combo with 3 27 cm pizzas
                                 </p>
@@ -223,7 +223,7 @@ function SliderOffers({ isMobile }) {
                             
 
                             <div className="w-full h-auto flex justify-center items-center mt-2">
-                                <p className="[body.dark_&]:text-white text-black font-[600]
+                                <p className="[body.dark_&]:text-white text-[#515151] font-[600]
                                  text-[18px] uppercase">
                                     Combo Pizza x Nuggets Box
                                 </p>
@@ -272,7 +272,7 @@ function SliderOffers({ isMobile }) {
                             </span>
 
                             <div className="w-full h-auto flex justify-center items-center mt-2">
-                                <p className="[body.dark_&]:text-white text-black font-[600]
+                                <p className="[body.dark_&]:text-white text-[#515151] font-[600]
                                 text-[18px] uppercase">
                                     Cheese bites combo
                                 </p>
@@ -321,7 +321,7 @@ function SliderOffers({ isMobile }) {
                             </span>
 
                             <div className="w-full h-auto flex justify-center items-center mt-2">
-                                <p className="[body.dark_&]:text-white text-black font-[600]
+                                <p className="[body.dark_&]:text-white text-[#515151] font-[600]
                                  text-[18px] uppercase">
                                     My Box Veggie
                                 </p>
@@ -370,7 +370,7 @@ function SliderOffers({ isMobile }) {
                             </span>
 
                             <div className="w-full h-auto flex justify-center items-center mt-2">
-                                <p className="[body.dark_&]:text-white text-black font-[600]
+                                <p className="[body.dark_&]:text-white text-[#515151] font-[600]
                                  text-[18px] uppercase">
                                     My Box Pepperoni
                                 </p>
@@ -419,7 +419,7 @@ function SliderOffers({ isMobile }) {
                             </span>
 
                             <div className="w-full h-auto flex justify-center items-center mt-2">
-                                <p className="[body.dark_&]:text-white text-black font-[600]
+                                <p className="[body.dark_&]:text-white text-[#515151] font-[600]
                                  text-[18px] uppercase">
                                     My Box Chicken BBQ
                                 </p>
@@ -468,7 +468,7 @@ function SliderOffers({ isMobile }) {
                             </span>
 
                             <div className="w-full h-auto flex justify-center items-center mt-2">
-                                <p className="[body.dark_&]:text-white text-black font-[600]
+                                <p className="[body.dark_&]:text-white text-[#515151] font-[600]
                                  text-[18px] uppercase">
                                     Popular Combo
                                 </p>
@@ -517,7 +517,7 @@ function SliderOffers({ isMobile }) {
                             </span>
                             
                             <div className="w-full h-auto flex justify-center items-center mt-2">
-                                <p className="[body.dark_&]:text-white text-black font-[600]
+                                <p className="[body.dark_&]:text-white text-[#515151] font-[600]
                                  text-[18px] uppercase">
                                     Combo Pepperoni
                                 </p>
@@ -552,9 +552,7 @@ function SliderOffers({ isMobile }) {
                         </SwiperSlide>
 
                     </Swiper>
-
                 </div>
-
             </section>
         </>
     )

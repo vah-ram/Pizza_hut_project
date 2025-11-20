@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react"
 
-function HeaderMenu({ isMobile }) {
+function HeaderMenu({ isMobile, currentUser }) {
     const navigate = useNavigate();
 
     const [ modeValue, setModeValue ] = useState('');
@@ -22,7 +22,7 @@ function HeaderMenu({ isMobile }) {
         <>
             <header 
               className="w-full h-[80px] flex items-center justify-between px-20 fixed
-               top-0 bg-[#FFF] z-[10] duration-300 max-lg:px-7 max-md:shadow-md max-md:h-[60px]
+               top-0 bg-[#FFF] z-[10] max-lg:px-7 max-md:shadow-md max-md:h-[60px]
                max-sm:px-2 [body.dark_&]:bg-[#2e2e2e]">
               <div
                     className="w-auto h-full flex gap-2 items-center cursor-pointer"
@@ -44,7 +44,9 @@ function HeaderMenu({ isMobile }) {
               </div>
             
               <button 
-                  className="w-[130px] h-[36px] bg-[#e33b41] rounded-[4px] flex justify-center items-center gap-2 text-[14px] font-sans-serif text-white cursor-pointer  max-md:hidden">
+                  className="w-[130px] h-[36px] bg-[#e33b41] rounded-[4px] flex
+                  justify-center items-center gap-2 text-[14px] font-sans-serif
+                   text-white cursor-pointer max-md:hidden">
                   
                   <img 
                       src="./Img/moped.png" 
@@ -81,8 +83,8 @@ function HeaderMenu({ isMobile }) {
                   <button 
                         className="w-auto h-auto cursor-pointer max-md:hidden"
                         onClick={() => navigate('/signIn')}>
-                      <img 
-                          src="./Img/user-icon.svg" 
+                      <img
+                          src={`${currentUser ? "./Img/user-icon.png" : "./Img/user-registered.png"}`}
                           className="w-[22px] h-[22px]"
                           alt=""/>
                   </button>

@@ -114,7 +114,7 @@ function SliderCategories({ isMobile }) {
 
                         <div className="w-[266px] h-[266px] shrink-[0] relative rounded-[25px] overflow-hidden ">
                             <img 
-                                src="https://bonee.blob.core.windows.net/images/9dd355b0-9e55-2a66-18ab-8288b16edd6f_3.webp" 
+                                src="https://bonee.blob.core.windows.net/images/9dd355b0-9e55-2a66-18ab-8288b16edd6f_3.webp"
                                 className="hover:scale-110 duration-500" 
                                 alt="slider item img"/>
 
@@ -131,7 +131,7 @@ function SliderCategories({ isMobile }) {
 
                         <div className="w-[266px] h-[266px] shrink-[0] relative rounded-[25px] overflow-hidden ">
                             <img 
-                                src="https://bonee.blob.core.windows.net/images/d2fb20b5-d183-c850-ceac-cb1e8b1b962d_3.webp" 
+                                src="https://bonee.blob.core.windows.net/images/d2fb20b5-d183-c850-ceac-cb1e8b1b962d_3.webp"
                                 className="hover:scale-110 duration-500" 
                                 alt="slider item img"/>
 

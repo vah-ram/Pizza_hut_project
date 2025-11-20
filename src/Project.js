@@ -4,39 +4,10 @@ import SliderOffers from "./Sliders/SliderOffers";
 import MobileMenu from "./MobileMenuBar.js/MobileMenu";
 import MobilePizzaMenu from "./MobilePizzaMenu/MobilePizzaMenu";
 import AboutMenu from "./AboutMenu/AboutMenu";
-import { verifyProfileHost } from "./utils/Hosts.js";
-import {useEffect, useState} from "react";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-function Project({ isMobile }) {
-
-    const [ isRegistered, setIsRegistered ] = useState(null);
-    const [ currentUser, setCurrentUser ] = useState(null);
-
-    useEffect(() => {
-
-        const callBackFunc = async() => {
-            if(localStorage.getItem("token")) {
-                setIsRegistered(true);
-
-                const res = await axios.get(verifyProfileHost, {
-                    params: { token: localStorage.getItem("token") }
-                });
-
-                if(res.data.status) {
-                    setCurrentUser(JSON.stringify(res.data.user));
-                } else {
-                    setIsRegistered(false);
-                    setCurrentUser('');
-                }
-
-            } else {
-                setIsRegistered(false)
-            }
-        };
-
-        callBackFunc();
-    }, []);
+function Project({ isMobile, currentUser }) {
+    const navigate = useNavigate();
 
   return (
       <main className="duration-300 relative">
@@ -51,7 +22,9 @@ function Project({ isMobile }) {
         className="w-full h-[175px] px-20 flex items-center justify-between 
         gap-5 mt-[80px] max-lg:px-7 max-lg:gap-7 max-md:hidden">
           <button 
-              className="w-[250px] h-[42px] flex items-center justify-center rounded-[10px] bg-[#3d3d3d] cursor-pointer">
+              className="w-[250px] h-[42px] flex items-center justify-center
+              rounded-[10px] bg-[#3d3d3d] cursor-pointer hover:bg-[#e33b41]"
+                onClick={() => navigate('/catalogs')}>
               <p className="text-white text-[17px] font-sans font-[500]">
                   ALL PRODUCTS
               </p>

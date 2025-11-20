@@ -7,10 +7,42 @@ import Login from "./authorization/Login";
 import About from "./About/About";
 import Basket from "./Basket/Basket";
 import AdminPanel from "./Admin/AdminPanel";
+import AllCatalogs from "./AllCatalogs/AllCatalogs";
+import { verifyProfileHost } from "./utils/Hosts.js";
+import axios from "axios";
 
 function App() {
 
     const [ isMobile, setIsMobile ] = useState('');
+
+    const [ currentUser, setCurrentUser ] = useState(null);
+
+    useEffect(() => {
+
+        const callBackFunc = async() => {
+            try {
+                if(localStorage.getItem("token")) {
+
+                    const res = await axios.get(verifyProfileHost, {
+                        params: { token: localStorage.getItem("token") }
+                    });
+
+                    if(res.data.status) {
+                        setCurrentUser(res.data.user);
+                    } else {
+                        setCurrentUser('');
+                    }
+
+                } else {
+                    setCurrentUser('');
+                };
+            } catch(err) {
+                console.error(err);
+            }
+        };
+
+        callBackFunc();
+    }, []);
 
     useEffect(() => {
         window.addEventListener('resize', () => {
@@ -34,11 +66,12 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={
-                        <Project isMobile={isMobile}/>
+                        <Project isMobile={isMobile} currentUser={currentUser}/>
                     }/>
                     <Route path="/signIn" element={<Login />}/>
                     <Route path="/signUp" element={<Register />}/>
                     <Route path="/about" element={<About />}/>
+                    <Route path="/catalogs" element={<AllCatalogs />}/>
                     <Route path="/basket" element={
                         <Basket isMobile={isMobile}/>
                     }/>

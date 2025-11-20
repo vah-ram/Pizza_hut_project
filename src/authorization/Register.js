@@ -11,6 +11,7 @@ function Register() {
     const navigate = useNavigate();
 
     const [ phoneNumber, setPhoneNumber ] = useState('');
+    const [ phonecountrycode, setPhonecountrycode ] = useState("");
 
     const [user, setUser] = useState({
         name: "",
@@ -45,12 +46,12 @@ function Register() {
             });
 
             return;
-        }
+    }
 
             const res = await axios.post(registerHost, {
                 name: user.name,
                 surname: user.surname,
-                phonenumber: phoneNumber,
+                phonenumber: `+${phonecountrycode}${phoneNumber}`,
                 email: user.email,
                 password: user.password
             });
@@ -219,8 +220,12 @@ function Register() {
                                 type="tel"
                                 id="phone"
                                 placeholder="+374"
+                                value="+374"
                                 className="border-none outline-none w-full"
-                                maxLength={50}/>
+                                maxLength={50}
+                                onChange={(e) => {
+                                    setPhonecountrycode(e.target.value)
+                                }}/>
                     </div>
 
                         <div className="w-[80%] mt-5 flex gap-5 items-center px-3 py-3 rounded-[15px]
