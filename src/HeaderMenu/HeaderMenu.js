@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react"
+import LanguageBar from "../LanguageBar/LanguageBar";
 
 function HeaderMenu({ isMobile, currentUser }) {
     const navigate = useNavigate();
@@ -16,6 +17,18 @@ function HeaderMenu({ isMobile, currentUser }) {
             body.classList.remove('dark');
             setModeValue(false)
         }
+    }
+
+    const openLanguageBar = () => {
+
+        const body = document.querySelector('body');
+
+        if(!body.classList.contains('languageActive')) {
+            body.classList.add('languageActive');
+        } else {
+            body.classList.remove('languageActive');
+        }
+
     }
 
     return (
@@ -61,7 +74,9 @@ function HeaderMenu({ isMobile, currentUser }) {
               <div className="w-auto h-full flex items-center gap-4 max-md:gap-3">
                   <button 
                     className={
-                      `w-[60px] h-[26px] flex ${modeValue ? "flex-row-reverse" : "flex-row"} items-center gap-[3px] rounded-full border-1 border-[#e7e7e7ff] px-[3px] cursor-pointer max-md:hidden`
+                      `w-[60px] h-[26px] flex ${modeValue ? "flex-row-reverse" : "flex-row"} 
+                      items-center gap-[3px] rounded-full border-1 border-[#e7e7e7ff] px-[3px] 
+                      cursor-pointer max-md:hidden`
                     }
                     onClick={callDarkAndLightMode}>
                       <span 
@@ -73,7 +88,9 @@ function HeaderMenu({ isMobile, currentUser }) {
                       </p>
                   </button>
     
-                  <button className="w-auto h-auto cursor-pointer max-md:hidden">
+                  <button
+                        className="w-auto h-auto cursor-pointer max-md:hidden"
+                        onClick={openLanguageBar}>
                       <img 
                           src="./Img/usa.png" 
                           className="w-[30px] h-[18px]"
@@ -102,26 +119,32 @@ function HeaderMenu({ isMobile, currentUser }) {
                           alt=""/>
                   </button>
 
-                  <button className="hidden w-[40px] h-[40px] items-center justify-center cursor-pointer rounded-xl bg-white border border-1 border-gray-200 max-md:flex">
+                  <button
+                        className="hidden w-[40px] h-[40px] items-center justify-center
+                        cursor-pointer rounded-xl bg-white border border-1 border-gray-200 max-md:flex"
+                        onClick={openLanguageBar}>
                       <img 
                           src="./Img/usa.png" 
                           className="w-[27px] h-[16px]"
                           alt=""/>
                   </button>
 
-                  <button className="hidden w-[40px] h-[40px] items-center justify-center cursor-pointer rounded-xl bg-[#e33b41] max-md:flex">
+                  <button className="hidden w-[40px] h-[40px] items-center justify-center
+                   cursor-pointer rounded-xl bg-[#e33b41] max-md:flex">
                     <img 
                         src="/Img/search-icon.svg"
                         className="w-[22px] h-[22px]"/>
                   </button>
 
-                  <button className="hidden w-[40px] h-[40px] items-center justify-center cursor-pointer rounded-xl bg-[#e33b41] max-md:flex">
+                  <button className="hidden w-[40px] h-[40px] items-center justify-center
+                   cursor-pointer rounded-xl bg-[#e33b41] max-md:flex">
                     <img 
                         src="https://www.pizza-hut.am/assets/images/app_2/burger-iconWhite.svg"
                         className="w-[22px] h-[22px]"/>
                   </button>
     
-                  <button className="w-[40px] h-[40px] flex items-center justify-center cursor-pointer rounded-md max-md:hidden">
+                  <button className="w-[40px] h-[40px] flex items-center justify-center
+                   cursor-pointer rounded-md max-md:hidden">
                       <img 
                           src="./Img/menu-icon.svg" 
                           className="w-[22px] h-[22px]"
@@ -131,6 +154,8 @@ function HeaderMenu({ isMobile, currentUser }) {
               </div>
 
             </header>
+
+            <LanguageBar />
         </>
     )
 }

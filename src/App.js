@@ -75,7 +75,9 @@ function App() {
                     <Route path="/basket" element={
                         <Basket isMobile={isMobile}/>
                     }/>
-                    <Route path="/admin-panel" element={<AdminPanel />}/>
+                    <Route
+                            path="/admin_panel_is_blocked"
+                            element={<AdminPanel />}/>
                 </Routes>
             </BrowserRouter>
         </>

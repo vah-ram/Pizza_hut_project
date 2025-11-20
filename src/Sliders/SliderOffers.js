@@ -19,7 +19,7 @@ function SliderOffers({ isMobile }) {
                         </p>
                     </div>
 
-                    <div className="flex gap-3 h-full items-center">
+                        <div className="flex gap-3 h-full items-center">
 
                         <div className="flex">
                             <button 
@@ -56,7 +56,7 @@ function SliderOffers({ isMobile }) {
                                 prevEl: ".pizza-prev-btn",
                                 nextEl: ".pizza-next-btn"
                             }}>
-                        
+
                         <SwiperSlide className="!w-[307px] shrink-0">
 
                         <div 
@@ -93,7 +93,9 @@ function SliderOffers({ isMobile }) {
                                     </p>
                                 </button>
 
-                                <button className="w-[50%] cursor-pointer bg-[#e33b41] flex justify-center items-center gap-2">
+                                <button className="w-[50%] cursor-pointer
+                                 bg-[#e33b41] flex justify-center items-center
+                                  gap-2 hover:opacity-90">
                                     <img 
                                         src="./Img/pizza-store-icon.svg" 
                                         className="w-[22px] h-[30px]"
@@ -142,7 +144,8 @@ function SliderOffers({ isMobile }) {
                                     </p>
                                 </button>
 
-                                <button className="w-[50%] cursor-pointer bg-[#e33b41] flex justify-center items-center gap-2">
+                                <button className="w-[50%] cursor-pointer bg-[#e33b41] flex justify-center
+                                items-center gap-2 hover:opacity-90">
                                     <img 
                                         src="./Img/pizza-store-icon.svg" 
                                         className="w-[22px] h-[30px]"
@@ -168,7 +171,7 @@ function SliderOffers({ isMobile }) {
                             <span className="w-[305px] h-[305px] rounded-[20px] overflow-hidden">
                                 <img 
                                     src="https://bonee.blob.core.windows.net/images/4f0eb176-764e-f85d-3ca1-187d69950caf_2.webp" 
-                                    className="hover:scale-110 duration-500"
+                                    className="w-full h-full hover:scale-110 duration-500"
                                     alt="slider item img"/>
                             </span>
                             
@@ -191,7 +194,9 @@ function SliderOffers({ isMobile }) {
                                     </p>
                                 </button>
 
-                                <button className="w-[50%] cursor-pointer bg-[#e33b41] flex justify-center items-center gap-2">
+                                <button className="w-[50%] cursor-pointer
+                                bg-[#e33b41] flex justify-center items-center
+                                 gap-2 hover:opacity-90">
                                     <img 
                                         src="./Img/pizza-store-icon.svg" 
                                         className="w-[22px] h-[30px]"
@@ -241,7 +246,9 @@ function SliderOffers({ isMobile }) {
                                     </p>
                                 </button>
 
-                                <button className="w-[50%] cursor-pointer bg-[#e33b41] flex justify-center items-center gap-2">
+                                <button className="w-[50%] cursor-pointer
+                                bg-[#e33b41] flex justify-center items-center
+                                 gap-2 hover:opacity-90">
                                     <img 
                                         src="./Img/pizza-store-icon.svg" 
                                         className="w-[22px] h-[30px]"
@@ -290,7 +297,8 @@ function SliderOffers({ isMobile }) {
                                     </p>
                                 </button>
 
-                                <button className="w-[50%] cursor-pointer bg-[#e33b41] flex justify-center items-center gap-2">
+                                <button className="w-[50%] cursor-pointer bg-[#e33b41]
+                                flex justify-center items-center gap-2 hover:opacity-90">
                                     <img 
                                         src="./Img/pizza-store-icon.svg" 
                                         className="w-[22px] h-[30px]"
@@ -339,7 +347,8 @@ function SliderOffers({ isMobile }) {
                                     </p>
                                 </button>
 
-                                <button className="w-[50%] cursor-pointer bg-[#e33b41] flex justify-center items-center gap-2">
+                                <button className="w-[50%] cursor-pointer bg-[#e33b41]
+                                 flex justify-center items-center gap-2 hover:opacity-90">
                                     <img 
                                         src="./Img/pizza-store-icon.svg" 
                                         className="w-[22px] h-[30px]"
@@ -388,7 +397,8 @@ function SliderOffers({ isMobile }) {
                                     </p>
                                 </button>
 
-                                <button className="w-[50%] cursor-pointer bg-[#e33b41] flex justify-center items-center gap-2">
+                                <button className="w-[50%] cursor-pointer bg-[#e33b41]
+                                flex justify-center items-center gap-2 hover:opacity-90">
                                     <img 
                                         src="./Img/pizza-store-icon.svg" 
                                         className="w-[22px] h-[30px]"
@@ -437,7 +447,8 @@ function SliderOffers({ isMobile }) {
                                     </p>
                                 </button>
 
-                                <button className="w-[50%] cursor-pointer bg-[#e33b41] flex justify-center items-center gap-2">
+                                <button className="w-[50%] cursor-pointer bg-[#e33b41] flex
+                                justify-center items-center gap-2 hover:opacity-90">
                                     <img 
                                         src="./Img/pizza-store-icon.svg" 
                                         className="w-[22px] h-[30px]"
@@ -486,7 +497,8 @@ function SliderOffers({ isMobile }) {
                                     </p>
                                 </button>
 
-                                <button className="w-[50%] cursor-pointer bg-[#e33b41] flex justify-center items-center gap-2">
+                                <button className="w-[50%] cursor-pointer bg-[#e33b41] flex
+                                 justify-center items-center gap-2 hover:opacity-90">
                                     <img 
                                         src="./Img/pizza-store-icon.svg" 
                                         className="w-[22px] h-[30px]"
@@ -535,7 +547,8 @@ function SliderOffers({ isMobile }) {
                                     </p>
                                 </button>
 
-                                <button className="w-[50%] cursor-pointer bg-[#e33b41] flex justify-center items-center gap-2">
+                                <button className="w-[50%] cursor-pointer bg-[#e33b41]
+                                 flex justify-center items-center gap-2 hover:opacity-90">
                                     <img 
                                         src="./Img/pizza-store-icon.svg" 
                                         className="w-[22px] h-[30px]"

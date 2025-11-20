@@ -224,7 +224,8 @@ function AllCatalogs() {
                                                 </p>
                                             </button>
 
-                                            <button className="w-[50%] cursor-pointer bg-[#e33b41] flex justify-center items-center gap-2">
+                                            <button className="w-[50%] cursor-pointer bg-[#e33b41]
+                                            flex justify-center items-center gap-2 hover:opacity-90">
                                                 <img
                                                     src="./Img/pizza-store-icon.svg"
                                                     className="w-[22px] h-[30px]"
