@@ -69,7 +69,8 @@ function Login() {
                         </p>
                     </button>
 
-                    <div className="flex flex-col gap-[10rem] items-center">
+                    <div className="flex flex-col gap-[10rem] items-center
+                       max-lg:p-10">
                         <div className="flex gap-4 mr-auto ml-[-20px]">
                             <span className="w-[50px] h-[50px] rounded-full block
                             border border-[10px] border-white"/>
@@ -103,42 +104,86 @@ function Login() {
 
                 <form
                     className="w-[50%] h-full bg-white flex
-                    flex-col justify-center items-center relative max-md:w-full"
+                    flex-col justify-center items-center relative max-md:w-full [body.dark_&]:bg-[#2e2e2e]
+                    max-md:justify-start max-md:pt-[60px]"
                     onSubmit={(evt) => {
                         evt.preventDefault()
                         addData()
                     }}>
-                    <h2 className="text-[21px] text-[#515151] font-[600] uppercase">
+
+                    <div className="w-full h-[60px] hidden absolute top-0 shadow-md
+                        justify-center items-center max-md:flex">
+                        <button
+                                className="w-[40px] h-[40px] flex items-center justify-center
+                                border-1 border-gray-200 rounded-xl outline-none absolute left-5"
+                                onClick={() => navigate('/')}>
+                            <img
+                                src="https://pizza-hut.am/assets/images/app_2/arrow.svg"
+                                className="w-[20px] h-[20px]"/>
+                        </button>
+
+                        <h2 className="text-[17px] text-[#515151] font-[600] uppercase [body.dark_&]:text-white">
+                            Authorization
+                        </h2>
+                    </div>
+
+                    <div className="w-[95%] hidden h-[41px] max-md:flex gap-[2px] mt-2">
+                        <button className="w-[50%] uppercase text-[#e33b41] border-b-2 text-[19px]
+                                font-[600]"
+                                onClick={evt => {
+                                    evt.preventDefault()
+                                    navigate('/signIn')
+                                }}>
+                            Log in
+                        </button>
+
+                        <button className="w-[50%] uppercase text-[#515151] border-b-2 text-[19px]
+                                font-[600] border-gray-200"
+                                onClick={evt => {
+                                    evt.preventDefault()
+                                    navigate('/signUp')
+                                }}>
+                            Register
+                        </button>
+                    </div>
+
+                    <h2 className="text-[21px] text-[#515151] font-[600] uppercase [body.dark_&]:text-white max-md:hidden">
                         Authorization
                     </h2>
 
-                    <p className="text-[17px] text-[#9D9D9D] font-[600]">
+                    <p className="text-[17px] text-[#9D9D9D] font-[600]
+                    max-md:text-[#515151] max-md:mt-5">
                         You can log in with Bonee account
                     </p>
 
                     <div className="w-[60%] mt-5 flex gap-5 items-center px-3 py-3 rounded-[15px]
-                    border border-1 border-gray-200 max-lg:w-[80%]">
+                    border border-1 border-gray-200 [body.dark_&]:border-[#FFF3] max-md:w-[95%]">
                         <img src="/Img/email-icon.png" alt="Email"/>
                         <input
                             type="email"
                             placeholder="Email"
-                            className="border-none outline-none w-full"
+                            className="border-none outline-none w-full [body.dark_&]:text-white"
                             maxLength={50}
                             onChange={(evt) => setEmail(evt.target.value)}/>
                     </div>
 
                     <div className="w-[60%] mt-5 flex gap-5 items-center px-3 py-3 rounded-[15px]
-                    border border-1 border-gray-200 max-lg:w-[80%]">
+                    border border-1 border-gray-200 [body.dark_&]:border-[#FFF3] max-md:w-[95%]">
+
                         <img src="/Img/password-icon.png" alt="Email"/>
+
                         <input
                             type={`${showPassword ? 'text' : 'password'}`}
                             placeholder="Password"
-                            className="border-none outline-none w-full"
+                            className="border-none outline-none w-full [body.dark_&]:text-white"
                             maxLength={50}
                             onChange={(evt) => setPassword(evt.target.value)}/>
                         <button
                                 className="w-[22px] h-[22px] cursor-pointer"
-                                onClick={() => setShowPassword(!showPassword)}>
+                                onClick={(evt) => {
+                                    evt.preventDefault();
+                                    setShowPassword(!showPassword);
+                                }}>
                             <img
                                 src="https://pizza-hut.am/assets/images/app_2/showPassword.svg"
                                 className="w-full h-full"
@@ -148,34 +193,39 @@ function Login() {
 
                     <a
                         href="/reset-password"
-                        className="text-[15px] text-[#e33b41] font-[600] ml-auto mr-[20%] mt-7">
+                        className="text-[15px] text-[#e33b41] font-[600]
+                         ml-auto mr-[20%] mt-7 max-md:mr-[2.5%]">
                         Forgot your Password?
                     </a>
 
-                    <button
-                            type="submit"
+                    <button type="submit"
                             className="w-[60%] mt-5 flex gap-5 items-center justify-center
                             px-3 py-4 rounded-[12px] bg-[#e33b41] cursor-pointer hover:opacity-90
-                             max-lg:w-[80%]">
+                            max-md:w-[95%] max-md:rounded-[18px]">
                         <p className="uppercase text-white text-[16px] font-sans">
                             Log in
                         </p>
                     </button>
 
-                    <div className="w-[60%] flex items-center mt-2 max-lg:w-[80%]">
+                    <div className="w-[60%] flex items-center mt-2  max-md:w-[95%]">
+
                         <span className="w-full h-[1px] bg-gray-300"/>
-                        <p className="text-[16px] m-4">OR</p>
+                            <p className="text-[16px] m-4 [body.dark_&]:text-white">OR</p>
                         <span className="w-full h-[1px] bg-gray-300"/>
+
                     </div>
 
-                    <button className="w-[60%] mt-5 flex gap-5 items-center px-3 py-3 rounded-[15px]
-                    border border-1 border-gray-200 relative cursor-pointer max-lg:w-[80%]">
+                    <button
+                            className="w-[60%] mt-5 flex gap-5 items-center px-3 py-3 rounded-[15px]
+                            border border-1 border-gray-200 relative cursor-pointer [body.dark_&]:border-[#FFF3]
+                             max-md:w-[95%]"
+                            onClick={evt => evt.preventDefault()}>
                         <img
                             src="/Img/google-social-icon.png"
                             className="w-[30px] h-[30px]"
                             alt="Email"/>
 
-                        <p className="uppercase">
+                        <p className="uppercase [body.dark_&]:text-white max-lg:text-[1.5vw] max-md:text-[16px]">
                             Continue with google
                         </p>
 
@@ -184,14 +234,17 @@ function Login() {
                             className="rotate-[180deg] w-[15px] h-[15px] absolute right-5"/>
                     </button>
 
-                    <button className="w-[60%] mt-5 flex gap-5 items-center px-3 py-3 rounded-[15px]
-                    border border-1 border-gray-200 relative cursor-pointer max-lg:w-[80%]">
+                    <button
+                            className="w-[60%] mt-5 flex gap-5 items-center px-3 py-3 rounded-[15px]
+                            border border-1 border-gray-200 relative cursor-pointer [body.dark_&]:border-[#FFF3]
+                             max-md:w-[95%]"
+                            onClick={evt => evt.preventDefault()}>
                         <img
                             src="/Img/guest-icon.png"
                             className="w-[30px] h-[30px]"
                             alt="Email"/>
 
-                        <p className="uppercase">
+                        <p className="uppercase [body.dark_&]:text-white max-lg:text-[1.5vw] max-md:text-[16px]">
                             Continue as a guest
                         </p>
 

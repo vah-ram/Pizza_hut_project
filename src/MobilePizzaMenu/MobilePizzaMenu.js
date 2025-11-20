@@ -1,5 +1,21 @@
+import { useState } from "react";
 
 function MobilePizzaMenu() {
+
+    const [ modeValue, setModeValue ] = useState('');
+
+    const callDarkAndLightMode = () => {
+        const body = document.querySelector('body');
+
+        if (!body.classList.contains('dark')) {
+            body.classList.add('dark');
+            setModeValue(true);
+        } else {
+            body.classList.remove('dark');
+            setModeValue(false)
+        }
+    }
+
     return (
         <>
             <section className='w-full h-full flex-col mt-[60px] p-5 pb-[14rem] hidden max-md:flex max-sm:p-2 max-sm:mt-[70px] max-sm:pb-[13rem]'>
@@ -117,15 +133,19 @@ function MobilePizzaMenu() {
                         </div>
                 </div>
 
-                <div className="w-full h-[40px] rounded-full flex items-center
-                border border-1 border-gray-200 mt-5 overflow-hidden cursor-pointer">
+                <div
+                    className="w-full h-[40px] rounded-full flex items-center
+                     border border-1 border-gray-200 mt-5 overflow-hidden cursor-pointer"
+                    onClick={callDarkAndLightMode}>
                     <button className="w-[50%] h-full rounded-full flex items-center justify-center
-                    font-sans uppercase bg-[#E33B41] text-[13px] text-white">
+                    font-sans uppercase bg-[#E33B41] text-[13px] text-white cursor-pointer
+                    [body.dark_&]:bg-transparent">
                         Light mode
                     </button>
 
                     <button className="w-[50%] h-full rounded-full flex items-center justify-center
-                    font-sans uppercase bg-transparent text-[13px] text-gray-600">
+                    font-sans uppercase bg-transparent text-[13px] text-gray-600 cursor-pointer [body.dark_&]:text-white
+                    [body.dark_&]:bg-[#E33B41]">
                         Dark mode
                     </button>
                 </div>

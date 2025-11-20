@@ -1,5 +1,13 @@
 img {pointer-events: none}
 
+@font-face {
+    font-family: "ProximaNova";
+}
+
+body {
+    font-family: "Proxima Nova Rg", sans-serif;
+}
+
 body::-webkit-scrollbar {
     width: 5px;
     height: 100%;

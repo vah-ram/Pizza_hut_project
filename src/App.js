@@ -6,6 +6,7 @@ import Register from "./authorization/Register";
 import Login from "./authorization/Login";
 import About from "./About/About";
 import Basket from "./Basket/Basket";
+import AdminPanel from "./Admin/AdminPanel";
 
 function App() {
 
@@ -41,6 +42,7 @@ function App() {
                     <Route path="/basket" element={
                         <Basket isMobile={isMobile}/>
                     }/>
+                    <Route path="/admin-panel" element={<AdminPanel />}/>
                 </Routes>
             </BrowserRouter>
         </>
