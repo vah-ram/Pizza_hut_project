@@ -101,7 +101,7 @@ function Register() {
                         </p>
                     </button>
 
-                    <div className="flex flex-col gap-[10rem] items-center max-lg:p-10">
+                    <div className="flex flex-col gap-[5rem] items-center max-lg:p-10">
                         <div className="flex gap-4 mr-auto ml-[-20px]">
                             <span className="w-[50px] h-[50px] rounded-full block
                             border border-[10px] border-white"/>
@@ -122,7 +122,7 @@ function Register() {
                         </p>
 
                         <button
-                            className="w-full h-[54px] px-3 py-4 rounded-2xl
+                            className="w-[80%] h-[54px] px-3 py-4 rounded-2xl
                                 flex items-center justify-center shadow-lg
                                 shadow-[#0000004d] cursor-pointer"
                             onClick={() => navigate('/signIn')}>
@@ -136,7 +136,8 @@ function Register() {
                 <form
                     className="w-[50%] h-full bg-white flex
                     flex-col justify-center items-center relative max-md:w-full
-                    [body.dark_&]:bg-[#2e2e2e] max-md:justify-start max-md:pt-[60px]"
+                    [body.dark_&]:bg-[#2e2e2e] max-md:justify-start max-md:pt-[60px]  
+                    max-md:pb-10"
                     onSubmit={(evt) => {
                         evt.preventDefault()
                         addData()

@@ -61,7 +61,9 @@ function SliderCategories({ isMobile }) {
 
                         <SwiperSlide className="!w-[266px] shrink-0">
 
-                        <div className="w-full h-full shrink-[0] relative rounded-[25px] overflow-hidden">
+                        <div 
+                        className="w-full h-full shrink-[0] 
+                        relative rounded-[25px] overflow-hidden">
                             <img 
                                 src="https://bonee.blob.core.windows.net/images/f57285e4-5fcc-f853-b25f-1a2e99f65082_1.jpg" 
                                 className="hover:scale-110 duration-500" 

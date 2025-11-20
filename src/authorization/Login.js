@@ -69,7 +69,7 @@ function Login() {
                         </p>
                     </button>
 
-                    <div className="flex flex-col gap-[10rem] items-center
+                    <div className="flex flex-col gap-[5rem] items-center
                        max-lg:p-10">
                         <div className="flex gap-4 mr-auto ml-[-20px]">
                             <span className="w-[50px] h-[50px] rounded-full block
@@ -91,7 +91,7 @@ function Login() {
                         </p>
 
                         <button
-                                className="w-full h-[54px] px-3 py-4 rounded-2xl
+                                className="w-[80%] h-[54px] px-3 py-4 rounded-2xl
                                 flex items-center justify-center shadow-lg
                                 shadow-[#0000004d] cursor-pointer"
                                 onClick={() => navigate('/signUp')}>

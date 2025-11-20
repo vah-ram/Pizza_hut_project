@@ -41,7 +41,7 @@ function AllCatalogs() {
                     </div>
 
                     <form
-                        className="w-[70vw] h-[42px] flex gap-3 items-center max-lg:gap-3"
+                        className="w-[60vw] h-[42px] flex gap-3 items-center max-lg:gap-3"
                         onSubmit={(evt) => {
                             evt.preventDefault()
                         }}>

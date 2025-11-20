@@ -62,8 +62,6 @@ function Project({ isMobile, currentUser }) {
 
       <AboutMenu />
 
-          <ProductCard />
-
       </main>
   );
 }

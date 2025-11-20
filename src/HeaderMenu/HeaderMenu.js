@@ -101,7 +101,11 @@ function HeaderMenu({ isMobile, currentUser }) {
                         className="w-auto h-auto cursor-pointer max-md:hidden"
                         onClick={() => navigate('/signIn')}>
                       <img
-                          src={`${currentUser ? "./Img/user-icon.png" : "./Img/user-registered.png"}`}
+                          src={`${
+                            currentUser ?
+                             "./Img/user-registered.png" :
+                              "./Img/user-icon.svg"
+                            }`}
                           className="w-[22px] h-[22px]"
                           alt=""/>
                   </button>

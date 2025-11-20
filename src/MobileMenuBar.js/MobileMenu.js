@@ -5,10 +5,13 @@ function MobileMenu() {
 
     return (
         <>
-            <footer className="bg-white hidden items-center justify-around fixed z-[100] w-full h-auto
-             absolute bottom-0 max-md:flex bg-white p-2 [body.dark_&]:bg-[#2e2e2e]">
+            <footer className="bg-white hidden items-center justify-around 
+            fixed z-[100] w-full h-auto
+             absolute bottom-0 max-md:flex bg-white p-2 
+             [body.dark_&]:bg-[#2e2e2e]">
                 <button
-                        className="flex flex-col gap-1 justify-center items-center cursor-pointer"
+                        className="flex flex-col gap-1 justify-center 
+                        items-center cursor-pointer"
                         onClick={() => navigate("/")}>
                     <img 
                         src="https://www.pizza-hut.am/assets/images/app_2/home.svg" 
@@ -21,7 +24,8 @@ function MobileMenu() {
                 </button>
 
                 <button
-                        className="flex flex-col gap-1 justify-center items-center cursor-pointer mr-3"
+                        className="flex flex-col gap-1 justify-center 
+                        items-center cursor-pointer mr-3"
                         onClick={() => navigate("/about")}>
                     <img 
                         src="https://www.pizza-hut.am/assets/images/app_2/aboutUs.svg" 
@@ -33,10 +37,14 @@ function MobileMenu() {
                         </p>
                 </button>
 
-                <button className="w-[19vw] h-[19vw] flex flex-col gap-1 items-center justify-center absolute bottom-10 bg-blue-500 rounded-full shadow-md  cursor-pointer">
+                <button className="w-[19vw] h-[19vw] flex 
+                flex-col gap-1 items-center justify-center 
+                absolute bottom-10 bg-blue-500 rounded-full 
+                shadow-md cursor-pointer">
                     <img 
                         src="https://www.pizza-hut.am/assets/images/app_2/delivery.svg"
-                        className="w-[6vh] h-[6vh] max-sm:w-[3vh] max-sm:h-[3vh]"
+                        className="w-[6vh] h-[6vh] max-sm:w-[4vh]
+                         max-sm:h-[4vh]"
                         alt=""/>
                     
                     <p className="text-[2vw] text-white font-[600]">DELIVERY</p>
@@ -63,7 +71,8 @@ function MobileMenu() {
                 </button>
 
                 <button 
-                    className="flex flex-col gap-1 justify-center items-center cursor-pointer"
+                    className="flex flex-col gap-1 justify-center 
+                    items-center cursor-pointer"
                     onClick={() => navigate('/signIn')}>
                     <img 
                         src="https://www.pizza-hut.am/assets/images/app_2/user.svg" 
