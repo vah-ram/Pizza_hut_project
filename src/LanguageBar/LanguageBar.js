@@ -11,8 +11,9 @@ function LanguageBar() {
         <>
             <div
                 className="w-[300px] h-full fixed bg-white flex flex-col
-                right-[-300px] z-100 mt-[-80px] shadow-lg [body.languageActive_&]:translate-x-[-300px]
-                 transition duration-300 ease-in-out" >
+                right-[-300px] z-[200] mt-[-80px] shadow-lg
+                [body.languageActive_&]:translate-x-[-300px]
+                 transition duration-300 ease-in-out max-md:mt-[-60px]" >
 
                 <button className="w-[40px] h-[40px] border-1 border-gray-200
                                     rounded-xl cursor-pointer flex items-center

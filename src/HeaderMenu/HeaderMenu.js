@@ -153,8 +153,10 @@ function HeaderMenu({ isMobile, currentUser }) {
                         className="w-[22px] h-[22px]"/>
                   </button>
 
-                  <button className="hidden w-[40px] h-[40px] items-center justify-center
-                   cursor-pointer rounded-xl bg-[#e33b41] max-md:flex">
+                  <button
+                        className="hidden w-[40px] h-[40px] items-center justify-center
+                        cursor-pointer rounded-xl bg-[#e33b41] max-md:flex"
+                        onClick={openMenuBar}>
                     <img
                         src="https://www.pizza-hut.am/assets/images/app_2/burger-iconWhite.svg"
                         className="w-[22px] h-[22px]"/>
