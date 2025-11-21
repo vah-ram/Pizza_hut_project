@@ -29,7 +29,10 @@ function FeedbackMenuBar() {
 
                 <button
                         className="flex gap-2 items-center mt-20 cursor-pointer"
-                        onClick={() => navigate('/feedback')}>
+                        onClick={() => {
+                            navigate('/feedback')
+                            closeMenuBar()
+                        }}>
                     <img
                         src="https://pizza-hut.am/assets/images/app_2/feedback.svg"
                         loading="lazy"
