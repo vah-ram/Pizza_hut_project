@@ -73,7 +73,7 @@ function App() {
                     <Route path="/signIn" element={<Login />}/>
                     <Route path="/signUp" element={<Register />}/>
                     <Route path="/product/:productId" element={<ProductCard />}/>
-                    <Route path="/catalogs" element={<AllCatalogs />}/>
+                    <Route path="/catalogs/:type" element={<AllCatalogs />}/>
                     <Route path="/feedback" element={<FeedBack isMobile={isMobile}/>}/>
                     <Route path="/profile" element={<Profile />}/>
                     <Route path="/basket" element={

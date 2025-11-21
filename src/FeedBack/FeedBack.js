@@ -5,14 +5,14 @@ import MobileMenu from "../MobileMenuBar.js/MobileMenu";
 function FeedBack({ isMobile }) {
     return (
         <>
-            <div className="w-full h-full">
+            <div className="w-full h-full max-md:mb-50">
                 {
                     isMobile ? '' : <HeaderMenu />
                 }
                 <MobileMenu />
 
                 <form className="mt-[80px] flex flex-col items-center mt-10">
-                    <h2 className="text-[#515151] text-[28px]">
+                    <h2 className="text-[#515151] text-[28px] [body.dark_&]:text-white">
                         Submit a request
                     </h2>
 
@@ -20,7 +20,7 @@ function FeedBack({ isMobile }) {
                             className="flex flex-col gap-2 w-[50%] max-md:w-[90%]"
                             onSubmit={(e) => e.preventDefault()}>
                         <label
-                            className="text-[#515151] text-[16px] mt-4"
+                            className="text-[#515151] text-[16px] mt-4 [body.dark_&]:text-white"
                             htmlFor="feedback_text">
                             Please select a topic <b className="text-red-500">*</b>
                         </label>
@@ -29,12 +29,14 @@ function FeedBack({ isMobile }) {
                             <input
                                     type="text"
                                     placeholder="Set Feedback messages"
-                                    className="w-full h-full outline-none border-none"
+                                    className="w-full h-full outline-none border-none
+                                     [body.dark_&]:text-white"
                                     name="feedback_text"/>
                         </div>
 
                         <label
-                            className="text-[#515151] mt-4 text-[16px]"
+                            className="text-[#515151] mt-4 text-[16px]
+                             [body.dark_&]:text-white"
                             htmlFor="email">
                             Email
                         </label>
@@ -42,19 +44,21 @@ function FeedBack({ isMobile }) {
                         <div className="w-full px-3 py-4 rounded-[15px] border-1 border-[#9d9d9d]">
                             <input
                                 type="email"
-                                className="w-full h-full outline-none border-none"
+                                className="w-full h-full outline-none border-none
+                                 [body.dark_&]:text-white"
                                 name="email"/>
                         </div>
 
                         <label
-                            className="text-[#515151] mt-4 text-[16px]"
+                            className="text-[#515151] mt-4 text-[16px] [body.dark_&]:text-white"
                             htmlFor="description_text">
                             Description
                         </label>
 
                         <div className="w-full h-[132px] p-2 rounded-[15px] border-1 border-[#9d9d9d]">
                             <textarea
-                                className="w-full h-full outline-none border-none"
+                                className="w-full h-full outline-none border-none
+                                 [body.dark_&]:text-white"
                                 name="description_text"/>
                         </div>
 

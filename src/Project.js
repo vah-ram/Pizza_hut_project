@@ -24,7 +24,7 @@ function Project({ isMobile, currentUser }) {
           <button 
               className="w-[250px] h-[42px] flex items-center justify-center
               rounded-[10px] bg-[#3d3d3d] cursor-pointer hover:bg-[#e33b41]"
-                onClick={() => navigate('/catalogs')}>
+                onClick={() => navigate('/catalogs/special-offers')}>
               <p className="text-white text-[17px] font-sans font-[500]">
                   ALL PRODUCTS
               </p>
@@ -46,7 +46,8 @@ function Project({ isMobile, currentUser }) {
                   id="search__input"/>
 
               <button 
-                  className="w-[41px] h-full bg-[#e33b41] flex items-center justify-center rounded-[10px] cursor-pointer">
+                  className="w-[41px] h-full bg-[#e33b41] flex items-center
+                  justify-center rounded-[10px] cursor-pointer">
                   <img 
                       src="./Img/search-icon.svg" 
                       class="w-[15px] h-[15px]" 

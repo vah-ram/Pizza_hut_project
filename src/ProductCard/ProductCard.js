@@ -11,17 +11,18 @@ function ProductCard() {
         <>
             <Project />
 
-            <div className="fixed inset-0 z-[100] bg-black/40 flex items-center justify-center bg-[#FFF]">
+            <div className="fixed inset-0 z-[100] bg-black/40 flex
+            items-center justify-center">
 
                 <div
                     className="relative w-[80%] h-[85%]
-                rounded-xl bg-[#FFF] p-5 pb-20 overflow-scroll
-                [&::-webkit-scrollbar]:hidden">
+                    rounded-xl bg-[#FFF] p-5 pb-20 overflow-scroll
+                    [&::-webkit-scrollbar]:hidden [body.dark_&]:bg-[#2E2E2E]">
 
                     <button
                             className="w-[30px] h-[30px] absolute right-0
-                            top-[0px] flex items-center justify-center bg-white rounded-full
-                            absolute cursor-pointer"
+                                top-[0px] flex items-center justify-center bg-white rounded-full
+                                absolute cursor-pointer"
                             onClick={() => navigate('/')}>
                         <img
                             src="https://pizza-hut.am/assets/images/app_2/close.svg"
@@ -30,10 +31,10 @@ function ProductCard() {
 
                     <div className="w-full flex gap-5">
 
-                        <div className="w-[40%] h-auto">
+                        <div className="w-[40%] h-auto group overflow-hidden">
                             <img
                                 src="https://bonee.blob.core.windows.net/images/3cb64dce-f9bc-6b0a-dd0f-dc785729de67_2.webp"
-                                className="w-[60vmin] h-[60vmin]"
+                                className="w-[60vmin] h-[60vmin] group-hover:opacity-80"
                                 alt="slider item img"/>
                         </div>
 
@@ -42,7 +43,7 @@ function ProductCard() {
 
                             <div className="w-full flex justify-between">
                                 <h2 className="uppercase text-[calc(18px+.3vw)]
-                                text-[#515151] font-[700] mt-2">
+                                text-[#515151] font-[700] mt-2 [body.dark_&]:text-white">
                                     Combo for Meat Lovers
                                 </h2>
 
@@ -55,7 +56,8 @@ function ProductCard() {
                                         src="/Img/share-icon.png"
                                         className="w-[15px] h-[15px]"/>
 
-                                    <p className="text-[16px] text-[#515151]">
+                                    <p className="text-[16px] text-[#515151]
+                                    [body.dark_&]:text-white">
                                         Share
                                     </p>
 
@@ -77,7 +79,7 @@ function ProductCard() {
 
                             <h3
                                 className="uppercase text-[calc(16px+.3vw)] font-[600]
-                             text-[#515151] mt-20">
+                             text-[#515151] mt-20 [body.dark_&]:text-white">
                                 Pizza Type
                             </h3>
 
@@ -91,9 +93,9 @@ function ProductCard() {
 
                                 <button
                                     className="uppercase w-[85px] h-[31px]
-                                text-[#9D9D9D] border border-1
-                                border-gray-200 rounded-md text-[14px]
-                                cursor-pointer">
+                                    text-[#9D9D9D] border border-1
+                                    border-gray-200 rounded-md text-[14px]
+                                    cursor-pointer [body.dark_&]:border-[#9D9D9D]">
                                     Classic
                                 </button>
                             </div>
@@ -101,14 +103,14 @@ function ProductCard() {
                             <form className="w-full flex flex-col">
 
                                 <h3 className="uppercase text-[calc(12px+.3vw)] font-[600]
-                             text-[#515151] mt-8">
+                             text-[#515151] mt-8 [body.dark_&]:text-white">
                                     Add any special instructions
                                 </h3>
 
                                 <textarea
                                     className="outline-none p-3 border
-                                border-1 border-[#9D9D9D] rounded-xl
-                                mt-3"
+                                    border-1 border-[#9D9D9D] rounded-xl
+                                    mt-3 [body.dark_&]:text-white"
                                     placeholder="Additional Comment">
 
                             </textarea>
@@ -130,8 +132,8 @@ function ProductCard() {
                                     <div className="flex items-center">
 
                                         <div className="flex gap-2 border-1 border-[#9d9d9d]
-                                     rounded-tl-[10px] rounded-bl-[10px] w-[120px] h-[36px] text-[#e33b41] text-[20px]
-                                     justify-around items-center translate-x-[3px] z-[0]">
+                                         rounded-tl-[10px] rounded-bl-[10px] w-[120px] h-[36px] text-[#e33b41] text-[20px]
+                                         justify-around items-center translate-x-[3px] z-[0]">
 
                                             <button
                                                 className="cursor-pointer"
@@ -183,7 +185,8 @@ function ProductCard() {
 
                     <div className="w-full flex flex-col mt-5">
 
-                        <h2 className="uppercase font-[600] text-[27px] text-[#515151]">
+                        <h2 className="uppercase font-[600] text-[27px] text-[#515151]
+                        [body.dark_&]:text-white">
                             Customers also orders
                         </h2>
 
@@ -192,11 +195,12 @@ function ProductCard() {
                         </p>
 
                         <div className="flex gap-5 mt-10">
+
                             <div
                                 className="w-[25vmax] h-[60vmin] shrink-[0] flex flex-col
-                            justify-start
-                            items-center relative rounded-[20px]
-                            border-1 border-gray-300">
+                                justify-start [body.dark_&]:border-gray-100
+                                items-center relative rounded-[20px]
+                                border-1 border-gray-300">
 
                             <span
                                 className="w-full h-[80%] rounded-[20px]
@@ -250,14 +254,14 @@ function ProductCard() {
 
                             <div
                                 className="w-[25vmax] h-[60vmin] shrink-[0] flex flex-col
-                                    justify-start
+                                    justify-start [body.dark_&]:border-gray-200
                                     items-center relative rounded-[20px]
                                     border-1 border-gray-300">
 
                             <span
                                 className="w-full h-[80%] rounded-[20px]
                                 overflow-hidden border-b-1 border-gray-300 flex
-                                items-center justify-center shadow-sm">
+                                items-center justify-center shadow-sm [body.dark_&]:border-gray-200">
                                 <img
                                     src="https://bonee.blob.core.windows.net/images/0a19d20a-3684-8267-c5fe-fb50a5026723_1.webp"
                                     className="hover:scale-110 duration-500"

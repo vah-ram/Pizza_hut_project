@@ -1,23 +1,31 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import LanguageBar from "../LanguageBar/LanguageBar";
 import FeedbackMenuBar from "../FeedbackMenuBar/FeedbackMenuBar";
 
 function HeaderMenu({ isMobile, currentUser }) {
     const navigate = useNavigate();
 
-    const [ modeValue, setModeValue ] = useState('');
+    const [modeValue, setModeValue] = useState(() => {
+        return localStorage.getItem("darkMode") === "true";
+    });
+
+    useEffect(() => {
+        const body = document.querySelector("body");
+
+        if (modeValue) {
+            body.classList.add("dark");
+        } else {
+            body.classList.remove("dark");
+        }
+
+    }, [modeValue]);
 
     const callDarkAndLightMode = () => {
-        const body = document.querySelector('body');
-
-        if (!body.classList.contains('dark')) {
-            body.classList.add('dark');
-            setModeValue(true);
-        } else {
-            body.classList.remove('dark');
-            setModeValue(false)
-        }
+        setModeValue(prev => {
+            localStorage.setItem("darkMode", !prev);
+            return !prev;
+        });
     };
 
     const openLanguageBar = () => {
