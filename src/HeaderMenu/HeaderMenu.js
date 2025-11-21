@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react"
 import LanguageBar from "../LanguageBar/LanguageBar";
+import FeedbackMenuBar from "../FeedbackMenuBar/FeedbackMenuBar";
 
 function HeaderMenu({ isMobile, currentUser }) {
     const navigate = useNavigate();
@@ -31,6 +32,18 @@ function HeaderMenu({ isMobile, currentUser }) {
 
     }
 
+    const openMenuBar = () => {
+
+        const body = document.querySelector('body');
+
+        if(!body.classList.contains('menuActive')) {
+            body.classList.add('menuActive');
+        } else {
+            body.classList.remove('menuActive');
+        }
+
+    }
+
     return (
         <>
             <header 
@@ -41,7 +54,7 @@ function HeaderMenu({ isMobile, currentUser }) {
                     className="w-auto h-full flex gap-2 items-center cursor-pointer"
                     onClick={() => navigate('/')}>
                   <img 
-                      src="./Img/pizza-hut-logo.png" 
+                      src="	https://bonee.blob.core.windows.net/images/b2167a89-02a4-2b85-b68b-efbdc4238980_1.png"
                       className="w-[40px] h-[40px]" 
                       alt="pizza hut log"/>
 
@@ -92,7 +105,7 @@ function HeaderMenu({ isMobile, currentUser }) {
                         className="w-auto h-auto cursor-pointer max-md:hidden"
                         onClick={openLanguageBar}>
                       <img 
-                          src="./Img/usa.png" 
+                          src="https://bonee.blob.core.windows.net/languages/icons/us.png"
                           className="w-[30px] h-[18px]"
                           alt=""/>
                   </button>
@@ -118,7 +131,7 @@ function HeaderMenu({ isMobile, currentUser }) {
                            after:items-center after:text-white max-md:hidden"
                         onClick={() => navigate('/basket')}>
                       <img 
-                          src="./Img/store-icon.svg" 
+                          src="https://bonee.blob.core.windows.net/company-type/Assets/basket.svg"
                           className="w-[25px] h-[25px]"
                           alt=""/>
                   </button>
@@ -142,15 +155,17 @@ function HeaderMenu({ isMobile, currentUser }) {
 
                   <button className="hidden w-[40px] h-[40px] items-center justify-center
                    cursor-pointer rounded-xl bg-[#e33b41] max-md:flex">
-                    <img 
+                    <img
                         src="https://www.pizza-hut.am/assets/images/app_2/burger-iconWhite.svg"
                         className="w-[22px] h-[22px]"/>
                   </button>
     
-                  <button className="w-[40px] h-[40px] flex items-center justify-center
-                   cursor-pointer rounded-md max-md:hidden">
-                      <img 
-                          src="./Img/menu-icon.svg" 
+                  <button
+                        className="w-[40px] h-[40px] flex items-center justify-center
+                        cursor-pointer rounded-md max-md:hidden"
+                        onClick={openMenuBar}>
+                      <img
+                          src="https://pizza-hut.am/assets/images/app_2/burger-icon.svg"
                           className="w-[22px] h-[22px]"
                           alt=""/>
                   </button>
@@ -160,6 +175,7 @@ function HeaderMenu({ isMobile, currentUser }) {
             </header>
 
             <LanguageBar />
+            <FeedbackMenuBar />
         </>
     )
 }

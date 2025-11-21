@@ -221,7 +221,7 @@ function Register() {
                                 type="tel"
                                 id="phone"
                                 placeholder="+374"
-                                value="+374"
+                                value="374"
                                 className="border-none outline-none w-full"
                                 maxLength={50}
                                 onChange={(e) => {

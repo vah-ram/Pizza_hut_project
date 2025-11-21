@@ -30,8 +30,14 @@ function Login() {
             });
 
             if(res.data.status) {
-                localStorage.setItem("token", res.data.token);
-                navigate('/');
+
+                if(res.data.user.role === "Admin") {
+                    localStorage.setItem("token", res.data.token);
+                    navigate('/admin_panel_is_blocked');
+                } else {
+                    navigate('/');
+                }
+
             } else {
                 toast.error(res.data.message, {
                     position: "bottom-right",

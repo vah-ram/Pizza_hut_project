@@ -1,6 +1,7 @@
 import React from "react";
 
 function AboutMenu() {
+
     return (
         <>
             <footer
@@ -150,28 +151,36 @@ function AboutMenu() {
                         <li>
                             <a
                                 href="/"
-                                className="text-white text-[14px]">Home</a>
+                                className="text-white text-[14px]">
+                                Home
+                            </a>
                         </li>
 
                         <li>
                             <a
                                 href="https://pizza-hut.am/us/about?sellingType=isActiveDelivery&mode=light"
                                 target="blank"
-                                className="text-white text-[14px]">About Us</a>
+                                className="text-white text-[14px]">
+                                About Us
+                            </a>
                         </li>
 
                         <li>
                             <a
                                 href="https://bonee.net/privacy-policy-en.html"
                                 target="blank"
-                                className="text-white text-[14px]">Terms and Conditions</a>
+                                className="text-white text-[14px]">
+                                Terms and Conditions
+                            </a>
                         </li>
 
                         <li>
                             <a
                                 href="https://bonee.net/privacy-policy-en.html"
                                 target="blank"
-                                className="text-white text-[14px]">Privacy policy</a>
+                                className="text-white text-[14px]">
+                                Privacy policy
+                            </a>
                         </li>
                     </ul>
 

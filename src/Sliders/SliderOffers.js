@@ -2,8 +2,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css"
 import "swiper/css/navigation"
 import { Navigation } from "swiper/modules"
+import { useNavigate } from "react-router-dom"
 
 function SliderOffers({ isMobile }) {
+    const navigate = useNavigate();
+
     return (
         <>
             <section className="w-full px-17 mt-[100px] flex flex-col max-lg:px-4 max-md:hidden">
@@ -65,7 +68,8 @@ function SliderOffers({ isMobile }) {
                             border-1 border-gray-300 before:content-['-20%'] before:absolute before:z-1
                             before:left-0 before:top-[25px] before:w-[80px] before:h-[30px] before:bg-[#f33]
                             before:text-white before:flex before:justify-center before:items-center before:rounded-tr-[8px]
-                             before:rounded-br-[8px] before:text-[16px]">
+                             before:rounded-br-[8px] before:text-[16px]"
+                        onClick={() => navigate(`/product/jkabsfi4r34123`)}>
 
                             <span className="w-[305px] h-[305px] rounded-[20px] overflow-hidden">
                                 <img 
@@ -113,7 +117,7 @@ function SliderOffers({ isMobile }) {
 
                         <SwiperSlide className="!w-[307px] shrink-0">
 
-                            <div 
+                            <div
                             className="w-[307px] h-[385px] shrink-[0] flex flex-col justify-start 
                             items-center relative rounded-[20px] 
                             border-1 border-gray-300 before:content-['-20%'] before:absolute before:z-1  before:left-0 before:top-[25px] before:w-[80px] before:h-[30px] before:bg-[#f33] before:text-white before:flex before:justify-center before:items-center before:rounded-tr-[8px] before:rounded-br-[8px] before:text-[16px]">

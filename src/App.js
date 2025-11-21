@@ -4,12 +4,13 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"
 import Project from "./Project";
 import Register from "./authorization/Register";
 import Login from "./authorization/Login";
-import About from "./About/About";
 import Basket from "./Basket/Basket";
 import AdminPanel from "./Admin/AdminPanel";
 import AllCatalogs from "./AllCatalogs/AllCatalogs";
 import { verifyProfileHost } from "./utils/Hosts.js";
 import axios from "axios";
+import ProductCard from "./ProductCard/ProductCard";
+import FeedBack from "./FeedBack/FeedBack";
 
 function App() {
 
@@ -70,8 +71,9 @@ function App() {
                     }/>
                     <Route path="/signIn" element={<Login />}/>
                     <Route path="/signUp" element={<Register />}/>
-                    <Route path="/about" element={<About />}/>
+                    <Route path="/product/:productId" element={<ProductCard />}/>
                     <Route path="/catalogs" element={<AllCatalogs />}/>
+                    <Route path="/feedback" element={<FeedBack />}/>
                     <Route path="/basket" element={
                         <Basket isMobile={isMobile}/>
                     }/>

@@ -2,13 +2,11 @@ import React from "react";
 
 function LanguageBar() {
 
-    const openLanguageBar = () => {
-
+    const closeLanguageBar = () => {
         const body = document.querySelector('body');
+            body.classList.remove('languageActive');
+    }
 
-        body.classList.remove('languageActive');
-
-}
     return (
         <>
             <div
@@ -20,29 +18,44 @@ function LanguageBar() {
                                     rounded-xl cursor-pointer flex items-center
                                     justify-center cursor-pointer absolute right-7
                                     top-7"
-                        onClick={openLanguageBar}>
+                        onClick={closeLanguageBar}>
                     <img
                         src="https://pizza-hut.am/assets/images/app_2/close.svg"
                         className="w-[20px] h-[20px]"/>
                 </button>
 
                 <ul className="flex flex-col gap-3 mt-20 ml-5">
-                    <li className="flex gap-2 cursor-pointer">
+                    <li className="flex gap-2 cursor-pointer items-center">
                         <input type="checkbox"/>
+
+                        <img
+                            src="https://bonee.blob.core.windows.net/languages/icons/arm.png"
+                            className="w-[30px] h-[20px]"/>
+
                         <p className="uppercase text-[24px] text-[#9D9D9D]">
                             Հայերեն - Hy
                         </p>
                     </li>
 
-                    <li className="flex gap-2 cursor-pointer">
+                    <li className="flex gap-2 cursor-pointer items-center">
                         <input type="checkbox"/>
+
+                        <img
+                            src="https://bonee.blob.core.windows.net/languages/icons/us.png"
+                            className="w-[30px] h-[20px]"/>
+
                         <p className="uppercase text-[24px] text-[#9D9D9D]">
                             English(us) - En
                         </p>
                     </li>
 
-                    <li className="flex gap-2 cursor-pointer">
+                    <li className="flex gap-2 cursor-pointer items-center">
                         <input type="checkbox"/>
+
+                        <img
+                            src="https://bonee.blob.core.windows.net/languages/icons/ru.png"
+                            className="w-[30px] h-[20px]"/>
+
                         <p className="uppercase text-[24px] text-[#9D9D9D]">
                             Русский - Ru
                         </p>

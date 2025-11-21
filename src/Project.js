@@ -5,7 +5,6 @@ import MobileMenu from "./MobileMenuBar.js/MobileMenu";
 import MobilePizzaMenu from "./MobilePizzaMenu/MobilePizzaMenu";
 import AboutMenu from "./AboutMenu/AboutMenu";
 import { useNavigate } from "react-router-dom";
-import ProductCard from "./ProductCard/ProductCard";
 
 function Project({ isMobile, currentUser }) {
     const navigate = useNavigate();
