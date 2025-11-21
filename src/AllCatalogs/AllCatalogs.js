@@ -1,11 +1,9 @@
-import React, {useEffect} from "react";
+import React, { useEffect, useState } from "react";
 import HeaderMenu from "../HeaderMenu/HeaderMenu";
 import AboutMenu from "../AboutMenu/AboutMenu";
-import {useNavigate, useNavigation, useParams} from "react-router-dom";
-import MobileMenu from "../MobileMenuBar.js/MobileMenu";
-import LoadingToggle from "../LoadingToggle/LoadingToggle";
+import {useNavigate, useParams} from "react-router-dom";
 
-function AllCatalogs() {
+function AllCatalogs({ isMobile }) {
     const navigate = useNavigate();
     const { type } = useParams();
 
@@ -21,11 +19,43 @@ function AllCatalogs() {
             item.classList.add("active")
         })
     });
+        const [loading, setLoading] = useState(false);
+
+
+    useEffect(() => {
+        setLoading(true);
+
+        setTimeout(() => setLoading(false), 700);
+    }, [type]);
+
 
     return (
         <>
-            <HeaderMenu />
-            <LoadingToggle />
+            <HeaderMenu isMobile={isMobile}/>
+            
+            {
+                loading
+                ?
+                <>
+                    <HeaderMenu/>
+
+                    <div className="mt-[80px] fixed inset-0 z-[102] bg-white flex items-center
+                    justify-center bg-[#FFF] [body.dark_&]:bg-[#2e2e2e]">
+                        <span
+                            className="w-[8rem] h-[8rem] rounded-full border-3
+                            border-l-transparent border-r-transparent border-b-transparent
+                            border-[#E33B41] animate-spin flex 
+                            justify-center items-center"
+                            >
+                            <span className="w-[6rem] h-[6rem] rounded-full border-3
+                            border-b-transparent border-t-transparent border-l-transparent border-[#E33B41]
+                            animate-spin"/>
+                        </span>
+                    </div>
+                </>
+            :
+            ''
+            }
 
             <section className="w-full h-auto mt-[100px] px-20 flex flex-col
             items-center justify-between
@@ -39,7 +69,7 @@ function AllCatalogs() {
                         Main page
                     </a>
 
-                    <b className="text-[#9D9D9D]"> > </b>
+                    <b className="text-[#9D9D9D]"> {'>'} </b>
 
                     <a className="text-[#e33b41] text-[16px]">
                         Menu
@@ -77,7 +107,7 @@ function AllCatalogs() {
                             className="w-[41px] h-full bg-[#e33b41] flex items-center
                             justify-center rounded-[10px] cursor-pointer">
                             <img
-                                src="./Img/search-icon.svg"
+                                src="https://www.pizza-hut.am/assets/images/app_2/searchWhite.svg"
                                 className="w-[15px] h-[15px]"
                                 alt=""/>
                         </button>
@@ -85,7 +115,10 @@ function AllCatalogs() {
 
                 </div>
 
-                <div className="w-[95%] flex justify-center gap-[3vh] mt-2 products">
+                <div className="w-full h-[100px] flex
+                    justify-center sticky top-[80px]  
+                    gap-[3vh] mt-2 products z-[101] bg-white
+                    [body.dark_&]:bg-[#2e2e2e]">
 
                     <div className="w-[7.5vw] h-[10vh] flex rounded-2xl
                     relative bg-[url('https://bonee.blob.core.windows.net/images/f57285e4-5fcc-f853-b25f-1a2e99f65082_1.jpg')]
@@ -270,7 +303,7 @@ function AllCatalogs() {
                                             <button className="w-[50%] cursor-pointer bg-[#e33b41]
                                             flex justify-center items-center gap-2 hover:opacity-90">
                                                 <img
-                                                    src="./Img/pizza-store-icon.svg"
+                                                    src="https://www.pizza-hut.am/assets/images/app_2/basketPlus.svg"
                                                     className="w-[22px] h-[30px]"
                                                     alt=""/>
 
@@ -286,6 +319,7 @@ function AllCatalogs() {
                                 </> : ''
                         }
                     </div>
+
                 </footer>
 
             </section>

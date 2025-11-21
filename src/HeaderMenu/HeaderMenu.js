@@ -111,7 +111,8 @@ function HeaderMenu({ isMobile, currentUser }) {
                   </button>
     
                   <button
-                        className="w-auto h-auto cursor-pointer max-md:hidden"
+                        className="w-auto h-auto cursor-pointer 
+                            max-md:hidden"
                         onClick={openLanguageBar}>
                       <img 
                           src="https://bonee.blob.core.windows.net/languages/icons/us.png"
@@ -119,11 +120,30 @@ function HeaderMenu({ isMobile, currentUser }) {
                           alt=""/>
                   </button>
 
-                  <button className="w-[22px] h-[22px] cursor-pointer">
-                      <img
-                          src="https://pizza-hut.am/assets/images/app_2/ordersHistory.svg"
-                          className="w-[22px] h-[22px]"/>
+                   <button
+                        className="hidden w-[40px] h-[40px] items-center justify-center
+                        cursor-pointer rounded-xl bg-transparent border border-1 
+                        border-gray-200 max-md:flex"
+                        onClick={openLanguageBar}>
+                      <img 
+                          src="./Img/usa.png" 
+                          className="w-[27px] h-[16px]"
+                          alt=""/>
                   </button>
+
+                  {
+                    currentUser 
+                    ?
+                        <button 
+                            className="w-[22px] h-[22px] 
+                            cursor-pointer">
+                            <img
+                                src="https://pizza-hut.am/assets/images/app_2/ordersHistory.svg"
+                                className="w-[22px] h-[22px]"/>
+                        </button>
+                    :
+                    ''
+                  }
     
                   <button 
                         className="w-auto h-auto cursor-pointer max-md:hidden"
@@ -133,14 +153,16 @@ function HeaderMenu({ isMobile, currentUser }) {
                                 :
                                 navigate('/signIn');
                         }}>
+                            
                       <img
                           src={`${
                             currentUser ?
                              "./Img/user-registered.png" :
-                              "./Img/user-icon.svg"
+                              "https://www.pizza-hut.am/assets/images/app_2/user.svg"
                             }`}
                           className="w-[22px] h-[22px]"
                           alt=""/>
+                          
                   </button>
     
                   <button
@@ -153,16 +175,6 @@ function HeaderMenu({ isMobile, currentUser }) {
                       <img 
                           src="https://bonee.blob.core.windows.net/company-type/Assets/basket.svg"
                           className="w-[25px] h-[25px]"
-                          alt=""/>
-                  </button>
-
-                  <button
-                        className="hidden w-[40px] h-[40px] items-center justify-center
-                        cursor-pointer rounded-xl bg-white border border-1 border-gray-200 max-md:flex"
-                        onClick={openLanguageBar}>
-                      <img 
-                          src="./Img/usa.png" 
-                          className="w-[27px] h-[16px]"
                           alt=""/>
                   </button>
 

@@ -18,7 +18,7 @@ function AboutMenu() {
                                     className="flex gap-2"
                                     target="_blank">
                                     <img
-                                        src="./Img/place-icon.svg"
+                                        src="https://www.pizza-hut.am/assets/images/app_2/location.svg"
                                         alt=""
                                         className="w-[25px] h-[25px]"/>
                                     <p className="text-[16px] text-white">
@@ -34,7 +34,7 @@ function AboutMenu() {
                                     className="flex gap-2"
                                     target="_blank">
                                     <img
-                                        src="./Img/place-icon.svg"
+                                        src="https://www.pizza-hut.am/assets/images/app_2/location.svg"
                                         alt=""
                                         className="w-[25px] h-[25px]"/>
                                     <p className="text-[16px] text-white">
@@ -49,7 +49,7 @@ function AboutMenu() {
                                     className="flex gap-2"
                                     target="_blank">
                                     <img
-                                        src="./Img/place-icon.svg"
+                                        src="https://www.pizza-hut.am/assets/images/app_2/location.svg"
                                         alt=""
                                         className="w-[25px] h-[25px]"/>
                                     <p className="text-[16px] text-white">
@@ -64,7 +64,7 @@ function AboutMenu() {
                                     className="flex gap-2"
                                     target="_blank">
                                     <img
-                                        src="./Img/place-icon.svg"
+                                        src="https://www.pizza-hut.am/assets/images/app_2/location.svg"
                                         alt=""
                                         className="w-[25px] h-[25px]"/>
                                     <p className="text-[16px] text-white">
@@ -79,7 +79,7 @@ function AboutMenu() {
                                     className="flex gap-2"
                                     target="_blank">
                                     <img
-                                        src="./Img/place-icon.svg"
+                                        src="https://www.pizza-hut.am/assets/images/app_2/location.svg"
                                         alt=""
                                         className="w-[25px] h-[25px]"/>
                                     <p className="text-[16px] text-white">
@@ -94,7 +94,7 @@ function AboutMenu() {
                                     className="flex gap-2"
                                     target="_blank">
                                     <img
-                                        src="./Img/place-icon.svg"
+                                        src="https://www.pizza-hut.am/assets/images/app_2/location.svg"
                                         alt=""
                                         className="w-[25px] h-[25px]"/>
                                     <p className="text-[16px] text-white">
@@ -109,7 +109,7 @@ function AboutMenu() {
                                     className="flex gap-2"
                                     target="_blank">
                                     <img
-                                        src="./Img/place-icon.svg"
+                                        src="https://www.pizza-hut.am/assets/images/app_2/location.svg"
                                         alt=""
                                         className="w-[25px] h-[25px]"/>
                                     <p className="text-[16px] text-white">
@@ -124,7 +124,7 @@ function AboutMenu() {
                                     className="flex gap-2"
                                     target="_blank">
                                     <img
-                                        src="./Img/place-icon.svg"
+                                        src="https://www.pizza-hut.am/assets/images/app_2/location.svg"
                                         alt=""
                                         className="w-[25px] h-[25px]"/>
                                     <p className="text-[16px] text-white">
