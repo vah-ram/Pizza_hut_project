@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-function MobileMenu() {
+function MobileMenu({ currentUser }) {
     const navigate = useNavigate();
 
     return (
@@ -17,8 +17,8 @@ function MobileMenu() {
                         src="https://www.pizza-hut.am/assets/images/app_2/home.svg" 
                         className="w-[27px] h-[27px]" 
                         alt=""/>
-                        <p className="uppercase text-[#515151] text-[3vw] font-[600]
-                         [body.dark_&]:text-white">
+                        <p className="uppercase text-[#515151] text-[calc(20px-.3vw)]
+                         font-[600] [body.dark_&]:text-white max-sm:text-[calc(15px-.3vw)]">
                             Home
                         </p>
                 </button>
@@ -31,8 +31,8 @@ function MobileMenu() {
                         src="https://www.pizza-hut.am/assets/images/app_2/aboutUs.svg" 
                         className="w-[27px] h-[27px]" 
                         alt=""/>
-                        <p className="uppercase text-[#515151] text-[3vw] font-[600]
-                         [body.dark_&]:text-white">
+                        <p className="uppercase text-[#515151] text-[calc(20px-.3vw)]
+                         font-[600] [body.dark_&]:text-white max-sm:text-[calc(15px-.3vw)]">
                             About us
                         </p>
                 </button>
@@ -63,8 +63,8 @@ function MobileMenu() {
                         className="w-[27px] h-[27px]" 
                         alt=""/>
 
-                        <p className="uppercase text-[#515151] text-[3vw] font-[600]
-                        [body.dark_&]:text-white">
+                        <p className="uppercase text-[#515151] text-[calc(20px-.3vw)]
+                         font-[600] [body.dark_&]:text-white max-sm:text-[calc(15px-.3vw)]">
                             Basket
                         </p>
 
@@ -73,14 +73,19 @@ function MobileMenu() {
                 <button 
                     className="flex flex-col gap-1 justify-center 
                     items-center cursor-pointer"
-                    onClick={() => navigate('/signIn')}>
+                    onClick={() => {
+                        currentUser ?
+                            navigate('/profile')
+                            :
+                            navigate('/signIn');
+                    }}>
                     <img 
-                        src="https://www.pizza-hut.am/assets/images/app_2/user.svg" 
+                        src="https://www.pizza-hut.am/assets/images/app_2/user.svg"
                         className="w-[27px] h-[27px]" 
                         alt=""/>
-                        <p className="uppercase text-[#515151] text-[3vw] font-[600]
-                        [body.dark_&]:text-white">
-                            Log in
+                        <p className="uppercase text-[#515151] text-[calc(20px-.3vw)]
+                        font-[600] [body.dark_&]:text-white max-sm:text-[calc(15px-.3vw)]">
+                            { currentUser ? "Profile" : "Log in" }
                         </p>
                 </button>
             </footer>

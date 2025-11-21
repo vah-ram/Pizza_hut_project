@@ -69,12 +69,13 @@ function SliderOffers({ isMobile }) {
                             before:left-0 before:top-[25px] before:w-[80px] before:h-[30px] before:bg-[#f33]
                             before:text-white before:flex before:justify-center before:items-center before:rounded-tr-[8px]
                              before:rounded-br-[8px] before:text-[16px]"
-                        onClick={() => navigate(`/product/jkabsfi4r34123`)}>
+                            onClick={() => navigate(`/product/jkabsfi4r34123`)}>
 
-                            <span className="w-[305px] h-[305px] rounded-[20px] overflow-hidden">
+                            <span
+                                className="w-[305px] h-[305px] rounded-[20px] overflow-hidden group">
                                 <img 
                                     src="https://bonee.blob.core.windows.net/images/3cb64dce-f9bc-6b0a-dd0f-dc785729de67_2.webp" 
-                                    className="hover:scale-110 duration-500"
+                                    className="group-hover:scale-110 duration-500"
                                     alt="slider item img"/>
                             </span>
 
@@ -122,10 +123,10 @@ function SliderOffers({ isMobile }) {
                             items-center relative rounded-[20px] 
                             border-1 border-gray-300 before:content-['-20%'] before:absolute before:z-1  before:left-0 before:top-[25px] before:w-[80px] before:h-[30px] before:bg-[#f33] before:text-white before:flex before:justify-center before:items-center before:rounded-tr-[8px] before:rounded-br-[8px] before:text-[16px]">
 
-                            <span className="w-[305px] h-[305px] rounded-[20px] overflow-hidden">
+                            <span className="w-[305px] h-[305px] rounded-[20px] overflow-hidden group">
                                 <img 
                                     src="https://bonee.blob.core.windows.net/images/9fee2d36-e47d-ad17-a565-6416e6a07967_2.webp" 
-                                    className="hover:scale-110 duration-500"
+                                    className="group-hover:scale-110 duration-500"
                                     alt="slider item img"/>
                             </span>
 
@@ -172,10 +173,10 @@ function SliderOffers({ isMobile }) {
                             items-center relative rounded-[20px] 
                             border-1 border-gray-300 before:content-['-20%'] before:absolute before:z-1  before:left-0 before:top-[25px] before:w-[80px] before:h-[30px] before:bg-[#f33] before:text-white before:flex before:justify-center before:items-center before:rounded-tr-[8px] before:rounded-br-[8px] before:text-[16px]">
 
-                            <span className="w-[305px] h-[305px] rounded-[20px] overflow-hidden">
+                            <span className="w-[305px] h-[305px] rounded-[20px] overflow-hidden group">
                                 <img 
                                     src="https://bonee.blob.core.windows.net/images/4f0eb176-764e-f85d-3ca1-187d69950caf_2.webp" 
-                                    className="w-full h-full hover:scale-110 duration-500"
+                                    className="group-hover:scale-110 duration-500"
                                     alt="slider item img"/>
                             </span>
                             
@@ -223,10 +224,10 @@ function SliderOffers({ isMobile }) {
                             items-center relative rounded-[20px] 
                             border-1 border-gray-300 before:content-['-20%'] before:absolute before:z-1 before:left-0 before:top-[25px] before:w-[80px] before:h-[30px] before:bg-[#f33] before:text-white before:flex before:justify-center before:items-center before:rounded-tr-[8px] before:rounded-br-[8px] before:text-[16px]">
 
-                            <span className="w-[305px] h-[305px] rounded-[20px] overflow-hidden">
+                            <span className="w-[305px] h-[305px] rounded-[20px] overflow-hidden group">
                                 <img 
                                     src="https://bonee.blob.core.windows.net/images/5099df6d-c31b-e13a-8be7-4255899eadb0_2.webp" 
-                                    className="hover:scale-110 duration-500"
+                                    className="group-hover:scale-110 duration-500"
                                     alt="slider item img"/>
                             </span>
                             
@@ -275,10 +276,10 @@ function SliderOffers({ isMobile }) {
                             items-center relative rounded-[20px] 
                             border-1 border-gray-300 before:content-['-20%'] before:absolute before:z-1 before:left-0 before:top-[25px] before:w-[80px] before:h-[30px] before:bg-[#f33] before:text-white before:flex before:justify-center before:items-center before:rounded-tr-[8px] before:rounded-br-[8px] before:text-[16px]">
 
-                            <span className="w-[305px] h-[305px] rounded-[20px] overflow-hidden">
+                            <span className="w-[305px] h-[305px] rounded-[20px] overflow-hidden group">
                                 <img 
                                     src="https://bonee.blob.core.windows.net/images/b18f7687-3969-d5a2-2f1f-a3324071d48a_2.webp" 
-                                    className="hover:scale-110 duration-500"
+                                    className="group-hover:scale-110 duration-500"
                                     alt="slider item img"/>
                             </span>
 
@@ -325,10 +326,10 @@ function SliderOffers({ isMobile }) {
                             items-center relative rounded-[20px] 
                             border-1 border-gray-300 before:content-['-20%'] before:absolute before:z-1 before:left-0 before:top-[25px] before:w-[80px] before:h-[30px] before:bg-[#f33] before:text-white before:flex before:justify-center before:items-center before:rounded-tr-[8px] before:rounded-br-[8px] before:text-[16px]">
                             
-                            <span className="w-[305px] h-[305px] rounded-[20px] overflow-hidden">
+                            <span className="w-[305px] h-[305px] rounded-[20px] overflow-hidden group">
                                 <img 
                                     src="https://bonee.blob.core.windows.net/images/8fb639c4-4a17-2cbf-962f-5d885f9a69db_2.webp" 
-                                    class="hover:scale-110 duration-500"
+                                    className="group-hover:scale-110 duration-500"
                                     alt="slider item img"/>
                             </span>
 
@@ -375,10 +376,10 @@ function SliderOffers({ isMobile }) {
                             items-center relative rounded-[20px] 
                             border-1 border-gray-300 before:content-['-20%'] before:absolute before:z-1 before:left-0 before:top-[25px] before:w-[80px] before:h-[30px] before:bg-[#f33] before:text-white before:flex before:justify-center before:items-center before:rounded-tr-[8px] before:rounded-br-[8px] before:text-[16px]">
 
-                            <span className="w-[305px] h-[305px] rounded-[20px] overflow-hidden">
+                            <span className="w-[305px] h-[305px] rounded-[20px] overflow-hidden group">
                                 <img 
                                     src="https://bonee.blob.core.windows.net/images/38e8d04f-8759-c627-a751-ff787ce16598_2.webp" 
-                                    className="hover:scale-110 duration-500"
+                                    className="group-hover:scale-110 duration-500"
                                     alt="slider item img"/>
                             </span>
 
@@ -425,10 +426,10 @@ function SliderOffers({ isMobile }) {
                             items-center relative rounded-[20px] 
                             border-1 border-gray-300 before:content-['-20%'] before:absolute before:z-1 before:left-0 before:top-[25px] before:w-[80px] before:h-[30px] before:bg-[#f33] before:text-white before:flex before:justify-center before:items-center before:rounded-tr-[8px] before:rounded-br-[8px] before:text-[16px]">
 
-                            <span className="w-[305px] h-[305px] rounded-[20px] overflow-hidden">
+                            <span className="w-[305px] h-[305px] rounded-[20px] overflow-hidden group">
                                 <img 
                                     src="https://bonee.blob.core.windows.net/images/2d3522c7-dd5e-d8e3-cf19-1d1831c8e48b_2.webp" 
-                                    className="hover:scale-110 duration-500"
+                                    className="group-hover:scale-110 duration-500"
                                     alt="slider item img"/>
                             </span>
 
@@ -471,14 +472,18 @@ function SliderOffers({ isMobile }) {
                         <SwiperSlide className="!w-[307px] shrink-0">
 
                         <div 
-                            className="w-[307px] h-[385px] shrink-[0] flex flex-col justify-start 
+                            className="w-[307px] h-[385px] shrink-[0] flex flex-col justify-start
                             items-center relative rounded-[20px] 
-                            border-1 border-gray-300 before:content-['-30%'] before:absolute before:z-1 before:left-0 before:top-[25px] before:w-[80px] before:h-[30px] before:bg-[#f33] before:text-white before:flex before:justify-center before:items-center before:rounded-tr-[8px] before:rounded-br-[8px] before:text-[16px]">
+                            border-1 border-gray-300 before:content-['-30%']
+                            before:absolute before:z-1 before:left-0 before:top-[25px]
+                            before:w-[80px] before:h-[30px] before:bg-[#f33] before:text-white
+                            before:flex before:justify-center before:items-center
+                            before:rounded-tr-[8px] before:rounded-br-[8px] before:text-[16px]">
                             
-                            <span className="w-[305px] h-[305px] rounded-[20px] overflow-hidden">
+                            <span className="w-[305px] h-[305px] rounded-[20px] overflow-hidden group">
                                 <img 
                                     src="https://bonee.blob.core.windows.net/images/fc8e5871-4282-7903-b56a-dc88a0954be5_2.webp" 
-                                    className="hover:scale-110 duration-500" 
+                                    className="group-hover:scale-110 duration-500"
                                     alt="slider item img"/>
                             </span>
 
@@ -525,10 +530,10 @@ function SliderOffers({ isMobile }) {
                             items-center relative rounded-[20px] 
                             border-1 border-gray-300 before:content-['-30%'] before:absolute before:z-1 before:left-0 before:top-[25px] before:w-[80px] before:h-[30px] before:bg-[#f33] before:text-white before:flex before:justify-center before:items-center before:rounded-tr-[8px] before:rounded-br-[8px] before:text-[16px]">
 
-                            <span className="w-[305px] h-[305px] rounded-[20px] overflow-hidden">
+                            <span className="w-[305px] h-[305px] rounded-[20px] overflow-hidden group">
                                 <img 
                                     src="https://bonee.blob.core.windows.net/images/a0bcdc66-7da3-0c1a-3887-396ce30bd05a_2.webp" 
-                                    className="hover:scale-110 duration-500" 
+                                    className="group-hover:scale-110 duration-500"
                                     alt="slider item img"/>
                             </span>
                             

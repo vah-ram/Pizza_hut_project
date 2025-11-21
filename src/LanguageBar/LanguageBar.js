@@ -17,8 +17,8 @@ function LanguageBar() {
 
                 <button className="w-[40px] h-[40px] border-1 border-gray-200
                                     rounded-xl cursor-pointer flex items-center
-                                    justify-center cursor-pointer absolute right-7
-                                    top-7"
+                                    justify-center cursor-pointer absolute right-[2vmin]
+                                    top-[2vmin]"
                         onClick={closeLanguageBar}>
                     <img
                         src="https://pizza-hut.am/assets/images/app_2/close.svg"
@@ -27,8 +27,10 @@ function LanguageBar() {
 
                 <ul className="flex flex-col gap-3 mt-20 ml-5">
                     <li className="flex gap-2 cursor-pointer items-center">
-                        <input type="checkbox"/>
-
+                        <input
+                            type="checkbox"
+                            className="appearance-none w-[20px] h-[20px] p-2 rounded-full border-1 border-gray-400
+                            cursor-pointer checked:bg-gray-400"/>
                         <img
                             src="https://bonee.blob.core.windows.net/languages/icons/arm.png"
                             className="w-[30px] h-[20px]"/>
@@ -39,7 +41,10 @@ function LanguageBar() {
                     </li>
 
                     <li className="flex gap-2 cursor-pointer items-center">
-                        <input type="checkbox"/>
+                        <input
+                            type="checkbox"
+                            className="appearance-none w-[20px] h-[20px] p-2 rounded-full border-1 border-gray-400
+                            cursor-pointer checked:bg-gray-400"/>
 
                         <img
                             src="https://bonee.blob.core.windows.net/languages/icons/us.png"
@@ -51,7 +56,11 @@ function LanguageBar() {
                     </li>
 
                     <li className="flex gap-2 cursor-pointer items-center">
-                        <input type="checkbox"/>
+                        <input
+                            type="checkbox"
+                            className="appearance-none w-[20px] h-[20px] p-2
+                            rounded-full border-1 border-gray-400
+                            cursor-pointer checked:bg-gray-400"/>
 
                         <img
                             src="https://bonee.blob.core.windows.net/languages/icons/ru.png"

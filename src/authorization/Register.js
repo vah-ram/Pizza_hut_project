@@ -125,7 +125,7 @@ function Register() {
                             className="w-[80%] h-[54px] px-3 py-4 rounded-2xl
                                 flex items-center justify-center shadow-lg
                                 shadow-[#0000004d] cursor-pointer"
-                            onClick={() => navigate('/signIn')}>
+                                onClick={() => navigate('/signIn')}>
                             <p className="uppercase text-white text-[16px] font-sans">
                                 Log in
                             </p>
@@ -191,7 +191,7 @@ function Register() {
                             <input
                                 type="text"
                                 placeholder="Name"
-                                className="border-none outline-none w-full"
+                                className="border-none outline-none w-full [body.dark_&]:text-white"
                                 maxLength={50}
                                 onChange={e => setUser({
                                     ...user,
@@ -204,7 +204,7 @@ function Register() {
                             <input
                                 type="text"
                                 placeholder="Surname"
-                                className="border-none outline-none w-full"
+                                className="border-none outline-none w-full [body.dark_&]:text-white"
                                 maxLength={50}
                                 onChange={e => setUser({
                                     ...user,
@@ -222,7 +222,7 @@ function Register() {
                                 id="phone"
                                 placeholder="+374"
                                 value="374"
-                                className="border-none outline-none w-full"
+                                className="border-none outline-none w-full [body.dark_&]:text-white"
                                 maxLength={50}
                                 onChange={(e) => {
                                     setPhonecountrycode(e.target.value)
@@ -234,7 +234,7 @@ function Register() {
                             <input
                                 type="tel"
                                 placeholder="Phone Number"
-                                className="phone_input border-none outline-none w-full"
+                                className="phone_input border-none outline-none w-full [body.dark_&]:text-white"
                                 maxLength={50}
                                 value={phoneNumber}
                                 onChange={e => {
@@ -249,7 +249,7 @@ function Register() {
                         <input
                             type="email"
                             placeholder="Email"
-                            className="border-none outline-none w-full"
+                            className="border-none outline-none w-full [body.dark_&]:text-white"
                             maxLength={50}
                             onChange={e => setUser({
                                 ...user,
@@ -262,7 +262,7 @@ function Register() {
                         <input
                             type="password"
                             placeholder="Password"
-                            className="border-none outline-none w-full"
+                            className="border-none outline-none w-full [body.dark_&]:text-white"
                             maxLength={50}
                             onChange={e => setUser({
                                 ...user,
@@ -275,7 +275,7 @@ function Register() {
                         <input
                             type="password"
                             placeholder="Re-Enter Password"
-                            className="border-none outline-none w-full"
+                            className="border-none outline-none w-full [body.dark_&]:text-white"
                             maxLength={50}
                             onChange={e => setUser({
                                 ...user,
@@ -285,16 +285,24 @@ function Register() {
 
                     <div className="flex gap-2 mr-auto ml-[20%]
                     mt-5 cursor-pointer max-lg:ml-[10%] max-md:ml-[2.5%]">
-                        <input type="checkbox"
-                               className="appearance-none w-[22px] h-[22px]
-                               bg-[#CBD1D8] rounded-md cursor-pointer"/>
+
+                        <label className="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" className="peer sr-only"/>
+
+                            <span
+                                className="w-[22px] h-[22px] rounded-md bg-[#cbd1d8]
+                                       flex items-center justify-center
+                                       peer-checked:after:content-['✓']
+                                       after:text-white after:text-[16px] after:font-bold
+                                       transition peer-checked:bg-[#E74C3C]">
+                              </span>
+                        </label>
 
                         <p className="text-[15px] text-[#515151] flex gap-2">
                             I read and agree with
                             <a
                                 href="/conditions"
                                 className="text-[#e33b41] font-[600]">
-
                                 Conditions
                             </a>
                             and
@@ -304,6 +312,7 @@ function Register() {
                                 Privacy Policy
                             </a>
                         </p>
+
                     </div>
 
                     <button className="w-[60%] mt-10 flex gap-5

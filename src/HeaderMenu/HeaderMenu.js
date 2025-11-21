@@ -18,7 +18,7 @@ function HeaderMenu({ isMobile, currentUser }) {
             body.classList.remove('dark');
             setModeValue(false)
         }
-    }
+    };
 
     const openLanguageBar = () => {
 
@@ -30,7 +30,7 @@ function HeaderMenu({ isMobile, currentUser }) {
             body.classList.remove('languageActive');
         }
 
-    }
+    };
 
     const openMenuBar = () => {
 
@@ -42,7 +42,7 @@ function HeaderMenu({ isMobile, currentUser }) {
             body.classList.remove('menuActive');
         }
 
-    }
+    };
 
     return (
         <>
@@ -50,6 +50,7 @@ function HeaderMenu({ isMobile, currentUser }) {
               className="w-full h-[80px] flex items-center justify-between px-20 fixed
                top-0 bg-[#FFF] z-[10] max-lg:px-7 max-md:shadow-md max-md:h-[60px]
                max-sm:px-2 [body.dark_&]:bg-[#2e2e2e]">
+
               <div
                     className="w-auto h-full flex gap-2 items-center cursor-pointer"
                     onClick={() => navigate('/')}>
@@ -109,10 +110,21 @@ function HeaderMenu({ isMobile, currentUser }) {
                           className="w-[30px] h-[18px]"
                           alt=""/>
                   </button>
+
+                  <button className="w-[22px] h-[22px] cursor-pointer">
+                      <img
+                          src="https://pizza-hut.am/assets/images/app_2/ordersHistory.svg"
+                          className="w-[22px] h-[22px]"/>
+                  </button>
     
                   <button 
                         className="w-auto h-auto cursor-pointer max-md:hidden"
-                        onClick={() => navigate('/signIn')}>
+                        onClick={() => {
+                            currentUser ?
+                                navigate('/profile')
+                                :
+                                navigate('/signIn');
+                        }}>
                       <img
                           src={`${
                             currentUser ?
@@ -154,7 +166,8 @@ function HeaderMenu({ isMobile, currentUser }) {
                   </button>
 
                   <button
-                        className="hidden w-[40px] h-[40px] items-center justify-center
+                        className="hidden w-[40px] h-[40px] items-center
+                        justify-center
                         cursor-pointer rounded-xl bg-[#e33b41] max-md:flex"
                         onClick={openMenuBar}>
                     <img

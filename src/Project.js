@@ -12,9 +12,9 @@ function Project({ isMobile, currentUser }) {
   return (
       <main className="duration-300 relative">
 
-        <HeaderMenu isMobile={isMobile}/>
+        <HeaderMenu isMobile={isMobile} currentUser={currentUser}/>
 
-        <MobileMenu />
+        <MobileMenu currentUser={currentUser}/>
 
           <MobilePizzaMenu />
 

@@ -12,86 +12,127 @@ function AboutMenu() {
 
                     <div className="flex max-lg:flex-col max-lg:gap-5 max-lg:text-left">
                         <ul className="flex flex-col gap-1 max-lg:gap-2">
-                            <li className="flex gap-2">
-                                <img
-                                    src="./Img/place-icon.svg"
-                                    alt=""
-                                    className="w-[25px] h-[25px]"/>
-                                <p className="text-[16px] text-white">
-                                    8 Vahram Papazyan St, Yerevan 0012,
-                                    Armenia
-                                </p>
+                            <li>
+                                <a
+                                    href="https://www.google.com/maps/search/?api=1&query=40.1990524,44.5073589"
+                                    className="flex gap-2"
+                                    target="_blank">
+                                    <img
+                                        src="./Img/place-icon.svg"
+                                        alt=""
+                                        className="w-[25px] h-[25px]"/>
+                                    <p className="text-[16px] text-white">
+                                        8 Vahram Papazyan St, Yerevan 0012,
+                                        Armenia
+                                    </p>
+                                </a>
                             </li>
 
-                            <li className="flex gap-2">
-                                <img
-                                    src="./Img/place-icon.svg"
-                                    alt=""
-                                    className="w-[25px] h-[25px]"/>
-                                <p className="text-[16px] text-white">
-                                    15 Tigran Mets Ave, Yerevan 0010, Armenia
-                                </p>
+                            <li>
+                                <a
+                                    href="https://www.google.com/maps/search/?api=1&query=40.17412789999999,44.5140371"
+                                    className="flex gap-2"
+                                    target="_blank">
+                                    <img
+                                        src="./Img/place-icon.svg"
+                                        alt=""
+                                        className="w-[25px] h-[25px]"/>
+                                    <p className="text-[16px] text-white">
+                                        15 Tigran Mets Ave, Yerevan 0010, Armenia
+                                    </p>
+                                </a>
                             </li>
 
-                            <li className="flex gap-2">
-                                <img
-                                    src="./Img/place-icon.svg"
-                                    alt=""
-                                    className="w-[25px] h-[25px]"/>
-                                <p className="text-[16px] text-white">
-                                    17, 1 Erebuni St, Yerevan, Armenia
-                                </p>
+                            <li>
+                                <a
+                                    href="https://www.google.com/maps/search/?api=1&query=40.1421762,44.52144209999999"
+                                    className="flex gap-2"
+                                    target="_blank">
+                                    <img
+                                        src="./Img/place-icon.svg"
+                                        alt=""
+                                        className="w-[25px] h-[25px]"/>
+                                    <p className="text-[16px] text-white">
+                                        17, 1 Erebuni St, Yerevan, Armenia
+                                    </p>
+                                </a>
                             </li>
 
-                            <li className="flex gap-2">
-                                <img
-                                    src="./Img/place-icon.svg"
-                                    alt=""
-                                    className="w-[25px] h-[25px]"/>
-                                <p className="text-[16px] text-white">
-                                    Yerevan Mall Food court, Arshakunyats Avenue, Yerevan, Armenia
-                                </p>
+                            <li>
+                                <a
+                                    href="https://www.google.com/maps/search/?api=1&query=40.1530752,44.4988699"
+                                    className="flex gap-2"
+                                    target="_blank">
+                                    <img
+                                        src="./Img/place-icon.svg"
+                                        alt=""
+                                        className="w-[25px] h-[25px]"/>
+                                    <p className="text-[16px] text-white">
+                                        Yerevan Mall Food court, Arshakunyats Avenue, Yerevan, Armenia
+                                    </p>
+                                </a>
                             </li>
 
-                            <li className="flex gap-2">
-                                <img
-                                    src="./Img/place-icon.svg"
-                                    alt=""
-                                    className="w-[25px] h-[25px]"/>
-                                <p className="text-[16px] text-white">
-                                    MEGA MALL ARMENIA, Gai Avenue, Yerevan, Armenia
-                                </p>
+                            <li>
+                                <a
+                                    href="https://www.google.com/maps/search/?api=1&query=40.1972484,44.5676688"
+                                    className="flex gap-2"
+                                    target="_blank">
+                                    <img
+                                        src="./Img/place-icon.svg"
+                                        alt=""
+                                        className="w-[25px] h-[25px]"/>
+                                    <p className="text-[16px] text-white">
+                                        MEGA MALL ARMENIA, Gai Avenue, Yerevan, Armenia
+                                    </p>
+                                </a>
                             </li>
 
-                            <li className="flex gap-2">
-                                <img
-                                    src="./Img/place-icon.svg"
-                                    alt=""
-                                    className="w-[25px] h-[25px]"/>
-                                <p className="text-[16px] text-white">
-                                    1 Hyusisayin poghota, Yerevan, Армения
-                                </p>
+                            <li>
+                                <a
+                                    href="https://www.google.com/maps/search/?api=1&query=40.1835796,44.5151499"
+                                    className="flex gap-2"
+                                    target="_blank">
+                                    <img
+                                        src="./Img/place-icon.svg"
+                                        alt=""
+                                        className="w-[25px] h-[25px]"/>
+                                    <p className="text-[16px] text-white">
+                                        1 Hyusisayin poghota, Yerevan, Армения
+                                    </p>
+                                </a>
                             </li>
 
-                            <li className="flex gap-2">
-                                <img
-                                    src="./Img/place-icon.svg"
-                                    alt=""
-                                    className="w-[25px] h-[25px]"/>
-                                <p className="text-[16px] text-white">
-                                    5 Mesrop Mashtoc pokhota, Yerevan 0015, Армения
-                                </p>
+                            <li>
+                                <a
+                                    href="https://www.google.com/maps/search/?api=1&query=40.1789463,44.5049445"
+                                    className="flex gap-2"
+                                    target="_blank">
+                                    <img
+                                        src="./Img/place-icon.svg"
+                                        alt=""
+                                        className="w-[25px] h-[25px]"/>
+                                    <p className="text-[16px] text-white">
+                                        5 Mesrop Mashtoc pokhota, Yerevan 0015, Армения
+                                    </p>
+                                </a>
                             </li>
 
-                            <li className="flex gap-2">
-                                <img
-                                    src="./Img/place-icon.svg"
-                                    alt=""
-                                    className="w-[25px] h-[25px]"/>
-                                <p className="text-[16px] text-white">
-                                    5 Komitas Ave, Yerevan, Армения
-                                </p>
+                            <li>
+                                <a
+                                    href="https://www.google.com/maps/search/?api=1&query=40.2078697,44.5126804"
+                                    className="flex gap-2"
+                                    target="_blank">
+                                    <img
+                                        src="./Img/place-icon.svg"
+                                        alt=""
+                                        className="w-[25px] h-[25px]"/>
+                                    <p className="text-[16px] text-white">
+                                        5 Komitas Ave, Yerevan, Армения
+                                    </p>
+                                </a>
                             </li>
+
                         </ul>
 
                         <div className="flex gap-5 ml-5 w-auto max-lg:ml-0">

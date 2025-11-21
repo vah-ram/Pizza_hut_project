@@ -61,12 +61,12 @@ function SliderCategories({ isMobile }) {
 
                         <SwiperSlide className="!w-[266px] shrink-0">
 
-                        <div 
-                        className="w-full h-full shrink-[0] 
-                        relative rounded-[25px] overflow-hidden">
-                            <img 
-                                src="https://bonee.blob.core.windows.net/images/f57285e4-5fcc-f853-b25f-1a2e99f65082_1.jpg" 
-                                className="hover:scale-110 duration-500" 
+                        <div
+                        className="w-full h-full shrink-[0]
+                        relative rounded-[25px] overflow-hidden group">
+                            <img
+                                src="https://bonee.blob.core.windows.net/images/f57285e4-5fcc-f853-b25f-1a2e99f65082_1.jpg"
+                                className="group-hover:scale-110 duration-500 flex"
                                 alt="slider item img"/>
 
                             <div className="w-full h-[50px] absolute bottom-0 flex justify-center items-center bg-[#0018]">
@@ -80,10 +80,11 @@ function SliderCategories({ isMobile }) {
 
                         <SwiperSlide className="!w-[266px] shrink-0">
 
-                        <div className="w-[266px] h-[266px] shrink-[0] relative rounded-[25px] overflow-hidden ">
+                        <div className="w-[266px] h-[266px] shrink-[0] relative
+                        rounded-[25px] overflow-hidden group">
                             <img 
                                 src="https://bonee.blob.core.windows.net/images/e9171210-70dc-6708-a274-d9cd672f7953_3.webp" 
-                                className="hover:scale-110 duration-500" 
+                                className="group-hover:scale-110 duration-500"
                                 alt="slider item img"/>
 
                             <div className="w-full h-[50px] absolute bottom-0 flex justify-center items-center bg-[#0018]">
@@ -97,10 +98,11 @@ function SliderCategories({ isMobile }) {
 
                         <SwiperSlide className="!w-[266px] shrink-0">
 
-                        <div className="w-[266px] h-[266px] shrink-[0] relative rounded-[25px] overflow-hidden">
+                        <div className="w-[266px] h-[266px] shrink-[0] relative rounded-[25px]
+                         overflow-hidden group">
                             <img 
                                 src="https://bonee.blob.core.windows.net/images/c78db5a5-6fd9-b96c-af40-38f96adb0962_3.webp" 
-                                className="hover:scale-110 duration-500" 
+                                className="duration-500 group-hover:scale-110"
                                 alt="slider item img"/>
 
                             <div className="w-full h-[50px] absolute bottom-0 flex justify-center items-center bg-[#0018]">
@@ -114,10 +116,11 @@ function SliderCategories({ isMobile }) {
 
                         <SwiperSlide className="!w-[266px] shrink-0">
 
-                        <div className="w-[266px] h-[266px] shrink-[0] relative rounded-[25px] overflow-hidden ">
+                        <div className="w-[266px] h-[266px] shrink-[0] relative
+                         rounded-[25px] overflow-hidden group">
                             <img 
                                 src="https://bonee.blob.core.windows.net/images/9dd355b0-9e55-2a66-18ab-8288b16edd6f_3.webp"
-                                className="hover:scale-110 duration-500" 
+                                className="duration-500 group-hover:scale-110"
                                 alt="slider item img"/>
 
                             <div className="w-full h-[50px] absolute bottom-0 flex justify-center items-center bg-[#0018]">
@@ -131,10 +134,11 @@ function SliderCategories({ isMobile }) {
 
                         <SwiperSlide className="!w-[266px] shrink-0">
 
-                        <div className="w-[266px] h-[266px] shrink-[0] relative rounded-[25px] overflow-hidden ">
+                        <div className="w-[266px] h-[266px] shrink-[0] relative
+                         rounded-[25px] overflow-hidden group">
                             <img 
                                 src="https://bonee.blob.core.windows.net/images/d2fb20b5-d183-c850-ceac-cb1e8b1b962d_3.webp"
-                                className="hover:scale-110 duration-500" 
+                                className="duration-500 group-hover:scale-110"
                                 alt="slider item img"/>
 
                             <div className="w-full h-[50px] absolute bottom-0 flex justify-center items-center bg-[#0018]">
@@ -148,10 +152,11 @@ function SliderCategories({ isMobile }) {
 
                         <SwiperSlide className="!w-[266px] shrink-0">
 
-                        <div className="w-[266px] h-[266px] shrink-[0] relative rounded-[25px] overflow-hidden">
+                        <div className="w-[266px] h-[266px] shrink-[0] relative
+                        rounded-[25px] overflow-hidden group">
                             <img 
                                 src="https://bonee.blob.core.windows.net/images/d51ed5d9-6431-0c2f-4266-fa3a0a85d8d0_3.webp" 
-                                className="hover:scale-110 duration-500" 
+                                className="duration-500 group-hover:scale-110"
                                 alt="slider item img"/>
 
                             <div className="w-full h-[50px] absolute bottom-0 flex justify-center items-center bg-[#0018]">
@@ -165,10 +170,11 @@ function SliderCategories({ isMobile }) {
 
                         <SwiperSlide className="!w-[266px] shrink-0">
 
-                            <div className="w-[266px] h-[266px] shrink-[0] relative rounded-[25px] overflow-hidden">
+                            <div className="w-[266px] h-[266px] shrink-[0] relative
+                             rounded-[25px] overflow-hidden group">
                                 <img 
                                     src="https://bonee.blob.core.windows.net/images/b7437126-6bca-d2ac-d547-df490de15048_3.webp" 
-                                    className="hover:scale-110 duration-500" 
+                                    className="group-hover:scale-110 duration-500"
                                     alt="slider item img"/>
 
                                 <div className="w-full h-[50px] absolute bottom-0 flex justify-center items-center bg-[#0018]">
@@ -182,10 +188,11 @@ function SliderCategories({ isMobile }) {
 
                         <SwiperSlide className="!w-[266px] shrink-0">
 
-                        <div className="w-[266px] h-[266px] shrink-[0] relative rounded-[25px] overflow-hidden">
+                        <div className="w-[266px] h-[266px] shrink-[0] relative
+                         rounded-[25px] overflow-hidden group">
                             <img 
                                 src="https://bonee.blob.core.windows.net/images/a1bd7070-a5d8-0c9d-6ccc-fb425384eb4f_3.webp" 
-                                className="hover:scale-110 duration-500" 
+                                className="group-hover:scale-110 duration-500"
                                 alt="slider item img"/>
 
                             <div className="w-full h-[50px] absolute bottom-0 flex justify-center items-center bg-[#0018]">
@@ -199,10 +206,11 @@ function SliderCategories({ isMobile }) {
 
                         <SwiperSlide className="!w-[266px] shrink-0">
 
-                        <div className="w-[266px] h-[266px] shrink-[0] relative rounded-[25px] overflow-hidden">
+                        <div className="w-[266px] h-[266px] shrink-[0] relative rounded-[25px]
+                        overflow-hidden group">
                             <img 
                                 src="https://bonee.blob.core.windows.net/images/7d5263b7-35c6-fe37-a3f9-6965fccf5597_3.webp" 
-                                className="hover:scale-110 duration-500" 
+                                className="group-hover:scale-110 duration-500"
                                 alt="slider item img"/>
 
                             <div className="w-full h-[50px] absolute bottom-0 flex justify-center items-center bg-[#0018]">
@@ -216,10 +224,11 @@ function SliderCategories({ isMobile }) {
 
                         <SwiperSlide className="!w-[266px] shrink-0">
 
-                        <div className="w-[266px] h-[266px] shrink-[0] relative rounded-[25px] overflow-hidden">
+                        <div className="w-[266px] h-[266px] shrink-[0] relative rounded-[25px]
+                        overflow-hidden group">
                             <img 
                                 src="https://bonee.blob.core.windows.net/images/d7292f08-27e3-aff4-9dd9-41ad7b20a123_3.webp" 
-                                className="hover:scale-110 duration-500" 
+                                className="group-hover:scale-110 duration-500"
                                 alt="slider item img"/>
 
                             <div className="w-full h-[50px] absolute bottom-0 flex justify-center items-center bg-[#0018]">

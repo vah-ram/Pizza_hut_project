@@ -11,6 +11,7 @@ import { verifyProfileHost } from "./utils/Hosts.js";
 import axios from "axios";
 import ProductCard from "./ProductCard/ProductCard";
 import FeedBack from "./FeedBack/FeedBack";
+import Profile from "./Profile/Profile";
 
 function App() {
 
@@ -73,7 +74,8 @@ function App() {
                     <Route path="/signUp" element={<Register />}/>
                     <Route path="/product/:productId" element={<ProductCard />}/>
                     <Route path="/catalogs" element={<AllCatalogs />}/>
-                    <Route path="/feedback" element={<FeedBack />}/>
+                    <Route path="/feedback" element={<FeedBack isMobile={isMobile}/>}/>
+                    <Route path="/profile" element={<Profile />}/>
                     <Route path="/basket" element={
                         <Basket isMobile={isMobile}/>
                     }/>
