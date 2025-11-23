@@ -1,12 +1,17 @@
 import React from "react";
-
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+ 
 function AboutMenu() {
+    const navigate = useNavigate();
+
+    const { t } = useTranslation();
 
     return (
         <>
             <footer
                 className="w-full h-auto bg-[#3d3d3d]
-               mt-[70px] pl-[80px] pt-[40px] pr-[80px] max-lg:pl-[30px]
+               mt-[50px] pl-[80px] pt-[40px] pr-[80px] max-lg:pl-[30px]
                 max-lg:pr-[35px] max-md:hidden [body.dark_&]:bg-[#2e2e2e]">
                 <div className="flex">
 
@@ -193,34 +198,31 @@ function AboutMenu() {
                             <a
                                 href="/"
                                 className="text-white text-[14px]">
-                                Home
+                                {t("menu_home")}
                             </a>
                         </li>
 
                         <li>
-                            <a
-                                href="https://pizza-hut.am/us/about?sellingType=isActiveDelivery&mode=light"
+                            <a  onClick={() => navigate("/about-us")}
                                 target="blank"
-                                className="text-white text-[14px]">
-                                About Us
+                                className="text-white text-[14px] cursor-pointer">
+                                {t("menu_about_us")}
                             </a>
                         </li>
 
                         <li>
-                            <a
-                                href="https://bonee.net/privacy-policy-en.html"
+                            <a  onClick={() => navigate("/terms-and-conditions")}
                                 target="blank"
-                                className="text-white text-[14px]">
-                                Terms and Conditions
+                                className="text-white text-[14px] cursor-pointer">
+                                {t("menu_terms_conditions")}
                             </a>
                         </li>
 
                         <li>
-                            <a
-                                href="https://bonee.net/privacy-policy-en.html"
+                            <a  onClick={() => navigate("/privacy-policy")}
                                 target="blank"
-                                className="text-white text-[14px]">
-                                Privacy policy
+                                className="text-white text-[14px] cursor-pointer">
+                                {t("menu_privacy_policy")}
                             </a>
                         </li>
                     </ul>

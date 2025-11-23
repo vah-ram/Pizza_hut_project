@@ -5,9 +5,12 @@ import MobileMenu from "./MobileMenuBar.js/MobileMenu";
 import MobilePizzaMenu from "./MobilePizzaMenu/MobilePizzaMenu";
 import AboutMenu from "./AboutMenu/AboutMenu";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 function Project({ isMobile, currentUser }) {
     const navigate = useNavigate();
+
+    const { t } = useTranslation();
 
   return (
       <main className="duration-300 relative">
@@ -25,8 +28,9 @@ function Project({ isMobile, currentUser }) {
               className="w-[250px] h-[42px] flex items-center justify-center
               rounded-[10px] bg-[#3d3d3d] cursor-pointer hover:bg-[#e33b41]"
                 onClick={() => navigate('/catalogs/special-offers')}>
-              <p className="text-white text-[17px] font-sans font-[500]">
-                  ALL PRODUCTS
+              <p className="text-white text-[17px] 
+              font-sans font-[500] uppercase">
+                  {t("allproducts")}
               </p>
           </button>
 
@@ -38,7 +42,7 @@ function Project({ isMobile, currentUser }) {
 
               <input 
                   type="text" 
-                  placeholder="Search"
+                  placeholder={t("search")}
                   className=" w-[100%] h-full border-1 border-[#e7e7e7ff] 
                   rounded-[10px] p-3 outline-none text-sm [body.dark_&]:text-white
                   [body.dark_&]:border-[#464646]"

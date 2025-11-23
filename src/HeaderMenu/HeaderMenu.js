@@ -2,9 +2,12 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react"
 import LanguageBar from "../LanguageBar/LanguageBar";
 import FeedbackMenuBar from "../FeedbackMenuBar/FeedbackMenuBar";
+import { useTranslation } from "react-i18next";
 
 function HeaderMenu({ isMobile, currentUser }) {
     const navigate = useNavigate();
+
+    const [ language, setLanguage ] = useState("en");
 
     const [modeValue, setModeValue] = useState(() => {
         return localStorage.getItem("darkMode") === "true";
@@ -51,6 +54,8 @@ function HeaderMenu({ isMobile, currentUser }) {
         }
 
     };
+    
+    const { t } = useTranslation();
 
     return (
         <>
@@ -79,8 +84,10 @@ function HeaderMenu({ isMobile, currentUser }) {
               </div>
             
               <button 
-                  className="w-[130px] h-[36px] bg-[#e33b41] rounded-[4px] flex
-                  justify-center items-center gap-2 text-[14px] font-sans-serif
+                  className="w-[130px] h-[36px] bg-[#e33b41] 
+                  rounded-lg flex
+                  justify-center items-center gap-2 text-[14px]
+                   font-sans-serif hover:opacity-80 
                    text-white cursor-pointer max-md:hidden">
                   
                   <img 
@@ -88,8 +95,10 @@ function HeaderMenu({ isMobile, currentUser }) {
                       className="w-[20px] h-[20px]"
                       alt=""/>
     
-                  <p className="text-[15px] font-sans max-lg:text-[13px]">
-                      DELIVERY
+                  <p 
+                    className="text-[15px] font-sans 
+                    max-lg:text-[13px] uppercase">
+                      {t("delivery")}
                   </p>
               </button>
     
@@ -112,12 +121,22 @@ function HeaderMenu({ isMobile, currentUser }) {
     
                   <button
                         className="w-auto h-auto cursor-pointer 
-                            max-md:hidden"
+                        max-md:hidden shadow-md"
                         onClick={openLanguageBar}>
-                      <img 
-                          src="https://bonee.blob.core.windows.net/languages/icons/us.png"
-                          className="w-[30px] h-[18px]"
-                          alt=""/>
+                      <img
+                        src={
+                            language === "en"
+                            ? "https://bonee.blob.core.windows.net/languages/icons/us.png"
+                            : language === "ru"
+                            ? "https://bonee.blob.core.windows.net/languages/icons/ru.png"
+                            : language === "am" 
+                            ? "	https://bonee.blob.core.windows.net/languages/icons/arm.png"
+                            : ''
+                        }
+                        className="w-[30px] h-[18px]"
+                        alt=""
+                        />
+
                   </button>
 
                    <button
@@ -209,7 +228,7 @@ function HeaderMenu({ isMobile, currentUser }) {
 
             </header>
 
-            <LanguageBar />
+            <LanguageBar setLanguage={setLanguage}/>
             <FeedbackMenuBar />
         </>
     )

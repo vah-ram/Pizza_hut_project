@@ -5,7 +5,7 @@ import MobileMenu from "../MobileMenuBar.js/MobileMenu";
 function FeedBack({ isMobile }) {
     return (
         <>
-            <div className="w-full h-full max-md:mb-50">
+            <div className="w-full h-full max-md:mb-50 p-10">
                 {
                     isMobile ? '' : <HeaderMenu />
                 }

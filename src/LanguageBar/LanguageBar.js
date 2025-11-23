@@ -1,11 +1,38 @@
-import React from "react";
+import i18next from "i18next";
+import { useState, useEffect } from "react";
 
-function LanguageBar() {
+function LanguageBar({ setLanguage }) {
+
+    const [ selectedLangugeCode, setSelectedLanguageCode ] = useState('');
+
+    useEffect(() => {
+        setSelectedLanguageCode("en");
+    }, []);
 
     const closeLanguageBar = () => {
         const body = document.querySelector('body');
             body.classList.remove('languageActive');
     }
+
+    const languages = [
+        { 
+            code: "am", 
+            name: "Հայերեն - hy", 
+            imgUrl: "https://bonee.blob.core.windows.net/languages/icons/arm.png"
+        },
+        
+        { 
+            code: "en", 
+            name: "English(US) - en", 
+            imgUrl: "https://bonee.blob.core.windows.net/languages/icons/us.png"
+        },
+
+        { 
+            code: "ru", 
+            name: "Русский - ru", 
+            imgUrl: "https://bonee.blob.core.windows.net/languages/icons/ru.png"
+        },
+    ];
 
     return (
         <>
@@ -24,52 +51,43 @@ function LanguageBar() {
                         src="https://pizza-hut.am/assets/images/app_2/close.svg"
                         className="w-[20px] h-[20px]"/>
                 </button>
-
+                
                 <ul className="flex flex-col gap-3 mt-20 ml-5">
-                    <li className="flex gap-2 cursor-pointer items-center">
-                        <input
-                            type="checkbox"
-                            className="appearance-none w-[20px] h-[20px] p-2 rounded-full border-1 border-gray-400
-                            cursor-pointer checked:bg-gray-400"/>
-                        <img
-                            src="https://bonee.blob.core.windows.net/languages/icons/arm.png"
-                            className="w-[30px] h-[20px]"/>
 
-                        <p className="uppercase text-[24px] text-[#9D9D9D]">
-                            Հայերեն - Hy
-                        </p>
-                    </li>
+                    {
+                        languages.map((language) => (
+                            <li className="flex gap-2 cursor-pointer 
+                                items-center"
+                                onClick={() => {
+                                    setSelectedLanguageCode(language.code)
+                                    setLanguage(language.code)
+                                    i18next.changeLanguage(language.code)
+                                    closeLanguageBar();
+                                }}>
 
-                    <li className="flex gap-2 cursor-pointer items-center">
-                        <input
-                            type="checkbox"
-                            className="appearance-none w-[20px] h-[20px] p-2 rounded-full border-1 border-gray-400
-                            cursor-pointer checked:bg-gray-400"/>
+                                <input 
+                                    name="radio"
+                                    type="radio"
+                                    checked={selectedLangugeCode === language.code}
+                                    className="appearance-none w-5 h-5 border border-gray-400 rounded-full
+                                            cursor-pointer relative
+                                            before:content-[''] before:w-2.5 before:h-2.5 before:bg-gray-400 
+                                            before:rounded-full before:absolute before:top-1/2 before:left-1/2 
+                                            before:-translate-x-1/2 before:-translate-y-1/2
+                                            before:scale-0 checked:before:scale-100
+                                            transition" />
 
-                        <img
-                            src="https://bonee.blob.core.windows.net/languages/icons/us.png"
-                            className="w-[30px] h-[20px]"/>
+                                <img
+                                    src={language.imgUrl}
+                                    className="w-[30px] h-[20px]"/>
 
-                        <p className="uppercase text-[24px] text-[#9D9D9D]">
-                            English(us) - En
-                        </p>
-                    </li>
+                                <p className="uppercase text-[24px] text-[#9D9D9D]">
+                                    {language.name}
+                                </p>
+                            </li>
+                        ))
+                    }
 
-                    <li className="flex gap-2 cursor-pointer items-center">
-                        <input
-                            type="checkbox"
-                            className="appearance-none w-[20px] h-[20px] p-2
-                            rounded-full border-1 border-gray-400
-                            cursor-pointer checked:bg-gray-400"/>
-
-                        <img
-                            src="https://bonee.blob.core.windows.net/languages/icons/ru.png"
-                            className="w-[30px] h-[20px]"/>
-
-                        <p className="uppercase text-[24px] text-[#9D9D9D]">
-                            Русский - Ru
-                        </p>
-                    </li>
                 </ul>
             </div>
         </>

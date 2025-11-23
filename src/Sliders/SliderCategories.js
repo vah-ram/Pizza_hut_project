@@ -3,9 +3,31 @@ import "swiper/css"
 import "swiper/css/navigation"
 import { Navigation } from "swiper/modules"
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 function SliderCategories() {
     const navigate = useNavigate();
+
+    const { t } = useTranslation();
+
+    const rightArrow = document.querySelector('.right_arrow');
+    const leftArrow = document.querySelector('.left_arrow');
+
+    const leftArrowActive = () => {
+
+        if(!leftArrow.classList.contains('active')) {
+            leftArrow.classList.add('active')
+        };
+
+    }
+
+    const rightArrowActive = () => {
+
+        if(!rightArrow.classList.contains('active')) {
+            rightArrow.classList.add('active')
+        };
+
+    }
 
     return (
         <>
@@ -18,19 +40,24 @@ function SliderCategories() {
                             alt="categories icon"/>
                         <p className="text-[25px] text-[#515151]
                          [body.dark_&]:text-white font-[600]">
-                            CATEGORIES
+                            {t("categories")}
                         </p>
                     </div>
 
                     <div className="flex gap-3 h-full items-center">
                         <p className="text-[#e33b41] text-[16px] cursor-pointer">
-                            See All
+                            {t("see_all")}
                         </p>
 
                         <div className="flex">
                             <button 
                                 className="prev-btn w-[40px] h-[40px] flex items-center justify-center border-1
-                                 border-gray-300 rounded-tl-[10px] rounded-bl-[10px] cursor-pointer [main.dark_&]:border-gray-500">
+                                 border-gray-300 rounded-tl-[10px] rounded-bl-[10px] 
+                                 cursor-pointer [main.dark_&]:border-gray-500
+                                 left_arrow active [.active]:bg-[#ddddddff]"
+                                 onClick={() => {
+                                    rightArrow.classList.remove('active')
+                                 }}>
                                 <img 
                                     src="https://cdn1.iconfinder.com/data/icons/arrows-i/24/Material_icons-02-05-512.png" 
                                     className="w-[33px] h-[33px]" 
@@ -39,7 +66,12 @@ function SliderCategories() {
 
                             <button 
                                 className="next-btn w-[40px] h-[40px] flex items-center justify-center border-1
-                                 border-gray-300 rounded-tr-[10px] rounded-br-[10px] cursor-pointer [main.dark_&]:border-gray-500">
+                                 border-gray-300 rounded-tr-[10px] rounded-br-[10px] 
+                                 cursor-pointer [main.dark_&]:border-gray-500
+                                 right_arrow [.active]:bg-[#ddddddff]"
+                                 onClick={() => {
+                                    leftArrow.classList.remove('active')
+                                 }}>
                                 <img 
                                     src="https://cdn1.iconfinder.com/data/icons/arrows-i/24/Material_icons-02-06-512.png" 
                                     className="w-[33px] h-[33px]" 
@@ -60,12 +92,18 @@ function SliderCategories() {
                             navigation={{
                                 prevEl: ".prev-btn",
                                 nextEl: ".next-btn"
+                            }}
+                            onReachBeginning={() => {
+                                leftArrowActive();
+                            }}
+                            onReachEnd={() => {
+                                rightArrowActive();
                             }}>
 
-                        <SwiperSlide className="!w-[266px] shrink-0">
+                        <SwiperSlide>
 
                         <div
-                        className="w-full h-full shrink-[0]
+                        className="w-[14w] h-[14vw] max-h-[14vw] 
                         relative rounded-[25px] overflow-hidden group"
                             onClick={() => navigate('/catalogs/special-offers')}>
                             <img
@@ -74,17 +112,18 @@ function SliderCategories() {
                                 alt="slider item img"/>
 
                             <div className="w-full h-[50px] absolute bottom-0 flex justify-center items-center bg-[#0018]">
-                                <p className="text-white font-[600] text-[18px]">
-                                    SPECIAL OFFERS
+                                <p className="text-white font-[600] 
+                                text-[calc(14px+.3vw)] uppercase text-center">
+                                    {t("categorie_special_offer")}
                                 </p>
                             </div>
                         </div>
 
                         </SwiperSlide>
 
-                        <SwiperSlide className="!w-[266px] shrink-0">
+                        <SwiperSlide>
 
-                        <div className="w-[266px] h-[266px] shrink-[0] relative
+                        <div className="w-[14w] h-[14vw] max-h-[14vw] relative
                         rounded-[25px] overflow-hidden group"
                              onClick={() => navigate('/catalogs/melts')}>
                             <img 
@@ -93,18 +132,19 @@ function SliderCategories() {
                                 alt="slider item img"/>
 
                             <div className="w-full h-[50px] absolute bottom-0 flex justify-center items-center bg-[#0018]">
-                                <p className="text-white font-[600] text-[18px]">
-                                    MELTS
+                                <p className="text-white font-[600] 
+                                text-[calc(14px+.3vw)] uppercase text-center">
+                                    {t("categorie_melt")}
                                 </p>
                             </div>
                         </div>
 
                         </SwiperSlide>
 
-                        <SwiperSlide className="!w-[266px] shrink-0">
+                        <SwiperSlide>
 
                         <div
-                            className="w-[266px] h-[266px] shrink-[0]
+                            className="w-[14w] h-[14vw] max-h-[14vw] 
                             relative rounded-[25px]
                              overflow-hidden group"
                              onClick={() => navigate('/catalogs/pizzas')}>
@@ -114,17 +154,18 @@ function SliderCategories() {
                                 alt="slider item img"/>
 
                             <div className="w-full h-[50px] absolute bottom-0 flex justify-center items-center bg-[#0018]">
-                                <p className="text-white font-[600] text-[18px]">
-                                    PIZZAS
+                                <p className="text-white font-[600] 
+                                text-[calc(14px+.3vw)] uppercase text-center">
+                                    {t("categorie_pizzas")}
                                 </p>
                             </div>
                         </div>
 
                         </SwiperSlide>
 
-                        <SwiperSlide className="!w-[266px] shrink-0">
+                        <SwiperSlide>
 
-                        <div className="w-[266px] h-[266px] shrink-[0]
+                        <div className="w-[14w] h-[14vw] max-h-[14vw] 
                                 relative rounded-[25px]
                                 overflow-hidden group"
                                 onClick={() => navigate('/catalogs/pizza-hot-dog')}>
@@ -134,18 +175,19 @@ function SliderCategories() {
                                 alt="slider item img"/>
 
                             <div className="w-full h-[50px] absolute bottom-0 flex justify-center items-center bg-[#0018]">
-                                <p className="text-white font-[600] text-[18px]">
-                                    PIZZA HOT-DOG
+                                <p className="text-white font-[600] 
+                                text-[calc(14px+.3vw)] uppercase text-center">
+                                    {t("categorie_pizza_hot_dog")}
                                 </p>
                             </div>
                         </div>
 
                         </SwiperSlide>
 
-                        <SwiperSlide className="!w-[266px] shrink-0">
+                        <SwiperSlide>
 
                         <div
-                            className="w-[266px] h-[266px] shrink-[0] relative
+                            className="w-[14w] h-[14vw] max-h-[14vw] relative
                             rounded-[25px] overflow-hidden group"
                             onClick={() => navigate('/catalogs/salads')}>
                             <img 
@@ -154,18 +196,19 @@ function SliderCategories() {
                                 alt="slider item img"/>
 
                             <div className="w-full h-[50px] absolute bottom-0 flex justify-center items-center bg-[#0018]">
-                                <p className="text-white font-[600] text-[18px]">
-                                    SALADS
+                                <p className="text-white font-[600] 
+                                text-[calc(14px+.3vw)] uppercase text-center">
+                                    {t("categorie_salads")}
                                 </p>
                             </div>
                         </div>
 
                         </SwiperSlide>
 
-                        <SwiperSlide className="!w-[266px] shrink-0">
+                        <SwiperSlide>
 
                         <div
-                            className="w-[266px] h-[266px] shrink-[0] relative
+                            className="w-[14w] h-[14vw] max-h-[14vw] relative
                             rounded-[25px] overflow-hidden group"
                             onClick={() => navigate('/catalogs/burgers-sandwiches')}>
                             <img 
@@ -174,18 +217,19 @@ function SliderCategories() {
                                 alt="slider item img"/>
 
                             <div className="w-full h-[50px] absolute bottom-0 flex justify-center items-center bg-[#0018]">
-                                <p className="text-white font-[600] text-[18px]">
-                                    BURGERS & SANDWICHES
+                                <p className="text-white font-[600] 
+                                text-[calc(14px+.3vw)] uppercase text-center">
+                                    {t("categorie_burgers_sandwiches")}
                                 </p>
                             </div>
                         </div>
 
                         </SwiperSlide>
 
-                        <SwiperSlide className="!w-[266px] shrink-0">
+                        <SwiperSlide>
 
                             <div
-                                className="w-[266px] h-[266px] shrink-[0] relative
+                                className="w-[14w] h-[14vw] max-h-[14vw] relative
                                 rounded-[25px] overflow-hidden group"
                                 onClick={() => navigate('/catalogs/snacks')}>
                                 <img 
@@ -194,18 +238,19 @@ function SliderCategories() {
                                     alt="slider item img"/>
 
                                 <div className="w-full h-[50px] absolute bottom-0 flex justify-center items-center bg-[#0018]">
-                                    <p className="text-white font-[600] text-[18px]">
-                                        SNACKS
+                                    <p className="text-white font-[600] 
+                                    text-[calc(14px+.3vw)] uppercase text-center">
+                                        {t("categorie_snacks")}
                                     </p>
                                 </div>
                             </div>
 
                         </SwiperSlide>
 
-                        <SwiperSlide className="!w-[266px] shrink-0">
+                        <SwiperSlide>
 
                         <div
-                            className="w-[266px] h-[266px] shrink-[0] relative
+                            className="w-[14w] h-[14vw] max-h-[14vw] relative
                             rounded-[25px] overflow-hidden group"
                             onClick={() => navigate('/catalogs/desserts')}>
                             <img 
@@ -214,18 +259,19 @@ function SliderCategories() {
                                 alt="slider item img"/>
 
                             <div className="w-full h-[50px] absolute bottom-0 flex justify-center items-center bg-[#0018]">
-                                <p className="text-white font-[600] text-[18px]">
-                                    DESSERTS
+                                <p className="text-white font-[600] 
+                                text-[calc(14px+.3vw)] uppercase text-center">
+                                    {t("categorie_desserts")}
                                 </p>
                             </div>
                         </div>
 
                         </SwiperSlide>
 
-                        <SwiperSlide className="!w-[266px] shrink-0">
+                        <SwiperSlide>
 
                         <div
-                            className="w-[266px] h-[266px] shrink-[0] relative rounded-[25px]
+                            className="w-[14w] h-[14vw] max-h-[14vw] relative rounded-[25px]
                             overflow-hidden group"
                             onClick={() => navigate('/catalogs/beverages')}>
                             <img 
@@ -234,18 +280,19 @@ function SliderCategories() {
                                 alt="slider item img"/>
 
                             <div className="w-full h-[50px] absolute bottom-0 flex justify-center items-center bg-[#0018]">
-                                <p className="text-white font-[600] text-[18px]">
-                                    BEVERAGES
+                                <p className="text-white font-[600] 
+                                text-[calc(14px+.3vw)] uppercase text-center">
+                                    {t("categorie_beverages")}
                                 </p>
                             </div>
                         </div>
 
                         </SwiperSlide>
 
-                        <SwiperSlide className="!w-[266px] shrink-0">
+                        <SwiperSlide>
 
                         <div
-                            className="w-[266px] h-[266px] shrink-[0] relative rounded-[25px]
+                            className="w-[14w] h-[14vw] max-h-[14vw] relative rounded-[25px]
                             overflow-hidden group"
                             onClick={() => navigate('/catalogs/sauces')}>
                             <img 
@@ -254,8 +301,9 @@ function SliderCategories() {
                                 alt="slider item img"/>
 
                             <div className="w-full h-[50px] absolute bottom-0 flex justify-center items-center bg-[#0018]">
-                                <p className="text-white font-[600] text-[18px]">
-                                    SAUCES
+                                <p className="text-white font-[600] 
+                                text-[calc(14px+.3vw)] uppercase text-center">
+                                    {t("categorie_sauces")}
                                 </p>
                             </div>
                         </div>

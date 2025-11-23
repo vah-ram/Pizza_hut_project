@@ -3,9 +3,12 @@ import "swiper/css"
 import "swiper/css/navigation"
 import { Navigation } from "swiper/modules"
 import { useNavigate } from "react-router-dom"
+import { useTranslation } from "react-i18next";
 
-function SliderOffers({ isMobile }) {
+function SliderOffers() {
     const navigate = useNavigate();
+
+    const { t } = useTranslation();
 
     return (
         <>
@@ -16,9 +19,10 @@ function SliderOffers({ isMobile }) {
                             src="https://bonee.blob.core.windows.net/images/f57285e4-5fcc-f853-b25f-1a2e99f65082_1.jpg" 
                             className="w-[35px] h-[35px]" 
                             alt="categories icon"/>
-                        <p className="text-[25px] text-[#515151] 
-                        font-[600] [body.dark_&]:text-white">
-                            SPECIAL OFFERS
+                        <p 
+                            className="text-[25px] text-[#515151] 
+                            font-[600] [body.dark_&]:text-white uppercase">
+                            {t("offer_special_offer")}
                         </p>
                     </div>
 
@@ -80,9 +84,11 @@ function SliderOffers({ isMobile }) {
                             </span>
 
                             <div className="w-full h-auto flex justify-center items-center mt-2">
-                                <p className="[body.dark_&]:text-white text-[#515151] font-[600]
-                                 text-[18px] uppercase">
-                                    Combo for Meat Lovers
+                                <p
+                                    className="[body.dark_&]:text-white text-[#515151] 
+                                    font-[600] text-[18px]
+                                     uppercase text-center">
+                                    {t("offer_meatlover")}
                                 </p>
                             </div>
 
@@ -132,8 +138,8 @@ function SliderOffers({ isMobile }) {
 
                             <div className="w-full h-auto flex justify-center items-center mt-2">
                                 <p className="[body.dark_&]:text-white text-[#515151] font-[600]
-                                 text-[18px] uppercase">
-                                    Combo with 3 27 cm pizzas 
+                                 text-[18px] uppercase text-center">
+                                    {t("offer_pizza_set")}
                                 </p>
                             </div>
 
@@ -182,8 +188,8 @@ function SliderOffers({ isMobile }) {
                             
                             <div className="w-full h-auto flex justify-center items-center mt-2">
                                 <p className="[body.dark_&]:text-white text-[#515151] font-[600]
-                                 text-[18px] uppercase">
-                                    Combo with 3 27 cm pizzas
+                                 text-[18px] uppercase text-center">
+                                    {t("offer_combo_3_pizzas")}
                                 </p>
                             </div>
 
@@ -234,8 +240,8 @@ function SliderOffers({ isMobile }) {
 
                             <div className="w-full h-auto flex justify-center items-center mt-2">
                                 <p className="[body.dark_&]:text-white text-[#515151] font-[600]
-                                 text-[18px] uppercase">
-                                    Combo Pizza x Nuggets Box
+                                 text-[18px] uppercase text-center">
+                                    {t("offer_combo_nuggets")}
                                 </p>
                             </div>
 
@@ -285,8 +291,8 @@ function SliderOffers({ isMobile }) {
 
                             <div className="w-full h-auto flex justify-center items-center mt-2">
                                 <p className="[body.dark_&]:text-white text-[#515151] font-[600]
-                                text-[18px] uppercase">
-                                    Cheese bites combo
+                                text-[18px] uppercase text-center">
+                                    {t("offer_cheese_bites_combo")}
                                 </p>
                             </div>
 
@@ -335,8 +341,8 @@ function SliderOffers({ isMobile }) {
 
                             <div className="w-full h-auto flex justify-center items-center mt-2">
                                 <p className="[body.dark_&]:text-white text-[#515151] font-[600]
-                                 text-[18px] uppercase">
-                                    My Box Veggie
+                                 text-[18px] uppercase text-center">
+                                    {t("offer_my_box_veggie")}
                                 </p>
                             </div>
 
@@ -385,8 +391,8 @@ function SliderOffers({ isMobile }) {
 
                             <div className="w-full h-auto flex justify-center items-center mt-2">
                                 <p className="[body.dark_&]:text-white text-[#515151] font-[600]
-                                 text-[18px] uppercase">
-                                    My Box Pepperoni
+                                 text-[18px] uppercase text-center">
+                                    {t("offer_my_box_pepperoni")}
                                 </p>
                             </div>
 
@@ -435,8 +441,8 @@ function SliderOffers({ isMobile }) {
 
                             <div className="w-full h-auto flex justify-center items-center mt-2">
                                 <p className="[body.dark_&]:text-white text-[#515151] font-[600]
-                                 text-[18px] uppercase">
-                                    My Box Chicken BBQ
+                                 text-[18px] uppercase text-center">
+                                    {t("offer_my_box_chicken_bbq")}
                                 </p>
                             </div>
 
@@ -489,8 +495,8 @@ function SliderOffers({ isMobile }) {
 
                             <div className="w-full h-auto flex justify-center items-center mt-2">
                                 <p className="[body.dark_&]:text-white text-[#515151] font-[600]
-                                 text-[18px] uppercase">
-                                    Popular Combo
+                                 text-[18px] uppercase text-center">
+                                    {t("offer_popular_combo")}
                                 </p>
                             </div>
 
@@ -539,8 +545,8 @@ function SliderOffers({ isMobile }) {
                             
                             <div className="w-full h-auto flex justify-center items-center mt-2">
                                 <p className="[body.dark_&]:text-white text-[#515151] font-[600]
-                                 text-[18px] uppercase">
-                                    Combo Pepperoni
+                                 text-[18px] uppercase text-center">
+                                    {t("offer_combo_pepperoni")}
                                 </p>
                             </div>
 

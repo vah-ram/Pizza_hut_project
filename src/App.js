@@ -12,39 +12,40 @@ import axios from "axios";
 import ProductCard from "./ProductCard/ProductCard";
 import FeedBack from "./FeedBack/FeedBack";
 import Profile from "./Profile/Profile";
+import TermsConditions from "./SecondaryMenuGroup/TermsConditions.js";
 
 function App() {
 
     const [ isMobile, setIsMobile ] = useState('');
 
-    const [ currentUser, setCurrentUser ] = useState(null);
+    const [ currentUser, setCurrentUser ] = useState(true);
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        const callBackFunc = async() => {
-            try {
-                if(localStorage.getItem("token")) {
+    //     const callBackFunc = async() => {
+    //         try {
+    //             if(localStorage.getItem("token")) {
 
-                    const res = await axios.get(verifyProfileHost, {
-                        params: { token: localStorage.getItem("token") }
-                    });
+    //                 const res = await axios.get(verifyProfileHost, {
+    //                     params: { token: localStorage.getItem("token") }
+    //                 });
 
-                    if(res.data.status) {
-                        setCurrentUser(res.data.user);
-                    } else {
-                        setCurrentUser('');
-                    }
+    //                 if(res.data.status) {
+    //                     setCurrentUser(res.data.user);
+    //                 } else {
+    //                     setCurrentUser('');
+    //                 }
 
-                } else {
-                    setCurrentUser('');
-                };
-            } catch(err) {
-                console.error(err);
-            }
-        };
+    //             } else {
+    //                 setCurrentUser('');
+    //             };
+    //         } catch(err) {
+    //             console.error(err);
+    //         }
+    //     };
 
-        callBackFunc();
-    }, []);
+    //     callBackFunc();
+    // }, []);
 
     useEffect(() => {
         window.addEventListener('resize', () => {
@@ -84,6 +85,10 @@ function App() {
                     <Route
                             path="/admin_panel_is_blocked"
                             element={<AdminPanel />}/>
+
+                    <Route path="/about-us" element={<TermsConditions />}/>
+                    <Route path="/terms-and-conditions" element={<TermsConditions />}/>
+                    <Route path="/privacy-policy" element={<TermsConditions />}/>
                 </Routes>
             </BrowserRouter>
         </>
