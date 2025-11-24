@@ -4,14 +4,13 @@ import axios from "axios";
 import { registerHost } from "../utils/Hosts.js";
 import { Toaster, toast } from "sonner";
 import MobileMenu from "../MobileMenuBar.js/MobileMenu";
-import intlTelInput from "intl-tel-input";
+import { useTranslation } from "react-i18next";
 
 function Register() {
 
     const navigate = useNavigate();
 
     const [ phoneNumber, setPhoneNumber ] = useState('');
-    const [ phonecountrycode, setPhonecountrycode ] = useState("");
 
     const [user, setUser] = useState({
         name: "",
@@ -51,13 +50,13 @@ function Register() {
             const res = await axios.post(registerHost, {
                 name: user.name,
                 surname: user.surname,
-                phonenumber: `+${phonecountrycode}${phoneNumber}`,
+                phonenumber: `+${document.querySelector('.countryPhoneCode').value}${phoneNumber}`,
                 email: user.email,
                 password: user.password
             });
 
             if(res.data.status) {
-                navigate("/signIn")
+                navigate("/verify-phone")
             } else {
                 toast.error(res.data.message, {
                     position: "bottom-right",
@@ -76,6 +75,8 @@ function Register() {
             return;
         }
     };
+
+    const { t } = useTranslation();
 
     return (
         <>
@@ -97,7 +98,7 @@ function Register() {
                             className="w-[10px] h-[10px]"/>
 
                         <p className="text-white text-[14px]">
-                            Main page
+                            {t("menu_home")}
                         </p>
                     </button>
 
@@ -118,7 +119,7 @@ function Register() {
                         </div>
 
                         <p className="w-full text-white text-[17px] text-center">
-                            Register and get access on all services with one account
+                            {t("register_context")}
                         </p>
 
                         <button
@@ -127,7 +128,7 @@ function Register() {
                                 shadow-[#0000004d] cursor-pointer"
                                 onClick={() => navigate('/signIn')}>
                             <p className="uppercase text-white text-[16px] font-sans">
-                                Log in
+                                {t("register_btn_text")}
                             </p>
                         </button>
                     </div>
@@ -155,7 +156,7 @@ function Register() {
                         </button>
 
                         <h2 className="text-[17px] text-[#515151] font-[600] uppercase [body.dark_&]:text-white">
-                            Registration
+                            {t("registration_title")}
                         </h2>
                     </div>
 
@@ -175,13 +176,13 @@ function Register() {
                                     evt.preventDefault()
                                     navigate('/signUp')
                                 }}>
-                            Register
+                            {t("registration_title")}
                         </button>
                     </div>
 
                     <h2 className="text-[21px] text-[#515151] font-[600] uppercase
                     [body.dark_&]:text-white max-md:hidden">
-                        Registration
+                        {t("registration_title")}
                     </h2>
 
                     <div className="w-[60%] flex gap-2 max-lg:w-[80%] max-md:w-[95%] max-md:flex-col">
@@ -190,7 +191,7 @@ function Register() {
                             border border-1 border-gray-200 max-md:w-full">
                             <input
                                 type="text"
-                                placeholder="Name"
+                                placeholder={t("registration_name")}
                                 className="border-none outline-none w-full [body.dark_&]:text-white"
                                 maxLength={50}
                                 onChange={e => setUser({
@@ -203,7 +204,7 @@ function Register() {
                             border border-1 border-gray-200 max-md:w-full">
                             <input
                                 type="text"
-                                placeholder="Surname"
+                                placeholder={t("registration_surname")}
                                 className="border-none outline-none w-full [body.dark_&]:text-white"
                                 maxLength={50}
                                 onChange={e => setUser({
@@ -215,25 +216,48 @@ function Register() {
 
                     <div className="w-[60%] flex gap-2 max-lg:w-[80%] max-md:w-[95%]">
 
-                        <div className="w-[20%] mt-5 flex gap-5 items-center px-3 py-3 rounded-[15px]
-                            border border-1 border-gray-200">
-                            <input
-                                type="tel"
-                                id="phone"
-                                placeholder="+374"
-                                value="374"
-                                className="border-none outline-none w-full [body.dark_&]:text-white"
-                                maxLength={50}
-                                onChange={(e) => {
-                                    setPhonecountrycode(e.target.value)
-                                }}/>
-                    </div>
+                        <select
+                            className="countryPhoneCode w-[20%] mt-5 flex gap-5
+                               items-center px-3 py-3 rounded-[15px]
+                               border border-1 border-gray-200
+                               appearance-none outline-none">
+
+                                <option
+                                        className="[body.dark_&]:text-white"
+                                        value="374">
+                                    Armenia(+374)
+                                </option>
+
+                                <option
+                                        className="[body.dark_&]:text-white"
+                                        value="7">
+                                    Russia(+7)
+                                </option>
+
+                                <option
+                                    className="[body.dark_&]:text-white"
+                                    value="33">
+                                    France(+33)
+                                </option>
+
+                                <option
+                                    className="[body.dark_&]:text-white"
+                                    value="372">
+                                    Estonia(+372)
+                                </option>
+
+                                <option
+                                    className="[body.dark_&]:text-white"
+                                    value="995">
+                                    Georgia(+995)
+                                </option>
+                    </select>
 
                         <div className="w-[80%] mt-5 flex gap-5 items-center px-3 py-3 rounded-[15px]
                             border border-1 border-gray-200">
                             <input
                                 type="tel"
-                                placeholder="Phone Number"
+                                placeholder={t("registration_phone")}
                                 className="phone_input border-none outline-none w-full [body.dark_&]:text-white"
                                 maxLength={50}
                                 value={phoneNumber}
@@ -248,7 +272,7 @@ function Register() {
                     border border-1 border-gray-200 max-lg:w-[80%] max-md:w-[95%]">
                         <input
                             type="email"
-                            placeholder="Email"
+                            placeholder={t("registration_email")}
                             className="border-none outline-none w-full [body.dark_&]:text-white"
                             maxLength={50}
                             onChange={e => setUser({
@@ -261,7 +285,7 @@ function Register() {
                     border border-1 border-gray-200 max-lg:w-[80%] max-md:w-[95%]">
                         <input
                             type="password"
-                            placeholder="Password"
+                            placeholder={t("registration_password")}
                             className="border-none outline-none w-full [body.dark_&]:text-white"
                             maxLength={50}
                             onChange={e => setUser({
@@ -274,7 +298,7 @@ function Register() {
                     border border-1 border-gray-200 max-lg:w-[80%] max-md:w-[95%]">
                         <input
                             type="password"
-                            placeholder="Re-Enter Password"
+                            placeholder={t("registration_re_password")}
                             className="border-none outline-none w-full [body.dark_&]:text-white"
                             maxLength={50}
                             onChange={e => setUser({
@@ -299,17 +323,17 @@ function Register() {
                         </label>
 
                         <p className="text-[15px] text-[#515151] flex gap-2">
-                            I read and agree with
+                            {t("registration_agree_text")}
                             <a
                                 href="/conditions"
                                 className="text-[#e33b41] font-[600]">
-                                Conditions
+                                {t("registration_terms")}
                             </a>
-                            and
+                            {t("registration_and_text")}
                             <a
                                 href="/privacy-policy"
                                 className="text-[#e33b41] font-[600]">
-                                Privacy Policy
+                                {t("registration_privacy")}
                             </a>
                         </p>
 
@@ -320,7 +344,7 @@ function Register() {
                     px-3 py-4 rounded-[12px] bg-[#e33b41] cursor-pointer
                     hover:opacity-90 max-lg:w-[80%] max-md:w-[95%] max-md:rounded-[18px]">
                         <p className="uppercase text-white text-[16px] font-sans">
-                            Register
+                            {t("registration_button")}
                         </p>
                     </button>
 

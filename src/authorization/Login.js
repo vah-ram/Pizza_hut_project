@@ -4,6 +4,7 @@ import { loginHost } from "../utils/Hosts";
 import { toast, Toaster } from "sonner";
 import axios from "axios";
 import MobileMenu from "../MobileMenuBar.js/MobileMenu";
+import { useTranslation } from "react-i18next";
 
 function Login() {
     const navigate = useNavigate();
@@ -35,6 +36,7 @@ function Login() {
                     localStorage.setItem("token", res.data.token);
                     navigate('/admin_panel_is_blocked');
                 } else {
+                    localStorage.setItem("token", res.data.token);
                     navigate('/');
                 }
 
@@ -46,11 +48,14 @@ function Login() {
 
                 return;
             }
+
         } catch(error) {
             console.error(error)
         }
 
     }
+
+    const { t } = useTranslation();
 
     return (
             <>
@@ -71,7 +76,7 @@ function Login() {
                             className="w-[10px] h-[10px]"/>
 
                         <p className="text-white text-[14px]">
-                            Main page
+                            {t("menu_home")}
                         </p>
                     </button>
 
@@ -93,7 +98,7 @@ function Login() {
                         </div>
 
                         <p className="w-full text-white text-[17px] text-center">
-                            Register and get access on all services with one account
+                            {t("login_register_description")}
                         </p>
 
                         <button
@@ -102,7 +107,7 @@ function Login() {
                                 shadow-[#0000004d] cursor-pointer"
                                 onClick={() => navigate('/signUp')}>
                             <p className="uppercase text-white text-[16px] font-sans">
-                                Register
+                                {t("login_register_button")}
                             </p>
                         </button>
                     </div>
@@ -129,7 +134,7 @@ function Login() {
                         </button>
 
                         <h2 className="text-[17px] text-[#515151] font-[600] uppercase [body.dark_&]:text-white">
-                            Authorization
+                            {t("login_authorization_title")}
                         </h2>
                     </div>
 
@@ -154,12 +159,12 @@ function Login() {
                     </div>
 
                     <h2 className="text-[21px] text-[#515151] font-[600] uppercase [body.dark_&]:text-white max-md:hidden">
-                        Authorization
+                        {t("login_authorization_title")}
                     </h2>
 
                     <p className="text-[17px] text-[#9D9D9D] font-[600]
                     max-md:text-[#515151] max-md:mt-5">
-                        You can log in with Bonee account
+                        {t("login_authorization_subtitle")}
                     </p>
 
                     <div className="w-[60%] mt-5 flex gap-5 items-center px-3 py-3 rounded-[15px]
@@ -167,7 +172,7 @@ function Login() {
                         <img src="/Img/email-icon.png" alt="Email"/>
                         <input
                             type="email"
-                            placeholder="Email"
+                            placeholder={t("login_email_placeholder")}
                             className="border-none outline-none w-full [body.dark_&]:text-white"
                             maxLength={50}
                             onChange={(evt) => setEmail(evt.target.value)}/>
@@ -180,7 +185,7 @@ function Login() {
 
                         <input
                             type={`${showPassword ? 'text' : 'password'}`}
-                            placeholder="Password"
+                            placeholder={t("login_password_placeholder")}
                             className="border-none outline-none w-full [body.dark_&]:text-white"
                             maxLength={50}
                             onChange={(evt) => setPassword(evt.target.value)}/>
@@ -201,7 +206,7 @@ function Login() {
                         href="/reset-password"
                         className="text-[15px] text-[#e33b41] font-[600]
                          ml-auto mr-[20%] mt-7 max-md:mr-[2.5%]">
-                        Forgot your Password?
+                        {t("login_forgot_password")}
                     </a>
 
                     <button type="submit"
@@ -209,14 +214,18 @@ function Login() {
                             px-3 py-4 rounded-[12px] bg-[#e33b41] cursor-pointer hover:opacity-90
                             max-md:w-[95%] max-md:rounded-[18px]">
                         <p className="uppercase text-white text-[16px] font-sans">
-                            Log in
+                            {t("login_button_text")}
                         </p>
                     </button>
 
                     <div className="w-[60%] flex items-center mt-2  max-md:w-[95%]">
 
                         <span className="w-full h-[1px] bg-gray-300"/>
-                            <p className="text-[16px] m-4 [body.dark_&]:text-white">OR</p>
+
+                            <p className="text-[16px] m-4 [body.dark_&]:text-white">
+                                {t("login_or")}
+                            </p>
+
                         <span className="w-full h-[1px] bg-gray-300"/>
 
                     </div>
@@ -232,7 +241,7 @@ function Login() {
                             alt="Email"/>
 
                         <p className="uppercase [body.dark_&]:text-white max-lg:text-[1.5vw] max-md:text-[16px]">
-                            Continue with google
+                            {t("login_continue_google")}
                         </p>
 
                         <img
@@ -251,7 +260,7 @@ function Login() {
                             alt="Email"/>
 
                         <p className="uppercase [body.dark_&]:text-white max-lg:text-[1.5vw] max-md:text-[16px]">
-                            Continue as a guest
+                            {t("login_continue_guest")}
                         </p>
 
                         <img

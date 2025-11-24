@@ -13,6 +13,9 @@ import ProductCard from "./ProductCard/ProductCard";
 import FeedBack from "./FeedBack/FeedBack";
 import Profile from "./Profile/Profile";
 import TermsConditions from "./SecondaryMenuGroup/TermsConditions.js";
+import AboutUs from "./SecondaryMenuGroup/AboutUs";
+import PrivacyPolicy from "./SecondaryMenuGroup/PrivacyPolicy";
+import VerificationEmail from "./authorization/VerificationEmail";
 
 function App() {
 
@@ -20,32 +23,33 @@ function App() {
 
     const [ currentUser, setCurrentUser ] = useState(true);
 
-    // useEffect(() => {
+    useEffect(() => {
 
-    //     const callBackFunc = async() => {
-    //         try {
-    //             if(localStorage.getItem("token")) {
+        const callBackFunc = async() => {
+            try {
+                if(localStorage.getItem("token")) {
 
-    //                 const res = await axios.get(verifyProfileHost, {
-    //                     params: { token: localStorage.getItem("token") }
-    //                 });
+                    const res = await axios.get(verifyProfileHost, {
+                        params: { token: localStorage.getItem("token") }
+                    });
 
-    //                 if(res.data.status) {
-    //                     setCurrentUser(res.data.user);
-    //                 } else {
-    //                     setCurrentUser('');
-    //                 }
+                    if(res.data.status) {
+                        setCurrentUser(res.data.user);
+                    } else {
+                        setCurrentUser('');
+                    }
 
-    //             } else {
-    //                 setCurrentUser('');
-    //             };
-    //         } catch(err) {
-    //             console.error(err);
-    //         }
-    //     };
+                } else {
+                    setCurrentUser('');
+                }
 
-    //     callBackFunc();
-    // }, []);
+            } catch(err) {
+                console.error(err);
+            }
+        };
+
+        callBackFunc();
+    }, []);
 
     useEffect(() => {
         window.addEventListener('resize', () => {
@@ -73,12 +77,19 @@ function App() {
                     }/>
                     <Route path="/signIn" element={<Login />}/>
                     <Route path="/signUp" element={<Register />}/>
+                    <Route path="/verify-phone" element={<VerificationEmail />}/>
+
                     <Route path="/product/:productId" element={<ProductCard />}/>
                     <Route path="/catalogs/:type" element={
                         <AllCatalogs isMobile={isMobile}/>
                     }/>
-                    <Route path="/feedback" element={<FeedBack isMobile={isMobile}/>}/>
-                    <Route path="/profile" element={<Profile />}/>
+                    <Route path="/feedback" element={
+                        <FeedBack isMobile={isMobile} currentUser={currentUser}/>
+                    }/>
+                    <Route path="/profile/:page" element={
+                        <Profile isMobile={isMobile} currentUser={currentUser}/>
+                    }/>
+
                     <Route path="/basket" element={
                         <Basket isMobile={isMobile}/>
                     }/>
@@ -86,9 +97,9 @@ function App() {
                             path="/admin_panel_is_blocked"
                             element={<AdminPanel />}/>
 
-                    <Route path="/about-us" element={<TermsConditions />}/>
+                    <Route path="/about-us" element={<AboutUs />}/>
                     <Route path="/terms-and-conditions" element={<TermsConditions />}/>
-                    <Route path="/privacy-policy" element={<TermsConditions />}/>
+                    <Route path="/privacy-policy" element={<PrivacyPolicy />}/>
                 </Routes>
             </BrowserRouter>
         </>

@@ -17,7 +17,7 @@ function SliderCategories() {
 
         if(!leftArrow.classList.contains('active')) {
             leftArrow.classList.add('active')
-        };
+        }
 
     }
 
@@ -25,7 +25,7 @@ function SliderCategories() {
 
         if(!rightArrow.classList.contains('active')) {
             rightArrow.classList.add('active')
-        };
+        }
 
     }
 

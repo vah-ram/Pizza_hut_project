@@ -13,7 +13,7 @@ function FeedbackMenuBar() {
         <>
             <div
                 className="w-[300px] h-full fixed bg-white flex flex-col
-                right-[-300px] z-[200] mt-[-80px] shadow-lg
+                right-[-300px] z-[200] absolute top-0 shadow-lg
                 [body.menuActive_&]:translate-x-[-300px]
                  transition duration-300 ease-in-out max-md:mt-[-60px] pl-5">
 

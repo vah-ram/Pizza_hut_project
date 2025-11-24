@@ -85,13 +85,13 @@ function HeaderMenu({ isMobile, currentUser }) {
             
               <button 
                   className="w-[130px] h-[36px] bg-[#e33b41] 
-                  rounded-lg flex
-                  justify-center items-center gap-2 text-[14px]
+                  rounded-lg flex justify-center
+                  items-center gap-2 text-[14px]
                    font-sans-serif hover:opacity-80 
-                   text-white cursor-pointer max-md:hidden">
+                   text-white cursor-pointer max-md:hidden ">
                   
                   <img 
-                      src="./Img/moped.png" 
+                      src="	https://pizza-hut-project-kj61.vercel.app/Img/moped.png"
                       className="w-[20px] h-[20px]"
                       alt=""/>
     
@@ -139,6 +139,37 @@ function HeaderMenu({ isMobile, currentUser }) {
 
                   </button>
 
+                  {
+                      currentUser
+                          ?
+                          <button
+                              className="w-[22px] h-[22px]
+                                cursor-pointer max-md:hidden"
+                              onClick={() => navigate('/profile/orders')}>
+                              <img
+                                  src="https://pizza-hut.am/assets/images/app_2/ordersHistory.svg"
+                                  className="w-[22px] h-[22px]"/>
+                          </button>
+                          :
+                          ''
+                  }
+
+                  {
+                      currentUser
+                          ?
+                          <button
+                              className="hidden w-[40px] h-[40px] items-center justify-center
+                                cursor-pointer rounded-xl bg-transparent border border-1
+                                border-gray-200 max-md:flex"
+                              onClick={() => navigate('/profile/orders')}>
+                              <img
+                                  src="https://pizza-hut.am/assets/images/app_2/ordersHistory.svg"
+                                  className="w-[22px] h-[22px]"/>
+                          </button>
+                          :
+                          ''
+                  }
+
                    <button
                         className="hidden w-[40px] h-[40px] items-center justify-center
                         cursor-pointer rounded-xl bg-transparent border border-1 
@@ -150,25 +181,11 @@ function HeaderMenu({ isMobile, currentUser }) {
                           alt=""/>
                   </button>
 
-                  {
-                    currentUser 
-                    ?
-                        <button 
-                            className="w-[22px] h-[22px] 
-                            cursor-pointer">
-                            <img
-                                src="https://pizza-hut.am/assets/images/app_2/ordersHistory.svg"
-                                className="w-[22px] h-[22px]"/>
-                        </button>
-                    :
-                    ''
-                  }
-    
                   <button 
                         className="w-auto h-auto cursor-pointer max-md:hidden"
                         onClick={() => {
                             currentUser ?
-                                navigate('/profile')
+                                navigate('/profile/profile')
                                 :
                                 navigate('/signIn');
                         }}>

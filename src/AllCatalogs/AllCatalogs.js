@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import HeaderMenu from "../HeaderMenu/HeaderMenu";
 import AboutMenu from "../AboutMenu/AboutMenu";
-import {useNavigate, useParams} from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function AllCatalogs({ isMobile }) {
     const navigate = useNavigate();
@@ -31,7 +31,7 @@ function AllCatalogs({ isMobile }) {
 
     return (
         <>
-            <HeaderMenu isMobile={isMobile}/>
+            <HeaderMenu/>
             
             {
                 loading
@@ -42,14 +42,14 @@ function AllCatalogs({ isMobile }) {
                     <div className="mt-[80px] fixed inset-0 z-[102] bg-white flex items-center
                     justify-center bg-[#FFF] [body.dark_&]:bg-[#2e2e2e]">
                         <span
-                            className="w-[8rem] h-[8rem] rounded-full border-3
-                            border-l-transparent border-r-transparent border-b-transparent
-                            border-[#E33B41] animate-spin flex 
+                            className="w-[7rem] h-[7rem] rounded-full border-3
+                             border-r-transparent border-b-transparent
+                            border-[#E33B41] animate-spin flex
                             justify-center items-center"
                             >
-                            <span className="w-[6rem] h-[6rem] rounded-full border-3
-                            border-b-transparent border-t-transparent border-l-transparent border-[#E33B41]
-                            animate-spin"/>
+                            <span className="w-[5rem] h-[5rem] rounded-full border-3
+                             border-r-transparent border-b-transparent
+                            border-[#E33B41] animate-spin"/>
                         </span>
                     </div>
                 </>
