@@ -92,18 +92,21 @@ function FeedBack({ isMobile, currentUser }) {
                             {t("feedback_select_topic_label")} <b className="text-red-500">*</b>
                         </label>
 
-                        <select className="appearance-none w-full px-3 py-4 rounded-[15px]
-                                 border-1 border-[#9d9d9d]
-                                outline-none text-[#515151]" >
-                            <option>
-                                {t("feedback_select_topic_placeholder")}
-                            </option>
+                        <select
+                            className="appearance-none w-full px-3 py-4 rounded-[15px]
+                                        border border-[#9d9d9d]
+                                        outline-none text-[#515151]"
+                                        defaultValue="" >
+
+                            <option value="" disabled hidden></option>
+
+                            <option value="feedback_list">{t("feedback_select_topic_placeholder")}</option>
+                            
                         </select>
 
                         <label
                             className="text-[#515151] mt-4 text-[16px]
-                             [body.dark_&]:text-white"
-                            htmlFor="email">
+                             [body.dark_&]:text-white" htmlFor="email">
                             {t("feedback_email_label")}
                         </label>
 
