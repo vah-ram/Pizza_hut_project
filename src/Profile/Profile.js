@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import HeaderMenu from "../HeaderMenu/HeaderMenu";
 import AboutMenu from "../AboutMenu/AboutMenu";
 import { useNavigate, useParams } from "react-router-dom";
@@ -8,9 +8,12 @@ import ProfileReviews from "./ProfileReviews";
 import MyAddress from "./MyAddress";
 import ProfileSupport from "./ProfileSupport";
 import ProfilePayment from "./ProfilePayment";
+import MobileMenu from "../MobileMenuBar.js/MobileMenu";
 
 function Profile({ isMobile, currentUser }) {
     const navigate = useNavigate();
+
+    const [ selectedPage, setSelectedPage ] = useState(null);
 
     const logOut = () => {
         localStorage.removeItem("token");
@@ -19,20 +22,71 @@ function Profile({ isMobile, currentUser }) {
 
     const { page } = useParams();
 
+    const [modeValue, setModeValue] = useState(() => {
+        return localStorage.getItem("darkMode") === "true";
+    });
+
+    useEffect(() => {
+        const body = document.querySelector("body");
+
+        if (modeValue) {
+            body.classList.add("dark");
+        } else {
+            body.classList.remove("dark");
+        }
+
+    }, [modeValue]);
+
+    const callDarkAndLightMode = () => {
+        setModeValue(prev => {
+            localStorage.setItem("darkMode", !prev);
+            return !prev;
+        });
+    };
+
     return (
         <>
-            <HeaderMenu isMobile={isMobile} currentUser={currentUser}/>
+            {
+                isMobile ? '' : <HeaderMenu isMobile={isMobile} currentUser={currentUser}/>
+            }
+
+            {
+                isMobile
+                    ?
+                    <div className="w-full h-[60px] hidden absolute top-0 shadow-md
+                        justify-center items-center max-md:flex">
+                    <button
+                        className="w-[40px] h-[40px] flex items-center justify-center
+                                border-1 border-gray-200 rounded-xl outline-none absolute left-5
+                                cursor-pointer"
+                        onClick={() => navigate('/')}>
+                        <img
+                            src="https://pizza-hut.am/assets/images/app_2/arrow.svg"
+                            className="w-[20px] h-[20px]"/>
+                    </button>
+
+                    <h2 className="text-[17px] text-[#515151] font-[600] uppercase [body.dark_&]:text-white">
+                        Profile Page
+                    </h2>
+                </div>
+                    :
+                    ''
+            }
+
+            <MobileMenu />
 
             <section 
                 className="w-full h-auto flex 
-                mt-[60px] px-20">
+                mt-[70px] px-[4vw] max-md:px-4 max-md:pt-5
+                pb-[80px]">
                 
                 <div 
                     className="w-[30%] flex flex-col border-r-1
-                    border-[#ebebeb]">
+                    border-[#ebebeb] max-md:w-full [body.dark_&]:border-[#FFF4]
+                    max-md:border-none">
 
                     <span className="w-full flex gap-5 items-center
-                     mt-10">
+                     mt-10 max-md:hidden">
                         <a
                             className="text-[16px] text-[#9D9D9D] cursor-pointer
                             [body.dark_&]:text-white"
@@ -48,23 +102,61 @@ function Profile({ isMobile, currentUser }) {
                         </a>
                     </span>
 
+                    <div className="w-full justify-between hidden max-md:flex ">
+
+                        <div className="flex flex-col">
+                            <p className="text-[#9D9D9D] text-[calc(14px+.3vw)]">
+                                Welcome
+                            </p>
+
+                            <h2
+                                className="text-[#515151] text-[calc(16px+.3vw)] font-[600]
+                                [body.dark_&]:text-white">
+                                {currentUser.name}   {currentUser.surname}
+                            </h2>
+                        </div>
+
+                        <div>
+                            <p className="text-[calc(12px + .3vw)] text-[#9D9D9D]">
+                                { modeValue ? "Light" : "Dark" } Mode
+                            </p>
+
+                            <button
+                                className="w-[60px] h-[26px] rounded-full bg-transparent
+                                     border-1 border-[#ebebeb]
+                                     px-[2px] cursor-pointer [body.dark_&]:border-[#FFF4]"
+                                onClick={() => callDarkAndLightMode()}>
+                            <span
+                                className={`w-[22px] h-[22px] block rounded-full
+                                 bg-[#e33b41] ${ modeValue ? "ml-auto" : "" }`}/>
+                            </button>
+                        </div>
+
+                    </div>
+
                     <h2 className="uppercase text-[#9D9D9D]
-                    text-[calc(12px+.3vw)] mt-10">
+                    text-[calc(12px+.3vw)] mt-10 max-md:text-[calc(18px+.3vw)]">
                         Account
                     </h2>
 
                     <ul className="mt-2">
                         <li
                             className="flex justify-between items-center py-[12px] pr-2
-                                cursor-pointer border-b-1 border-[#ebebeb]"
-                            onClick={() => navigate("/profile/orders")}>
+                                cursor-pointer border-b-[1px] border-[#ebebeb]
+                                 [body.dark_&]:border-[#FFF4] max-md:py-[15px]"
+                            onClick={() => {
+                                navigate("/profile/orders")
+                                setSelectedPage(true)
+                            }}>
+
                             <span className="flex gap-3">
                                 <img 
                                     src="https://www.pizza-hut.am/assets/images/app_2/ordersHistory.svg"
                                     className="w-[20px] h-[20px]"
                                     alt=""/>
                                 
-                                <p className="uppercase text-[calc(12px+.3vw)] text-[#515151]">
+                                <p className="uppercase text-[calc(12px+.3vw)]
+                                text-[#515151] [body.dark_&]:text-white">
                                     Orders history
                                 </p>
                             </span>
@@ -77,15 +169,21 @@ function Profile({ isMobile, currentUser }) {
 
                         <li
                             className="flex justify-between items-center py-[12px] pr-2
-                                cursor-pointer border-b-1 border-[#ebebeb]"
-                            onClick={() => navigate("/profile/reviews")}>
+                                cursor-pointer border-b-1 border-[#ebebeb]
+                                 [body.dark_&]:border-[#FFF4] max-md:py-[15px]"
+                            onClick={() => {
+                                navigate("/profile/reviews")
+                                setSelectedPage(true)
+                            }}>
+
                             <span className="flex gap-3">
                                 <img 
                                     src="https://www.pizza-hut.am/assets/images/app_2/reviews.svg"
                                     className="w-[20px] h-[20px]"
                                     alt=""/>
 
-                                <p className="uppercase text-[calc(12px+.3vw)] text-[#515151]">
+                                <p className="uppercase text-[calc(12px+.3vw)]
+                                 text-[#515151] [body.dark_&]:text-white">
                                     Reviews
                                 </p>
                             </span>
@@ -99,7 +197,8 @@ function Profile({ isMobile, currentUser }) {
                     </ul>
 
                     <h2 className="uppercase text-[#9D9D9D]
-                    text-[calc(12px+.3vw)] mt-4">
+                    text-[calc(12px+.3vw)] mt-4 max-md:text-[calc(18px+.3vw)]
+                    max-md:mt-5">
                         Personal Information
                     </h2>
 
@@ -107,15 +206,21 @@ function Profile({ isMobile, currentUser }) {
 
                         <li
                             className="flex justify-between items-center py-[12px] pr-2
-                                cursor-pointer border-b-1 border-[#ebebeb]"
-                            onClick={() => navigate("/profile/profile")}>
+                                cursor-pointer border-b-1 border-[#ebebeb]
+                                 [body.dark_&]:border-[#FFF4] max-md:py-[15px]"
+                            onClick={() => {
+                                navigate("/profile/profile")
+                                setSelectedPage(true)
+                            }}>
+
                             <span className="flex gap-3">
                                 <img 
                                     src="https://www.pizza-hut.am/assets/images/app_2/myProfile.svg"
                                     className="w-[20px] h-[20px]"
                                     alt=""/>
 
-                                <p className="uppercase text-[calc(12px+.3vw)] text-[#515151]">
+                                <p className="uppercase text-[calc(12px+.3vw)]
+                                text-[#515151] [body.dark_&]:text-white">
                                     My Profile
                                 </p>
                             </span>
@@ -129,15 +234,21 @@ function Profile({ isMobile, currentUser }) {
 
                         <li
                             className="flex justify-between items-center py-[12px] pr-2
-                                cursor-pointer border-b-1 border-[#ebebeb]"
-                            onClick={() => navigate("/profile/address")}>
+                                cursor-pointer border-b-1 border-[#ebebeb]
+                                 [body.dark_&]:border-[#FFF4] max-md:py-[15px]"
+                                onClick={() => {
+                                    navigate("/profile/address")
+                                    setSelectedPage(true)
+                                }}>
+
                             <span className="flex gap-3">
                                 <img 
                                     src="https://www.pizza-hut.am/assets/images/app_2/location.svg"
                                     className="w-[20px] h-[20px]"
                                     alt=""/>
 
-                                <p className="uppercase text-[calc(12px+.3vw)] text-[#515151]">
+                                <p className="uppercase text-[calc(12px+.3vw)]
+                                text-[#515151] [body.dark_&]:text-white">
                                     My Address
                                 </p>
                             </span>
@@ -151,15 +262,21 @@ function Profile({ isMobile, currentUser }) {
 
                         <li
                             className="flex justify-between items-center py-[12px]  pr-2
-                                cursor-pointer border-b-1 border-[#ebebeb]"
-                            onClick={() => navigate("/profile/paymentMethod")}>
+                                cursor-pointer border-b-1 border-[#ebebeb]
+                                 [body.dark_&]:border-[#FFF4] max-md:py-[15px]"
+                            onClick={() => {
+                                navigate("/profile/paymentMethod")
+                                setSelectedPage(true)
+                            }}>
+
                             <span className="flex gap-3">
                                 <img 
                                     src="https://www.pizza-hut.am/assets/images/app_2/card.svg"
                                     className="w-[20px] h-[20px]"
                                     alt=""/>
 
-                                <p className="uppercase text-[calc(12px+.3vw)] text-[#515151]">
+                                <p className="uppercase text-[calc(12px+.3vw)]
+                                 text-[#515151] [body.dark_&]:text-white">
                                     Payment Method
                                 </p>
                             </span>
@@ -173,22 +290,28 @@ function Profile({ isMobile, currentUser }) {
                     </ul>
 
                     <h2 className="uppercase text-[#9D9D9D]
-                    text-[calc(12px+.3vw)] mt-10">
+                    text-[calc(12px+.3vw)] mt-10 max-md:text-[calc(18px+.3vw)]">
                         Other
                     </h2>
 
                     <ul className="flex flex-col mt-2">
                         <li
                             className="flex justify-between items-center py-[12px]  pr-2
-                                cursor-pointer border-b-1 border-[#ebebeb]"
-                            onClick={() => navigate("/terms-and-conditions")}>
+                                cursor-pointer border-b-1 border-[#ebebeb]
+                                 [body.dark_&]:border-[#FFF4] max-md:py-[15px]"
+                            onClick={() => {
+                                navigate("/terms-and-conditions")
+                                setSelectedPage(true)
+                            }}>
+
                             <span className="flex gap-3">
                                 <img 
                                     src="https://www.pizza-hut.am/assets/images/app_2/terms-conditions.svg"
                                     className="w-[20px] h-[20px]"
                                     alt=""/>
 
-                                <p className="uppercase text-[calc(12px+.3vw)] text-[#515151]">
+                                <p className="uppercase text-[calc(12px+.3vw)]
+                                text-[#515151] [body.dark_&]:text-white">
                                     Terms and Conditions
                                 </p>
                             </span>
@@ -202,15 +325,21 @@ function Profile({ isMobile, currentUser }) {
 
                         <li
                             className="flex justify-between items-center py-[12px]  pr-2
-                                cursor-pointer border-b-1 border-[#ebebeb]"
-                            onClick={() => navigate("/privacy-policy")}>
+                                cursor-pointer border-b-1 border-[#ebebeb]
+                                 [body.dark_&]:border-[#FFF4] max-md:py-[15px]"
+                            onClick={() => {
+                                navigate("/privacy-policy")
+                                setSelectedPage(true)
+                            }}>
+
                             <span className="flex gap-3">
                                 <img 
                                     src="https://www.pizza-hut.am/assets/images/app_2/privacyPolicy.svg"
                                     className="w-[20px] h-[20px]"
                                     alt=""/>
 
-                                <p className="uppercase text-[calc(12px+.3vw)] text-[#515151]">
+                                <p className="uppercase text-[calc(12px+.3vw)]
+                                text-[#515151] [body.dark_&]:text-white">
                                     Privacy policy
                                 </p>
                             </span>
@@ -224,15 +353,20 @@ function Profile({ isMobile, currentUser }) {
 
                         <li
                             className="flex justify-between items-center py-[12px] pr-2
-                                cursor-pointer border-b-1 border-[#ebebeb]"
-                            onClick={() => navigate("/profile/support")}>
+                                cursor-pointer border-b-1 border-[#ebebeb]
+                                 [body.dark_&]:border-[#FFF4] max-md:py-[15px]"
+                            onClick={() => {
+                                setSelectedPage(navigate("/profile/support"))
+                            }}>
+
                             <span className="flex gap-3">
                                 <img 
                                     src="https://www.pizza-hut.am/assets/images/app_2/support.svg"
                                     className="w-[20px] h-[20px]"
                                     alt=""/>
 
-                                <p className="uppercase text-[calc(12px+.3vw)] text-[#515151]">
+                                <p className="uppercase text-[calc(12px+.3vw)]
+                                text-[#515151] [body.dark_&]:text-white">
                                     Support
                                 </p>
                             </span>
@@ -246,15 +380,18 @@ function Profile({ isMobile, currentUser }) {
 
                          <li
                              className="flex justify-between items-center py-[12px] pr-2
-                                cursor-pointer border-b-1 border-[#ebebeb]"
+                                cursor-pointer border-b-1 border-[#ebebeb]
+                                 [body.dark_&]:border-[#FFF4] max-md:py-[15px]"
                              onClick={() => logOut()}>
+
                             <span className="flex gap-3">
                                 <img
                                     src="https://www.pizza-hut.am/assets/images/app_2/logOut.svg"
                                     className="w-[20px] h-[20px]"
                                     alt=""/>
 
-                                <p className="uppercase text-[calc(12px+.3vw)] text-[#515151]">
+                                <p className="uppercase text-[calc(12px+.3vw)]
+                                text-[#515151] [body.dark_&]:text-white">
                                     Log out
                                 </p>
                             </span>
@@ -268,7 +405,7 @@ function Profile({ isMobile, currentUser }) {
                     </ul>
                 </div>
 
-                <div className="w-[70%] flex mt-5">
+                <div className="w-[70%] flex mt-5 max-md:hidden">
                     {
                         {
                             profile: <MyProfile currentUser={currentUser} />,

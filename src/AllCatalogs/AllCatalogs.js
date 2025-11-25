@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import HeaderMenu from "../HeaderMenu/HeaderMenu";
 import AboutMenu from "../AboutMenu/AboutMenu";
 import { useNavigate, useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 function AllCatalogs({ isMobile }) {
     const navigate = useNavigate();
@@ -28,6 +29,7 @@ function AllCatalogs({ isMobile }) {
         setTimeout(() => setLoading(false), 700);
     }, [type]);
 
+    const { t } = useTranslation();
 
     return (
         <>
@@ -82,21 +84,22 @@ function AllCatalogs({ isMobile }) {
                             src="https://pizza-hut.am/assets/images/app_2/categories.svg"
                             className="w-[35px] h-[35px]"
                             alt="categories icon"/>
+
                         <p className="text-[25px] text-[#515151]
-                         [body.dark_&]:text-white font-[600]">
-                            CATEGORIES
+                         [body.dark_&]:text-white font-[600] uppercase">
+                            {t("categories")}
                         </p>
                     </div>
 
                     <form
-                        className="w-[60vw] h-[42px] flex gap-3 items-center max-lg:gap-3"
+                        className="w-[70vw] h-[42px] flex gap-3 items-center max-lg:gap-3"
                         onSubmit={(evt) => {
                             evt.preventDefault()
                         }}>
 
                         <input
                             type="text"
-                            placeholder="Search"
+                            placeholder={t("search")}
                             className=" w-full h-full border-1 border-[#e7e7e7ff]
                               rounded-[10px] p-3 outline-none text-sm [body.dark_&]:text-white
                               [body.dark_&]:border-[#464646]"
@@ -127,8 +130,8 @@ function AllCatalogs({ isMobile }) {
                          onClick={() => navigate('/catalogs/special-offers')}>
                         <span className="w-full h-[40%] absolute bottom-0 flex items-center
                         justify-center bg-[#0016] rounded-bl-2xl rounded-br-2xl">
-                            <p className="uppercase text-[1.3vh] text-white">
-                                Special offers
+                            <p className="uppercase text-[1.3vh] text-white text-center">
+                                {t("categorie_special_offer")}
                             </p>
                         </span>
                     </div>
@@ -141,7 +144,7 @@ function AllCatalogs({ isMobile }) {
                         <span className="w-full h-[40%] absolute bottom-0 flex items-center
                         justify-center bg-[#0016] rounded-bl-2xl rounded-br-2xl">
                             <p className="uppercase text-[1.3vh] text-white">
-                                Melts
+                                {t("categorie_melt")}
                             </p>
                         </span>
                     </div>
@@ -154,7 +157,7 @@ function AllCatalogs({ isMobile }) {
                         <span className="w-full h-[40%] absolute bottom-0 flex items-center
                         justify-center bg-[#0016] rounded-bl-2xl rounded-br-2xl">
                             <p className="uppercase text-[1.3vh] text-white">
-                                Pizzas
+                                {t("categorie_pizzas")}
                             </p>
                         </span>
                     </div>
@@ -167,7 +170,7 @@ function AllCatalogs({ isMobile }) {
                         <span className="w-full h-[40%] absolute bottom-0 flex items-center
                         justify-center bg-[#0016] rounded-bl-2xl rounded-br-2xl">
                             <p className="uppercase text-[1.3vh] text-white">
-                                Pizza hot-dog
+                                {t("categorie_pizza_hot_dog")}
                             </p>
                         </span>
                     </div>
@@ -180,7 +183,7 @@ function AllCatalogs({ isMobile }) {
                         <span className="w-full h-[40%] absolute bottom-0 flex items-center
                         justify-center bg-[#0016] rounded-bl-2xl rounded-br-2xl">
                             <p className="uppercase text-[1.3vh] text-white">
-                                Salads
+                                {t("categorie_salads")}
                             </p>
                         </span>
                     </div>
@@ -193,7 +196,7 @@ function AllCatalogs({ isMobile }) {
                         <span className="w-full h-[40%] absolute bottom-0 flex items-center
                         justify-center bg-[#0016] rounded-bl-2xl rounded-br-2xl">
                             <p className="uppercase text-[1.3vh] text-white text-center">
-                                Burgers & Sandwiches
+                                {t("categorie_burgers_sandwiches")}
                             </p>
                         </span>
                     </div>
@@ -206,7 +209,7 @@ function AllCatalogs({ isMobile }) {
                         <span className="w-full h-[40%] absolute bottom-0 flex items-center
                         justify-center bg-[#0016] rounded-bl-2xl rounded-br-2xl">
                             <p className="uppercase text-[1.3vh] text-white">
-                                Snacks
+                                {t("categorie_snacks")}
                             </p>
                         </span>
                     </div>
@@ -219,7 +222,7 @@ function AllCatalogs({ isMobile }) {
                         <span className="w-full h-[40%] absolute bottom-0 flex items-center
                         justify-center bg-[#0016] rounded-bl-2xl rounded-br-2xl">
                             <p className="uppercase text-[1.3vh] text-white">
-                                Desserts
+                                {t("categorie_desserts")}
                             </p>
                         </span>
                     </div>
@@ -232,7 +235,7 @@ function AllCatalogs({ isMobile }) {
                         <span className="w-full h-[40%] absolute bottom-0 flex items-center
                         justify-center bg-[#0016] rounded-bl-2xl rounded-br-2xl">
                             <p className="uppercase text-[1.3vh] text-white">
-                                Beverages
+                                {t("categorie_beverages")}
                             </p>
                         </span>
                     </div>
@@ -245,7 +248,7 @@ function AllCatalogs({ isMobile }) {
                         <span className="w-full h-[40%] absolute bottom-0 flex items-center
                             justify-center bg-[#0016] rounded-bl-2xl rounded-br-2xl">
                                 <p className="uppercase text-[1.3vh] text-white">
-                                    Sauces
+                                    {t("categorie_sauces")}
                                 </p>
                         </span>
                     </div>
@@ -256,7 +259,7 @@ function AllCatalogs({ isMobile }) {
 
                     <h2 className="text-[25px] text-[#515151]
                          [body.dark_&]:text-white font-[600] uppercase">
-                        Special offers
+                        {t("offer_special_offer")}
                     </h2>
 
                     <div className="w-full mt-3 flex flex-wrap gap-20"

@@ -8,7 +8,7 @@ function MobileMenu({ currentUser }) {
             <footer className="bg-white hidden items-center justify-around 
             fixed z-[100] w-full h-auto
              absolute bottom-0 max-md:flex bg-white p-2 
-             [body.dark_&]:bg-[#2e2e2e]">
+             [body.dark_&]:bg-[#2e2e2e] shadow-[0_0_14px_rgba(0,0,0,0.3)]">
                 <button
                         className="flex flex-col gap-1 justify-center 
                         items-center cursor-pointer"
@@ -75,7 +75,7 @@ function MobileMenu({ currentUser }) {
                     items-center cursor-pointer"
                     onClick={() => {
                         currentUser ?
-                            navigate('/profile')
+                            navigate('/profile/profile')
                             :
                             navigate('/signIn');
                     }}>

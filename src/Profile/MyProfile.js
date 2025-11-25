@@ -1,6 +1,9 @@
 import React, {useEffect, useState} from "react";
+import CountrySelect from "../CountrySelect/CountrySelect";
 
 function MyProfile({ currentUser }) {
+
+    const [ formType, setFormType ] = useState("information");
 
     const [modeValue, setModeValue] = useState(() => {
         return localStorage.getItem("darkMode") === "true";
@@ -26,7 +29,7 @@ function MyProfile({ currentUser }) {
 
     return (
         <>
-            <div className="w-full px-20 pt-4">
+            <div className="w-full pl-[5vw] pt-4">
 
                 <div className="w-full flex justify-between">
 
@@ -35,7 +38,9 @@ function MyProfile({ currentUser }) {
                             Welcome
                         </p>
 
-                        <h2 className="text-[#515151] text-[calc(16px+.3vw)] font-[600]">
+                        <h2
+                            className="text-[#515151] text-[calc(16px+.3vw)] font-[600]
+                                [body.dark_&]:text-white">
                             {currentUser.name}   {currentUser.surname}
                         </h2>
                     </div>
@@ -48,7 +53,7 @@ function MyProfile({ currentUser }) {
                         <button
                             className="w-[60px] h-[26px] rounded-full bg-transparent
                              border-1 border-[#ebebeb]
-                             px-[2px] cursor-pointer"
+                             px-[2px] cursor-pointer [body.dark_&]:border-[#FFF4]"
                             onClick={() => callDarkAndLightMode()}>
                             <span
                                 className={`w-[22px] h-[22px] block rounded-full
@@ -58,9 +63,187 @@ function MyProfile({ currentUser }) {
 
                 </div>
 
-                <form>
+                <div className="w-full flex-col mt-12">
 
-                </form>
+                    <div className="flex">
+                        <button
+                            className={`w-[50%] flex justify-center items-center border-b-2 
+                            cursor-pointer pb-2  
+                                ${formType === "information" ? "border-[#e33b41]" : "border-[#ebebeb]"}`}
+                            onClick={() => setFormType("information")}>
+
+                            <h2 className={` uppercase text-[calc(14px+.3vw)]
+                            font-[600] [body.dark_&]:text-white 
+                            ${formType === "information" ? "text-[#e33b41]" : "text-[#515151]"}`}>
+                                Information
+                            </h2>
+                        </button>
+
+                        <button
+                                className={`w-[50%] flex justify-center items-center border-b-2 
+                                cursor-pointer pb-2  
+                                ${formType === "changePassword" ? "border-[#e33b41]" : "border-[#ebebeb]"}`}
+                                onClick={() => setFormType("changePassword")}>
+
+                            <h2 className={` uppercase text-[calc(14px+.3vw)]
+                            font-[600] [body.dark_&]:text-white 
+                            ${formType === "changePassword" ? "text-[#e33b41]" : "text-[#515151]"}`}>
+                                Change Password
+                            </h2>
+                        </button>
+                    </div>
+
+                    {
+                        formType === "information"
+                        ?
+                            <form className="w-full flex flex-col gap-10">
+
+                                <div className="w-full flex gap-5 mt-5">
+
+                                    <div className="w-[50%] flex flex-col">
+                                        <label className="text-[#515151] text-[calc(10px+.3vw)] font-[600]
+                                        uppercase [body.dark_&]:text-white">
+                                            Name
+                                        </label>
+
+                                        <div className="w-full mt-2 flex gap-5 items-center px-3 py-4 rounded-[15px]
+                                            border border-1 border-gray-200 max-md:w-full [body.dark_&]:border-[#FFF4]">
+                                            <input
+                                                type="text"
+                                                value={currentUser.name}
+                                                className="border-none outline-none w-full
+                                         [body.dark_&]:text-white text-[#515151]"
+                                                maxLength={50}
+                                                disabled={true}/>
+                                        </div>
+                                    </div>
+
+                                    <div className="w-[50%] flex flex-col">
+                                        <label className="text-[#515151] text-[calc(10px+.3vw)] font-[600]
+                                        uppercase [body.dark_&]:text-white">
+                                            Surname
+                                        </label>
+
+                                        <div className="w-full mt-2 flex gap-5 items-center px-3 py-4 rounded-[15px]
+                                            border border-1 border-gray-200 max-md:w-full [body.dark_&]:border-[#FFF4]">
+                                            <input
+                                                type="text"
+                                                value={currentUser.surname}
+                                                className="border-none outline-none w-full
+                                                    [body.dark_&]:text-white text-[#515151]"
+                                                maxLength={50}
+                                                disabled={true}/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="w-full flex flex-col">
+                                    <label className="text-[#515151] text-[calc(10px+.3vw)] font-[600]
+                                    uppercase [body.dark_&]:text-white">
+                                        Email
+                                    </label>
+
+                                    <div className="w-full mt-2 flex gap-5 items-center px-3 py-4 rounded-[15px]
+                                        border border-1 border-gray-200 [body.dark_&]:border-[#FFF4]">
+                                        <input
+                                            type="email"
+                                            value={currentUser.email}
+                                            className="border-none outline-none w-full
+                                            [body.dark_&]:text-white text-[#515151]"
+                                            maxLength={50}
+                                            disabled={true}/>
+                                    </div>
+                                </div>
+
+                                <div className="w-full flex flex-col">
+
+                                    <label className="text-[#515151] text-[calc(10px+.3vw)] font-[600]
+                                        uppercase [body.dark_&]:text-white">
+                                        Phone Number
+                                    </label>
+
+                                    <div className="flex gap-4">
+
+                                        <div className="w-[110px] mt-2 pointer-events-none">
+                                            <CountrySelect />
+                                        </div>
+
+                                        <div className="w-[90%]">
+
+                                            <div className="w-full mt-2 flex gap-5 items-center px-3 py-4 rounded-[15px]
+                                            border border-1 border-gray-200 [body.dark_&]:border-[#FFF4]">
+                                                <input
+                                                    type="text"
+                                                    value={currentUser.phonenumber}
+                                                    className="border-none outline-none w-full
+                                                [body.dark_&]:text-white text-[#515151]"
+                                                    maxLength={50}
+                                                    disabled={true}/>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <button
+                                    type="submit"
+                                    className="w-full p-[15px] rounded-[15px] bg-[#e33b41]
+                                        uppercase text-white mt-2 cursor-pointer
+                                        hover:opacity-90">
+                                    Edit
+                                </button>
+
+                            </form>
+
+                            :
+
+                            <form className="w-full mt-5 flex flex-col gap-3">
+
+                                <div className="w-full mt-2 flex gap-5 items-center px-3 py-4 rounded-[15px]
+                                        border border-1 border-gray-200 [body.dark_&]:border-[#FFF4]">
+                                    <input
+                                        type="text"
+                                        className="border-none outline-none w-full
+                                         [body.dark_&]:text-white text-[#515151]"
+                                        maxLength={50}
+                                        placeholder="Old password"/>
+                                </div>
+
+                                <div className="w-full mt-2 flex gap-5 items-center px-3 py-4 rounded-[15px]
+                                        border border-1 border-gray-200 [body.dark_&]:border-[#FFF4]">
+                                    <input
+                                        type="text"
+                                        className="border-none outline-none w-full
+                                         [body.dark_&]:text-white text-[#515151]"
+                                        maxLength={50}
+                                        placeholder="New password"/>
+                                </div>
+
+                                <div className="w-full mt-2 flex gap-5 items-center px-3 py-4 rounded-[15px]
+                                        border border-1 border-gray-200 [body.dark_&]:border-[#FFF4]">
+                                    <input
+                                        type="text"
+                                        className="border-none outline-none w-full
+                                         [body.dark_&]:text-white text-[#515151]"
+                                        maxLength={50}
+                                        placeholder="Confirm new password"/>
+                                </div>
+
+                                <button
+                                    type="submit"
+                                    className="w-full p-[15px] rounded-[15px] bg-[#e33b41]
+                                        uppercase text-white mt-10 cursor-pointer
+                                        opacity-60">
+                                    Change Password
+                                </button>
+
+                            </form>
+                    }
+
+
+
+                </div>
             </div>
         </>
     )

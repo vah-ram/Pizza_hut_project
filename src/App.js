@@ -15,41 +15,41 @@ import Profile from "./Profile/Profile";
 import TermsConditions from "./SecondaryMenuGroup/TermsConditions.js";
 import AboutUs from "./SecondaryMenuGroup/AboutUs";
 import PrivacyPolicy from "./SecondaryMenuGroup/PrivacyPolicy";
-import VerificationEmail from "./authorization/VerificationEmail";
 
 function App() {
+
 
     const [ isMobile, setIsMobile ] = useState('');
 
     const [ currentUser, setCurrentUser ] = useState(true);
 
-    useEffect(() => {
-
-        const callBackFunc = async() => {
-            try {
-                if(localStorage.getItem("token")) {
-
-                    const res = await axios.get(verifyProfileHost, {
-                        params: { token: localStorage.getItem("token") }
-                    });
-
-                    if(res.data.status) {
-                        setCurrentUser(res.data.user);
-                    } else {
-                        setCurrentUser('');
-                    }
-
-                } else {
-                    setCurrentUser('');
-                }
-
-            } catch(err) {
-                console.error(err);
-            }
-        };
-
-        callBackFunc();
-    }, []);
+    // useEffect(() => {
+    //     const callBackFunc = async () => {
+    //         try {
+    //             if (localStorage.getItem("token")) {
+    //
+    //                 const res = await axios.get(verifyProfileHost, {
+    //                     params: { token: localStorage.getItem("token") }
+    //                 });
+    //
+    //                 if (res.data.status) {
+    //                     setCurrentUser(res.data.user);
+    //                 } else {
+    //                     setCurrentUser('');
+    //                 }
+    //
+    //             } else {
+    //                 setCurrentUser('');
+    //             }
+    //
+    //         } catch (err) {
+    //             console.error(err);
+    //         }
+    //     };
+    //
+    //     callBackFunc();
+    //
+    // }, []);
 
     useEffect(() => {
         window.addEventListener('resize', () => {
@@ -77,7 +77,6 @@ function App() {
                     }/>
                     <Route path="/signIn" element={<Login />}/>
                     <Route path="/signUp" element={<Register />}/>
-                    <Route path="/verify-phone" element={<VerificationEmail />}/>
 
                     <Route path="/product/:productId" element={<ProductCard />}/>
                     <Route path="/catalogs/:type" element={

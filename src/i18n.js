@@ -27,7 +27,7 @@ i18n
           categorie_snacks: "Snacks",
           categorie_desserts: "Desserts",
           categorie_beverages: "Beverages",
-          categorie_sauce: "Sauces",
+          categorie_sauces: "Sauces",
 
           //Slider offers
           offer_special_offer: "Special Offers",

@@ -140,7 +140,7 @@ function Login() {
 
                     <div className="w-[95%] hidden h-[41px] max-md:flex gap-[2px] mt-2">
                         <button className="w-[50%] uppercase text-[#e33b41] border-b-2 text-[19px]
-                                font-[600]"
+                                font-[600] cursor-pointer"
                                 onClick={evt => {
                                     evt.preventDefault()
                                     navigate('/signIn')
@@ -149,7 +149,7 @@ function Login() {
                         </button>
 
                         <button className="w-[50%] uppercase text-[#515151] border-b-2 text-[19px]
-                                font-[600] border-gray-200"
+                                font-[600] border-gray-200 cursor-pointer"
                                 onClick={evt => {
                                     evt.preventDefault()
                                     navigate('/signUp')
