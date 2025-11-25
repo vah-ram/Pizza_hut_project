@@ -73,11 +73,14 @@ function HeaderMenu({ isMobile, currentUser }) {
                       alt="pizza hut log"/>
 
                   <div className="flex-col gap-[-10px]">
-                      <p className="text-[15px] text-[#9d9d9d] font-[700] leading-[19px]">
+                      <p className="text-[calc(10px+.3vw)] text-[#9d9d9d] 
+                      font-[700] leading-[19px]">
                           Welcome to
                       </p>
     
-                      <h2 className="text-[19px] text-[#e33b41] font-[600] leading-[19px] max-lg:text-[17px]">
+                      <h2 className="text-[calc(14px+.3vw)] 
+                      text-[#e33b41] font-[600] leading-[19px]
+                       max-lg:text-[17px]">
                           Pizza Hut Armenia {isMobile ? "..." : "Menu"}
                       </h2>
                   </div>
