@@ -49,7 +49,7 @@ i18n
           menu_privacy_policy: "Privacy policy",
 
             //Authorization Links
-            register_context: "Register and get access on all services with one account",
+            register_context: "Log in and get access on all services with one account",
             register_btn_text: "Log in",
             registration_title: "Registration",
             registration_name: "Name",
@@ -134,7 +134,7 @@ i18n
           menu_privacy_policy: "Политика конфиденциальности",
 
             //Authorization Links
-            register_context: "Зарегистрируйтесь и получите доступ ко всем сервисам с одной учетной записью",
+            register_context: "Авторизуйтесь и получите доступ ко всем сервисам с одной учетной записью",
             register_btn_text: "Войти",
             registration_title: "Регистрация",
             registration_name: "Имя",

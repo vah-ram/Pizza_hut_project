@@ -4,30 +4,27 @@ import "swiper/css/navigation"
 import { Navigation } from "swiper/modules"
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useRef } from "react";
 
 function SliderCategories() {
     const navigate = useNavigate();
 
     const { t } = useTranslation();
 
-    const rightArrow = document.querySelector('.right_arrow');
-    const leftArrow = document.querySelector('.left_arrow');
+    const rightRef = useRef(null);
+    const leftRef = useRef(null);
 
     const leftArrowActive = () => {
-
-        if(!leftArrow.classList.contains('active')) {
-            leftArrow.classList.add('active')
+        if (leftRef.current && !leftRef.current.classList.contains("active")) {
+            leftRef.current.classList.add("active");
         }
-
-    }
+    };
 
     const rightArrowActive = () => {
-
-        if(!rightArrow.classList.contains('active')) {
-            rightArrow.classList.add('active')
+        if (rightRef.current && !rightRef.current.classList.contains("active")) {
+            rightRef.current.classList.add("active");
         }
-
-    }
+    };
 
     return (
         <>
@@ -50,28 +47,30 @@ function SliderCategories() {
                         </p>
 
                         <div className="flex">
-                            <button 
-                                className="prev-btn w-[40px] h-[40px] flex items-center justify-center border-1
-                                 border-gray-300 rounded-tl-[10px] rounded-bl-[10px] 
+                            <button
+                                ref={leftRef}
+                                className="left_arrow w-[40px] h-[40px] flex items-center justify-center border-1
+                                 border-gray-300 rounded-tl-[10px] rounded-bl-[10px]
                                  cursor-pointer [main.dark_&]:border-gray-500
                                  left_arrow active [.active]:bg-[#ddddddff]"
-                                 onClick={() => {
-                                    rightArrow.classList.remove('active')
-                                 }}>
+                                onClick={() => {
+                                    rightRef.current?.classList.remove("active");
+                                }}>
                                 <img 
                                     src="https://cdn1.iconfinder.com/data/icons/arrows-i/24/Material_icons-02-05-512.png" 
                                     className="w-[33px] h-[33px]" 
                                     alt=""/>
                             </button>
 
-                            <button 
-                                className="next-btn w-[40px] h-[40px] flex items-center justify-center border-1
+                            <button
+                                ref={rightRef}
+                                className="right_arrow w-[40px] h-[40px] flex items-center justify-center border-1
                                  border-gray-300 rounded-tr-[10px] rounded-br-[10px] 
                                  cursor-pointer [main.dark_&]:border-gray-500
                                  right_arrow [.active]:bg-[#ddddddff]"
-                                 onClick={() => {
-                                    leftArrow.classList.remove('active')
-                                 }}>
+                                onClick={() => {
+                                    leftRef.current?.classList.remove("active");
+                                }}>
                                 <img 
                                     src="https://cdn1.iconfinder.com/data/icons/arrows-i/24/Material_icons-02-06-512.png" 
                                     className="w-[33px] h-[33px]" 
@@ -90,8 +89,8 @@ function SliderCategories() {
                             slidesPerView={6}
                             modules={[ Navigation ]}
                             navigation={{
-                                prevEl: ".prev-btn",
-                                nextEl: ".next-btn"
+                                prevEl: ".left_arrow",
+                                nextEl: ".right_arrow"
                             }}
                             onReachBeginning={() => {
                                 leftArrowActive();

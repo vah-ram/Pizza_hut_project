@@ -14,19 +14,25 @@ import {
 } from "react-icons/fa";
 import AboutMenu from "../AboutMenu/AboutMenu";
 import HeaderMenu from "../HeaderMenu/HeaderMenu";
+import MobileMenu from "../MobileMenuBar.js/MobileMenu";
 
-export default function AboutUs() {
+export default function AboutUs({ isMobile }) {
         return (
 
             <>
 
-                <HeaderMenu />
+                {
+                    !isMobile ? <HeaderMenu /> : ''
+
+                }
+
+                <MobileMenu />
 
                 <img
                     className="w-full h-[100vh] bg-[url('https://bonee.blob.core.windows.net/images/7339654b-13cf-1d41-7128-9a075997cecb_3.webp')]
                 bg-cover"/>
 
-                <div className="w-full px-5 py-10 max-w-7xl mx-auto">
+                <div className="w-full px-5 py-10 max-w-7xl mx-auto [body.dark_&]:text-white">
 
                     {/* Title */}
                     <h1 className="text-2xl font-semibold mb-6">

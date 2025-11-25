@@ -389,7 +389,7 @@ function Register() {
 
                                 <div className="w-[60%] flex gap-2 max-lg:w-[80%] max-md:w-[95%]">
 
-                                    <div className="w-[20%] mt-5">
+                                    <div className="w-[110px] mt-5">
                                         <CountrySelect />
                                     </div>
 

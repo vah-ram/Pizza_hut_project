@@ -46,8 +46,7 @@ function Project({ isMobile, currentUser }) {
                   className=" w-[100%] h-full border-1 border-[#e7e7e7ff] 
                   rounded-[10px] p-3 outline-none text-sm [body.dark_&]:text-white
                   [body.dark_&]:border-[#464646]"
-                  maxLength={60}
-                  id="search__input"/>
+                  maxLength={60}/>
 
               <button 
                   className="w-[41px] h-full bg-[#e33b41] flex items-center

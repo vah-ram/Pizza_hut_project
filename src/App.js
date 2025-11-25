@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.css"
-import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { Route, Routes, useLocation } from "react-router-dom"
 import Project from "./Project";
 import Register from "./authorization/Register";
 import Login from "./authorization/Login";
@@ -18,91 +18,65 @@ import PrivacyPolicy from "./SecondaryMenuGroup/PrivacyPolicy";
 
 function App() {
 
+    const location = useLocation();
 
-    const [ isMobile, setIsMobile ] = useState('');
-
-    const [ currentUser, setCurrentUser ] = useState(true);
-
-    // useEffect(() => {
-    //     const callBackFunc = async () => {
-    //         try {
-    //             if (localStorage.getItem("token")) {
-    //
-    //                 const res = await axios.get(verifyProfileHost, {
-    //                     params: { token: localStorage.getItem("token") }
-    //                 });
-    //
-    //                 if (res.data.status) {
-    //                     setCurrentUser(res.data.user);
-    //                 } else {
-    //                     setCurrentUser('');
-    //                 }
-    //
-    //             } else {
-    //                 setCurrentUser('');
-    //             }
-    //
-    //         } catch (err) {
-    //             console.error(err);
-    //         }
-    //     };
-    //
-    //     callBackFunc();
-    //
-    // }, []);
+    const [isMobile, setIsMobile] = useState('');
+    const [currentUser, setCurrentUser] = useState(null);
 
     useEffect(() => {
-        window.addEventListener('resize', () => {
-            if(window.innerWidth <= 768) {
-                setIsMobile(true)
-            } else {
-                setIsMobile(false)
+        const verify = async () => {
+            try {
+                const token = localStorage.getItem("token");
+
+                if (!token) {
+                    return setCurrentUser('');
+                }
+
+                const res = await axios.get(verifyProfileHost, {
+                    params: { token }
+                });
+
+                setCurrentUser(res.data.status ? res.data.user : '');
+
+            } catch (err) {
+                console.error(err);
             }
-        });
+        };
 
-        if(window.innerWidth <= 768) {
-            setIsMobile(true)
-        } else {
-            setIsMobile(false)
-        }
+        verify();
 
+    }, [location.pathname]);
+
+
+    // MOBILE CHECK
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+
+        window.addEventListener('resize', checkMobile);
+        checkMobile();
+
+        return () => window.removeEventListener('resize', checkMobile);
     }, []);
 
+
     return (
-        <>
-            <BrowserRouter>
-                <Routes>
-                    <Route path="/" element={
-                        <Project isMobile={isMobile} currentUser={currentUser}/>
-                    }/>
-                    <Route path="/signIn" element={<Login />}/>
-                    <Route path="/signUp" element={<Register />}/>
-
-                    <Route path="/product/:productId" element={<ProductCard />}/>
-                    <Route path="/catalogs/:type" element={
-                        <AllCatalogs isMobile={isMobile}/>
-                    }/>
-                    <Route path="/feedback" element={
-                        <FeedBack isMobile={isMobile} currentUser={currentUser}/>
-                    }/>
-                    <Route path="/profile/:page" element={
-                        <Profile isMobile={isMobile} currentUser={currentUser}/>
-                    }/>
-
-                    <Route path="/basket" element={
-                        <Basket isMobile={isMobile}/>
-                    }/>
-                    <Route
-                            path="/admin_panel_is_blocked"
-                            element={<AdminPanel />}/>
-
-                    <Route path="/about-us" element={<AboutUs />}/>
-                    <Route path="/terms-and-conditions" element={<TermsConditions />}/>
-                    <Route path="/privacy-policy" element={<PrivacyPolicy />}/>
-                </Routes>
-            </BrowserRouter>
-        </>
-    )
+        <Routes>
+            <Route path="/" element={<Project isMobile={isMobile} currentUser={currentUser}/>} />
+            <Route path="/signIn" element={<Login />} />
+            <Route path="/signUp" element={<Register />} />
+            <Route path="/product/:productId" element={<ProductCard />} />
+            <Route path="/catalogs/:type" element={<AllCatalogs isMobile={isMobile} />} />
+            <Route path="/feedback" element={<FeedBack isMobile={isMobile} currentUser={currentUser} />} />
+            <Route path="/profile/:page" element={<Profile isMobile={isMobile} currentUser={currentUser} />} />
+            <Route path="/basket" element={<Basket isMobile={isMobile} />} />
+            <Route path="/admin_panel_is_blocked" element={<AdminPanel />} />
+            <Route path="/about-us" element={<AboutUs isMobile={isMobile}/>} />
+            <Route path="/terms-and-conditions" element={<TermsConditions />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        </Routes>
+    );
 }
 
 export default App;

@@ -26,7 +26,7 @@ function MobileMenu({ currentUser }) {
                 <button
                         className="flex flex-col gap-1 justify-center 
                         items-center cursor-pointer mr-3"
-                        onClick={() => navigate("/about")}>
+                        onClick={() => navigate("/about-us")}>
                     <img 
                         src="https://www.pizza-hut.am/assets/images/app_2/aboutUs.svg" 
                         className="w-[27px] h-[27px]" 
