@@ -9,6 +9,7 @@ import MyAddress from "./MyAddress";
 import ProfileSupport from "./ProfileSupport";
 import ProfilePayment from "./ProfilePayment";
 import MobileMenu from "../MobileMenuBar.js/MobileMenu";
+import { useTranslation } from "react-i18next";
 
 function Profile({ isMobile, currentUser }) {
     const navigate = useNavigate();
@@ -43,6 +44,8 @@ function Profile({ isMobile, currentUser }) {
             return !prev;
         });
     };
+
+    const { t } = useTranslation();
 
     return (
         <>
@@ -91,10 +94,13 @@ function Profile({ isMobile, currentUser }) {
                             className="text-[16px] text-[#9D9D9D] cursor-pointer
                             [body.dark_&]:text-white"
                             onClick={() => navigate('/')}>
-                            Main page
+                            {t("main_page")}
                         </a>
 
-                        <b className="text-[#9D9D9D]"> {'>'} </b>
+                        <img 
+                            src="https://www.pizza-hut.am/assets/images/app_2/arrow.svg"
+                            className="w-[6px] rotate-[180deg]"
+                            alt=""/>
 
                         <a className="text-[#e33b41] text-[16px]">
                             { page.substring(0,1).toUpperCase() }

@@ -60,9 +60,9 @@ function HeaderMenu({ isMobile, currentUser }) {
     return (
         <>
             <header 
-              className="w-full h-[80px] flex items-center justify-between px-20 fixed
-               top-0 bg-[#FFF] z-[10] max-lg:px-7 max-md:shadow-md max-md:h-[60px]
-               max-sm:px-2 [body.dark_&]:bg-[#2e2e2e]">
+              className="w-full h-[80px] flex items-center justify-between px-[3vw] fixed
+               top-0 bg-[#FFF] z-[10] max-md:shadow-md max-md:h-[60px]
+                [body.dark_&]:bg-[#2e2e2e]">
 
               <div
                     className="w-auto h-full flex gap-2 items-center cursor-pointer"

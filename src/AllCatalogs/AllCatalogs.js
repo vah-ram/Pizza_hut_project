@@ -59,7 +59,7 @@ function AllCatalogs({ isMobile }) {
             ''
             }
 
-            <section className="w-full h-auto mt-[100px] px-20 flex flex-col
+            <section className="w-full h-auto mt-[100px] px-[3vw] flex flex-col
             items-center justify-between
                 gap-5 justify-start">
 
@@ -68,13 +68,16 @@ function AllCatalogs({ isMobile }) {
                         className="text-[16px] text-[#9D9D9D] cursor-pointer
                         [body.dark_&]:text-white"
                         onClick={() => navigate('/')}>
-                        Main page
+                        {t("main_page")}
                     </a>
 
-                    <b className="text-[#9D9D9D]"> {'>'} </b>
+                    <img 
+                        src="https://www.pizza-hut.am/assets/images/app_2/arrow.svg"
+                        className="w-[6px] rotate-[180deg]"
+                        alt=""/>
 
                     <a className="text-[#e33b41] text-[16px]">
-                        Menu
+                        {t("menu")}
                     </a>
                 </span>
 

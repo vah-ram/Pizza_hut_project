@@ -10,6 +10,8 @@ i18n
       en: {
         translation: {
           delivery: "Delivery",
+          main_page: "Main page",
+          menu: "Menu",
           allproducts: "All Products",
           search: "Search",
 
@@ -95,6 +97,8 @@ i18n
       ru: {
         translation: {
           delivery: "Доставка",
+          main_page: "Главная страница",
+          menu: "Меню",
           allproducts: "Все продукты",
           search: "Поиск",
 
@@ -180,6 +184,8 @@ i18n
       am: {
         translation: {
           delivery: "Առաքում",
+          main_page: "Հիմնական էջ",
+          menu: "Մենյու",
           allproducts: "Բոլոր ապրանքները",
           search: "Փնտրել",
 
