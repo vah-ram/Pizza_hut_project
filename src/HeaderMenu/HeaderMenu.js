@@ -107,7 +107,7 @@ function HeaderMenu({ isMobile, currentUser }) {
                     className={
                       `w-[60px] h-[26px] flex ${modeValue ? "flex-row-reverse" : "flex-row"} 
                       items-center gap-[3px] rounded-full border-1 border-[#e7e7e7ff] px-[3px] 
-                      cursor-pointer max-md:hidden`
+                      cursor-pointer max-md:hidden [body.dark_&]:border-[#464646]`
                     }
                     onClick={callDarkAndLightMode}>
                       <span 
@@ -115,7 +115,7 @@ function HeaderMenu({ isMobile, currentUser }) {
                         rounded-full bg-[#e33b41]"/>
             
                       <p className="text-[9px] font-[700] text-[#9d9d9d] leading-[10px]">
-                          {modeValue ? "Dark Mode" : "Light Mode"}
+                          { modeValue ? "Dark Mode" : "Light Mode" }
                       </p>
                   </button>
     
