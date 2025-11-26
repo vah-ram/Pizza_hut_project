@@ -22,31 +22,31 @@ function App() {
     const location = useLocation();
 
     const [isMobile, setIsMobile] = useState('');
-    const [currentUser, setCurrentUser] = useState(null);
+    const [currentUser, setCurrentUser] = useState(true);//added
 
-    useEffect(() => {
-        const verify = async () => {
-            try {
-                const token = localStorage.getItem("token");
+    // useEffect(() => {
+    //     const verify = async () => {
+    //         try {
+    //             const token = localStorage.getItem("token");
     
-                if (!token) {
-                    return setCurrentUser('');
-                }
+    //             if (!token) {
+    //                 return setCurrentUser('');
+    //             }
     
-                const res = await axios.get(verifyProfileHost, {
-                    params: { token }
-                });
+    //             const res = await axios.get(verifyProfileHost, {
+    //                 params: { token }
+    //             });
     
-                setCurrentUser(res.data.status ? res.data.user : '');
+    //             setCurrentUser(res.data.status ? res.data.user : '');
     
-            } catch (err) {
-                console.error(err);
-            }
-        };
+    //         } catch (err) {
+    //             console.error(err);
+    //         }
+    //     };
     
-        verify();
+    //     verify();
     
-    }, [location.pathname]);
+    // }, [location.pathname]);
 
     useEffect(() => {
 
