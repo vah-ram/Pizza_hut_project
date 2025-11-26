@@ -1,320 +1,340 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Project from "../Project";
 import { useNavigate } from "react-router-dom";
 
 function ProductCard() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const [ basketInt, setBasketInt ] = useState(1);
+  const [basketInt, setBasketInt] = useState(1);
 
-    return (
-        <>
-            <Project />
+  return (
+    <>
+      <Project />
 
-            <div className="fixed inset-0 z-[100] bg-black/40 flex
-            items-center justify-center">
-
-                <div
-                    className="relative w-[80%] h-[85%]
+      <div
+        className="fixed inset-0 z-[100] bg-black/40 flex
+            items-center justify-center"
+      >
+        <div
+          className="relative w-[80%] h-[85%]
                     rounded-xl bg-[#FFF] p-5 pb-20 overflow-scroll
-                    [&::-webkit-scrollbar]:hidden [body.dark_&]:bg-[#2E2E2E]">
-
-                    <button
-                            className="w-[30px] h-[30px] absolute right-0
+                    [&::-webkit-scrollbar]:hidden [body.dark_&]:bg-[#2E2E2E]"
+        >
+          <button
+            className="w-[30px] h-[30px] absolute right-0
                                 top-[0px] flex items-center justify-center bg-white rounded-full
                                 absolute cursor-pointer"
-                            onClick={() => navigate('/')}>
-                        <img
-                            src="https://pizza-hut.am/assets/images/app_2/close.svg"
-                            className="w-[12px] h-[12px]"/>
-                    </button>
+            onClick={() => navigate("/")}
+          >
+            <img
+              src="https://pizza-hut.am/assets/images/app_2/close.svg"
+              className="w-[12px] h-[12px]"
+            />
+          </button>
 
-                    <div className="w-full flex gap-5">
+          <div className="w-full flex gap-5">
+            <div className="w-[40%] h-auto group overflow-hidden">
+              <img
+                src="https://bonee.blob.core.windows.net/images/3cb64dce-f9bc-6b0a-dd0f-dc785729de67_2.webp"
+                className="w-[60vmin] h-[60vmin] group-hover:opacity-80"
+                alt="slider item img"
+              />
+            </div>
 
-                        <div className="w-[40%] h-auto group overflow-hidden">
-                            <img
-                                src="https://bonee.blob.core.windows.net/images/3cb64dce-f9bc-6b0a-dd0f-dc785729de67_2.webp"
-                                className="w-[60vmin] h-[60vmin] group-hover:opacity-80"
-                                alt="slider item img"/>
-                        </div>
+            <div className="w-[60%] h-full px-5 flex flex-col">
+              <div className="w-full flex justify-between">
+                <h2
+                  className="uppercase text-[calc(18px+.3vw)]
+                                text-[#515151] font-[700] mt-2 [body.dark_&]:text-white"
+                >
+                  Combo for Meat Lovers
+                </h2>
 
-                        <div
-                            className="w-[60%] h-full px-5 flex flex-col">
-
-                            <div className="w-full flex justify-between">
-                                <h2 className="uppercase text-[calc(18px+.3vw)]
-                                text-[#515151] font-[700] mt-2 [body.dark_&]:text-white">
-                                    Combo for Meat Lovers
-                                </h2>
-
-                                <button
-                                    className="w-[84px] h-[32px] flex gap-2 items-center
+                <button
+                  className="w-[84px] h-[32px] flex gap-2 items-center
                                 justify-center border border-1
-                                border-[#e33b41] rounded-md cursor-pointer">
+                                border-[#e33b41] rounded-md cursor-pointer"
+                >
+                  <img
+                    src="/Img/share-icon.png"
+                    className="w-[15px] h-[15px]"
+                  />
 
-                                    <img
-                                        src="/Img/share-icon.png"
-                                        className="w-[15px] h-[15px]"/>
+                  <p
+                    className="text-[16px] text-[#515151]
+                                    [body.dark_&]:text-white"
+                  >
+                    Share
+                  </p>
+                </button>
+              </div>
 
-                                    <p className="text-[16px] text-[#515151]
-                                    [body.dark_&]:text-white">
-                                        Share
-                                    </p>
+              <p
+                className="text-[20px] text-[#9D9D9D]
+                            font-[600] mt-3"
+              >
+                -20%
+              </p>
 
-                                </button>
-                            </div>
+              <p
+                className="mt-5 text-[18px] text-[#9D9D9D]
+                        font-[400]"
+              >
+                Meat Lovers 33 sm. (Tomato sauce, mozzarella cheese, pepperoni,
+                beef, bacon, ham.) Spicy Meat 33 sm. (Tomato sauce, mozzarella
+                cheese, ham, pepperoni, jalapeno pepper.) Chicken BBQ 33 sm.
+                (Barbeque sauce, chicken breast, bacon, onion, mushrooms,
+                Bulgarian pepper, mozzarella cheese.)
+              </p>
 
-                            <p
-                                className="text-[20px] text-[#9D9D9D]
-                            font-[600] mt-3">
-                                -20%
-                            </p>
+              <h3
+                className="uppercase text-[calc(16px+.3vw)] font-[600]
+                             text-[#515151] mt-20 [body.dark_&]:text-white"
+              >
+                Pizza Type
+              </h3>
 
-                            <p className="mt-5 text-[18px] text-[#9D9D9D]
-                        font-[400]">
-                                Meat Lovers 33 sm. (Tomato sauce, mozzarella cheese, pepperoni, beef, bacon, ham.)
-                                Spicy Meat  33 sm. (Tomato sauce, mozzarella cheese, ham, pepperoni, jalapeno pepper.)
-                                Chicken BBQ 33 sm. (Barbeque sauce, chicken breast, bacon, onion, mushrooms, Bulgarian pepper, mozzarella cheese.)
-                            </p>
-
-                            <h3
-                                className="uppercase text-[calc(16px+.3vw)] font-[600]
-                             text-[#515151] mt-20 [body.dark_&]:text-white">
-                                Pizza Type
-                            </h3>
-
-                            <div className="flex gap-2 mt-3">
-                                <button
-                                    className="uppercase w-[56px] h-[31px]
+              <div className="flex gap-2 mt-3">
+                <button
+                  className="uppercase w-[56px] h-[31px]
                                 bg-[#e33b41] text-white rounded-md text-[14px]
-                                cursor-pointer">
-                                    Pan
-                                </button>
+                                cursor-pointer"
+                >
+                  Pan
+                </button>
 
-                                <button
-                                    className="uppercase w-[85px] h-[31px]
+                <button
+                  className="uppercase w-[85px] h-[31px]
                                     text-[#9D9D9D] border border-1
                                     border-gray-200 rounded-md text-[14px]
-                                    cursor-pointer [body.dark_&]:border-[#9D9D9D]">
-                                    Classic
-                                </button>
-                            </div>
+                                    cursor-pointer [body.dark_&]:border-[#9D9D9D]"
+                >
+                  Classic
+                </button>
+              </div>
 
-                            <form className="w-full flex flex-col">
+              <form className="w-full flex flex-col">
+                <h3
+                  className="uppercase text-[calc(12px+.3vw)] font-[600]
+                             text-[#515151] mt-8 [body.dark_&]:text-white"
+                >
+                  Add any special instructions
+                </h3>
 
-                                <h3 className="uppercase text-[calc(12px+.3vw)] font-[600]
-                             text-[#515151] mt-8 [body.dark_&]:text-white">
-                                    Add any special instructions
-                                </h3>
-
-                                <textarea
-                                    className="outline-none p-3 border
+                <textarea
+                  className="outline-none p-3 border
                                     border-1 border-[#9D9D9D] rounded-xl
                                     mt-3 [body.dark_&]:text-white"
-                                    placeholder="Additional Comment">
+                  placeholder="Additional Comment"
+                ></textarea>
 
-                            </textarea>
+                <div className="w-full flex justify-between mt-8">
+                  <span className="flex gap-2 items-center">
+                    <p
+                      className="text-[#e33b41] text-[25px] font-[500]
+                                     font-sans leading-[15px]"
+                    >
+                      8,800
+                    </p>
 
-                                <div className="w-full flex justify-between mt-8">
+                    <p
+                      className="text-[#9d9d9d] text-[23px]
+                                    line-through"
+                    >
+                      11,000
+                    </p>
+                  </span>
 
-                                <span className="flex gap-2 items-center">
-                                    <p className="text-[#e33b41] text-[25px] font-[500]
-                                     font-sans leading-[15px]">
-                                        8,800
-                                    </p>
-
-                                    <p className="text-[#9d9d9d] text-[23px]
-                                    line-through">
-                                        11,000
-                                    </p>
-                                </span>
-
-                                    <div className="flex items-center">
-
-                                        <div className="flex gap-2 border-1 border-[#9d9d9d]
+                  <div className="flex items-center">
+                    <div
+                      className="flex gap-2 border-1 border-[#9d9d9d]
                                          rounded-tl-[10px] rounded-bl-[10px] w-[120px] h-[36px] text-[#e33b41] text-[20px]
-                                         justify-around items-center translate-x-[3px] z-[0]">
+                                         justify-around items-center translate-x-[3px] z-[0]"
+                    >
+                      <button
+                        className="cursor-pointer"
+                        onClick={(evt) => {
+                          evt.preventDefault();
+                          setBasketInt((prev) => Math.max(1, prev - 1));
+                        }}
+                      >
+                        -
+                      </button>
 
-                                            <button
-                                                className="cursor-pointer"
-                                                onClick={(evt) => {
-                                                    evt.preventDefault();
-                                                    setBasketInt((prev) =>
-                                                        Math.max(1, prev - 1));
-                                                }}
-                                            >
-                                                -
-                                            </button>
+                      <p>{basketInt}</p>
 
-
-                                            <p>
-                                                {basketInt}
-                                            </p>
-
-                                            <button
-                                                className="cursor-pointer"
-                                                onClick={(evt) => {
-                                                    evt.preventDefault();
-                                                    setBasketInt((prev) => prev + 1)
-                                                }}>
-                                                +
-                                            </button>
-
-                                        </div>
-
-                                        <button className="w-[120px] h-[40px] cursor-pointer
-                                        bg-[#e33b41] flex justify-center items-center
-                                        gap-2 hover:opacity-90 rounded-lg z-[1]">
-                                            <img
-                                                src="	https://pizza-hut.am/assets/images/app_2/basketWhite.svg"
-                                                className="w-[22px] h-[30px]"
-                                                alt=""/>
-
-                                            <p className="text-white text-[14px]">
-                                                ADD
-                                            </p>
-                                        </button>
-                                    </div>
-
-                                </div>
-
-                            </form>
-                        </div>
-
+                      <button
+                        className="cursor-pointer"
+                        onClick={(evt) => {
+                          evt.preventDefault();
+                          setBasketInt((prev) => prev + 1);
+                        }}
+                      >
+                        +
+                      </button>
                     </div>
 
-                    <div className="w-full flex flex-col mt-5">
+                    <button
+                      className="w-[120px] h-[40px] cursor-pointer
+                                        bg-[#e33b41] flex justify-center items-center
+                                        gap-2 hover:opacity-90 rounded-lg z-[1]"
+                    >
+                      <img
+                        src="	https://pizza-hut.am/assets/images/app_2/basketWhite.svg"
+                        className="w-[22px] h-[30px]"
+                        alt=""
+                      />
 
-                        <h2 className="uppercase font-[600] text-[27px] text-[#515151]
-                        [body.dark_&]:text-white">
-                            Customers also orders
-                        </h2>
+                      <p className="text-white text-[14px]">ADD</p>
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
 
-                        <p className="text-[calc(12px+.3vw) text-[#9D9D9D]">
-                            We offer you various choice of similar products
-                        </p>
+          <div className="w-full flex flex-col mt-5">
+            <h2
+              className="uppercase font-[600] text-[27px] text-[#515151]
+                        [body.dark_&]:text-white"
+            >
+              Customers also orders
+            </h2>
 
-                        <div className="flex gap-5 mt-10">
+            <p className="text-[calc(12px+.3vw) text-[#9D9D9D]">
+              We offer you various choice of similar products
+            </p>
 
-                            <div
-                                className="w-[25vmax] h-[60vmin] shrink-[0] flex flex-col
+            <div className="flex gap-5 mt-10">
+              <div
+                className="w-[25vmax] h-[60vmin] shrink-[0] flex flex-col
                                 justify-start [body.dark_&]:border-gray-100
                                 items-center relative rounded-[20px]
-                                border-1 border-gray-300">
-
-                            <span
-                                className="w-full h-[80%] rounded-[20px]
+                                border-1 border-gray-300"
+              >
+                <span
+                  className="w-full h-[80%] rounded-[20px]
                                 overflow-hidden border-b-1 border-gray-300 flex
-                                items-center justify-center shadow-sm">
-                                <img
-                                    src="https://bonee.blob.core.windows.net/images/24b321ce-cfc4-b7c0-412a-68f1373d7338_1.webp"
-                                    className="hover:scale-110 duration-500"
-                                    alt="slider item img"/>
+                                items-center justify-center shadow-sm"
+                >
+                  <img
+                    src="https://bonee.blob.core.windows.net/images/24b321ce-cfc4-b7c0-412a-68f1373d7338_1.webp"
+                    className="hover:scale-110 duration-500"
+                    alt="slider item img"
+                  />
+                </span>
 
-                            </span>
-
-                                <div className="w-full h-auto flex flex-col justify-center
-                                    items-center mt-2">
-                                    <p
-                                        className="[body.dark_&]:text-white
+                <div
+                  className="w-full h-auto flex flex-col justify-center
+                                    items-center mt-2"
+                >
+                  <p
+                    className="[body.dark_&]:text-white
                                         text-[#515151] font-[600]
-                                         text-[calc(12px+.3vw)] uppercase">
-                                        Cheese
-                                    </p>
+                                         text-[calc(12px+.3vw)] uppercase"
+                  >
+                    Cheese
+                  </p>
 
-                                    <p className="mr-auto ml-5 text-[#9D9D9D]">...</p>
-                                </div>
-
-                                <div
-                                    className="w-[90%] h-[44px] absolute bottom-[-22px]
-                                        rounded-[10px] flex overflow-hidden">
-
-                                    <button className="w-[50%] cursor-pointer bg-[#3d3d3d]">
-                                        <p className="text-white text-[17px] font-[500]
-                                    font-sans leading-[15px] cursor-pointer">
-                                            150
-                                        </p>
-                                    </button>
-
-                                    <button className="w-[50%] cursor-pointer bg-[#e33b41]
-                                        flex justify-center
-                                        items-center gap-2 hover:opacity-90">
-                                        <img
-                                            src="	https://pizza-hut.am/assets/images/app_2/basketWhite.svg"
-                                            className="w-[22px] h-[30px]"
-                                            alt=""/>
-
-                                        <p className="text-white text-[14px]">
-                                            Add
-                                        </p>
-                                    </button>
-
-                                </div>
-                            </div>
-
-                            <div
-                                className="w-[25vmax] h-[60vmin] shrink-[0] flex flex-col
-                                    justify-start [body.dark_&]:border-gray-200
-                                    items-center relative rounded-[20px]
-                                    border-1 border-gray-300">
-
-                            <span
-                                className="w-full h-[80%] rounded-[20px]
-                                overflow-hidden border-b-1 border-gray-300 flex
-                                items-center justify-center shadow-sm [body.dark_&]:border-gray-200">
-                                <img
-                                    src="https://bonee.blob.core.windows.net/images/0a19d20a-3684-8267-c5fe-fb50a5026723_1.webp"
-                                    className="hover:scale-110 duration-500"
-                                    alt="slider item img"/>
-
-                            </span>
-
-                                <div className="w-full h-auto flex flex-col justify-center
-                                    items-center mt-2">
-                                    <p className="[body.dark_&]:text-white
-                                        text-[#515151] font-[600]
-                                         text-[calc(12px+.3vw)] uppercase">
-                                        Coca Cola 0.5 l.
-                                    </p>
-
-                                    <p className="mr-auto ml-5 text-[#9D9D9D]">...</p>
-                                </div>
-
-                                <div
-                                    className="w-[90%] h-[44px] absolute bottom-[-22px]
-                                rounded-[10px] flex overflow-hidden">
-
-                                    <button className="w-[50%] cursor-pointer bg-[#3d3d3d]">
-                                        <p className="text-white text-[17px] font-[500]
-                                    font-sans leading-[15px] cursor-pointer">
-                                            500
-                                        </p>
-                                    </button>
-
-                                    <button className="w-[50%] cursor-pointer bg-[#e33b41]
-                                        flex justify-center
-                                        items-center gap-2 hover:opacity-90">
-                                        <img
-                                            src="	https://pizza-hut.am/assets/images/app_2/basketWhite.svg"
-                                            className="w-[22px] h-[30px]"
-                                            alt=""/>
-
-                                        <p className="text-white text-[14px]">
-                                            Add
-                                        </p>
-                                    </button>
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
+                  <p className="mr-auto ml-5 text-[#9D9D9D]">...</p>
                 </div>
 
+                <div
+                  className="w-[90%] h-[44px] absolute bottom-[-22px]
+                                        rounded-[10px] flex overflow-hidden"
+                >
+                  <button className="w-[50%] cursor-pointer bg-[#3d3d3d]">
+                    <p
+                      className="text-white text-[17px] font-[500]
+                                    font-sans leading-[15px] cursor-pointer"
+                    >
+                      150
+                    </p>
+                  </button>
+
+                  <button
+                    className="w-[50%] cursor-pointer bg-[#e33b41]
+                                        flex justify-center
+                                        items-center gap-2 hover:opacity-90"
+                  >
+                    <img
+                      src="	https://pizza-hut.am/assets/images/app_2/basketWhite.svg"
+                      className="w-[22px] h-[30px]"
+                      alt=""
+                    />
+
+                    <p className="text-white text-[14px]">Add</p>
+                  </button>
+                </div>
+              </div>
+
+              <div
+                className="w-[25vmax] h-[60vmin] shrink-[0] flex flex-col
+                                    justify-start [body.dark_&]:border-gray-200
+                                    items-center relative rounded-[20px]
+                                    border-1 border-gray-300"
+              >
+                <span
+                  className="w-full h-[80%] rounded-[20px]
+                                overflow-hidden border-b-1 border-gray-300 flex
+                                items-center justify-center shadow-sm [body.dark_&]:border-gray-200"
+                >
+                  <img
+                    src="https://bonee.blob.core.windows.net/images/0a19d20a-3684-8267-c5fe-fb50a5026723_1.webp"
+                    className="hover:scale-110 duration-500"
+                    alt="slider item img"
+                  />
+                </span>
+
+                <div
+                  className="w-full h-auto flex flex-col justify-center
+                                    items-center mt-2"
+                >
+                  <p
+                    className="[body.dark_&]:text-white
+                                        text-[#515151] font-[600]
+                                         text-[calc(12px+.3vw)] uppercase"
+                  >
+                    Coca Cola 0.5 l.
+                  </p>
+
+                  <p className="mr-auto ml-5 text-[#9D9D9D]">...</p>
+                </div>
+
+                <div
+                  className="w-[90%] h-[44px] absolute bottom-[-22px]
+                                rounded-[10px] flex overflow-hidden"
+                >
+                  <button className="w-[50%] cursor-pointer bg-[#3d3d3d]">
+                    <p
+                      className="text-white text-[17px] font-[500]
+                                    font-sans leading-[15px] cursor-pointer"
+                    >
+                      500
+                    </p>
+                  </button>
+
+                  <button
+                    className="w-[50%] cursor-pointer bg-[#e33b41]
+                                        flex justify-center
+                                        items-center gap-2 hover:opacity-90"
+                  >
+                    <img
+                      src="	https://pizza-hut.am/assets/images/app_2/basketWhite.svg"
+                      className="w-[22px] h-[30px]"
+                      alt=""
+                    />
+
+                    <p className="text-white text-[14px]">Add</p>
+                  </button>
+                </div>
+              </div>
             </div>
-        </>
-    );
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
 
 export default ProductCard;

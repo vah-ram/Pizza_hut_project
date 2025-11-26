@@ -12,6 +12,7 @@ i18n
           delivery: "Delivery",
           main_page: "Main page",
           menu: "Menu",
+          basket: "Basket",
           allproducts: "All Products",
           search: "Search",
 
@@ -99,6 +100,7 @@ i18n
           delivery: "Доставка",
           main_page: "Главная страница",
           menu: "Меню",
+          basket: "Корзина",
           allproducts: "Все продукты",
           search: "Поиск",
 
@@ -186,6 +188,7 @@ i18n
           delivery: "Առաքում",
           main_page: "Հիմնական էջ",
           menu: "Մենյու",
+          basket: "Զամբյուղ",
           allproducts: "Բոլոր ապրանքները",
           search: "Փնտրել",
 

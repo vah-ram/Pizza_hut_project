@@ -6,6 +6,7 @@ import MobilePizzaMenu from "./MobilePizzaMenu/MobilePizzaMenu";
 import AboutMenu from "./AboutMenu/AboutMenu";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { host } from "./utils/Hosts"
 
 function Project({ isMobile, currentUser }) {
     const navigate = useNavigate();

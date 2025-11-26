@@ -5,3 +5,5 @@ export const loginHost = `${host}/api/login`;
 export const verifyEmailHost = `${host}/api/verify-email`
 export const verifyProfileHost = `${host}/api/verifyprofile`;
 export const addFeedbackHost = `${host}/feedback/add`;
+export const addProductHost = `${host}/product/add`;
+
