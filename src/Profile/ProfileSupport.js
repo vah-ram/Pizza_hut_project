@@ -3,7 +3,7 @@ import React from "react";
 function ProfileSupport() {
     return (
         <>
-            <div className="w-full flex flex-col mt-3 pl-[3vw] pt-10">
+            <div className="w-full flex flex-col mt-3 pl-[3vw] pt-10 max-md:pt-0 max-md:mt-0">
                 <h2
                     className="text-[#515151] font-[500] text-[calc(16px+.3vw)]">
                     If you need any support contuct us

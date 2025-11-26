@@ -15,42 +15,48 @@ import Profile from "./Profile/Profile";
 import TermsConditions from "./SecondaryMenuGroup/TermsConditions.js";
 import AboutUs from "./SecondaryMenuGroup/AboutUs";
 import PrivacyPolicy from "./SecondaryMenuGroup/PrivacyPolicy";
+import MobileSearch from "./MobileSearch/MobileSearch";
 
 function App() {
 
     const location = useLocation();
 
     const [isMobile, setIsMobile] = useState('');
-    const [currentUser, setCurrentUser] = useState(true);//added
-
-    // useEffect(() => {
-    //     const verify = async () => {
-    //         try {
-    //             const token = localStorage.getItem("token");
-
-    //             if (!token) {
-    //                 return setCurrentUser('');
-    //             }
-
-    //             const res = await axios.get(verifyProfileHost, {
-    //                 params: { token }
-    //             });
-
-    //             setCurrentUser(res.data.status ? res.data.user : '');
-
-    //         } catch (err) {
-    //             console.error(err);
-    //         }
-    //     };
-
-    //     verify();
-
-    // }, [location.pathname]);
-
+    const [currentUser, setCurrentUser] = useState(null);
 
     useEffect(() => {
+        const verify = async () => {
+            try {
+                const token = localStorage.getItem("token");
+
+                if (!token) {
+                    return setCurrentUser('');
+                }
+
+                const res = await axios.get(verifyProfileHost, {
+                    params: { token }
+                });
+
+                setCurrentUser(res.data.status ? res.data.user : '');
+
+            } catch (err) {
+                console.error(err);
+            }
+        };
+
+        verify();
+
+    }, [location.pathname]);
+
+    useEffect(() => {
+
         const checkMobile = () => {
             setIsMobile(window.innerWidth <= 768);
+            if(window.innerWidth <= 768) {
+                document.querySelector("body").classList.add("isMobile")
+            } else {
+                document.querySelector("body").classList.remove("isMobile")
+            }
         };
 
         window.addEventListener('resize', checkMobile);
@@ -61,20 +67,23 @@ function App() {
 
 
     return (
-        <Routes>
-            <Route path="/" element={<Project isMobile={isMobile} currentUser={currentUser}/>} />
-            <Route path="/signIn" element={<Login />} />
-            <Route path="/signUp" element={<Register />} />
-            <Route path="/product/:productId" element={<ProductCard />} />
-            <Route path="/catalogs/:type" element={<AllCatalogs isMobile={isMobile} />} />
-            <Route path="/feedback" element={<FeedBack isMobile={isMobile} currentUser={currentUser} />} />
-            <Route path="/profile/:page" element={<Profile isMobile={isMobile} currentUser={currentUser} />} />
-            <Route path="/basket" element={<Basket isMobile={isMobile} />} />
-            <Route path="/admin_panel_is_blocked" element={<AdminPanel />} />
-            <Route path="/about-us" element={<AboutUs isMobile={isMobile}/>} />
-            <Route path="/terms-and-conditions" element={<TermsConditions />} />
-            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-        </Routes>
+        <>
+            <Routes>
+                <Route path="/" element={<Project isMobile={isMobile} currentUser={currentUser}/>} />
+                <Route path="/signIn" element={<Login />} />
+                <Route path="/signUp" element={<Register />} />
+                <Route path="/search" element={<MobileSearch />} />
+                <Route path="/product/:productId" element={<ProductCard />} />
+                <Route path="/catalogs/:type" element={<AllCatalogs isMobile={isMobile} currentUser={currentUser}/>} />
+                <Route path="/feedback" element={<FeedBack isMobile={isMobile} currentUser={currentUser} />} />
+                <Route path="/profile/:page" element={<Profile isMobile={isMobile} currentUser={currentUser} />} />
+                <Route path="/basket" element={<Basket isMobile={isMobile} />} />
+                <Route path="/admin_panel_is_blocked" element={<AdminPanel />} />
+                <Route path="/about-us" element={<AboutUs isMobile={isMobile}/>} />
+                <Route path="/terms-and-conditions" element={<TermsConditions />} />
+                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            </Routes>
+        </>
     );
 }
 

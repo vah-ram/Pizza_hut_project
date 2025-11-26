@@ -14,7 +14,8 @@ import { useTranslation } from "react-i18next";
 function Profile({ isMobile, currentUser }) {
     const navigate = useNavigate();
 
-    const [ selectedPage, setSelectedPage ] = useState(null);
+    const [ selectedPage, setSelectedPage ] = useState(isMobile ? null : true);
+    const [ selectedPageTitle, setSelectedPageTitle ] = useState("");
 
     const logOut = () => {
         localStorage.removeItem("token");
@@ -26,6 +27,22 @@ function Profile({ isMobile, currentUser }) {
     const [modeValue, setModeValue] = useState(() => {
         return localStorage.getItem("darkMode") === "true";
     });
+
+    useEffect(() => {
+        if(page === "orders") {
+            setSelectedPageTitle("Orders history")
+        } else if (page === "reviews") {
+            setSelectedPageTitle("Reviews")
+        }else if (page === "profile") {
+            setSelectedPageTitle("My Profile")
+        }else if (page === "address") {
+            setSelectedPageTitle("My Address")
+        }else if (page === "paymentMethod") {
+            setSelectedPageTitle("Payment Methods")
+        }else if (page === "support") {
+            setSelectedPageTitle("Support")
+        }
+    }, [page]);
 
     useEffect(() => {
         const body = document.querySelector("body");
@@ -53,40 +70,41 @@ function Profile({ isMobile, currentUser }) {
                 isMobile ? '' : <HeaderMenu isMobile={isMobile} currentUser={currentUser}/>
             }
 
-            {
-                isMobile
-                    ?
-                    <div className="w-full h-[60px] hidden absolute top-0 shadow-md
-                        justify-center items-center max-md:flex">
-                    <button
-                        className="w-[40px] h-[40px] flex items-center justify-center
-                                border-1 border-gray-200 rounded-xl outline-none absolute left-5
-                                cursor-pointer"
-                        onClick={() => navigate('/')}>
-                        <img
-                            src="https://pizza-hut.am/assets/images/app_2/arrow.svg"
-                            className="w-[20px] h-[20px]"/>
-                    </button>
-
-                    <h2 className="text-[17px] text-[#515151] font-[600] uppercase [body.dark_&]:text-white">
-                        Profile Page
-                    </h2>
-                </div>
-                    :
-                    ''
-            }
-
-            <MobileMenu />
+            <MobileMenu currentUser={currentUser}/>
 
             <section 
-                className="w-full h-auto flex 
+                className='
+                w-full h-auto flex 
                 mt-[70px] px-[4vw] max-md:px-4 max-md:pt-5
-                pb-[80px]">
+                pb-[80px]'>
                 
                 <div 
-                    className="w-[30%] flex flex-col border-r-1
-                    border-[#ebebeb] max-md:w-full [body.dark_&]:border-[#FFF4]
-                    max-md:border-none">
+                    className={`w-[30%] flex flex-col border-r-1
+                        border-[#ebebeb] max-md:w-full [body.dark_&]:border-[#FFF4]
+                        max-md:border-none ${selectedPage ? 'max-md:hidden' : ''}`}>
+
+                    {
+                        isMobile
+                            ?
+                            <div className="w-full h-[60px] hidden absolute top-0 left-0 shadow-md
+                                justify-center items-center max-md:flex">
+                                <button
+                                    className="w-[40px] h-[40px] flex items-center justify-center
+                                border-1 border-gray-200 rounded-xl outline-none absolute left-5
+                                cursor-pointer"
+                                    onClick={() => navigate('/')}>
+                                    <img
+                                        src="https://pizza-hut.am/assets/images/app_2/arrow.svg"
+                                        className="w-[20px] h-[20px]"/>
+                                </button>
+
+                                <h2 className="text-[17px] text-[#515151] font-[600] uppercase [body.dark_&]:text-white">
+                                    Profile Page
+                                </h2>
+                            </div>
+                            :
+                            ''
+                    }
 
                     <span className="w-full flex gap-5 items-center
                      mt-10 max-md:hidden">
@@ -103,8 +121,8 @@ function Profile({ isMobile, currentUser }) {
                             alt=""/>
 
                         <a className="text-[#e33b41] text-[16px]">
-                            { page.substring(0,1).toUpperCase() }
-                            { page.substring(1) }
+                            { page?.substring(0,1).toUpperCase() }
+                            { page?.substring(1) }
                         </a>
                     </span>
 
@@ -118,7 +136,7 @@ function Profile({ isMobile, currentUser }) {
                             <h2
                                 className="text-[#515151] text-[calc(16px+.3vw)] font-[600]
                                 [body.dark_&]:text-white">
-                                {currentUser.name}   {currentUser.surname}
+                                {currentUser?.name}   {currentUser?.surname}
                             </h2>
                         </div>
 
@@ -363,6 +381,7 @@ function Profile({ isMobile, currentUser }) {
                                  [body.dark_&]:border-[#FFF4] max-md:py-[15px]"
                             onClick={() => {
                                 setSelectedPage(navigate("/profile/support"))
+                                setSelectedPage(true)
                             }}>
 
                             <span className="flex gap-3">
@@ -411,17 +430,38 @@ function Profile({ isMobile, currentUser }) {
                     </ul>
                 </div>
 
-                <div className="w-[70%] flex mt-5 max-md:hidden">
+                <div className={`w-[70%] h-full flex mt-5 ${selectedPage ? 'flex w-full' : 'hidden'}`}>
+
+                    <div className="w-full h-[60px] hidden absolute top-0 left-0 shadow-md
+                                justify-center items-center max-md:flex">
+                        <button
+                            className="w-[40px] h-[40px] flex items-center justify-center
+                           border-1 border-gray-200 rounded-xl outline-none absolute left-5
+                           cursor-pointer"
+                            onClick={() => setSelectedPage(false)}>
+                            <img
+                                src="https://pizza-hut.am/assets/images/app_2/arrow.svg"
+                                className="w-[20px] h-[20px]"
+                            />
+                        </button>
+
+
+                        <h2 className="text-[17px] text-[#515151] font-[600] uppercase [body.dark_&]:text-white">
+                            {selectedPageTitle}
+                        </h2>
+                    </div>
+
                     {
                         {
-                            profile: <MyProfile currentUser={currentUser} />,
-                            orders: <ProfileHistoryOrders />,
-                            reviews: <ProfileReviews />,
-                            address: <MyAddress />,
-                            paymentMethod: <ProfilePayment />,
-                            support: <ProfileSupport />,
+                            profile: <MyProfile currentUser={currentUser}/>,
+                            orders: <ProfileHistoryOrders/>,
+                            reviews: <ProfileReviews/>,
+                            address: <MyAddress/>,
+                            paymentMethod: <ProfilePayment/>,
+                            support: <ProfileSupport/>,
                         }[page] || ""
                     }
+
                 </div>
 
             </section>

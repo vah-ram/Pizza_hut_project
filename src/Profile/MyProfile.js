@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from "react";
 import CountrySelect from "../CountrySelect/CountrySelect";
+import {useNavigate} from "react-router-dom";
 
 function MyProfile({ currentUser }) {
+    const navigate = useNavigate();
 
     const [ formType, setFormType ] = useState("information");
 
@@ -29,9 +31,9 @@ function MyProfile({ currentUser }) {
 
     return (
         <>
-            <div className="w-full pl-[5vw] pt-4">
+            <div className="w-full pl-[5vw] pt-4 max-md:pl-0 max-md:pt-0">
 
-                <div className="w-full flex justify-between">
+                <div className="w-full flex justify-between max-md:hidden">
 
                     <div className="flex flex-col gap-2">
                         <p className="text-[#9D9D9D] text-[calc(14px+.3vw)]">
@@ -41,7 +43,7 @@ function MyProfile({ currentUser }) {
                         <h2
                             className="text-[#515151] text-[calc(16px+.3vw)] font-[600]
                                 [body.dark_&]:text-white">
-                            {currentUser.name}   {currentUser.surname}
+                            {currentUser?.name}   {currentUser?.surname}
                         </h2>
                     </div>
 
@@ -63,7 +65,7 @@ function MyProfile({ currentUser }) {
 
                 </div>
 
-                <div className="w-full flex-col mt-12">
+                <div className="w-full flex-col mt-12 max-md:mt-0">
 
                     <div className="flex">
                         <button
@@ -73,8 +75,8 @@ function MyProfile({ currentUser }) {
                             onClick={() => setFormType("information")}>
 
                             <h2 className={` uppercase text-[calc(14px+.3vw)]
-                            font-[600] [body.dark_&]:text-white 
-                            ${formType === "information" ? "text-[#e33b41]" : "text-[#515151]"}`}>
+                            font-[600]  
+                            ${formType === "information" ? "text-[#e33b41]" : "text-[#515151] [body.dark_&]:text-white"}`}>
                                 Information
                             </h2>
                         </button>
@@ -86,8 +88,8 @@ function MyProfile({ currentUser }) {
                                 onClick={() => setFormType("changePassword")}>
 
                             <h2 className={` uppercase text-[calc(14px+.3vw)]
-                            font-[600] [body.dark_&]:text-white 
-                            ${formType === "changePassword" ? "text-[#e33b41]" : "text-[#515151]"}`}>
+                            font-[600]  
+                            ${formType === "changePassword" ? "text-[#e33b41]" : "text-[#515151] [body.dark_&]:text-white"}`}>
                                 Change Password
                             </h2>
                         </button>
@@ -110,7 +112,7 @@ function MyProfile({ currentUser }) {
                                             border border-1 border-gray-200 max-md:w-full [body.dark_&]:border-[#FFF4]">
                                             <input
                                                 type="text"
-                                                value={currentUser.name}
+                                                value={currentUser?.name}
                                                 className="border-none outline-none w-full
                                          [body.dark_&]:text-white text-[#515151]"
                                                 maxLength={50}
@@ -128,7 +130,7 @@ function MyProfile({ currentUser }) {
                                             border border-1 border-gray-200 max-md:w-full [body.dark_&]:border-[#FFF4]">
                                             <input
                                                 type="text"
-                                                value={currentUser.surname}
+                                                value={currentUser?.surname}
                                                 className="border-none outline-none w-full
                                                     [body.dark_&]:text-white text-[#515151]"
                                                 maxLength={50}
@@ -147,7 +149,7 @@ function MyProfile({ currentUser }) {
                                         border border-1 border-gray-200 [body.dark_&]:border-[#FFF4]">
                                         <input
                                             type="email"
-                                            value={currentUser.email}
+                                            value={currentUser?.email}
                                             className="border-none outline-none w-full
                                             [body.dark_&]:text-white text-[#515151]"
                                             maxLength={50}
@@ -174,7 +176,7 @@ function MyProfile({ currentUser }) {
                                             border border-1 border-gray-200 [body.dark_&]:border-[#FFF4]">
                                                 <input
                                                     type="text"
-                                                    value={currentUser.phonenumber}
+                                                    value={currentUser?.phonenumber}
                                                     className="border-none outline-none w-full
                                                 [body.dark_&]:text-white text-[#515151]"
                                                     maxLength={50}

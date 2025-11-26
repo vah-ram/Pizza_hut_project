@@ -149,7 +149,7 @@ function FeedBack({ isMobile, currentUser }) {
                         <button
                             type="submit"
                             className="w-full px-3 py-4 rounded-[15px] bg-[#E33B41]
-                            text-white cursor-pointer mt-12">
+                            text-white cursor-pointer mt-12 opacity-60">
                             {t("feedback_button_text")}
                         </button>
 

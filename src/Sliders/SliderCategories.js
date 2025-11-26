@@ -103,7 +103,7 @@ function SliderCategories() {
 
                         <div
                         className="w-[14w] h-[14vw] max-h-[14vw] 
-                        relative rounded-[25px] overflow-hidden group"
+                        relative rounded-[40px] overflow-hidden group"
                             onClick={() => navigate('/catalogs/special-offers')}>
                             <img
                                 src="https://bonee.blob.core.windows.net/images/f57285e4-5fcc-f853-b25f-1a2e99f65082_1.jpg"
@@ -123,7 +123,7 @@ function SliderCategories() {
                         <SwiperSlide>
 
                         <div className="w-[14w] h-[14vw] max-h-[14vw] relative
-                        rounded-[25px] overflow-hidden group"
+                        rounded-[40px] overflow-hidden group"
                              onClick={() => navigate('/catalogs/melts')}>
                             <img 
                                 src="https://bonee.blob.core.windows.net/images/e9171210-70dc-6708-a274-d9cd672f7953_3.webp" 
@@ -144,7 +144,7 @@ function SliderCategories() {
 
                         <div
                             className="w-[14w] h-[14vw] max-h-[14vw] 
-                            relative rounded-[25px]
+                            relative rounded-[40px]
                              overflow-hidden group"
                              onClick={() => navigate('/catalogs/pizzas')}>
                             <img 
@@ -165,7 +165,7 @@ function SliderCategories() {
                         <SwiperSlide>
 
                         <div className="w-[14w] h-[14vw] max-h-[14vw] 
-                                relative rounded-[25px]
+                                relative rounded-[40px]
                                 overflow-hidden group"
                                 onClick={() => navigate('/catalogs/pizza-hot-dog')}>
                             <img 
@@ -187,7 +187,7 @@ function SliderCategories() {
 
                         <div
                             className="w-[14w] h-[14vw] max-h-[14vw] relative
-                            rounded-[25px] overflow-hidden group"
+                            rounded-[40px] overflow-hidden group"
                             onClick={() => navigate('/catalogs/salads')}>
                             <img 
                                 src="https://bonee.blob.core.windows.net/images/d2fb20b5-d183-c850-ceac-cb1e8b1b962d_3.webp"
@@ -208,7 +208,7 @@ function SliderCategories() {
 
                         <div
                             className="w-[14w] h-[14vw] max-h-[14vw] relative
-                            rounded-[25px] overflow-hidden group"
+                            rounded-[40px] overflow-hidden group"
                             onClick={() => navigate('/catalogs/burgers-sandwiches')}>
                             <img 
                                 src="https://bonee.blob.core.windows.net/images/d51ed5d9-6431-0c2f-4266-fa3a0a85d8d0_3.webp" 
@@ -229,7 +229,7 @@ function SliderCategories() {
 
                             <div
                                 className="w-[14w] h-[14vw] max-h-[14vw] relative
-                                rounded-[25px] overflow-hidden group"
+                                rounded-[40px] overflow-hidden group"
                                 onClick={() => navigate('/catalogs/snacks')}>
                                 <img 
                                     src="https://bonee.blob.core.windows.net/images/b7437126-6bca-d2ac-d547-df490de15048_3.webp" 
@@ -250,7 +250,7 @@ function SliderCategories() {
 
                         <div
                             className="w-[14w] h-[14vw] max-h-[14vw] relative
-                            rounded-[25px] overflow-hidden group"
+                            rounded-[40px] overflow-hidden group"
                             onClick={() => navigate('/catalogs/desserts')}>
                             <img 
                                 src="https://bonee.blob.core.windows.net/images/a1bd7070-a5d8-0c9d-6ccc-fb425384eb4f_3.webp" 
@@ -270,7 +270,7 @@ function SliderCategories() {
                         <SwiperSlide>
 
                         <div
-                            className="w-[14w] h-[14vw] max-h-[14vw] relative rounded-[25px]
+                            className="w-[14w] h-[14vw] max-h-[14vw] relative rounded-[40px]
                             overflow-hidden group"
                             onClick={() => navigate('/catalogs/beverages')}>
                             <img 
@@ -291,7 +291,7 @@ function SliderCategories() {
                         <SwiperSlide>
 
                         <div
-                            className="w-[14w] h-[14vw] max-h-[14vw] relative rounded-[25px]
+                            className="w-[14w] h-[14vw] max-h-[14vw] relative rounded-[40px]
                             overflow-hidden group"
                             onClick={() => navigate('/catalogs/sauces')}>
                             <img 

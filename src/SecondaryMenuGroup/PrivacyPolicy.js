@@ -3,7 +3,7 @@ import React from "react";
 function PrivacyPolicy() {
     return (
         <>
-            <div className="body mx-auto w-[60%] pt-20">
+            <div className="body mx-auto w-[60%] pt-20 [body.dark_&]:text-white ">
                 <p class="title text-[20px]"><strong>PRIVACY POLICY</strong></p>
                 <p class="mt-10">Last updated September 20, 2023</p>
                 <p class="mt-5"> Thank you for choosing to be part of our community <strong>(“Company”, “we”, “us”, or

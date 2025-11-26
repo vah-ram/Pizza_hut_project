@@ -3,7 +3,7 @@ import React from "react";
 function TermsConditions() {
     return (
         <>
-            <div class="body mx-auto w-[60%] pt-20">
+            <div class="body mx-auto w-[60%] pt-20 [body.dark_&]:text-white">
                 <p class="title text-[20px]"><strong>Terms of Service for Customers</strong></p>
                 <p class="mt-10">Thank you for choosing Bonee services.</p>
 

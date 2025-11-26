@@ -79,13 +79,23 @@ function MobileMenu({ currentUser }) {
                             :
                             navigate('/signIn');
                     }}>
-                    <img 
-                        src="https://www.pizza-hut.am/assets/images/app_2/user.svg"
-                        className="w-[27px] h-[27px]" 
-                        alt=""/>
-                        <p className="uppercase text-[#515151] text-[calc(20px-.3vw)]
-                        font-[600] [body.dark_&]:text-white max-sm:text-[calc(15px-.3vw)]">
-                            { currentUser ? "Profile" : "Log in" }
+
+                    {
+                        currentUser ?
+                            <svg width="27" height="27" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="24" cy="14" r="10" fill="#E74C3C"/>
+                                <path d="M24 28C14 28 6 34 6 42H42C42 34 34 28 24 28Z" fill="#E74C3C"/>
+                            </svg>
+                        :
+                            <img
+                                src="https://www.pizza-hut.am/assets/images/app_2/user.svg"
+                                className="w-[27px] h-[27px]"
+                                alt=""/>
+                    }
+                        <p className={`uppercase text-[#515151] text-[calc(20px-.3vw)]
+                            font-[600] [body.dark_&]:text-white max-sm:text-[calc(15px-.3vw)] 
+                            ${ currentUser ? "text-[#e33b41]" : "" }`}>
+                                { currentUser ? "Profile" : "Log in" }
                         </p>
                 </button>
             </footer>

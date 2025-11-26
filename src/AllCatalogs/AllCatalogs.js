@@ -4,7 +4,7 @@ import AboutMenu from "../AboutMenu/AboutMenu";
 import { useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-function AllCatalogs({ isMobile }) {
+function AllCatalogs({ isMobile, currentUser }) {
     const navigate = useNavigate();
     const { type } = useParams();
 
@@ -33,13 +33,19 @@ function AllCatalogs({ isMobile }) {
 
     return (
         <>
-            <HeaderMenu/>
-            
+            {
+                isMobile
+                ?
+                    ''
+                    :
+                    <HeaderMenu currentUser={currentUser}/>
+            }
+
             {
                 loading
                 ?
                 <>
-                    <HeaderMenu/>
+                    <HeaderMenu currentUser={currentUser}/>
 
                     <div className="mt-[80px] fixed inset-0 z-[102] bg-white flex items-center
                     justify-center bg-[#FFF] [body.dark_&]:bg-[#2e2e2e]">
@@ -59,11 +65,34 @@ function AllCatalogs({ isMobile }) {
             ''
             }
 
-            <section className="w-full h-auto mt-[100px] px-[3vw] flex flex-col
-            items-center justify-between
-                gap-5 justify-start">
+            <div className="w-full h-[60px] hidden absolute top-0 left-0 shadow-md
+             items-center max-md:flex">
+                <div className="flex gap-3 items-center ml-2">
+                    <button
+                        className="w-[40px] h-[40px] flex items-center justify-center
+                           border-1 border-gray-200 rounded-xl outline-none
+                           cursor-pointer"
+                            onClick={() => navigate('/')}>
+                        <img
+                            src="https://pizza-hut.am/assets/images/app_2/arrow.svg"
+                            className="w-[20px] h-[20px]"
+                        />
+                    </button>
 
-                <span className="w-full flex gap-5 items-center mt-5">
+
+                    <h2 className="text-[17px] text-[#515151] font-[600]
+                 uppercase [body.dark_&]:text-white">
+                        Menu
+                    </h2>
+                </div>
+            </div>
+
+            <section className="w-full h-auto mt-[100px] px-[3vw]
+                flex flex-col items-center justify-between gap-5
+                justify-start [body.isMobile_&]:mt-[60px]">
+
+                <span className="w-full flex gap-5 items-center mt-5
+                [body.isMobile_&]:hidden">
                     <a
                         className="text-[16px] text-[#9D9D9D] cursor-pointer
                         [body.dark_&]:text-white"
@@ -81,7 +110,7 @@ function AllCatalogs({ isMobile }) {
                     </a>
                 </span>
 
-                <div className="flex w-full justify-between mt-9">
+                <div className="flex w-full justify-between mt-9 [body.isMobile_&]:hidden">
                     <div className="flex gap-4">
                         <img
                             src="https://pizza-hut.am/assets/images/app_2/categories.svg"
@@ -124,7 +153,8 @@ function AllCatalogs({ isMobile }) {
                 <div className="w-full h-[100px] flex
                     justify-center sticky top-[80px]  
                     gap-[3vh] mt-2 products z-[101] bg-white
-                    [body.dark_&]:bg-[#2e2e2e]">
+                    [body.dark_&]:bg-[#2e2e2e] [body.isMobile_&]:hidden
+                    [body.isMobile_&]:top-[0px] [body.isMobile_&]:mt-0">
 
                     <div className="w-[7.5vw] h-[10vh] flex rounded-2xl
                     relative bg-[url('https://bonee.blob.core.windows.net/images/f57285e4-5fcc-f853-b25f-1a2e99f65082_1.jpg')]
