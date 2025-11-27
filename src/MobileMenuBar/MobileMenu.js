@@ -80,9 +80,7 @@ function MobileMenu({ currentUser }) {
             className={`w-[19vw] h-[19vw] flex 
                   flex-col gap-1 items-center justify-center 
                    bg-[#e33b41] rounded-full 
-                  shadow-md cursor-pointer ${orderActive ? "absolute bottom-0" : ''}`}
-            onClick={() => setOrderActive(false)}
-          >
+                  shadow-md cursor-pointer absolute bottom-0`}>
             <img
               src="https://pizza-hut.am/assets/images/app_2/dineIN.svg"
               className="w-[6vh] h-[6vh] max-sm:w-[4vh] max-sm:h-[4vh]"
@@ -98,9 +96,7 @@ function MobileMenu({ currentUser }) {
             className="w-[19vw] h-[19vw] flex 
                   flex-col gap-1 items-center justify-center 
                    bg-blue-500 rounded-full 
-                  shadow-md cursor-pointer"
-            onClick={() => setOrderActive(true)}
-          >
+                  shadow-md cursor-pointer absolute bottom-0">
             <img
               src="https://www.pizza-hut.am/assets/images/app_2/delivery.svg"
               className="w-[6vh] h-[6vh] max-sm:w-[4vh] max-sm:h-[4vh]"

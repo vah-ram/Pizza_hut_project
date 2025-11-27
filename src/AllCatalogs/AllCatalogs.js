@@ -4,13 +4,13 @@ import AboutMenu from "../AboutMenu/AboutMenu";
 import { useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import MobileProductCard from "../MobileProductCard/MobileProductCard";
-import ProductCard from "../ProductCard/ProductCard";
+import CatalogItem from "./CatalogItem";
 
 function AllCatalogs({ isMobile, currentUser }) {
   const navigate = useNavigate();
   const { type } = useParams();
 
-  const [menuTask,setMenuTask] = useState(false);
+  const [menuTask, setMenuTask] = useState(false);
 
   const products = document.querySelectorAll(".products .product");
 
@@ -64,7 +64,7 @@ function AllCatalogs({ isMobile, currentUser }) {
       )}
 
       <div
-        className="w-full h-[60px] hidden absolute top-0 left-0 shadow-md
+        className="w-full h-[60px] hidden absolute top-0 left-0 
              items-center max-md:flex"
       >
         <div className="flex gap-3 items-center ml-2">
@@ -72,7 +72,9 @@ function AllCatalogs({ isMobile, currentUser }) {
             className="w-[40px] h-[40px] flex items-center justify-center
                            border-1 border-gray-200 rounded-xl outline-none
                            cursor-pointer"
-            onClick={() => {navigate(-1)}}
+            onClick={() => {
+              navigate(-1);
+            }}
           >
             <img
               src="https://pizza-hut.am/assets/images/app_2/arrow.svg"
@@ -347,65 +349,40 @@ function AllCatalogs({ isMobile, currentUser }) {
           </h2>
 
           <div
-            className="w-full mt-3 flex flex-wrap gap-20"
+            className="w-full grid max-md:grid-cols-2 
+            grid-cols-5 gap-[3vw] max-md:gap-2"
             alt="filtered products div"
           >
             {true ? (
               <>
-                <div
-                  className="w-[307px] h-[385px] shrink-[0] flex flex-col justify-start
-                                        items-center relative rounded-[20px]
-                                        border-1 border-gray-300 before:content-['-30%']
-                                        before:absolute before:z-1 before:left-0 before:top-[25px]
-                                        before:w-[80px] before:h-[30px] before:bg-[#f33]
-                                        before:text-white before:flex before:justify-center
-                                         before:items-center before:rounded-tr-[8px]
-                                         before:rounded-br-[8px] before:text-[16px] cursor-pointer" 
-                                         onClick={() => {
-                                            isMobile ? setMenuTask(true) : navigate(`/catalog/hi`)
-                                         }}
-                >
-                  <span className="w-[305px] h-[305px] rounded-[20px] overflow-hidden group">
-                    <img
-                      src="https://bonee.blob.core.windows.net/images/a0bcdc66-7da3-0c1a-3887-396ce30bd05a_2.webp"
-                      className="group-hover:scale-110 duration-500"
-                      alt="slider item img"
-                    />
-                  </span>
+                <CatalogItem 
+                  isMobile={isMobile} 
+                  setMenuTask={setMenuTask} />
 
-                  <div className="w-full h-auto flex justify-center items-center mt-2">
-                    <p
-                      className="[body.dark_&]:text-white text-[#515151] font-[600]
-                                 text-[18px] uppercase"
-                    >
-                      Combo Pepperoni
-                    </p>
-                  </div>
+                  <CatalogItem 
+                    isMobile={isMobile} 
+                    setMenuTask={setMenuTask} />
 
-                  <div className="w-[90%] h-[44px] absolute bottom-[-22px] rounded-[10px] flex overflow-hidden">
-                    <button className="w-[50%] cursor-pointer bg-[#3d3d3d]">
-                      <p className="text-[#e33b41] text-[17px] font-[800] font-sans leading-[15px]">
-                        8,800
-                      </p>
+                  <CatalogItem 
+                    isMobile={isMobile} 
+                    setMenuTask={setMenuTask} />
 
-                      <p className="text-[#9d9d9d] text-[12px] line-through">
-                        11,000
-                      </p>
-                    </button>
+                    <CatalogItem 
+                    isMobile={isMobile} 
+                    setMenuTask={setMenuTask} />
 
-                    <button
-                      className="w-[50%] cursor-pointer bg-[#e33b41]
-                                            flex justify-center items-center gap-2 hover:opacity-90">
-                      <img
-                        src="https://www.pizza-hut.am/assets/images/app_2/basketPlus.svg"
-                        className="w-[22px] h-[30px]"
-                        alt=""
-                      />
+                    <CatalogItem 
+                    isMobile={isMobile} 
+                    setMenuTask={setMenuTask} />
 
-                      <p className="text-white text-[14px]">ADD</p>
-                    </button>
-                  </div>
-                </div>
+
+                    <CatalogItem 
+                    isMobile={isMobile} 
+                    setMenuTask={setMenuTask} />
+
+                    <CatalogItem 
+                    isMobile={isMobile} 
+                    setMenuTask={setMenuTask} />
               </>
             ) : (
               ""
@@ -416,7 +393,7 @@ function AllCatalogs({ isMobile, currentUser }) {
 
       <AboutMenu />
 
-      {menuTask ? <MobileProductCard setMenuTask={setMenuTask}/> : ''}
+      {menuTask ? <MobileProductCard setMenuTask={setMenuTask} /> : ""}
     </>
   );
 }

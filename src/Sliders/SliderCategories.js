@@ -2,7 +2,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css"
 import "swiper/css/navigation"
 import { Navigation } from "swiper/modules"
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useRef } from "react";
 
@@ -42,9 +42,12 @@ function SliderCategories() {
                     </div>
 
                     <div className="flex gap-3 h-full items-center">
-                        <p className="text-[#e33b41] text-[16px] cursor-pointer">
-                            {t("see_all")}
-                        </p>
+                            <span 
+                                className="text-[#e33b41] text-[16px] cursor-pointer"
+                                onClick={() => navigate('/catalogs/special-offers')}>
+                                {t("see_all")}
+                            </span>
+
 
                         <div className="flex">
                             <button
