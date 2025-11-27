@@ -1,10 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useState } from "react";
 
 function MobileMenu({ currentUser }) {
   const navigate = useNavigate();
 
   const menuItems = document.querySelectorAll("footer .menuItem");
+
+  const [orderActive, setOrderActive] = useState(null);
 
   menuItems.forEach((elem) => {
     elem.addEventListener("click", () => {
@@ -16,9 +19,18 @@ function MobileMenu({ currentUser }) {
 
   return (
     <>
+      {orderActive ? (
+        <div
+          className="hidden fixed inset-0 z-[100] bg-black/40 
+            items-center justify-center max-md:flex"
+        ></div>
+      ) : (
+        ""
+      )}
+
       <footer
         className="bg-white hidden items-center justify-around 
-            fixed z-[100] w-full h-auto
+            fixed z-[110] w-full h-auto
              absolute bottom-0 max-md:flex bg-white p-2 
              [body.dark_&]:bg-[#2e2e2e] shadow-[0_0_14px_rgba(0,0,0,0.3)]"
       >
@@ -60,23 +72,46 @@ function MobileMenu({ currentUser }) {
           </p>
         </button>
 
-        <button
-          className="w-[19vw] h-[19vw] flex 
-                flex-col gap-1 items-center justify-center 
-                absolute bottom-10 bg-blue-500 rounded-full 
-                shadow-md cursor-pointer"
+        <div
+          className="w-[19vw] flex flex-col absolute bottom-10 
+        gap-2"
         >
-          <img
-            src="https://www.pizza-hut.am/assets/images/app_2/delivery.svg"
-            className="w-[6vh] h-[6vh] max-sm:w-[4vh]
-                        max-sm:h-[4vh]"
-            alt=""
-          />
+          <button
+            className={`w-[19vw] h-[19vw] flex 
+                  flex-col gap-1 items-center justify-center 
+                   bg-[#e33b41] rounded-full 
+                  shadow-md cursor-pointer ${orderActive ? "absolute bottom-0" : ''}`}
+            onClick={() => setOrderActive(false)}
+          >
+            <img
+              src="https://pizza-hut.am/assets/images/app_2/dineIN.svg"
+              className="w-[6vh] h-[6vh] max-sm:w-[4vh] max-sm:h-[4vh]"
+              alt=""
+            />
 
-          <p className="text-[2vw] text-white font-[600] uppercase">
-            {t("delivery")}
-          </p>
-        </button>
+            <p className="text-[2vw] text-white font-[600] uppercase">
+              Order now
+            </p>
+          </button>
+
+          <button
+            className="w-[19vw] h-[19vw] flex 
+                  flex-col gap-1 items-center justify-center 
+                   bg-blue-500 rounded-full 
+                  shadow-md cursor-pointer"
+            onClick={() => setOrderActive(true)}
+          >
+            <img
+              src="https://www.pizza-hut.am/assets/images/app_2/delivery.svg"
+              className="w-[6vh] h-[6vh] max-sm:w-[4vh] max-sm:h-[4vh]"
+              alt=""
+            />
+
+            <p className="text-[2vw] text-white font-[600] uppercase">
+              {t("delivery")}
+            </p>
+          </button>
+        </div>
 
         <button
           className="flex flex-col gap-1 justify-center items-center"

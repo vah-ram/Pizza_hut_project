@@ -1,11 +1,11 @@
 img {pointer-events: none}
 
 @font-face {
-    font-family: "ProximaNova";
+  font-family: "Kedebideri", sans-serif;
 }
 
 body {
-    font-family: "Proxima Nova Rg", sans-serif;
+  font-family: "Kedebideri", sans-serif;
 }
 
 body::-webkit-scrollbar {
