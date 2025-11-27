@@ -6,12 +6,31 @@ import { useNavigate } from "react-router-dom";
 import BasketItem from "./BasketItem";
 import { useState } from "react";
 import CountrySelect from "../CountrySelect/CountrySelect";
+import { DayPicker } from "react-day-picker";
+import "react-day-picker/dist/style.css";
 
 function Basket({ isMobile, currentUser }) {
   const navigate = useNavigate();
 
   const [openCalendar, setOpenCalendar] = useState(null);
   const [basketProducts, setBasketProducts] = useState(["history", "mi"]);
+
+  const [calendarDate, setCalendarDate] = useState(new Date());
+
+  const [openTime, setOpenTime] = useState(false);
+  const [selectedTime, setSelectedTime] = useState("10:00");
+
+  const generateTimes = () => {
+    const times = [];
+    for (let hour = 0; hour < 24; hour++) {
+      for (let min of ["00", "15", "30", "45"]) {
+        times.push(`${hour.toString().padStart(2, "0")}:${min}`);
+      }
+    }
+    return times;
+  };
+
+  const timeList = generateTimes();
 
   const { t } = useTranslation();
 
@@ -26,7 +45,7 @@ function Basket({ isMobile, currentUser }) {
           <button
             className="w-[40px] h-[40px] flex items-center justify-center
                            border-1 border-gray-200 rounded-xl outline-none absolute left-5
-                           cursor-pointer" 
+                           cursor-pointer"
             onClick={() => navigate("/")}
           >
             <img
@@ -86,7 +105,13 @@ function Basket({ isMobile, currentUser }) {
                                     bg-transparent rounded-[15px] border-1 border-[#ebebeb] 
                                     flex items-center justify-between cursor-pointer"
                 >
-                  <p className="text-[calc(12px+.3vw)]">Today</p>
+                  <p className="text-[calc(12px+.3vw)]">
+                    {calendarDate.toLocaleDateString("hy-AM", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })}
+                  </p>
 
                   <img
                     src="https://pizza-hut.am/assets/images/app_2/arrow.svg"
@@ -95,26 +120,19 @@ function Basket({ isMobile, currentUser }) {
                 </button>
 
                 {openCalendar && (
-                  <div className="mt-4 p-4 bg-white border rounded-xl shadow-lg w-72">
-                    <h2 className="text-lg font-semibold mb-2">Օրացույց</h2>
-
-                    <div className="grid grid-cols-7 gap-1 text-center text-sm">
-                      {["Կ", "Ե", "Չ", "Հ", "Ու", "Շ", "Կ"].map((d) => (
-                        <div key={d} className="font-semibold">
-                          {d}
-                        </div>
-                      ))}
-
-                      {Array.from({ length: 30 }).map((_, i) => (
-                        <div
-                          key={i}
-                          className="p-2 hover:bg-blue-100 cursor-pointer rounded-lg"
-                        >
-                          {i + 1}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+                  <DayPicker
+                    mode="single"
+                    captionLayout="dropdown"
+                    pagedNavigation
+                    className="custom-calendar bg-white shadow-xl z-[100] p-2 
+                    text-[12px]"
+                    selected={calendarDate}
+                    onSelect={(date) => {
+                      if (!date) return;
+                      setCalendarDate(date);
+                      setOpenCalendar(false);
+                    }}
+                  />
                 )}
               </div>
             </div>
@@ -133,7 +151,7 @@ function Basket({ isMobile, currentUser }) {
                             items-center absolute right-0"
               >
                 <button
-                  onClick={() => setOpenCalendar(!openCalendar)}
+                  onClick={() => setOpenTime(!openTime)}
                   className="w-full px-[10px] py-[13px]
                                     bg-transparent rounded-[15px] border-1 border-[#ebebeb] 
                                     flex items-center justify-between cursor-pointer"
@@ -146,28 +164,25 @@ function Basket({ isMobile, currentUser }) {
                   />
                 </button>
 
-                {openCalendar && (
-                  <div className="mt-4 p-4 bg-white border rounded-xl shadow-lg w-72">
-                    <h2 className="text-lg font-semibold mb-2">Օրացույց</h2>
-
-                    <div className="grid grid-cols-7 gap-1 text-center text-sm">
-                      {["Կ", "Ե", "Չ", "Հ", "Ու", "Շ", "Կ"].map((d) => (
-                        <div key={d} className="font-semibold">
-                          {d}
-                        </div>
-                      ))}
-
-                      {Array.from({ length: 30 }).map((_, i) => (
+                {openTime && (
+                    <div
+                      className="absolute top-[60px] bg-white shadow-xl border rounded-xl w-full 
+                                max-h-[200px] overflow-y-auto z-[999]"
+                    >
+                      {timeList.map((time) => (
                         <div
-                          key={i}
-                          className="p-2 hover:bg-blue-100 cursor-pointer rounded-lg"
+                          key={time}
+                          className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-[15px]"
+                          onClick={() => {
+                            setSelectedTime(time);
+                            setOpenTime(false);
+                          }}
                         >
-                          {i + 1}
+                          {time}
                         </div>
                       ))}
                     </div>
-                  </div>
-                )}
+                  )}
               </div>
             </div>
 
@@ -261,7 +276,13 @@ function Basket({ isMobile, currentUser }) {
                                     bg-transparent rounded-[15px] border-1 border-[#ebebeb] 
                                     flex items-center justify-between cursor-pointer"
                   >
-                    <p className="text-[calc(12px+.3vw)]">Today</p>
+                    <p className="text-[calc(12px+.3vw)]">
+                      {calendarDate.toLocaleDateString("hy-AM", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
+                    </p>
 
                     <img
                       src="https://pizza-hut.am/assets/images/app_2/arrow.svg"
@@ -270,26 +291,19 @@ function Basket({ isMobile, currentUser }) {
                   </button>
 
                   {openCalendar && (
-                    <div className="mt-4 p-4 bg-white border rounded-xl shadow-lg w-72">
-                      <h2 className="text-lg font-semibold mb-2">Օրացույց</h2>
-
-                      <div className="grid grid-cols-7 gap-1 text-center text-sm">
-                        {["Կ", "Ե", "Չ", "Հ", "Ու", "Շ", "Կ"].map((d) => (
-                          <div key={d} className="font-semibold">
-                            {d}
-                          </div>
-                        ))}
-
-                        {Array.from({ length: 30 }).map((_, i) => (
-                          <div
-                            key={i}
-                            className="p-2 hover:bg-blue-100 cursor-pointer rounded-lg"
-                          >
-                            {i + 1}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
+                    <DayPicker
+                      mode="single"
+                      captionLayout="dropdown"
+                      pagedNavigation
+                      className="custom-calendar bg-white shadow-xl z-[100] 
+                      p-2"
+                      selected={calendarDate}
+                      onSelect={(date) => {
+                        if (!date) return;
+                        setCalendarDate(date);
+                        setOpenCalendar(false);
+                      }}
+                    />
                   )}
                 </div>
               </div>
@@ -308,7 +322,7 @@ function Basket({ isMobile, currentUser }) {
                             items-center absolute right-0"
                 >
                   <button
-                    onClick={() => setOpenCalendar(!openCalendar)}
+                    onClick={() => setOpenTime(!openTime)}
                     className="w-full px-[10px] py-[10px]
                                     bg-transparent rounded-[15px] border-1 border-[#ebebeb] 
                                     flex items-center justify-between cursor-pointer"
@@ -321,26 +335,23 @@ function Basket({ isMobile, currentUser }) {
                     />
                   </button>
 
-                  {openCalendar && (
-                    <div className="mt-4 p-4 bg-white border rounded-xl shadow-lg w-72">
-                      <h2 className="text-lg font-semibold mb-2">Օրացույց</h2>
-
-                      <div className="grid grid-cols-7 gap-1 text-center text-sm">
-                        {["Կ", "Ե", "Չ", "Հ", "Ու", "Շ", "Կ"].map((d) => (
-                          <div key={d} className="font-semibold">
-                            {d}
-                          </div>
-                        ))}
-
-                        {Array.from({ length: 30 }).map((_, i) => (
-                          <div
-                            key={i}
-                            className="p-2 hover:bg-blue-100 cursor-pointer rounded-lg"
-                          >
-                            {i + 1}
-                          </div>
-                        ))}
-                      </div>
+                  {openTime && (
+                    <div
+                      className="absolute top-[60px] bg-white shadow-xl border rounded-xl w-full 
+                                max-h-[200px] overflow-y-auto z-[999]"
+                    >
+                      {timeList.map((time) => (
+                        <div
+                          key={time}
+                          className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-[15px]"
+                          onClick={() => {
+                            setSelectedTime(time);
+                            setOpenTime(false);
+                          }}
+                        >
+                          {time}
+                        </div>
+                      ))}
                     </div>
                   )}
                 </div>
@@ -459,7 +470,7 @@ function Basket({ isMobile, currentUser }) {
                     >
                       <input
                         type="text"
-                        value={currentUser ? currentUser.phonenumber : ''}
+                        value={currentUser ? currentUser.phonenumber : ""}
                         className="border-none outline-none w-full
                                             [body.dark_&]:text-white text-[#515151]"
                         maxLength={50}
@@ -474,7 +485,11 @@ function Basket({ isMobile, currentUser }) {
                 >
                   <input
                     type="text"
-                    value={currentUser ? `${currentUser.name} ${currentUser.surname}` : ''}
+                    value={
+                      currentUser
+                        ? `${currentUser.name} ${currentUser.surname}`
+                        : ""
+                    }
                     className="border-none outline-none w-full
                                     [body.dark_&]:text-white text-[#515151]"
                     maxLength={50}
@@ -488,7 +503,7 @@ function Basket({ isMobile, currentUser }) {
                 >
                   <input
                     type="text"
-                    value={currentUser ? currentUser.email : ''}
+                    value={currentUser ? currentUser.email : ""}
                     className="border-none outline-none w-full
                                     [body.dark_&]:text-white text-[#515151]"
                     maxLength={50}
