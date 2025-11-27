@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 
 function MyProfile({ currentUser }) {
   const navigate = useNavigate();
-
   const [formType, setFormType] = useState("information");
+  const [isEditing, setIsEditing] = useState(null);
 
   const [modeValue, setModeValue] = useState(() => {
     return localStorage.getItem("darkMode") === "true";
@@ -123,17 +123,22 @@ function MyProfile({ currentUser }) {
                   </label>
 
                   <div
-                    className="w-full mt-2 flex gap-5 items-center px-3 py-4 rounded-[15px]
-                                            border border-1 border-gray-200 max-md:w-full [body.dark_&]:border-[#FFF4]"
+                    className={`w-full mt-2 flex gap-5 items-center px-3 py-4 rounded-[15px]
+                                            border border-1 border-gray-200 max-md:w-full [body.dark_&]:border-[#FFF4] 
+                                            ${isEditing ? "border-red-500" : ''}`}
                   >
-                    <input
-                      type="text"
-                      value={currentUser?.name}
-                      className="border-none outline-none w-full
+                    {isEditing ? (
+                      <input
+                        type="text"
+                        className="border-none outline-none w-full
                                          [body.dark_&]:text-white text-[#515151]"
-                      maxLength={50}
-                      disabled={true}
-                    />
+                        maxLength={50}
+                      />
+                    ) : (
+                      <p className="[body.dark_&]:text-white text-[#515151]">
+                        {currentUser?.name}
+                      </p>
+                    )}
                   </div>
                 </div>
 
@@ -146,17 +151,22 @@ function MyProfile({ currentUser }) {
                   </label>
 
                   <div
-                    className="w-full mt-2 flex gap-5 items-center px-3 py-4 rounded-[15px]
-                                            border border-1 border-gray-200 max-md:w-full [body.dark_&]:border-[#FFF4]"
+                    className={`w-full mt-2 flex gap-5 items-center px-3 py-4 rounded-[15px]
+                                            border border-1 border-gray-200 max-md:w-full [body.dark_&]:border-[#FFF4] 
+                                            ${isEditing ? "border-red-500" : ''}`}
                   >
-                    <input
-                      type="text"
-                      value={currentUser?.surname}
-                      className="border-none outline-none w-full
+                    {isEditing ? (
+                      <input
+                        type="text"
+                        className="border-none outline-none w-full
                                                     [body.dark_&]:text-white text-[#515151]"
-                      maxLength={50}
-                      disabled={true}
-                    />
+                        maxLength={50}
+                      />
+                    ) : (
+                      <p className="[body.dark_&]:text-white text-[#515151]">
+                        {currentUser?.surname}
+                      </p>
+                    )}
                   </div>
                 </div>
               </div>
@@ -170,17 +180,22 @@ function MyProfile({ currentUser }) {
                 </label>
 
                 <div
-                  className="w-full mt-2 flex gap-5 items-center px-3 py-4 rounded-[15px]
-                                        border border-1 border-gray-200 [body.dark_&]:border-[#FFF4]"
+                  className={`w-full mt-2 flex gap-5 items-center px-3 py-4 rounded-[15px]
+                                        border border-1 border-gray-200 [body.dark_&]:border-[#FFF4] 
+                                        ${isEditing ? "border-red-500" : ''}`}
                 >
-                  <input
-                    type="email"
-                    value={currentUser?.email}
-                    className="border-none outline-none w-full
+                  {isEditing ? (
+                    <input
+                      type="email"
+                      className="border-none outline-none w-full
                                             [body.dark_&]:text-white text-[#515151]"
-                    maxLength={50}
-                    disabled={true}
-                  />
+                      maxLength={50}
+                    />
+                  ) : (
+                    <p className="[body.dark_&]:text-white text-[#515151]">
+                      {currentUser?.email}
+                    </p>
+                  )}
                 </div>
               </div>
 
@@ -199,30 +214,71 @@ function MyProfile({ currentUser }) {
 
                   <div className="w-[90%]">
                     <div
-                      className="w-full mt-2 flex gap-5 items-center px-3 py-4 rounded-[15px]
-                                            border border-1 border-gray-200 [body.dark_&]:border-[#FFF4]"
+                      className={`w-full mt-2 flex gap-5 items-center px-3 py-4 rounded-[15px]
+                                            border border-1 border-gray-200 [body.dark_&]:border-[#FFF4] 
+                                            ${isEditing ? "border-red-500" : ''}`}
                     >
-                      <input
-                        type="text"
-                        value={currentUser?.phonenumber}
-                        className="border-none outline-none w-full
+                      {isEditing ? (
+                        <input
+                          type="text"
+                          className="border-none outline-none w-full
                                                 [body.dark_&]:text-white text-[#515151]"
-                        maxLength={50}
-                        disabled={true}
-                      />
+                          maxLength={50}
+                        />
+                      ) : (
+                        <p className="[body.dark_&]:text-white text-[#515151]">
+                          {currentUser?.phonenumber}
+                        </p>
+                      )}
                     </div>
                   </div>
                 </div>
               </div>
 
-              <button
-                type="submit"
-                className="w-full p-[15px] rounded-[15px] bg-[#e33b41]
+              {isEditing ? (
+                <>
+                  <div className="flex gap-4">
+                    <button
+                      type="submit"
+                      className="w-full p-[15px] rounded-[15px] bg-[#e33b41]
                                         uppercase text-white mt-2 cursor-pointer
                                         hover:opacity-90"
-              >
-                Edit
-              </button>
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setIsEditing(false);
+                      }}
+                    >
+                      Cancel
+                    </button>
+
+                    <button
+                      type="submit"
+                      className="w-full p-[15px] rounded-[15px] bg-[#e33b41]
+                                        uppercase text-white mt-2 cursor-pointer
+                                        hover:opacity-90"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setIsEditing(true);
+                      }}
+                    >
+                      Save
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <button
+                  type="submit"
+                  className="w-full p-[15px] rounded-[15px] bg-[#e33b41]
+                                        uppercase text-white mt-2 cursor-pointer
+                                        hover:opacity-90"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setIsEditing(true);
+                  }}
+                >
+                  Edit
+                </button>
+              )}
             </form>
           ) : (
             <form className="w-full mt-5 flex flex-col gap-3">

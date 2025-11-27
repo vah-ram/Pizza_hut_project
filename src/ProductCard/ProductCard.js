@@ -34,11 +34,22 @@ function ProductCard() {
 
           <div className="w-full flex gap-5">
             <div className="w-[40%] h-auto group overflow-hidden">
+              <span className="relative flex w-[30vw] h-[30vw]">
               <img
                 src="https://bonee.blob.core.windows.net/images/3cb64dce-f9bc-6b0a-dd0f-dc785729de67_2.webp"
-                className="w-[60vmin] h-[60vmin] group-hover:opacity-80"
+                className="w-full h-full object-cover group-hover:opacity-80"
                 alt="slider item img"
               />
+
+              <div
+                className="absolute top-10 left-2 bg-red-500 text-white text-sm  
+                          px-3 py-1 rounded-r-md flex justify-center items-center w-[80px] 
+                          flex "
+              >
+                -20%
+              </div>
+            </span>
+
             </div>
 
             <div className="w-[60%] h-full px-5 flex flex-col">
@@ -177,8 +188,8 @@ function ProductCard() {
                     <button
                       className="w-[120px] h-[40px] cursor-pointer
                                         bg-[#e33b41] flex justify-center items-center
-                                        gap-2 hover:opacity-90 rounded-lg z-[1]" 
-                                        onClick={() => navigate('/basket')}
+                                        gap-2 hover:opacity-90 rounded-lg z-[1]"
+                      onClick={() => navigate("/basket")}
                     >
                       <img
                         src="	https://pizza-hut.am/assets/images/app_2/basketWhite.svg"
