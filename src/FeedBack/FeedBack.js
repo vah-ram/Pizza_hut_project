@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import HeaderMenu from "../HeaderMenu/HeaderMenu";
-import MobileMenu from "../MobileMenuBar.js/MobileMenu";
+import MobileMenu from "../MobileMenuBar/MobileMenu";
 import axios from "axios";
 import { addFeedbackHost } from "../utils/Hosts";
 import { useTranslation } from "react-i18next";

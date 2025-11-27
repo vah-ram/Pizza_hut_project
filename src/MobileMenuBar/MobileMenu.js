@@ -3,6 +3,14 @@ import { useNavigate } from "react-router-dom";
 function MobileMenu({ currentUser }) {
   const navigate = useNavigate();
 
+  const menuItems = document.querySelectorAll('footer .menuItem');
+
+  menuItems.forEach(elem => {
+    elem.addEventListener('click', () => {
+      elem.classList.add('activated')
+    })
+  });
+
   return (
     <>
       <footer
@@ -13,7 +21,7 @@ function MobileMenu({ currentUser }) {
       >
         <button
           className="flex flex-col gap-1 justify-center 
-                        items-center cursor-pointer"
+                        items-center cursor-pointer menuItem"
           onClick={() => navigate("/")}
         >
           <img
@@ -23,7 +31,8 @@ function MobileMenu({ currentUser }) {
           />
           <p
             className="uppercase text-[#515151] text-[calc(20px-.3vw)]
-                         font-[600] [body.dark_&]:text-white max-sm:text-[calc(15px-.3vw)]"
+                         font-[600] [body.dark_&]:text-white max-sm:text-[calc(15px-.3vw)] 
+                         [.menuItem.activated_&]:text-[#e33b41]"
           >
             Home
           </p>
@@ -31,7 +40,7 @@ function MobileMenu({ currentUser }) {
 
         <button
           className="flex flex-col gap-1 justify-center 
-                        items-center cursor-pointer mr-3"
+                        items-center cursor-pointer mr-3 menuItem"
           onClick={() => navigate("/about-us")}
         >
           <img
@@ -41,7 +50,8 @@ function MobileMenu({ currentUser }) {
           />
           <p
             className="uppercase text-[#515151] text-[calc(20px-.3vw)]
-                         font-[600] [body.dark_&]:text-white max-sm:text-[calc(15px-.3vw)]"
+                         font-[600] [body.dark_&]:text-white max-sm:text-[calc(15px-.3vw)] 
+                         [.menuItem.activated_&]:text-[#e33b41]"
           >
             About us
           </p>
@@ -68,7 +78,7 @@ function MobileMenu({ currentUser }) {
                     after:content-['0'] after:absolute after:w-[17px] after:h-[17px]
                     after:flex after:justify-center after:items-center after:text-[#515151]
                      after:text-[11px] after:top-[-7px] after:right-[3px] cursor-pointer ml-3
-                     [body.dark_&]:after:text-white"
+                     [body.dark_&]:after:text-white menuItem"
           onClick={() => navigate("/basket")}
         >
           <img
@@ -79,7 +89,8 @@ function MobileMenu({ currentUser }) {
 
           <p
             className="uppercase text-[#515151] text-[calc(20px-.3vw)]
-                         font-[600] [body.dark_&]:text-white max-sm:text-[calc(15px-.3vw)]"
+                         font-[600] [body.dark_&]:text-white max-sm:text-[calc(15px-.3vw)] 
+                         [.menuItem.activated_&]:text-[#e33b41]"
           >
             Basket
           </p>
@@ -87,7 +98,7 @@ function MobileMenu({ currentUser }) {
 
         <button
           className="flex flex-col gap-1 justify-center 
-                    items-center cursor-pointer"
+                    items-center cursor-pointer menuItem"
           onClick={() => {
             currentUser ? navigate("/profile/profile") : navigate("/signIn");
           }}

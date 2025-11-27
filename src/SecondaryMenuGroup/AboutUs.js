@@ -14,7 +14,7 @@ import {
 } from "react-icons/fa";
 import AboutMenu from "../AboutMenu/AboutMenu";
 import HeaderMenu from "../HeaderMenu/HeaderMenu";
-import MobileMenu from "../MobileMenuBar.js/MobileMenu";
+import MobileMenu from "../MobileMenuBar/MobileMenu";
 
 export default function AboutUs({ isMobile }) {
   return (

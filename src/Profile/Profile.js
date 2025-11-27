@@ -8,7 +8,7 @@ import ProfileReviews from "./ProfileReviews";
 import MyAddress from "./MyAddress";
 import ProfileSupport from "./ProfileSupport";
 import ProfilePayment from "./ProfilePayment";
-import MobileMenu from "../MobileMenuBar.js/MobileMenu";
+import MobileMenu from "../MobileMenuBar/MobileMenu";
 import { useTranslation } from "react-i18next";
 
 function Profile({ isMobile, currentUser }) {

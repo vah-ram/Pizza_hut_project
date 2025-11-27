@@ -1,7 +1,7 @@
 import HeaderMenu from "./HeaderMenu/HeaderMenu";
 import SliderCategories from "./Sliders/SliderCategories";
 import SliderOffers from "./Sliders/SliderOffers";
-import MobileMenu from "./MobileMenuBar.js/MobileMenu";
+import MobileMenu from "./MobileMenuBar/MobileMenu";
 import MobilePizzaMenu from "./MobilePizzaMenu/MobilePizzaMenu";
 import AboutMenu from "./AboutMenu/AboutMenu";
 import { useNavigate } from "react-router-dom";

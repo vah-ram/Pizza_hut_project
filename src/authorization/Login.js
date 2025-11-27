@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { loginHost } from "../utils/Hosts";
 import { toast, Toaster } from "sonner";
 import axios from "axios";
-import MobileMenu from "../MobileMenuBar.js/MobileMenu";
+import MobileMenu from "../MobileMenuBar/MobileMenu";
 import { useTranslation } from "react-i18next";
 
 function Login() {
@@ -77,7 +77,7 @@ function Login() {
           </button>
 
           <div
-            className="flex flex-col gap-[5rem] items-center
+            className="flex flex-col gap-[7vw] items-center
                        max-lg:p-10"
           >
             <div className="flex gap-4 mr-auto ml-[-20px]">
@@ -280,7 +280,8 @@ function Login() {
               alt="Email"
             />
 
-            <p className="uppercase [body.dark_&]:text-white max-lg:text-[1.5vw] max-md:text-[16px]">
+            <p className="uppercase [body.dark_&]:text-white max-lg:text-[1.5vw]
+             max-md:text-[16px]" onClick={() => navigate('/basket')}>
               {t("login_continue_guest")}
             </p>
 

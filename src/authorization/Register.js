@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { registerHost, verifyEmailHost } from "../utils/Hosts.js";
 import { Toaster, toast } from "sonner";
-import MobileMenu from "../MobileMenuBar.js/MobileMenu";
+import MobileMenu from "../MobileMenuBar/MobileMenu";
 import { useTranslation } from "react-i18next";
 import CountrySelect from "../CountrySelect/CountrySelect";
 
@@ -177,7 +177,7 @@ function Register() {
             <p className="text-white text-[14px]">{t("menu_home")}</p>
           </button>
 
-          <div className="flex flex-col gap-[5rem] items-center max-lg:p-10">
+          <div className="flex flex-col gap-[7vw] items-center max-lg:p-10">
             <div className="flex gap-4 mr-auto ml-[-20px]">
               <span
                 className="w-[50px] h-[50px] rounded-full block

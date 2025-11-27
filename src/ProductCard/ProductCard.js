@@ -177,7 +177,8 @@ function ProductCard() {
                     <button
                       className="w-[120px] h-[40px] cursor-pointer
                                         bg-[#e33b41] flex justify-center items-center
-                                        gap-2 hover:opacity-90 rounded-lg z-[1]"
+                                        gap-2 hover:opacity-90 rounded-lg z-[1]" 
+                                        onClick={() => navigate('/basket')}
                     >
                       <img
                         src="	https://pizza-hut.am/assets/images/app_2/basketWhite.svg"

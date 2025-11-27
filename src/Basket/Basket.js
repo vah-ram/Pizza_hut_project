@@ -17,6 +17,7 @@ function Basket({ isMobile, currentUser }) {
 
   return (
     <>
+      <MobileMenu />
       {isMobile ? (
         <div
           className="w-full h-[60px] hidden absolute top-0 left-0 shadow-md
@@ -25,7 +26,8 @@ function Basket({ isMobile, currentUser }) {
           <button
             className="w-[40px] h-[40px] flex items-center justify-center
                            border-1 border-gray-200 rounded-xl outline-none absolute left-5
-                           cursor-pointer"
+                           cursor-pointer" 
+            onClick={() => navigate("/")}
           >
             <img
               src="https://pizza-hut.am/assets/images/app_2/arrow.svg"
@@ -42,7 +44,7 @@ function Basket({ isMobile, currentUser }) {
       )}
 
       {basketProducts.length > 0 ? (
-        <section className="w-full h-auto px-[3vw] pt-[120px]">
+        <section className="w-full h-auto px-[3vw] pt-[120px] max-md:pt-[30px] max-md:pb-[15vh]">
           <span className="w-full flex gap-5 items-center mt-5 [body.isMobile_&]:hidden">
             <a
               className="text-[16px] text-[#9D9D9D] cursor-pointer
@@ -61,11 +63,122 @@ function Basket({ isMobile, currentUser }) {
             <a className="text-[#e33b41] text-[16px]">{t("basket")}</a>
           </span>
 
-          <div className="w-full h-full flex mt-5 gap-[60px] pb-10 pt-5 max-md:flex-col">
+          <div
+            className="w-full h-full flex mt-5 gap-[60px] pb-10 pt-5 max-md:flex-col 
+          max-md:gap-[20px]"
+          >
+            <div className="hidden gap-10 relative max-md:flex">
+              <span className="flex flex-col">
+                <p className="text-[calc(10px+.3vw)] text-[#9d9d9d]">Order</p>
+
+                <h2 className="uppercase text-[calc(16px+.3vw)] font-[600] text-[#515151]">
+                  Date
+                </h2>
+              </span>
+
+              <div
+                className="w-[calc(100%-125px)] flex flex-col 
+                            items-center absolute right-0"
+              >
+                <button
+                  onClick={() => setOpenCalendar(!openCalendar)}
+                  className="w-full px-[10px] py-[13px]
+                                    bg-transparent rounded-[15px] border-1 border-[#ebebeb] 
+                                    flex items-center justify-between cursor-pointer"
+                >
+                  <p className="text-[calc(12px+.3vw)]">Today</p>
+
+                  <img
+                    src="https://pizza-hut.am/assets/images/app_2/arrow.svg"
+                    className="rotate-[-90deg] w-[8px]"
+                  />
+                </button>
+
+                {openCalendar && (
+                  <div className="mt-4 p-4 bg-white border rounded-xl shadow-lg w-72">
+                    <h2 className="text-lg font-semibold mb-2">Օրացույց</h2>
+
+                    <div className="grid grid-cols-7 gap-1 text-center text-sm">
+                      {["Կ", "Ե", "Չ", "Հ", "Ու", "Շ", "Կ"].map((d) => (
+                        <div key={d} className="font-semibold">
+                          {d}
+                        </div>
+                      ))}
+
+                      {Array.from({ length: 30 }).map((_, i) => (
+                        <div
+                          key={i}
+                          className="p-2 hover:bg-blue-100 cursor-pointer rounded-lg"
+                        >
+                          {i + 1}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <div className="hidden gap-10 relative max-md:flex">
+              <span className="flex flex-col">
+                <p className="text-[calc(10px+.3vw)] text-[#9d9d9d]">Order</p>
+
+                <h2 className="uppercase text-[calc(16px+.3vw)] font-[600] text-[#515151]">
+                  Time
+                </h2>
+              </span>
+
+              <div
+                className="w-[calc(100%-125px)] flex flex-col 
+                            items-center absolute right-0"
+              >
+                <button
+                  onClick={() => setOpenCalendar(!openCalendar)}
+                  className="w-full px-[10px] py-[13px]
+                                    bg-transparent rounded-[15px] border-1 border-[#ebebeb] 
+                                    flex items-center justify-between cursor-pointer"
+                >
+                  <p className="text-[calc(12px+.3vw)]">10:00</p>
+
+                  <img
+                    src="https://pizza-hut.am/assets/images/app_2/arrow.svg"
+                    className="rotate-[-90deg] w-[8px]"
+                  />
+                </button>
+
+                {openCalendar && (
+                  <div className="mt-4 p-4 bg-white border rounded-xl shadow-lg w-72">
+                    <h2 className="text-lg font-semibold mb-2">Օրացույց</h2>
+
+                    <div className="grid grid-cols-7 gap-1 text-center text-sm">
+                      {["Կ", "Ե", "Չ", "Հ", "Ու", "Շ", "Կ"].map((d) => (
+                        <div key={d} className="font-semibold">
+                          {d}
+                        </div>
+                      ))}
+
+                      {Array.from({ length: 30 }).map((_, i) => (
+                        <div
+                          key={i}
+                          className="p-2 hover:bg-blue-100 cursor-pointer rounded-lg"
+                        >
+                          {i + 1}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+
             <div className="w-[60%] flex flex-col max-md:w-full">
+              <h2 className="hidden max-md:block uppercase mt-2 text-[#515151] font-[600]">
+                Selected menu
+              </h2>
+
               <div
                 className="w-full flex justify-between border-b-1
-                         border-[#ebebeb] pb-[15px]"
+                         border-[#ebebeb] pb-[15px] max-md:hidden"
               >
                 <p className="text-[#9d9d9d] text-[calc(12px+.3vw)]">Product</p>
 
@@ -126,13 +239,16 @@ function Basket({ isMobile, currentUser }) {
 
             <div
               className="w-[40%] h-full rounded-[15px] border-1 
-                    border-[#ebebeb] p-[15px] flex flex-col gap-5"
+                    border-[#ebebeb] p-[15px] flex flex-col gap-5 
+                    max-md:w-full max-md:border-none max-md:p-0"
             >
-              <div className="flex gap-10 relative">
+              <div className="flex gap-10 relative max-md:hidden">
                 <span className="flex flex-col">
                   <p className="text-[calc(10px+.3vw)] text-[#9d9d9d]">Order</p>
 
-                  <h2 className="uppercase text-[calc(12px+.3vw)]">Date</h2>
+                  <h2 className="uppercase text-[calc(12px+.3vw)] font-[600] text-[#515151]">
+                    Date
+                  </h2>
                 </span>
 
                 <div
@@ -178,11 +294,13 @@ function Basket({ isMobile, currentUser }) {
                 </div>
               </div>
 
-              <div className="flex gap-10 relative">
+              <div className="flex gap-10 relative max-md:hidden">
                 <span className="flex flex-col">
                   <p className="text-[calc(10px+.3vw)] text-[#9d9d9d]">Order</p>
 
-                  <h2 className="uppercase text-[calc(12px+.3vw)]">Time</h2>
+                  <h2 className="uppercase text-[calc(12px+.3vw)] font-[600] text-[#515151]">
+                    Time
+                  </h2>
                 </span>
 
                 <div
@@ -231,15 +349,16 @@ function Basket({ isMobile, currentUser }) {
               <button
                 className="w-full px-[10px] py-[10px]
                             bg-[rgba(227,59,65,0.1)] rounded-[15px] border-1 border-red-500  
-                            flex items-center justify-between cursor-pointer "
+                            flex items-center justify-between cursor-pointer 
+                            max-md:py-[13px] max-md:border-none"
               >
                 <p className="text-[calc(12px+.3vw)] text-[#e33b41]">
                   Select the payment method
                 </p>
 
                 <svg
-                  width="20"
-                  height="20"
+                  width={isMobile ? "15px" : "20px"}
+                  height={isMobile ? "15px" : "20px"}
                   viewBox="0 0 24 24"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -280,15 +399,16 @@ function Basket({ isMobile, currentUser }) {
               <button
                 className="w-full px-[10px] py-[10px]
                             bg-[rgba(227,59,65,0.1)] rounded-[15px] border-1 border-red-500  
-                            flex items-center justify-between cursor-pointer "
+                            flex items-center justify-between cursor-pointer 
+                            max-md:py-[13px] max-md:border-none"
               >
                 <p className="text-[calc(12px+.3vw)] text-[#e33b41]">
-                  Select Address
+                  Add Address
                 </p>
 
                 <svg
-                  width="20"
-                  height="20"
+                  width={isMobile ? "15px" : "20px"}
+                  height={isMobile ? "15px" : "20px"}
                   viewBox="0 0 24 24"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -339,7 +459,7 @@ function Basket({ isMobile, currentUser }) {
                     >
                       <input
                         type="text"
-                        value={currentUser?.phonenumber}
+                        value={currentUser ? currentUser.phonenumber : ''}
                         className="border-none outline-none w-full
                                             [body.dark_&]:text-white text-[#515151]"
                         maxLength={50}
@@ -354,7 +474,7 @@ function Basket({ isMobile, currentUser }) {
                 >
                   <input
                     type="text"
-                    value={`${currentUser?.name} ${currentUser?.surname}`}
+                    value={currentUser ? `${currentUser.name} ${currentUser.surname}` : ''}
                     className="border-none outline-none w-full
                                     [body.dark_&]:text-white text-[#515151]"
                     maxLength={50}
@@ -368,7 +488,7 @@ function Basket({ isMobile, currentUser }) {
                 >
                   <input
                     type="text"
-                    value={currentUser?.email}
+                    value={currentUser ? currentUser.email : ''}
                     className="border-none outline-none w-full
                                     [body.dark_&]:text-white text-[#515151]"
                     maxLength={50}
