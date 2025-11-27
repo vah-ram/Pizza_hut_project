@@ -1,15 +1,18 @@
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 function MobileMenu({ currentUser }) {
   const navigate = useNavigate();
 
-  const menuItems = document.querySelectorAll('footer .menuItem');
+  const menuItems = document.querySelectorAll("footer .menuItem");
 
-  menuItems.forEach(elem => {
-    elem.addEventListener('click', () => {
-      elem.classList.add('activated')
-    })
+  menuItems.forEach((elem) => {
+    elem.addEventListener("click", () => {
+      elem.classList.add("activated");
+    });
   });
+
+  const { t } = useTranslation();
 
   return (
     <>
@@ -31,10 +34,10 @@ function MobileMenu({ currentUser }) {
           />
           <p
             className="uppercase text-[#515151] text-[calc(20px-.3vw)]
-                         font-[600] [body.dark_&]:text-white max-sm:text-[calc(15px-.3vw)] 
+                         [body.dark_&]:text-white max-sm:text-[calc(15px-.3vw)] 
                          [.menuItem.activated_&]:text-[#e33b41]"
           >
-            Home
+            {t("home")}
           </p>
         </button>
 
@@ -50,10 +53,10 @@ function MobileMenu({ currentUser }) {
           />
           <p
             className="uppercase text-[#515151] text-[calc(20px-.3vw)]
-                         font-[600] [body.dark_&]:text-white max-sm:text-[calc(15px-.3vw)] 
+                          [body.dark_&]:text-white max-sm:text-[calc(15px-.3vw)] 
                          [.menuItem.activated_&]:text-[#e33b41]"
           >
-            About us
+            {t("about_us")}
           </p>
         </button>
 
@@ -66,33 +69,39 @@ function MobileMenu({ currentUser }) {
           <img
             src="https://www.pizza-hut.am/assets/images/app_2/delivery.svg"
             className="w-[6vh] h-[6vh] max-sm:w-[4vh]
-                         max-sm:h-[4vh]"
+                        max-sm:h-[4vh]"
             alt=""
           />
 
-          <p className="text-[2vw] text-white font-[600]">DELIVERY</p>
+          <p className="text-[2vw] text-white font-[600] uppercase">
+            {t("delivery")}
+          </p>
         </button>
 
         <button
-          className="flex flex-col gap-1 justify-center items-center relative
-                    after:content-['0'] after:absolute after:w-[17px] after:h-[17px]
-                    after:flex after:justify-center after:items-center after:text-[#515151]
-                     after:text-[11px] after:top-[-7px] after:right-[3px] cursor-pointer ml-3
-                     [body.dark_&]:after:text-white menuItem"
+          className="flex flex-col gap-1 justify-center items-center"
           onClick={() => navigate("/basket")}
         >
-          <img
-            src="https://bonee.blob.core.windows.net/company-type/Assets/basket.svg"
-            className="w-[27px] h-[27px]"
-            alt=""
-          />
+          <span
+            className="w-[27px] h-[27px] relative after:content-['0'] after:absolute
+                    after:w-[17px] after:h-[17px]
+                    after:flex after:justify-center after:items-center after:text-[#515151]
+                    after:text-[11px] after:top-[-7px] after:right-[-5px] cursor-pointer ml-3
+                    [body.dark_&]:after:text-white menuItem"
+          >
+            <img
+              src="https://bonee.blob.core.windows.net/company-type/Assets/basket.svg"
+              className="w-full h-full"
+              alt=""
+            />
+          </span>
 
           <p
             className="uppercase text-[#515151] text-[calc(20px-.3vw)]
-                         font-[600] [body.dark_&]:text-white max-sm:text-[calc(15px-.3vw)] 
+                        [body.dark_&]:text-white max-sm:text-[calc(15px-.3vw)] 
                          [.menuItem.activated_&]:text-[#e33b41]"
           >
-            Basket
+            {t("basket")}
           </p>
         </button>
 
@@ -126,10 +135,10 @@ function MobileMenu({ currentUser }) {
           )}
           <p
             className={`uppercase text-[#515151] text-[calc(20px-.3vw)]
-                            font-[600] [body.dark_&]:text-white max-sm:text-[calc(15px-.3vw)] 
+                             [body.dark_&]:text-white max-sm:text-[calc(15px-.3vw)] 
                             ${currentUser ? "text-[#e33b41]" : ""}`}
           >
-            {currentUser ? "Profile" : "Log in"}
+            {currentUser ? t("profile") : t("login")}
           </p>
         </button>
       </footer>

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"
 
 export default function MobileProductCard({ setMenuTask }) {
+  const navigate = useNavigate();
   const [basketInt, setBasketInt] = useState(1);
 
   return (
@@ -171,7 +173,10 @@ export default function MobileProductCard({ setMenuTask }) {
 
           <button
             className="w-[120px] h-[40px] px-[15px] py-[5px] cursor-pointer 
-        rounded-[12px] bg-[#e33b41] flex items-center justify-between"
+            rounded-[12px] bg-[#e33b41] flex items-center justify-between"
+            onClick={() => {
+              navigate('/basket')
+            }}
           >
             <p className="uppercase text-white">Add</p>
 

@@ -106,7 +106,7 @@ function Basket({ isMobile, currentUser }) {
                                     bg-transparent rounded-[15px] border-1 border-[#ebebeb] 
                                     flex items-center justify-between cursor-pointer"
                 >
-                  <p className="text-[calc(12px+.3vw)] [body.dark_&]:text-white">
+                  <p className="text-[calc(12px+.3vw)]">
                     {calendarDate.toLocaleDateString("hy-AM", {
                       year: "numeric",
                       month: "long",

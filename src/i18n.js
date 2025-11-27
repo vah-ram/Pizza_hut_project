@@ -9,6 +9,13 @@ i18n
     resources: {
       en: {
         translation: {
+
+          //mobile menu
+          home: "Home",
+          about_us: "About Us",
+          login: "Log In",
+          profile: "Profile",
+
           delivery: "Delivery",
           main_page: "Main page",
           menu: "Menu",
@@ -97,6 +104,13 @@ i18n
 
       ru: {
         translation: {
+
+          //mobile menu
+          home: "Главная",
+          about_us: "О нас",
+          login: "Войти",
+          profile: "Профиль",
+
           delivery: "Доставка",
           main_page: "Главная страница",
           menu: "Меню",
@@ -185,6 +199,13 @@ i18n
 
       am: {
         translation: {
+
+          //mobile menu
+          home: "Գլխավոր",
+          about_us: "Մեր մասին",
+          login: "Մուտք",
+          profile: "Պրոֆիլ",
+
           delivery: "Առաքում",
           main_page: "Հիմնական էջ",
           menu: "Մենյու",
