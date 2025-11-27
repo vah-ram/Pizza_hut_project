@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
@@ -7,18 +7,25 @@ function MobilePizzaMenu() {
 
   const { t } = useTranslation();
 
-  const [modeValue, setModeValue] = useState("");
+    const [modeValue, setModeValue] = useState(() => {
+      return localStorage.getItem("darkMode") === "true";
+    });
+  
+    useEffect(() => {
+      const body = document.querySelector("body");
+  
+      if (modeValue) {
+        body.classList.add("dark");
+      } else {
+        body.classList.remove("dark");
+      }
+    }, [modeValue]);
 
-  const callDarkAndLightMode = () => {
-    const body = document.querySelector("body");
-
-    if (!body.classList.contains("dark")) {
-      body.classList.add("dark");
-      setModeValue(true);
-    } else {
-      body.classList.remove("dark");
-      setModeValue(false);
-    }
+    const callDarkAndLightMode = () => {
+    setModeValue((prev) => {
+      localStorage.setItem("darkMode", !prev);
+      return !prev;
+    });
   };
 
   return (

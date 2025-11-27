@@ -90,7 +90,8 @@ function Basket({ isMobile, currentUser }) {
               <span className="flex flex-col">
                 <p className="text-[calc(10px+.3vw)] text-[#9d9d9d]">Order</p>
 
-                <h2 className="uppercase text-[calc(16px+.3vw)] font-[600] text-[#515151]">
+                <h2 className="uppercase text-[calc(16px+.3vw)] font-[600] text-[#515151] 
+                [body.dark_&]:text-white">
                   Date
                 </h2>
               </span>
@@ -105,7 +106,7 @@ function Basket({ isMobile, currentUser }) {
                                     bg-transparent rounded-[15px] border-1 border-[#ebebeb] 
                                     flex items-center justify-between cursor-pointer"
                 >
-                  <p className="text-[calc(12px+.3vw)]">
+                  <p className="text-[calc(12px+.3vw)] [body.dark_&]:text-white">
                     {calendarDate.toLocaleDateString("hy-AM", {
                       year: "numeric",
                       month: "long",
@@ -141,7 +142,8 @@ function Basket({ isMobile, currentUser }) {
               <span className="flex flex-col">
                 <p className="text-[calc(10px+.3vw)] text-[#9d9d9d]">Order</p>
 
-                <h2 className="uppercase text-[calc(16px+.3vw)] font-[600] text-[#515151]">
+                <h2 className="uppercase text-[calc(16px+.3vw)] font-[600] text-[#515151] 
+                [body.dark_&]:text-white ">
                   Time
                 </h2>
               </span>
@@ -156,7 +158,7 @@ function Basket({ isMobile, currentUser }) {
                                     bg-transparent rounded-[15px] border-1 border-[#ebebeb] 
                                     flex items-center justify-between cursor-pointer"
                 >
-                  <p className="text-[calc(12px+.3vw)]">10:00</p>
+                  <p className="text-[calc(12px+.3vw)] [body.dark_&]:text-white">10:00</p>
 
                   <img
                     src="https://pizza-hut.am/assets/images/app_2/arrow.svg"
@@ -165,29 +167,30 @@ function Basket({ isMobile, currentUser }) {
                 </button>
 
                 {openTime && (
-                    <div
-                      className="absolute top-[60px] bg-white shadow-xl border rounded-xl w-full 
+                  <div
+                    className="absolute top-[60px] bg-white shadow-xl border rounded-xl w-full 
                                 max-h-[200px] overflow-y-auto z-[999]"
-                    >
-                      {timeList.map((time) => (
-                        <div
-                          key={time}
-                          className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-[15px]"
-                          onClick={() => {
-                            setSelectedTime(time);
-                            setOpenTime(false);
-                          }}
-                        >
-                          {time}
-                        </div>
-                      ))}
-                    </div>
-                  )}
+                  >
+                    {timeList.map((time) => (
+                      <div
+                        key={time}
+                        className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-[15px]"
+                        onClick={() => {
+                          setSelectedTime(time);
+                          setOpenTime(false);
+                        }}
+                      >
+                        {time}
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
 
             <div className="w-[60%] flex flex-col max-md:w-full">
-              <h2 className="hidden max-md:block uppercase mt-2 text-[#515151] font-[600]">
+              <h2 className="hidden max-md:block uppercase mt-2 text-[#515151] font-[600] 
+              [body.dark_&]:text-white">
                 Selected menu
               </h2>
 
@@ -361,7 +364,8 @@ function Basket({ isMobile, currentUser }) {
                 className="w-full px-[10px] py-[10px]
                             bg-[rgba(227,59,65,0.1)] rounded-[15px] border-1 border-red-500  
                             flex items-center justify-between cursor-pointer 
-                            max-md:py-[13px] max-md:border-none"
+                            max-md:py-[13px] max-md:border-transparent 
+                            [body.dark_&]:border-[#FFF4]"
               >
                 <p className="text-[calc(12px+.3vw)] text-[#e33b41]">
                   Select the payment method
@@ -398,7 +402,10 @@ function Basket({ isMobile, currentUser }) {
               </button>
 
               <span className="flex flex-col mt-1">
-                <h2 className="uppercase text-[calc(12px+.3vw)]">
+                <h2
+                  className="uppercase text-[calc(12px+.3vw)] 
+                [body.dark_&]:text-white max-md:text-[calc(16px+.3vw)]"
+                >
                   Delivery Information
                 </h2>
 
@@ -411,7 +418,8 @@ function Basket({ isMobile, currentUser }) {
                 className="w-full px-[10px] py-[10px]
                             bg-[rgba(227,59,65,0.1)] rounded-[15px] border-1 border-red-500  
                             flex items-center justify-between cursor-pointer 
-                            max-md:py-[13px] max-md:border-none"
+                            max-md:py-[13px] max-md:border-transparent 
+                            [body.dark_&]:border-[#FFF4]"
               >
                 <p className="text-[calc(12px+.3vw)] text-[#e33b41]">
                   Add Address
@@ -448,7 +456,10 @@ function Basket({ isMobile, currentUser }) {
               </button>
 
               <span className="flex flex-col mt-1">
-                <h2 className="uppercase text-[calc(12px+.3vw)]">
+                <h2
+                  className="uppercase text-[calc(12px+.3vw)] 
+                [body.dark_&]:text-white max-md:text-[calc(16px+.3vw)]"
+                >
                   Personal Information
                 </h2>
 
@@ -515,12 +526,14 @@ function Basket({ isMobile, currentUser }) {
                   placeholder="Add any special instructions"
                   className="w-full h-[150px] mt-6 border-1 
                     border-[#ebebeb] p-[15px] rounded-[15px] 
-                    outline-none"
+                    outline-none [body.dark_&]:text-white 
+                    [body.dark_&]:border-[#FFF4]"
                 ></textarea>
 
                 <div
                   className="flex border-1 border-[#ebebeb] p-[15px]
-               rounded-[15px] gap-2 mt-8 items-center"
+               rounded-[15px] gap-2 mt-8 items-center [body.dark_&]:border-[#FFF4] 
+               [body.dark_&]:text-white"
                 >
                   <svg
                     width="25"

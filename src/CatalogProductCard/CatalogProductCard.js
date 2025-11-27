@@ -1,32 +1,32 @@
+import AllCatalogs from "../AllCatalogs/AllCatalogs";
 import React, { useState } from "react";
-import Project from "../Project";
 import { useNavigate } from "react-router-dom";
 
-function ProductCard() {
+export default function CatalogProductCard() {
   const navigate = useNavigate();
 
   const [basketInt, setBasketInt] = useState(1);
 
-  const pizzaTypes = document.querySelectorAll('.pizza_types .typePizza');
+  const pizzaTypes = document.querySelectorAll(".pizza_types .typePizza");
 
- pizzaTypes.forEach(item => {
-  item.addEventListener('click', () => {
-    pizzaTypes.forEach(el => el.classList.remove('active'));
-    item.classList.add('active');
+  pizzaTypes.forEach((item) => {
+    item.addEventListener("click", () => {
+      pizzaTypes.forEach((el) => el.classList.remove("active"));
+      item.classList.add("active");
+    });
   });
-});
 
   return (
     <>
-      <Project />
+      <AllCatalogs />
 
       <div
-        className="fixed inset-0 z-[100] bg-black/40 flex
+        className="fixed inset-0 z-[120] bg-black/40 flex
             items-center justify-center max-md:hidden"
       >
         <div
-          className="relative w-[80%] h-[85%]
-                    rounded-xl bg-[#FFF] p-5 pb-20 overflow-scroll
+          className="relative w-[80%] h-auto
+                    rounded-xl bg-[#FFF] p-5 pb-5 overflow-scroll
                     [&::-webkit-scrollbar]:hidden [body.dark_&]:bg-[#2E2E2E]"
         >
           <button
@@ -149,7 +149,7 @@ function ProductCard() {
                   placeholder="Additional Comment"
                 ></textarea>
 
-                <div className="w-full flex justify-between mt-8">
+                <div className="w-full flex justify-between mt-20">
                   <span className="flex gap-2 items-center">
                     <p
                       className="text-[#e33b41] text-[25px] font-[500]
@@ -214,149 +214,8 @@ function ProductCard() {
               </form>
             </div>
           </div>
-
-          <div className="w-full flex flex-col mt-5">
-            <h2
-              className="uppercase font-[600] text-[27px] text-[#515151]
-                        [body.dark_&]:text-white"
-            >
-              Customers also orders
-            </h2>
-
-            <p className="text-[calc(12px+.3vw) text-[#9D9D9D]">
-              We offer you various choice of similar products
-            </p>
-
-            <div className="flex gap-5 mt-10">
-              <div
-                className="w-[25vw] h-[40vw] shrink-[0] flex flex-col
-                                justify-start [body.dark_&]:border-gray-100
-                                items-center relative rounded-[20px]
-                                border-1 border-gray-300"
-              >
-                <span
-                  className="w-full h-[80%] rounded-[20px]
-                                overflow-hidden border-b-1 border-gray-300 flex
-                                items-center justify-center shadow-sm"
-                >
-                  <img
-                    src="https://bonee.blob.core.windows.net/images/24b321ce-cfc4-b7c0-412a-68f1373d7338_1.webp"
-                    className="hover:scale-110 duration-500"
-                    alt="slider item img"
-                  />
-                </span>
-
-                <div
-                  className="w-full h-auto flex flex-col justify-center
-                                    items-center mt-2"
-                >
-                  <p
-                    className="[body.dark_&]:text-white
-                                        text-[#515151] font-[600]
-                                         text-[calc(12px+.3vw)] uppercase"
-                  >
-                    Cheese
-                  </p>
-
-                  <p className="mr-auto ml-5 text-[#9D9D9D]">...</p>
-                </div>
-
-                <div
-                  className="w-[90%] h-[44px] absolute bottom-[-22px]
-                                        rounded-[10px] flex overflow-hidden"
-                >
-                  <button className="w-[50%] cursor-pointer bg-[#3d3d3d]">
-                    <p
-                      className="text-white text-[17px] font-[500]
-                                    font-sans leading-[15px] cursor-pointer"
-                    >
-                      150
-                    </p>
-                  </button>
-
-                  <button
-                    className="w-[50%] cursor-pointer bg-[#e33b41]
-                                        flex justify-center
-                                        items-center gap-2 hover:opacity-90"
-                  >
-                    <img
-                      src="	https://pizza-hut.am/assets/images/app_2/basketWhite.svg"
-                      className="w-[22px] h-[30px]"
-                      alt=""
-                    />
-
-                    <p className="text-white text-[14px]">Add</p>
-                  </button>
-                </div>
-              </div>
-
-              <div
-                className="w-[25vw] h-[40vw] shrink-[0] flex flex-col
-                                    justify-start [body.dark_&]:border-gray-200
-                                    items-center relative rounded-[20px]
-                                    border-1 border-gray-300"
-              >
-                <span
-                  className="w-full h-[80%] rounded-[20px]
-                                overflow-hidden border-b-1 border-gray-300 flex
-                                items-center justify-center shadow-sm [body.dark_&]:border-gray-200"
-                >
-                  <img
-                    src="https://bonee.blob.core.windows.net/images/0a19d20a-3684-8267-c5fe-fb50a5026723_1.webp"
-                    className="hover:scale-110 duration-500"
-                    alt="slider item img"
-                  />
-                </span>
-
-                <div
-                  className="w-full h-auto flex flex-col justify-center
-                                    items-center mt-2"
-                >
-                  <p
-                    className="[body.dark_&]:text-white
-                                        text-[#515151] font-[600]
-                                         text-[calc(12px+.3vw)] uppercase"
-                  >
-                    Coca Cola 0.5 l.
-                  </p>
-
-                  <p className="mr-auto ml-5 text-[#9D9D9D]">...</p>
-                </div>
-
-                <div
-                  className="w-[90%] h-[44px] absolute bottom-[-22px]
-                                rounded-[10px] flex overflow-hidden"
-                >
-                  <button className="w-[50%] cursor-pointer bg-[#3d3d3d]">
-                    <p
-                      className="text-white text-[17px] font-[500]
-                                    font-sans leading-[15px] cursor-pointer"
-                    >
-                      500
-                    </p>
-                  </button>
-
-                  <button
-                    className="w-[50%] cursor-pointer bg-[#e33b41]
-                                        flex justify-center
-                                        items-center gap-2 hover:opacity-90"
-                  >
-                    <img
-                      src="	https://pizza-hut.am/assets/images/app_2/basketWhite.svg"
-                      className="w-[22px] h-[30px]"
-                      alt=""
-                    />
-
-                    <p className="text-white text-[14px]">Add</p>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </>
   );
 }
-
-export default ProductCard;

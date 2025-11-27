@@ -3,10 +3,14 @@ import HeaderMenu from "../HeaderMenu/HeaderMenu";
 import AboutMenu from "../AboutMenu/AboutMenu";
 import { useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import MobileProductCard from "../MobileProductCard/MobileProductCard";
+import ProductCard from "../ProductCard/ProductCard";
 
 function AllCatalogs({ isMobile, currentUser }) {
   const navigate = useNavigate();
   const { type } = useParams();
+
+  const [menuTask,setMenuTask] = useState(false);
 
   const products = document.querySelectorAll(".products .product");
 
@@ -68,7 +72,7 @@ function AllCatalogs({ isMobile, currentUser }) {
             className="w-[40px] h-[40px] flex items-center justify-center
                            border-1 border-gray-200 rounded-xl outline-none
                            cursor-pointer"
-            onClick={() => navigate("/")}
+            onClick={() => {navigate(-1)}}
           >
             <img
               src="https://pizza-hut.am/assets/images/app_2/arrow.svg"
@@ -356,7 +360,10 @@ function AllCatalogs({ isMobile, currentUser }) {
                                         before:w-[80px] before:h-[30px] before:bg-[#f33]
                                         before:text-white before:flex before:justify-center
                                          before:items-center before:rounded-tr-[8px]
-                                         before:rounded-br-[8px] before:text-[16px] cursor-pointer"
+                                         before:rounded-br-[8px] before:text-[16px] cursor-pointer" 
+                                         onClick={() => {
+                                            isMobile ? setMenuTask(true) : navigate(`/catalog/hi`)
+                                         }}
                 >
                   <span className="w-[305px] h-[305px] rounded-[20px] overflow-hidden group">
                     <img
@@ -389,6 +396,7 @@ function AllCatalogs({ isMobile, currentUser }) {
                     <button
                       className="w-[50%] cursor-pointer bg-[#e33b41]
                                             flex justify-center items-center gap-2 hover:opacity-90"
+                      onClick={e => e.stopPropagation()}
                     >
                       <img
                         src="https://www.pizza-hut.am/assets/images/app_2/basketPlus.svg"
@@ -409,6 +417,8 @@ function AllCatalogs({ isMobile, currentUser }) {
       </section>
 
       <AboutMenu />
+
+      {menuTask ? <MobileProductCard setMenuTask={setMenuTask}/> : ''}
     </>
   );
 }

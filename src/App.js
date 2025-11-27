@@ -16,6 +16,7 @@ import TermsConditions from "./SecondaryMenuGroup/TermsConditions.js";
 import AboutUs from "./SecondaryMenuGroup/AboutUs";
 import PrivacyPolicy from "./SecondaryMenuGroup/PrivacyPolicy";
 import MobileSearch from "./MobileSearch/MobileSearch";
+import CatalogProductCard from "./CatalogProductCard/CatalogProductCard.js";
 
 function App() {
 
@@ -74,6 +75,7 @@ function App() {
                 <Route path="/signUp" element={<Register />} />
                 <Route path="/search" element={<MobileSearch />} />
                 <Route path="/product/:productId" element={<ProductCard />} />
+                <Route path="/catalog/:catalogId" element={<CatalogProductCard />} />
                 <Route path="/catalogs/:type" element={<AllCatalogs isMobile={isMobile} currentUser={currentUser}/>} />
                 <Route path="/feedback" element={<FeedBack isMobile={isMobile} currentUser={currentUser} />} />
                 <Route path="/profile/:page" element={<Profile isMobile={isMobile} currentUser={currentUser} />} />

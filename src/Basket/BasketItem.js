@@ -14,7 +14,7 @@ function BasketItem() {
         <div className="w-full flex justify-between px-[15px] relative">
           <h2
             className="text-[#515151] text-[calc(12px+.3vw)] 
-                        uppercase font-[600]"
+                        uppercase font-[600] [body.dark_&]:text-white"
           >
             CHICKENBURGER DUO
           </h2>
@@ -23,7 +23,8 @@ function BasketItem() {
             <li className="max-md:absolute right-0 bottom-0">
               <div
                 className="flex gap-[16px] text-[calc(20px+.3vw)] 
-                            items-center max-md:bg-[#e8f0fa]"
+                            items-center max-md:bg-[#e8f0fa] 
+                            max-md:rounded-[12px]"
               >
                 <button
                   className="cursor-pointer text-[#e33b41] max-md:text-white max-md:bg-[#e33b41] 
@@ -54,7 +55,7 @@ function BasketItem() {
             <li className="max-md:absolute left-[15px] bottom-0">
               <p
                 className="text-[calc(12px+.3vw)] font-[600] 
-                            text-[#515151]"
+                            text-[#515151] [body.dark_&]:text-white"
               >
                 3,900
               </p>
