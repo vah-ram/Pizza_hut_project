@@ -171,7 +171,7 @@ function HeaderMenu({ isMobile, currentUser }) {
             >
               <img
                 src="https://pizza-hut.am/assets/images/app_2/ordersHistory.svg"
-                className="w-[22px] h-[22px]"
+                className="w-[16px] h-[18px]"
               />
             </button>
           ) : (
@@ -194,7 +194,7 @@ function HeaderMenu({ isMobile, currentUser }) {
                   ? "	https://bonee.blob.core.windows.net/languages/icons/arm.png"
                   : ""
               }
-              className="w-[30px] h-[18px]"
+              className="w-[27px] h-[16px]"
               alt=""
             />
           </button>
@@ -248,7 +248,7 @@ function HeaderMenu({ isMobile, currentUser }) {
           >
             <img
               src="https://pizza-hut.am/assets/images/app_2/searchWhite.svg"
-              className="w-[22px] h-[22px]"
+              className="w-[18px] h-[18px]"
             />
           </button>
 
@@ -260,7 +260,7 @@ function HeaderMenu({ isMobile, currentUser }) {
           >
             <img
               src="https://www.pizza-hut.am/assets/images/app_2/burger-iconWhite.svg"
-              className="w-[22px] h-[22px]"
+              className="w-[18px] h-[18px]"
             />
           </button>
 

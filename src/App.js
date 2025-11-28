@@ -23,31 +23,31 @@ function App() {
     const location = useLocation();
 
     const [isMobile, setIsMobile] = useState('');
-    const [currentUser, setCurrentUser] = useState(true);
+    const [currentUser, setCurrentUser] = useState(null);
 
-    // useEffect(() => {
-    //     const verify = async () => {
-    //         try {
-    //             const token = localStorage.getItem("token");
+    useEffect(() => {
+        const verify = async () => {
+            try {
+                const token = localStorage.getItem("token");
     
-    //             if (!token) {
-    //                 return setCurrentUser('');
-    //             }
+                if (!token) {
+                    return setCurrentUser('');
+                }
     
-    //             const res = await axios.get(verifyProfileHost, {
-    //                 params: { token }
-    //             });
+                const res = await axios.get(verifyProfileHost, {
+                    params: { token }
+                });
     
-    //             setCurrentUser(res.data.status ? res.data.user : '');
+                setCurrentUser(res.data.status ? res.data.user : '');
     
-    //         } catch (err) {
-    //             console.error(err);
-    //         }
-    //     };
+            } catch (err) {
+                console.error(err);
+            }
+        };
     
-    //     verify();
+        verify();
     
-    // }, [location.pathname]);
+    }, [location.pathname]);
 
     useEffect(() => {
 
@@ -81,7 +81,7 @@ function App() {
                 <Route path="/profile/:page" element={<Profile isMobile={isMobile} currentUser={currentUser} />} />
                 <Route path="/basket" element={<Basket isMobile={isMobile} currentUser={currentUser} />} />
                 <Route path="/qjiweqwe234u9190uw9euqjwk;AOKSU3294010EQW____EWQ27EE9JQW9QW98123_2190U3U91U29JA9ISJ9auah8eq17q" element={<AdminPanel />} />
-                <Route path="/about-us" element={<AboutUs isMobile={isMobile}/>} />
+                <Route path="/about-us" element={<AboutUs isMobile={isMobile} currentUser={currentUser}/>} />
                 <Route path="/terms-and-conditions" element={<TermsConditions />} />
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             </Routes>

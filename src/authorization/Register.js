@@ -320,7 +320,8 @@ function Register() {
                 className="w-full h-[60px] hidden absolute top-0 shadow-md
                                     justify-center items-center max-md:flex"
               >
-                <button
+                <button 
+                  type="button"
                   className="w-[40px] h-[40px] flex items-center justify-center
                                             border-1 border-gray-200 rounded-xl outline-none absolute left-5"
                   onClick={() => navigate("/")}
@@ -338,6 +339,7 @@ function Register() {
 
               <div className="w-[95%] hidden h-[41px] max-md:flex gap-[2px] mt-2">
                 <button
+                  type="button"
                   className="w-[50%] uppercase text-[#515151] border-b-2 border-gray-200 text-[19px]
                                         font-[600] cursor-pointer"
                   onClick={(evt) => {
@@ -349,6 +351,7 @@ function Register() {
                 </button>
 
                 <button
+                  type="button"
                   className="w-[50%] uppercase text-[#e33b41] border-b-2 text-[19px]
                                         font-[600] cursor-pointer"
                   onClick={(evt) => {
@@ -516,7 +519,8 @@ function Register() {
                 </p>
               </div>
 
-              <button
+              <button 
+                type="submit"
                 className="w-[60%] mt-10 flex gap-5
                                     items-center justify-center
                                     px-3 py-4 rounded-[12px] bg-[#e33b41] cursor-pointer

@@ -38,8 +38,7 @@ function MobilePizzaMenu() {
           <div
             className="w-full h-full max-h-[300px] shrink-[0]
                         relative rounded-[50px]
-                        overflow-hidden max-sm:max-h-[250px] max-sm:rounded-[30px]
-                        cursor-pointer"
+                        overflow-hidden max-sm:max-h-[250px] max-sm:rounded-[30px]"
             onClick={() => navigate("/catalogs/special-offers")}
           >
             <img
@@ -64,7 +63,7 @@ function MobilePizzaMenu() {
           <div
             className="w-full h-full max-h-[300px] shrink-[0]
                             relative rounded-[50px] overflow-hidden max-sm:max-h-[250px]
-                            max-sm:rounded-[30px] cursor-pointer"
+                            max-sm:rounded-[30px]"
             onClick={() => navigate("/catalogs/melts")}
           >
             <img
@@ -89,7 +88,7 @@ function MobilePizzaMenu() {
           <div
             className="w-full h-full max-h-[300px] shrink-[0]
                             relative rounded-[50px] overflow-hidden max-sm:max-h-[250px]
-                            max-sm:rounded-[30px] cursor-pointer"
+                            max-sm:rounded-[30px]"
             onClick={() => navigate("/catalogs/pizzas")}
           >
             <img
@@ -114,7 +113,7 @@ function MobilePizzaMenu() {
           <div
             className="w-full h-full max-h-[300px] shrink-[0] relative
                                 rounded-[50px] overflow-hidden max-sm:max-h-[250px]
-                                max-sm:rounded-[30px] cursor-pointer"
+                                max-sm:rounded-[30px]"
             onClick={() => navigate("/catalogs/pizza-hot-dog")}
           >
             <img
@@ -139,7 +138,7 @@ function MobilePizzaMenu() {
           <div
             className="w-full h-full max-h-[300px] shrink-[0]
                                 relative rounded-[50px] overflow-hidden max-sm:max-h-[250px]
-                                max-sm:rounded-[30px] cursor-pointer"
+                                max-sm:rounded-[30px]"
             onClick={() => navigate("/catalogs/salads")}
           >
             <img
@@ -164,7 +163,7 @@ function MobilePizzaMenu() {
           <div
             className="w-full h-full max-h-[300px] shrink-[0]
                             relative rounded-[50px] overflow-hidden max-sm:max-h-[250px]
-                             max-sm:rounded-[30px] cursor-pointer"
+                             max-sm:rounded-[30px]"
             onClick={() => navigate("/catalogs/burgers-sandwiches")}
           >
             <img
@@ -189,7 +188,7 @@ function MobilePizzaMenu() {
           <div
             className="w-full h-full max-h-[300px] shrink-[0]
                              relative rounded-[50px] overflow-hidden max-sm:max-h-[250px]
-                             max-sm:rounded-[30px] cursor-pointer"
+                             max-sm:rounded-[30px]"
             onClick={() => navigate("/catalogs/snacks")}
           >
             <img
@@ -214,7 +213,7 @@ function MobilePizzaMenu() {
           <div
             className="w-full h-full max-h-[300px] shrink-[0]
                                  relative rounded-[50px] overflow-hidden max-sm:max-h-[250px]
-                                 max-sm:rounded-[30px] cursor-pointer"
+                                 max-sm:rounded-[30px]"
             onClick={() => navigate("/catalogs/desserts")}
           >
             <img
@@ -239,7 +238,7 @@ function MobilePizzaMenu() {
           <div
             className="w-full h-full max-h-[300px] shrink-[0]
                                  relative rounded-[50px] overflow-hidden max-sm:max-h-[250px]
-                                 max-sm:rounded-[30px] cursor-pointer"
+                                 max-sm:rounded-[30px]"
             onClick={() => navigate("/catalogs/beverages")}
           >
             <img
@@ -264,7 +263,7 @@ function MobilePizzaMenu() {
           <div
             className="w-full h-full max-h-[300px] shrink-[0]
                                 relative rounded-[50px] overflow-hidden max-sm:max-h-[250px]
-                                max-sm:rounded-[30px] cursor-pointer"
+                                max-sm:rounded-[30px]"
             onClick={() => navigate("/catalogs/sauces")}
           >
             <img
@@ -289,8 +288,7 @@ function MobilePizzaMenu() {
 
         <div
           className="w-full h-[40px] rounded-full flex items-center
-                         border border-1 border-gray-200 mt-5 overflow-hidden
-                         cursor-pointer [body.dark_&]:border-[#d8d8d871]"
+                         border border-1 border-gray-200 mt-5 overflow-hidden [body.dark_&]:border-[#d8d8d871]"
           onClick={callDarkAndLightMode}
         >
           <button

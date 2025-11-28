@@ -36,7 +36,8 @@ function Basket({ isMobile, currentUser }) {
 
   return (
     <>
-      <MobileMenu />
+      <MobileMenu currentUser={currentUser}/>
+      
       {isMobile ? (
         <div
           className="w-full h-[60px] hidden absolute top-0 left-0 shadow-md

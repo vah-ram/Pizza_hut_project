@@ -1,5 +1,5 @@
 import AllCatalogs from "../AllCatalogs/AllCatalogs";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function CatalogProductCard() {
@@ -8,15 +8,17 @@ export default function CatalogProductCard() {
   const [basketInt, setBasketInt] = useState(1);
   const [viewImage, setViewImage] = useState(null);
 
-  const pizzaTypes = document.querySelectorAll(".pizza_types .typePizza");
+  useEffect(() => {
+    const pizzaTypes = document.querySelectorAll(".pizza_types .typePizza");
 
-  pizzaTypes.forEach((item) => {
-    item.addEventListener("click", () => {
-      pizzaTypes.forEach((el) => el.classList.remove("active"));
-      item.classList.add("active");
+    pizzaTypes.forEach((item) => {
+      item.addEventListener("click", () => {
+        pizzaTypes.forEach((el) => el.classList.remove("active"));
+        item.classList.add("active");
+      });
     });
-  });
-
+  }, []);
+ 
   return (
     <>
       <AllCatalogs />
@@ -152,23 +154,25 @@ export default function CatalogProductCard() {
 
                 <div className="flex gap-2 mt-3 pizza_types">
                   <button
-                    className="uppercase w-[56px] h-[31px]
-                                  bg-[#e33b41] text-white rounded-md text-[14px]
-                                  cursor-pointer 
-                                  typePizza [.active]:bg-transparent [.active]:text-[#9d9d9d]"
-                  >
-                    Pan
-                  </button>
+                      className="uppercase px-[15px] py-[5px] 
+                                  text-[#9D9D9D] border border-1
+                                  border-gray-200 rounded-md text-[14px]
+                                  cursor-pointer [body.dark_&]:border-[#9D9D9D] 
+                                  typePizza [.active]:bg-[#e33b41] [.active]:text-white 
+                                  active"
+                    >
+                      Pan
+                    </button>
 
-                  <button
-                    className="uppercase w-[85px] h-[31px]
-                                      text-[#9D9D9D] border border-1
-                                      border-gray-200 rounded-md text-[14px]
-                                      cursor-pointer [body.dark_&]:border-[#9D9D9D] 
-                                      typePizza [.active]:bg-[#e33b41] [.active]:text-white"
-                  >
-                    Classic
-                  </button>
+                    <button
+                      className="uppercase px-[15px] py-[5px] 
+                                  text-[#9D9D9D] border border-1
+                                  border-gray-200 rounded-md text-[14px]
+                                  cursor-pointer [body.dark_&]:border-[#9D9D9D] 
+                                  typePizza [.active]:bg-[#e33b41] [.active]:text-white"
+                    >
+                      Classic
+                    </button>
                 </div>
 
                 <form className="w-full flex flex-col">

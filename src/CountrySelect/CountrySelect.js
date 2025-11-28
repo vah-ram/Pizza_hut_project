@@ -249,7 +249,8 @@ export default function CountrySelect() {
 
   return (
     <div className="relative w-full h-full">
-      <button
+      <button 
+        type="button"
         onClick={(evt) => {
           evt.preventDefault();
           setOpen(!open);

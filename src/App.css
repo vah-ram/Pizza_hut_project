@@ -7,21 +7,3 @@ img {pointer-events: none}
 body {
   font-family: "Kedebideri", sans-serif;
 }
-
-body::-webkit-scrollbar {
-    width: 5px;
-    height: 100%;
-    background: #4e4e4e;
-}
-
-body::-webkit-scrollbar-thumb {
-    background: #202020;
-}
-
-body.dark {
-    background: #2e2e2e;
-}
-
-body.dark #search__input::-webkit-input-placeholder{
-    color: #8b8b8b;
-}

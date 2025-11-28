@@ -99,7 +99,7 @@ function MobileMenu({ currentUser }) {
                   shadow-md cursor-pointer absolute bottom-0">
             <img
               src="https://www.pizza-hut.am/assets/images/app_2/delivery.svg"
-              className="w-[6vh] h-[6vh] max-sm:w-[4vh] max-sm:h-[4vh]"
+              className="w-[50%] h-[45%]"
               alt=""
             />
 
@@ -109,15 +109,15 @@ function MobileMenu({ currentUser }) {
           </button>
         </div>
 
-        <button
-          className="flex flex-col gap-1 justify-center items-center"
+      <button
+          className="flex flex-col gap-1 justify-center items-center cursor-pointer"
           onClick={() => navigate("/basket")}
         >
           <span
             className="w-[27px] h-[27px] relative after:content-['0'] after:absolute
                     after:w-[17px] after:h-[17px]
                     after:flex after:justify-center after:items-center after:text-[#515151]
-                    after:text-[11px] after:top-[-7px] after:right-[-5px] cursor-pointer ml-3
+                    after:text-[11px] after:top-[-7px] after:right-[-5px] 
                     [body.dark_&]:after:text-white menuItem"
           >
             <img

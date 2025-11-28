@@ -18,7 +18,7 @@ function MobileSearch() {
             className="w-[40px] h-[40px] flex items-center justify-center
                            border-1 border-gray-200 rounded-xl outline-none
                            cursor-pointer"
-            onClick={() => navigate("/")}
+            onClick={() => navigate(-1)}
           >
             <img
               src="https://pizza-hut.am/assets/images/app_2/close.svg"

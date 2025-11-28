@@ -16,12 +16,12 @@ import AboutMenu from "../AboutMenu/AboutMenu";
 import HeaderMenu from "../HeaderMenu/HeaderMenu";
 import MobileMenu from "../MobileMenuBar/MobileMenu";
 
-export default function AboutUs({ isMobile }) {
+export default function AboutUs({ isMobile, currentUser }) {
   return (
     <>
       {!isMobile ? <HeaderMenu /> : ""}
 
-      <MobileMenu />
+      <MobileMenu currentUser={currentUser}/>
 
       <img
         className="w-full h-[100vh] bg-[url('https://bonee.blob.core.windows.net/images/7339654b-13cf-1d41-7128-9a075997cecb_3.webp')]

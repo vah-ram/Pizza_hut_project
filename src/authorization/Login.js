@@ -31,7 +31,9 @@ function Login() {
       if (res.data.status) {
         if (res.data.user.role === "Admin") {
           localStorage.setItem("token", res.data.token);
-          navigate("/qjiweqwe234u9190uw9euqjwk;AOKSU3294010EQW____EWQ27EE9JQW9QW98123_2190U3U91U29JA9ISJ9auah8eq17q");
+          navigate(
+            "/qjiweqwe234u9190uw9euqjwk;AOKSU3294010EQW____EWQ27EE9JQW9QW98123_2190U3U91U29JA9ISJ9auah8eq17q"
+          );
         } else {
           localStorage.setItem("token", res.data.token);
           navigate("/");
@@ -63,6 +65,7 @@ function Login() {
                 max-md:hidden"
         >
           <button
+            type="button"
             className="cursor-pointer flex gap-2
                             items-center absolute left-[4vw] top-[4vw]"
             onClick={() => navigate("/")}
@@ -99,7 +102,8 @@ function Login() {
               {t("login_register_description")}
             </p>
 
-            <button
+            <button 
+              type="button"
               className="w-[80%] h-[54px] px-3 py-4 rounded-2xl
                                 flex items-center justify-center shadow-lg
                                 shadow-[#0000004d] cursor-pointer"
@@ -113,19 +117,21 @@ function Login() {
         </div>
 
         <form
+          action="#"
           className="w-[50%] h-full bg-white flex
                     flex-col justify-center items-center relative max-md:w-full [body.dark_&]:bg-[#2e2e2e]
                     max-md:justify-start max-md:pt-[60px]"
           onSubmit={(evt) => {
             evt.preventDefault();
-            addData();
+            addData();  
           }}
         >
           <div
             className="w-full h-[60px] hidden absolute top-0 shadow-md
                         justify-center items-center max-md:flex"
           >
-            <button
+            <button 
+              type="button"
               className="w-[40px] h-[40px] flex items-center justify-center
                                 border-1 border-gray-200 rounded-xl outline-none absolute left-5"
               onClick={() => navigate("/")}
@@ -142,7 +148,8 @@ function Login() {
           </div>
 
           <div className="w-[95%] hidden h-[41px] max-md:flex gap-[2px] mt-2">
-            <button
+            <button 
+              type="button"
               className="w-[50%] uppercase text-[#e33b41] border-b-2 text-[19px]
                                 font-[600] cursor-pointer"
               onClick={(evt) => {
@@ -153,7 +160,8 @@ function Login() {
               Log in
             </button>
 
-            <button
+            <button 
+              type="button"
               className="w-[50%] uppercase text-[#515151] border-b-2 text-[19px]
                                 font-[600] border-gray-200 cursor-pointer"
               onClick={(evt) => {
@@ -204,12 +212,12 @@ function Login() {
               onChange={(evt) => setPassword(evt.target.value)}
             />
             <button
+              type="button"  
               className="w-[22px] h-[22px] cursor-pointer"
-              onClick={(evt) => {
-                evt.preventDefault();
-                setShowPassword(!showPassword);
-              }}
+              onClick={() => setShowPassword(!showPassword)}
             >
+
+
               <img
                 src="https://pizza-hut.am/assets/images/app_2/showPassword.svg"
                 className="w-full h-full"
@@ -226,15 +234,16 @@ function Login() {
           </a>
 
           <button
-            type="submit"
+            type="submit"  
             className="w-[60%] mt-5 flex gap-5 items-center justify-center
-                            px-3 py-4 rounded-[12px] bg-[#e33b41] cursor-pointer hover:opacity-90
-                            max-md:w-[95%] max-md:rounded-[18px]"
+                      px-3 py-4 rounded-[12px] bg-[#e33b41] cursor-pointer hover:opacity-90
+                      max-md:w-[95%] max-md:rounded-[18px]"
           >
             <p className="uppercase text-white text-[16px] font-sans">
               {t("login_button_text")}
             </p>
           </button>
+
 
           <div className="w-[60%] flex items-center mt-2  max-md:w-[95%]">
             <span className="w-full h-[1px] bg-gray-300" />
@@ -246,11 +255,11 @@ function Login() {
             <span className="w-full h-[1px] bg-gray-300" />
           </div>
 
-          <button
+          <button 
+            type="button"
             className="w-[60%] mt-5 flex gap-5 items-center px-3 py-3 rounded-[15px]
                             border border-1 border-gray-200 relative cursor-pointer [body.dark_&]:border-[#FFF3]
                              max-md:w-[95%]"
-            onClick={(evt) => evt.preventDefault()}
           >
             <img
               src="/Img/google-social-icon.png"
@@ -268,11 +277,11 @@ function Login() {
             />
           </button>
 
-          <button
+          <button 
+            type="button"
             className="w-[60%] mt-5 flex gap-5 items-center px-3 py-3 rounded-[15px]
                             border border-1 border-gray-200 relative cursor-pointer [body.dark_&]:border-[#FFF3]
                              max-md:w-[95%]"
-            onClick={(evt) => evt.preventDefault()}
           >
             <img
               src="/Img/guest-icon.png"
@@ -280,8 +289,10 @@ function Login() {
               alt="Email"
             />
 
-            <p className="uppercase [body.dark_&]:text-white max-lg:text-[1.5vw]
-             max-md:text-[16px]" onClick={() => navigate('/basket')}>
+            <p
+              className="uppercase [body.dark_&]:text-white max-lg:text-[1.5vw]
+             max-md:text-[16px]"
+            >
               {t("login_continue_guest")}
             </p>
 
