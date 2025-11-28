@@ -153,12 +153,14 @@ function AllCatalogs({ isMobile, currentUser }) {
               className="w-[7rem] h-[7rem] rounded-full border-3
                              border-r-transparent border-b-transparent
                             border-[#E33B41] animate-spin flex
-                            justify-center items-center"
+                            justify-center items-center 
+                            max-md:w-[4rem] max-md:h-[4rem]"
             >
               <span
                 className="w-[5rem] h-[5rem] rounded-full border-3
                              border-r-transparent border-b-transparent
-                            border-[#E33B41] animate-spin"
+                            border-[#E33B41] animate-spin 
+                            max-md:w-[3rem] max-md:h-[3rem]"
               />
             </span>
           </div>
@@ -170,7 +172,7 @@ function AllCatalogs({ isMobile, currentUser }) {
       <div
         className="w-full h-[60px] hidden z-[100] fixed top-0 left-0 
              items-center justify-between max-md:flex 
-             bg-white [body.dark_&]:bg-[#2e2e2e]"
+             bg-white [body.dark_&]:bg-[#2e2e2e] "
       >
         <div className="flex gap-3 items-center ml-3">
           <button
@@ -191,7 +193,7 @@ function AllCatalogs({ isMobile, currentUser }) {
             className="text-[17px] text-[#515151] font-[600]
                  uppercase [body.dark_&]:text-white"
           >
-            Menu
+            {t("menu")}
           </h2>
         </div>
 
@@ -199,7 +201,7 @@ function AllCatalogs({ isMobile, currentUser }) {
           <div
             className="w-auto h-[40px] 
               border-1 rounded-[12px] border-[#ebebeb] 
-              flex overflow-hidden 
+              flex overflow-hidden [body.dark_&]:border-[#FFF4] 
               directionDiv"
           >
             <button
@@ -310,10 +312,10 @@ function AllCatalogs({ isMobile, currentUser }) {
       </div>
 
       <section
-        className="w-full h-auto mt-[100px] px-[3vw]
+        className="w-full h-auto mt-[100px] px-[3vw] pb-[5vw] 
                 flex flex-col items-center justify-between gap-5
                 justify-start [body.isMobile_&]:mt-[60px] 
-                max-md:pb-20"
+                max-md:pb-[30vw] [body.dark_&]:bg-[#2e2e2e]"
       >
         <span
           className="w-full flex gap-5 items-center mt-5
@@ -387,7 +389,7 @@ function AllCatalogs({ isMobile, currentUser }) {
                     justify-center sticky top-[80px]  
                     gap-[3vh] mt-2 products z-[101] bg-white
                     [body.dark_&]:bg-[#2e2e2e] [body.isMobile_&]:hidden
-                    [body.isMobile_&]:top-[0px] [body.isMobile_&]:mt-0"
+                    [body.isMobile_&]:top-[0px] [body.isMobile_&]:mt-0 "
         >
           {categories.map((cat) => (
             <div
@@ -413,7 +415,7 @@ function AllCatalogs({ isMobile, currentUser }) {
           ))}
         </div>
 
-        <footer className="w-full flex flex-col mt-[1vw] max-md:pt-[30px]">
+        <footer className="w-full flex flex-col mt-[1vw] max-md:pt-[30px] [body.dark_&]:bg-[#2e2e2e]">
           <h2
             className="text-[25px] text-[#515151]
                          [body.dark_&]:text-white font-[600] uppercase"
@@ -422,11 +424,11 @@ function AllCatalogs({ isMobile, currentUser }) {
           </h2>
 
           <div
-            className={`w-full grid  
+            className={`w-full grid [body.dark_&]:bg-[#2e2e2e] 
             ${
               gridOrTask === "grid"
                 ? "max-md:grid max-md:grid-cols-2 grid-cols-5 gap-[3vw] max-md:gap-2"
-                : "max-md:flex max-md:flex-col"
+                : `max-md:flex max-md:flex-col`
             }`}
             alt="filtered products div"
           >

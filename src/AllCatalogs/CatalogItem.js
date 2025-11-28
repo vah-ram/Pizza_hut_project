@@ -16,9 +16,10 @@ export default function CatalogItem({ isMobile, setMenuTask }) {
                      before:items-center before:rounded-tr-[8px]
                      before:rounded-br-[8px] before:text-[16px] cursor-pointer 
                      max-md:before:top-[-.5px] max-md:before:left-[-.5px] 
-                     max-md:before:rounded-tl-[30px] 
+                     max-md:before:rounded-tl-[25px] 
                      max-md:before:rounded-br-[30px] 
-                     max-md:before:bg-[#e33b41]"
+                     max-md:before:bg-[#e33b41] 
+                     [body.dark_&]:border-[#FFF4]"
         onClick={() => {
           isMobile ? setMenuTask(true) : navigate(`/catalog/hi`);
         }}

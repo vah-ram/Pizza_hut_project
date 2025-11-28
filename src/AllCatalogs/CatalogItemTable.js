@@ -16,16 +16,17 @@ export default function CatalogItemTable({ isMobile, setMenuTask }) {
                      before:rounded-br-[8px] before:text-[16px] 
                      max-md:before:rounded-tl-[2vw] 
                      max-md:before:rounded-br-[30px] 
-                     max-md:before:bg-[#e33b41]"
+                     max-md:before:bg-[#e33b41] 
+                     [body.dark_&]:border-[#FFF4]"
       onClick={() => {
         isMobile ? setMenuTask(true) : navigate(`/catalog/hi`);
       }}
     >
       <span
         className="w-[30vw] h-[30vw] 
-         rounded-[6vw] rounded-tl-[2vw] 
+         rounded-[6vw]  
          mb-[17px] shrink-0 border-1 
-         border-[#ebebeb]"
+         border-[#ebebeb] [body.dark_&]:border-[#FFF4]"
       >
         <img
           src="https://bonee.blob.core.windows.net/images/a0bcdc66-7da3-0c1a-3887-396ce30bd05a_2.webp"
@@ -38,7 +39,7 @@ export default function CatalogItemTable({ isMobile, setMenuTask }) {
       <div className="flex flex-col relative w-full h-[30vw]">
         <h2
           className="absolute top-0 left-0 text-[#515151] 
-          font-[600] text-[calc(14px+.3vw)]"
+          font-[600] text-[calc(14px+.3vw)] [body.dark_&]:text-white"
         >
           Combo Pepperoni
         </h2>

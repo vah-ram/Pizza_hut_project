@@ -7,3 +7,7 @@ img {pointer-events: none}
 body {
   font-family: "Kedebideri", sans-serif;
 }
+
+body.dark {
+  background: #2e2e2e;
+}

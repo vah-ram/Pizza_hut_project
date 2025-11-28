@@ -57,7 +57,7 @@ function HeaderMenu({ isMobile, currentUser }) {
       <header
         className="w-full h-[80px] flex items-center justify-between px-[3vw] fixed
                top-0 bg-[#FFF] z-[100] max-md:shadow-md max-md:h-[60px]
-                [body.dark_&]:bg-[#2e2e2e]"
+                [body.dark_&]:bg-[#2e2e2e] [body.dark_&]:shadow-[0_0_4px_0_white]"
       >
         <div
           className="w-auto h-full flex gap-2 items-center cursor-pointer"

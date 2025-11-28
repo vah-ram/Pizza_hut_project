@@ -7,21 +7,21 @@ function MobilePizzaMenu() {
 
   const { t } = useTranslation();
 
-    const [modeValue, setModeValue] = useState(() => {
-      return localStorage.getItem("darkMode") === "true";
-    });
-  
-    useEffect(() => {
-      const body = document.querySelector("body");
-  
-      if (modeValue) {
-        body.classList.add("dark");
-      } else {
-        body.classList.remove("dark");
-      }
-    }, [modeValue]);
+  const [modeValue, setModeValue] = useState(() => {
+    return localStorage.getItem("darkMode") === "true";
+  });
 
-    const callDarkAndLightMode = () => {
+  useEffect(() => {
+    const body = document.querySelector("body");
+
+    if (modeValue) {
+      body.classList.add("dark");
+    } else {
+      body.classList.remove("dark");
+    }
+  }, [modeValue]);
+
+  const callDarkAndLightMode = () => {
     setModeValue((prev) => {
       localStorage.setItem("darkMode", !prev);
       return !prev;
@@ -32,7 +32,8 @@ function MobilePizzaMenu() {
     <>
       <section
         className="w-full h-full flex-col mt-[60px] p-5 pb-[14rem] 
-            hidden max-md:flex max-sm:p-2 max-sm:mt-[70px] max-sm:pb-[13rem]"
+            hidden max-md:flex max-sm:p-2 max-sm:pb-[13rem] 
+            [body.dark_&]:bg-[#2e2e2e]"
       >
         <div className="w-full h-full grid grid-cols-2 gap-[5px]">
           <div

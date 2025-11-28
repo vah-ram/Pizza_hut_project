@@ -5,7 +5,10 @@ function BasketItem() {
 
   return (
     <>
-      <div className="flex py-[15px] border-b-1 border-[#ebebeb]">
+      <div
+        className="flex py-[15px] border-b-1 border-[#ebebeb] 
+      [body.dark_&]:border-[#FFF4]"
+      >
         <span
           className="flex w-40 h-40 bg-[url('https://bonee.blob.core.windows.net/images/a61c237e-3985-1857-7919-e8d3b55e058a_1.webp')] 
                     bg-cover rounded-[25px] shrink-0"
@@ -37,7 +40,9 @@ function BasketItem() {
                   –
                 </button>
 
-                <p className="text-[calc(12px+.3vw)] max-md:text-[#e33b41]">{basketInt}</p>
+                <p className="text-[calc(12px+.3vw)] max-md:text-[#e33b41]">
+                  {basketInt}
+                </p>
 
                 <button
                   className="cursor-pointer text-[#e33b41] max-md:text-white max-md:bg-[#e33b41] 

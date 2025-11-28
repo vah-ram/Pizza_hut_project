@@ -36,8 +36,8 @@ function Basket({ isMobile, currentUser }) {
 
   return (
     <>
-      <MobileMenu currentUser={currentUser}/>
-      
+      <MobileMenu currentUser={currentUser} />
+
       {isMobile ? (
         <div
           className="w-full h-[60px] hidden absolute top-0 left-0 shadow-md
@@ -47,7 +47,7 @@ function Basket({ isMobile, currentUser }) {
             className="w-[40px] h-[40px] flex items-center justify-center
                            border-1 border-gray-200 rounded-xl outline-none absolute left-5
                            cursor-pointer"
-            onClick={() => navigate("/")}
+            onClick={() => navigate(-1)}
           >
             <img
               src="https://pizza-hut.am/assets/images/app_2/arrow.svg"
@@ -91,8 +91,10 @@ function Basket({ isMobile, currentUser }) {
               <span className="flex flex-col">
                 <p className="text-[calc(10px+.3vw)] text-[#9d9d9d]">Order</p>
 
-                <h2 className="uppercase text-[calc(16px+.3vw)] font-[600] text-[#515151] 
-                [body.dark_&]:text-white">
+                <h2
+                  className="uppercase text-[calc(16px+.3vw)] font-[600] text-[#515151] 
+                [body.dark_&]:text-white"
+                >
                   Date
                 </h2>
               </span>
@@ -105,7 +107,8 @@ function Basket({ isMobile, currentUser }) {
                   onClick={() => setOpenCalendar(!openCalendar)}
                   className="w-full px-[10px] py-[13px]
                                     bg-transparent rounded-[15px] border-1 border-[#ebebeb] 
-                                    flex items-center justify-between cursor-pointer"
+                                    flex items-center justify-between cursor-pointer 
+                                    [body.dark_&]:border-[#FFF4]"
                 >
                   <p className="text-[calc(12px+.3vw)] [body.dark_&]:text-white">
                     {calendarDate.toLocaleDateString("hy-AM", {
@@ -143,8 +146,10 @@ function Basket({ isMobile, currentUser }) {
               <span className="flex flex-col">
                 <p className="text-[calc(10px+.3vw)] text-[#9d9d9d]">Order</p>
 
-                <h2 className="uppercase text-[calc(16px+.3vw)] font-[600] text-[#515151] 
-                [body.dark_&]:text-white ">
+                <h2
+                  className="uppercase text-[calc(16px+.3vw)] font-[600] text-[#515151] 
+                [body.dark_&]:text-white "
+                >
                   Time
                 </h2>
               </span>
@@ -157,9 +162,12 @@ function Basket({ isMobile, currentUser }) {
                   onClick={() => setOpenTime(!openTime)}
                   className="w-full px-[10px] py-[13px]
                                     bg-transparent rounded-[15px] border-1 border-[#ebebeb] 
-                                    flex items-center justify-between cursor-pointer"
+                                    flex items-center justify-between cursor-pointer 
+                                    [body.dark_&]:border-[#FFF4]"
                 >
-                  <p className="text-[calc(12px+.3vw)] [body.dark_&]:text-white">10:00</p>
+                  <p className="text-[calc(12px+.3vw)] [body.dark_&]:text-white">
+                    10:00
+                  </p>
 
                   <img
                     src="https://pizza-hut.am/assets/images/app_2/arrow.svg"
@@ -190,8 +198,10 @@ function Basket({ isMobile, currentUser }) {
             </div>
 
             <div className="w-[60%] flex flex-col max-md:w-full">
-              <h2 className="hidden max-md:block uppercase mt-2 text-[#515151] font-[600] 
-              [body.dark_&]:text-white">
+              <h2
+                className="hidden max-md:block uppercase mt-2 text-[#515151] font-[600] 
+              [body.dark_&]:text-white"
+              >
                 Selected menu
               </h2>
 
@@ -230,7 +240,8 @@ function Basket({ isMobile, currentUser }) {
 
               <span
                 className="w-full flex justify-between py-[5px] 
-                            border-b-1 border-[#ebebeb] mt-5"
+                            border-b-1 border-[#ebebeb] mt-5 
+                            [body.dark_&]:border-[#FFF4]"
               >
                 <p className="text-[calc(14px+.3vw)] text-[#9d9d9d]">
                   Delivery Fee
@@ -246,7 +257,8 @@ function Basket({ isMobile, currentUser }) {
 
               <span
                 className="w-full flex justify-between py-[5px] 
-                            border-b-1 border-[#ebebeb]"
+                            border-b-1 border-[#ebebeb] 
+                            [body.dark_&]:border-[#FFF4]"
               >
                 <p className="text-[calc(16px+.3vw)] text-[#515151]">Total</p>
 

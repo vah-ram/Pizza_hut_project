@@ -38,7 +38,7 @@ function FeedBack({ isMobile, currentUser }) {
       {closePartActive ? (
         <div
           className="fixed inset-0 z-[100] bg-black/70 flex
-                        items-center justify-center"
+                        items-center justify-center "
         >
           <div
             className="bg-[#646464CC] w-[400px] h-[135px]
@@ -75,7 +75,8 @@ function FeedBack({ isMobile, currentUser }) {
 
         <div
           className="mt-[80px] flex flex-col
-                    items-center my-10"
+                    items-center my-10 
+                    [body.dark_&]:bg-[#2e2e2e]"
         >
           <h2 className="text-[#515151] text-[28px] [body.dark_&]:text-white">
             {t("feedback_request_title")}
