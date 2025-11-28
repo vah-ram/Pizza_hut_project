@@ -28,7 +28,7 @@ export default function AboutUs({ isMobile, currentUser }) {
                 bg-cover"
       />
 
-      <div className="w-full px-5 py-10 max-w-7xl mx-auto [body.dark_&]:text-white">
+      <div className="w-full py-10 max-w-7xl mx-auto [body.dark_&]:text-white">
         {/* Title */}
         <h1 className="text-2xl font-semibold mb-6">Pizza Hut Armenia Menu</h1>
 

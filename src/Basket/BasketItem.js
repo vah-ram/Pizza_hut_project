@@ -31,7 +31,8 @@ function BasketItem() {
               >
                 <button
                   className="cursor-pointer text-[#e33b41] max-md:text-white max-md:bg-[#e33b41] 
-                  max-md:w-[34px] max-md:h-[34px] max-md:rounded-[12px]"
+                  max-md:w-[34px] max-md:h-[34px] max-md:rounded-[12px] 
+                  [body.dark_&]:text-white"
                   onClick={(evt) => {
                     evt.preventDefault();
                     setBasketInt((prev) => Math.max(1, prev - 1));
@@ -40,13 +41,15 @@ function BasketItem() {
                   –
                 </button>
 
-                <p className="text-[calc(12px+.3vw)] max-md:text-[#e33b41]">
+                <p className="text-[calc(12px+.3vw)] max-md:text-[#e33b41] 
+                [body.dark_&]:text-white">
                   {basketInt}
                 </p>
 
                 <button
                   className="cursor-pointer text-[#e33b41] max-md:text-white max-md:bg-[#e33b41] 
-                  max-md:w-[34px] max-md:h-[34px] max-md:rounded-[12px]"
+                  max-md:w-[34px] max-md:h-[34px] max-md:rounded-[12px] 
+                  [body.dark_&]:text-white"
                   onClick={(evt) => {
                     evt.preventDefault();
                     setBasketInt((prev) => prev + 1);

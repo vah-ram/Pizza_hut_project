@@ -8,12 +8,14 @@ import { useState } from "react";
 import CountrySelect from "../CountrySelect/CountrySelect";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
+import Payment from "./Payment";
 
 function Basket({ isMobile, currentUser }) {
   const navigate = useNavigate();
 
   const [openCalendar, setOpenCalendar] = useState(null);
   const [basketProducts, setBasketProducts] = useState(["history", "mi"]);
+  const [paymentActive, setPaymentActive] = useState(null);
 
   const [calendarDate, setCalendarDate] = useState(new Date());
 
@@ -38,10 +40,18 @@ function Basket({ isMobile, currentUser }) {
     <>
       <MobileMenu currentUser={currentUser} />
 
+      {
+        paymentActive 
+        ?
+        <Payment setPaymentActive={setPaymentActive}/>
+        :
+        ''
+      }
+
       {isMobile ? (
         <div
           className="w-full h-[60px] hidden absolute top-0 left-0 shadow-md
-                                justify-center items-center max-md:flex"
+                                justify-center items-center max-md:flex "
         >
           <button
             className="w-[40px] h-[40px] flex items-center justify-center
@@ -108,7 +118,7 @@ function Basket({ isMobile, currentUser }) {
                   className="w-full px-[10px] py-[13px]
                                     bg-transparent rounded-[15px] border-1 border-[#ebebeb] 
                                     flex items-center justify-between cursor-pointer 
-                                    [body.dark_&]:border-[#FFF4]"
+                                     [body.dark_&]:border-[#FFF4]"
                 >
                   <p className="text-[calc(12px+.3vw)] [body.dark_&]:text-white">
                     {calendarDate.toLocaleDateString("hy-AM", {
@@ -260,9 +270,19 @@ function Basket({ isMobile, currentUser }) {
                             border-b-1 border-[#ebebeb] 
                             [body.dark_&]:border-[#FFF4]"
               >
-                <p className="text-[calc(16px+.3vw)] text-[#515151]">Total</p>
+                <p
+                  className="text-[calc(16px+.3vw)] text-[#515151] 
+                [body.dark_&]:text-[#9d9d9d] 
+                font-[600]"
+                >
+                  Total
+                </p>
 
-                <a className="text-[calc(16px+.3vw)] text-[#515151] font-[600]">
+                <a
+                  className="text-[calc(16px+.3vw)] text-[#515151] 
+                [body.dark_&]:text-[#9d9d9d] 
+                font-[600]"
+                >
                   4,950
                 </a>
               </span>
@@ -271,13 +291,17 @@ function Basket({ isMobile, currentUser }) {
             <div
               className="w-[40%] h-full rounded-[15px] border-1 
                     border-[#ebebeb] p-[15px] flex flex-col gap-5 
-                    max-md:w-full max-md:border-none max-md:p-0"
+                    max-md:w-full max-md:border-none max-md:p-0 
+                    [body.dark_&]:border-[#FFF]"
             >
               <div className="flex gap-10 relative max-md:hidden">
                 <span className="flex flex-col">
                   <p className="text-[calc(10px+.3vw)] text-[#9d9d9d]">Order</p>
 
-                  <h2 className="uppercase text-[calc(12px+.3vw)] font-[600] text-[#515151]">
+                  <h2
+                    className="uppercase text-[calc(12px+.3vw)] font-[600] text-[#515151] 
+                  [body.dark_&]:text-white"
+                  >
                     Date
                   </h2>
                 </span>
@@ -290,9 +314,10 @@ function Basket({ isMobile, currentUser }) {
                     onClick={() => setOpenCalendar(!openCalendar)}
                     className="w-full px-[10px] py-[10px]
                                     bg-transparent rounded-[15px] border-1 border-[#ebebeb] 
-                                    flex items-center justify-between cursor-pointer"
+                                    flex items-center justify-between cursor-pointer 
+                                    [body.dark_&]:border-[#FFF4]"
                   >
-                    <p className="text-[calc(12px+.3vw)]">
+                    <p className="text-[calc(12px+.3vw)] [body.dark_&]:text-white">
                       {calendarDate.toLocaleDateString("hy-AM", {
                         year: "numeric",
                         month: "long",
@@ -328,7 +353,10 @@ function Basket({ isMobile, currentUser }) {
                 <span className="flex flex-col">
                   <p className="text-[calc(10px+.3vw)] text-[#9d9d9d]">Order</p>
 
-                  <h2 className="uppercase text-[calc(12px+.3vw)] font-[600] text-[#515151]">
+                  <h2
+                    className="uppercase text-[calc(12px+.3vw)] font-[600] text-[#515151] 
+                  [body.dark_&]:text-white"
+                  >
                     Time
                   </h2>
                 </span>
@@ -341,9 +369,12 @@ function Basket({ isMobile, currentUser }) {
                     onClick={() => setOpenTime(!openTime)}
                     className="w-full px-[10px] py-[10px]
                                     bg-transparent rounded-[15px] border-1 border-[#ebebeb] 
-                                    flex items-center justify-between cursor-pointer"
+                                    flex items-center justify-between cursor-pointer 
+                                    [body.dark_&]:border-[#FFF4]"
                   >
-                    <p className="text-[calc(12px+.3vw)]">10:00</p>
+                    <p className="text-[calc(12px+.3vw)] [body.dark_&]:text-white">
+                      {selectedTime}
+                    </p>
 
                     <img
                       src="https://pizza-hut.am/assets/images/app_2/arrow.svg"
@@ -378,7 +409,8 @@ function Basket({ isMobile, currentUser }) {
                             bg-[rgba(227,59,65,0.1)] rounded-[15px] border-1 border-red-500  
                             flex items-center justify-between cursor-pointer 
                             max-md:py-[13px] max-md:border-transparent 
-                            [body.dark_&]:border-[#FFF4]"
+                            [body.dark_&]:border-[#FFF4]" 
+                onClick={() => setPaymentActive(true)}
               >
                 <p className="text-[calc(12px+.3vw)] text-[#e33b41]">
                   Select the payment method
@@ -593,11 +625,35 @@ function Basket({ isMobile, currentUser }) {
                   </p>
                 </span>
 
+                <p
+                  className="text-[15px] text-[#515151] flex mt-5 gap-1 
+                    [body.dark_&]:text-white"
+                >
+                  {t("registration_agree_text")}
+
+                  <a href="/terms-and-conditions" className="text-[#e33b41] font-[600]">
+
+                    {t("registration_terms")}
+
+                  </a>
+
+                  {t("registration_and_text")}
+
+                  <a
+                    href="/privacy-policy"
+                    className="text-[#e33b41] font-[600]"
+                  >
+
+                    {t("registration_privacy")}
+
+                  </a>
+                </p>
+
                 <button
                   type="submit"
                   className="w-full max-h-[50px] p-[15px] rounded-[15px] bg-[#e33b41]
                                 uppercase text-white cursor-pointer
-                                 opacity-75 mt-10"
+                                 opacity-75 mt-8"
                 >
                   Submit
                 </button>

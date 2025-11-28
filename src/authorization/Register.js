@@ -505,18 +505,26 @@ function Register() {
                 </label>
 
                 <p className="text-[15px] text-[#515151] flex gap-2">
+
                   {t("registration_agree_text")}
-                  <a href="/conditions" className="text-[#e33b41] font-[600]">
+                  
+                  <a href="/terms-and-conditions" className="text-[#e33b41] font-[600]">
+
                     {t("registration_terms")}
+
                   </a>
+
                   {t("registration_and_text")}
+
                   <a
                     href="/privacy-policy"
                     className="text-[#e33b41] font-[600]"
                   >
                     {t("registration_privacy")}
                   </a>
+
                 </p>
+                
               </div>
 
               <button 
