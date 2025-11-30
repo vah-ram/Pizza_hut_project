@@ -9,6 +9,7 @@ import CountrySelect from "../CountrySelect/CountrySelect";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 import Payment from "./Payment";
+import Address from "./Address";
 
 function Basket({ isMobile, currentUser }) {
   const navigate = useNavigate();
@@ -16,6 +17,7 @@ function Basket({ isMobile, currentUser }) {
   const [openCalendar, setOpenCalendar] = useState(null);
   const [basketProducts, setBasketProducts] = useState(["history", "mi"]);
   const [paymentActive, setPaymentActive] = useState(null);
+  const [addressActive, setAddressActive] = useState(null);
 
   const [calendarDate, setCalendarDate] = useState(new Date());
 
@@ -43,7 +45,15 @@ function Basket({ isMobile, currentUser }) {
       {
         paymentActive 
         ?
-        <Payment setPaymentActive={setPaymentActive}/>
+          <Payment setPaymentActive={setPaymentActive}/>
+        :
+        ''
+      }
+
+      {
+        addressActive 
+        ?
+        <Address setAddressActive={setAddressActive}/>
         :
         ''
       }
@@ -76,7 +86,8 @@ function Basket({ isMobile, currentUser }) {
       {basketProducts.length > 0 ? (
         <section className="w-full h-auto px-[3vw] pt-[120px] max-md:pt-[30px] max-md:pb-[15vh]">
           <span className="w-full flex gap-5 items-center mt-5 [body.isMobile_&]:hidden">
-            <a
+            <a 
+              href=""
               className="text-[16px] text-[#9D9D9D] cursor-pointer
                         [body.dark_&]:text-white"
               onClick={() => navigate("/")}
@@ -176,7 +187,7 @@ function Basket({ isMobile, currentUser }) {
                                     [body.dark_&]:border-[#FFF4]"
                 >
                   <p className="text-[calc(12px+.3vw)] [body.dark_&]:text-white">
-                    10:00
+                    {selectedTime}
                   </p>
 
                   <img
@@ -464,7 +475,8 @@ function Basket({ isMobile, currentUser }) {
                             bg-[rgba(227,59,65,0.1)] rounded-[15px] border-1 border-red-500  
                             flex items-center justify-between cursor-pointer 
                             max-md:py-[13px] max-md:border-transparent 
-                            [body.dark_&]:border-[#FFF4]"
+                            [body.dark_&]:border-[#FFF4]" 
+                            onClick={() => setAddressActive(true)}
               >
                 <p className="text-[calc(12px+.3vw)] text-[#e33b41]">
                   Add Address
@@ -626,8 +638,8 @@ function Basket({ isMobile, currentUser }) {
                 </span>
 
                 <p
-                  className="text-[15px] text-[#515151] flex mt-5 gap-1 
-                    [body.dark_&]:text-white"
+                  className="hidden text-[15px] text-[#515151] mt-5 gap-1 
+                    [body.dark_&]:text-white min-2xl:flex"
                 >
                   {t("registration_agree_text")}
 

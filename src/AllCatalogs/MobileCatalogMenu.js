@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 export default function MobileCatalogMenu() {
   const { t } = useTranslation();
@@ -14,14 +14,14 @@ export default function MobileCatalogMenu() {
             fixed shadow-[0px_-2px_7px_0px_gray] 
             bottom-[0] bg-white z-100 max-md:flex 
             [body.dark_&]:shadow-[0px_-2px_7px_0px_#0005] 
-            [body.dark_&]:bg-[#2e2e2e]"
+            [body.dark_&]:bg-[#2e2e2e] pl-[10vw]"
       >
-        <div className="flex flex-col items-center ml-[30px]">
+        <div className="flex flex-col items-center">
           <button
             className="w-[19vw] h-[19vw] flex 
                             flex-col gap-1 items-center justify-center 
                             bg-blue-500 rounded-full 
-                            shadow-md cursor-pointer absolute bottom-[8vw]"
+                            shadow-md cursor-pointer absolute bottom-[35px]"
           >
             <img
               src="https://www.pizza-hut.am/assets/images/app_2/delivery.svg"
@@ -34,12 +34,12 @@ export default function MobileCatalogMenu() {
             </p>
           </button>
 
-          <p className="text-[calc(14px+.3vw)] text-[#9d9d9d]">Service</p>
+          <p className="text-[calc(14px+.3vw)] text-[#9d9d9d] mt-3">Service</p>
         </div>
 
         <span
           className="h-full flex flex-col border-l-1 
-            border-[#0006] pl-3 ml-6"
+            border-[#0006] pl-3 ml-10"
         >
           <p className="text-[calc(14px+.3vw)] text-[#9d9d9d]">Total</p>
 
@@ -56,8 +56,8 @@ export default function MobileCatalogMenu() {
           type="button"
           className="flex items-center justify-between 
             bg-[#e33b41] rounded-[10px] px-[10px] py-[10px] 
-            min-w-[120px] ml-auto cursor-pointer" 
-            onClick={() => navigate('/basket')}
+            min-w-[120px] ml-auto cursor-pointer"
+          onClick={() => navigate("/basket")}
         >
           <p className="uppercase text-white">Order</p>
 
