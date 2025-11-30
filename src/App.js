@@ -5,10 +5,10 @@ import Project from "./Project";
 import Register from "./authorization/Register";
 import Login from "./authorization/Login";
 import Basket from "./Basket/Basket";
-import AdminPanel from "./Admin/AdminPanel";
 import AllCatalogs from "./AllCatalogs/AllCatalogs";
 import { verifyProfileHost } from "./utils/Hosts.js";
 import axios from "axios";
+import Location from "./Location/Location.js"
 import ProductCard from "./ProductCard/ProductCard";
 import FeedBack from "./FeedBack/FeedBack";
 import Profile from "./Profile/Profile";
@@ -80,7 +80,7 @@ function App() {
                 <Route path="/feedback" element={<FeedBack isMobile={isMobile} currentUser={currentUser} />} />
                 <Route path="/profile/:page" element={<Profile isMobile={isMobile} currentUser={currentUser} />} />
                 <Route path="/basket" element={<Basket isMobile={isMobile} currentUser={currentUser} />} />
-                <Route path="/qjiweqwe234u9190uw9euqjwk;AOKSU3294010EQW____EWQ27EE9JQW9QW98123_2190U3U91U29JA9ISJ9auah8eq17q" element={<AdminPanel />} />
+                <Route path="/location" element={<Location />} />
                 <Route path="/about-us" element={<AboutUs isMobile={isMobile} currentUser={currentUser}/>} />
                 <Route path="/terms-and-conditions" element={<TermsConditions />} />
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />

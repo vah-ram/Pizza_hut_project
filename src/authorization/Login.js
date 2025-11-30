@@ -29,15 +29,8 @@ function Login() {
       });
 
       if (res.data.status) {
-        if (res.data.user.role === "Admin") {
-          localStorage.setItem("token", res.data.token);
-          navigate(
-            "/qjiweqwe234u9190uw9euqjwk;AOKSU3294010EQW____EWQ27EE9JQW9QW98123_2190U3U91U29JA9ISJ9auah8eq17q"
-          );
-        } else {
           localStorage.setItem("token", res.data.token);
           navigate("/");
-        }
       } else {
         toast.error(res.data.message, {
           position: "bottom-right",

@@ -1,5 +1,8 @@
+import { useNavigate } from "react-router-dom"
 
 export default function Address({ setAddressActive }) {
+  const navigate = useNavigate();
+
   return (
     <>
       <div
@@ -29,7 +32,8 @@ export default function Address({ setAddressActive }) {
             mt-15 p-[15px] 
             rounded-[15px] flex items-center 
             justify-center gap-5 cursor-pointer 
-            hover:opacity-80"
+            hover:opacity-80" 
+            onClick={() => navigate('/location')}
           >
 
             <p 
