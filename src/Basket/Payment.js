@@ -12,7 +12,7 @@ export default function Payment({ setPaymentActive }) {
           className="w-[50vw] max-w-[500px] p-[15px] rounded-[15px] 
                 bg-white relative max-md:fixed max-md:bottom-0 max-md:w-full 
                 max-sm:max-w-full max-md:rounded-[6vw] 
-                pb-10"
+                pb-10 [body.dark_&]:bg-[#2e2e2e]"
         >
           <button
             className="w-[40px] h-[40px] flex items-center justify-center
@@ -28,7 +28,8 @@ export default function Payment({ setPaymentActive }) {
 
           <h2
             className="font-[600] text-[calc(16px+.3vw)] 
-                        text-[#515151] uppercase mt-16"
+                        text-[#515151] uppercase mt-16 
+                        [body.dark_&]:text-white"
           >
             Payment Methods
           </h2>
@@ -50,7 +51,7 @@ export default function Payment({ setPaymentActive }) {
                 <circle cx="200" cy="160" r="6" fill="#646464ff"/>
             </svg>
 
-            <p className="capitalize text-[#515151]"
+            <p className="capitalize text-[#515151] [body.dark_&]:text-white"
             >Cash</p>
           </button>
 
@@ -64,7 +65,7 @@ export default function Payment({ setPaymentActive }) {
                 src="https://play-lh.googleusercontent.com/ixddLgBD0FPvyQo1KpVhy7LzuNmKM2iqX0JlF9I3Qt4Vsh77RWmcs1ynD8kCwRoQCg" 
                 className="w-[25px]"/>
 
-            <p className="capitalize text-[#515151]"
+            <p className="capitalize text-[#515151] [body.dark_&]:text-white"
             >Ineco</p>
           </button>
 
@@ -78,7 +79,7 @@ export default function Payment({ setPaymentActive }) {
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToGPwonm-hJJoN5aZU4ek9Tiv3ykwmJbP7b6w7hTvA77JHgXJor_jb7oMTstHM86h7z2Y&usqp=CAU" 
                 className="w-[25px] rounded-md"/>
 
-            <p className="capitalize text-[#515151]"
+            <p className="capitalize text-[#515151] [body.dark_&]:text-white"
             >Idram</p>
           </button>
 
@@ -100,7 +101,7 @@ export default function Payment({ setPaymentActive }) {
             </svg>
 
 
-            <p className="capitalize text-[#515151]"
+            <p className="capitalize text-[#515151] [body.dark_&]:text-white"
             >POS Terminal</p>
           </button>
         </div>

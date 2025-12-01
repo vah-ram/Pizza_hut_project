@@ -269,8 +269,9 @@ function Basket({ isMobile, currentUser }) {
                 </p>
 
                 <a
-                  href=""
-                  className="text-[calc(14px+.3vw)] text-[#e33b41] font-[600]"
+                  className="text-[calc(14px+.3vw)] text-[#e33b41] font-[600] 
+                  cursor-pointer" 
+                  onClick={() => setAddressActive(true)}
                 >
                   Select Address
                 </a>

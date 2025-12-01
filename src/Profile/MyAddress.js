@@ -1,6 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom"
 
 function MyAddress() {
+  const navigate = useNavigate();
+  
   return (
     <>
       <div className="w-full flex justify-center pt-10 max-md:pt-0">
@@ -8,7 +11,8 @@ function MyAddress() {
           type="submit"
           className="w-[90%] max-h-[50px] p-[15px] rounded-[15px] bg-[#e33b41]
                             uppercase text-white mt-2 cursor-pointer
-                            hover:opacity-90"
+                            hover:opacity-90" 
+          onClick={() => navigate('/location')}
         >
           + Add Address
         </button>

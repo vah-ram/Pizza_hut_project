@@ -40,7 +40,7 @@ function MobilePizzaMenu() {
             className="w-full h-full max-h-[300px] shrink-[0]
                         relative rounded-[50px]
                         overflow-hidden max-sm:max-h-[250px] max-sm:rounded-[30px]"
-            onClick={() => navigate("/catalogs/special-offers")}
+            onClick={() => navigate("/catalogs/special_offer")}
           >
             <img
               src="https://bonee.blob.core.windows.net/images/f57285e4-5fcc-f853-b25f-1a2e99f65082_1.jpg"

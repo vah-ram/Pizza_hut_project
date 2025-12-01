@@ -42,7 +42,7 @@ function BasketItem() {
                 </button>
 
                 <p className="text-[calc(12px+.3vw)] max-md:text-[#e33b41] 
-                [body.dark_&]:text-white">
+                [body.dark_&]:text-white font-[500]">
                   {basketInt}
                 </p>
 

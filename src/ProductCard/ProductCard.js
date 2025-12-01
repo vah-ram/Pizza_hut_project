@@ -2,7 +2,7 @@ import React, { use, useEffect, useState } from "react";
 import Project from "../Project";
 import { useNavigate } from "react-router-dom";
 
-function ProductCard() {
+function ProductCard({ isMobile, currentUser }) {
   const navigate = useNavigate();
 
   const [basketInt, setBasketInt] = useState(1);
@@ -24,7 +24,7 @@ function ProductCard() {
 
   return (
     <>
-      <Project />
+      <Project isMobile={isMobile} currentUser={currentUser}/>
 
       {viewImage ? (
         <div

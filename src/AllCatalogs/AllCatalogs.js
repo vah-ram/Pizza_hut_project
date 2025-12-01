@@ -1,13 +1,15 @@
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import HeaderMenu from "../HeaderMenu/HeaderMenu";
 import AboutMenu from "../AboutMenu/AboutMenu";
-import { useFetcher, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import MobileProductCard from "../MobileProductCard/MobileProductCard";
 import CatalogItem from "./CatalogItem";
 import LanguageBar from "../LanguageBar/LanguageBar";
 import MobileCatalogMenu from "./MobileCatalogMenu";
 import CatalogItemTable from "./CatalogItemTable";
+import axios from "axios"
+import { getProductHost } from "../utils/Hosts"
 
 function AllCatalogs({ isMobile, currentUser }) {
   const navigate = useNavigate();
@@ -16,6 +18,27 @@ function AllCatalogs({ isMobile, currentUser }) {
   const [language, setLanguage] = useState("en");
   const [menuTask, setMenuTask] = useState(false);
   const [gridOrTask, setGridOrTask] = useState("grid");
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+
+    const getProducts = async() => {
+      
+      const res = await axios.get(getProductHost, {
+        params: {type: type}
+      });
+
+      if(res) {
+        setProducts(res.data.products)
+      } else {
+        console.log("Error")
+      }
+
+    };
+
+    getProducts()
+
+  }, [type]);
 
   useEffect(() => {
     const products = document.querySelectorAll(".products .product");
@@ -69,7 +92,7 @@ function AllCatalogs({ isMobile, currentUser }) {
       key: "special_offer",
       imageUrl:
         "https://bonee.blob.core.windows.net/images/f57285e4-5fcc-f853-b25f-1a2e99f65082_1.jpg",
-      route: "/catalogs/special-offers",
+      route: "/catalogs/special_offer",
       textKey: "categorie_special_offer",
     },
     {
@@ -436,22 +459,29 @@ function AllCatalogs({ isMobile, currentUser }) {
               <>
                 
                 {
+                  
                   gridOrTask === "grid" ?
-                  [5,2,2,3,2].map((item, i) => (
+                    products.map((item,i) => (
+
                     <CatalogItem 
                       isMobile={isMobile} 
                       setMenuTask={setMenuTask} 
-                      id={i}/>
-                  ))
+                      id={i}
+                      item={item} 
+                      currentUser={currentUser} />
+                    ))
 
                   :
 
-                  [5,2,2,3,2].map((item, i) => (
-                    <CatalogItemTable 
-                      isMobile={isMobile} 
-                      setMenuTask={setMenuTask} 
-                      id={i}/>
-                  ))
+                  products.map((item,i) => (
+
+                      <CatalogItemTable 
+                        isMobile={isMobile} 
+                        setMenuTask={setMenuTask} 
+                        id={i} 
+                        item={item} 
+                        currentUser={currentUser} />
+                    ))
                 }
               </>
             ) : (
@@ -464,9 +494,9 @@ function AllCatalogs({ isMobile, currentUser }) {
       <AboutMenu />
       <LanguageBar setLanguage={setLanguage} />
 
-      <MobileCatalogMenu />
+      <MobileCatalogMenu/>
 
-      {menuTask ? <MobileProductCard setMenuTask={setMenuTask} /> : ""}
+      {menuTask ? <MobileProductCard setMenuTask={setMenuTask}/> : ""}
     </>
   );
 }

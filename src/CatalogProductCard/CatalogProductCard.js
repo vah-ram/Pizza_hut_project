@@ -1,12 +1,30 @@
 import AllCatalogs from "../AllCatalogs/AllCatalogs";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
+import { getProductByIdHost } from "../utils/Hosts";
 
-export default function CatalogProductCard() {
+export default function CatalogProductCard({ isMobile, currentUser }) {
   const navigate = useNavigate();
 
   const [basketInt, setBasketInt] = useState(1);
   const [viewImage, setViewImage] = useState(null);
+
+  const { catalogId } = useParams();
+  const [product, setProduct] = useState(null);
+
+  useEffect(() => {
+    const callFunc = async () => {
+      const res = await axios.get(getProductByIdHost, {
+        params: { productId: catalogId },
+      });
+
+      if (res.data) {
+        setProduct(res.data.product);
+      }
+    };
+    callFunc();
+  }, [catalogId]);
 
   useEffect(() => {
     const pizzaTypes = document.querySelectorAll(".pizza_types .typePizza");
@@ -18,10 +36,10 @@ export default function CatalogProductCard() {
       });
     });
   }, []);
- 
+
   return (
     <>
-      <AllCatalogs />
+      <AllCatalogs isMobile={isMobile} currentUser={currentUser} />
 
       {viewImage ? (
         <div
@@ -30,7 +48,7 @@ export default function CatalogProductCard() {
             p-[15px]"
         >
           <img
-            src="https://bonee.blob.core.windows.net/images/3cb64dce-f9bc-6b0a-dd0f-dc785729de67_2.webp"
+            src={product?.image_url}
             className="w-auto h-auto object-cover group-hover:opacity-80"
             alt="slider item img"
           />
@@ -55,7 +73,7 @@ export default function CatalogProductCard() {
         className="fixed inset-0 z-[120] bg-black/40 flex
             items-center justify-center max-md:hidden"
       >
-        <div className="relative w-[80%] h-[85%]">
+        <div className="relative w-[80%] h-auto">
           <button
             className="w-[30px] h-[30px] absolute right-0
                                   top-[-35px] flex items-center justify-center bg-white rounded-full
@@ -73,13 +91,13 @@ export default function CatalogProductCard() {
                       rounded-xl bg-[#FFF] p-5 pb-5 overflow-scroll
                       [&::-webkit-scrollbar]:hidden [body.dark_&]:bg-[#2E2E2E]"
           >
-            <div className="w-full flex gap-5">
+            <div className="w-full flex">
               <div className="w-[40%] h-auto group overflow-hidden">
                 <span
-                  className="imgSpan relative flex w-[30vw] h-[30vw] 
+                  className={`imgSpan relative flex w-[30vw] h-[30vw] 
                     rounded-xl cursor-pointer justify-center items-center 
-                    bg-[url('https://bonee.blob.core.windows.net/images/3cb64dce-f9bc-6b0a-dd0f-dc785729de67_2.webp')] 
-                    bg-cover hover:opacity-75"
+                    bg-[url('${product?.image_url}')] 
+                    bg-cover hover:opacity-75`}
                   onClick={() => setViewImage(true)}
                 >
                   <img
@@ -90,22 +108,22 @@ export default function CatalogProductCard() {
                   />
 
                   <div
-                    className="absolute top-10 left-2 bg-red-500 text-white text-sm  
+                    className={`absolute top-10 left-2 bg-red-500 text-white text-sm  
                             px-3 py-1 rounded-r-md flex justify-center items-center w-[80px] 
-                            flex "
+                            flex ${product?.sale_percent === 0 ? "hidden" : ""}`}
                   >
-                    -20%
+                    -{product?.sale_percent === 0 ? "" : product?.sale_percent}%
                   </div>
                 </span>
               </div>
 
-              <div className="w-[60%] h-full px-5 flex flex-col">
+              <div className="w-[60%] h-full flex flex-col">
                 <div className="w-full flex justify-between">
                   <h2
                     className="uppercase text-[calc(18px+.3vw)]
                                   text-[#515151] font-[700] mt-2 [body.dark_&]:text-white"
                   >
-                    Combo for Meat Lovers
+                    {product?.title}
                   </h2>
 
                   <button
@@ -128,21 +146,18 @@ export default function CatalogProductCard() {
                 </div>
 
                 <p
-                  className="text-[20px] text-[#9D9D9D]
-                              font-[600] mt-3"
+                  className={`text-[20px] text-[#9D9D9D]
+                              font-[600] mt-3 
+                              ${product?.sale_percent === 0 ? "hidden" : ""}`}
                 >
-                  -20%
+                  -{product?.sale_percent}%
                 </p>
 
                 <p
                   className="mt-5 text-[18px] text-[#9D9D9D]
                           font-[400]"
                 >
-                  Meat Lovers 33 sm. (Tomato sauce, mozzarella cheese,
-                  pepperoni, beef, bacon, ham.) Spicy Meat 33 sm. (Tomato sauce,
-                  mozzarella cheese, ham, pepperoni, jalapeno pepper.) Chicken
-                  BBQ 33 sm. (Barbeque sauce, chicken breast, bacon, onion,
-                  mushrooms, Bulgarian pepper, mozzarella cheese.)
+                  {product?.description}
                 </p>
 
                 <h3
@@ -154,25 +169,25 @@ export default function CatalogProductCard() {
 
                 <div className="flex gap-2 mt-3 pizza_types">
                   <button
-                      className="uppercase px-[15px] py-[5px] 
+                    className="uppercase px-[15px] py-[5px] 
                                   text-[#9D9D9D] border border-1
                                   border-gray-200 rounded-md text-[14px]
                                   cursor-pointer [body.dark_&]:border-[#9D9D9D] 
                                   typePizza [.active]:bg-[#e33b41] [.active]:text-white 
                                   active"
-                    >
-                      Pan
-                    </button>
+                  >
+                    Pan
+                  </button>
 
-                    <button
-                      className="uppercase px-[15px] py-[5px] 
+                  <button
+                    className="uppercase px-[15px] py-[5px] 
                                   text-[#9D9D9D] border border-1
                                   border-gray-200 rounded-md text-[14px]
                                   cursor-pointer [body.dark_&]:border-[#9D9D9D] 
                                   typePizza [.active]:bg-[#e33b41] [.active]:text-white"
-                    >
-                      Classic
-                    </button>
+                  >
+                    Classic
+                  </button>
                 </div>
 
                 <form className="w-full flex flex-col">
@@ -193,17 +208,23 @@ export default function CatalogProductCard() {
                   <div className="w-full flex justify-between mt-20">
                     <span className="flex gap-2 items-center">
                       <p
-                        className="text-[#e33b41] text-[25px] font-[500]
-                                      font-sans leading-[15px]"
+                        className={`text-[#e33b41] text-[25px] font-[500]
+                                      font-sans leading-[15px] 
+                                      ${product?.old_price === 0
+                                          ? "text-gray-600 font-[400]"
+                                          : ''
+                                      }`}
                       >
-                        8,800
+                        {product?.price.toLocaleString()}
                       </p>
 
                       <p
                         className="text-[#9d9d9d] text-[23px]
                                       line-through"
                       >
-                        11,000
+                        {product?.old_price === 0
+                          ? ""
+                          : product?.old_price.toLocaleString()}
                       </p>
                     </span>
 
@@ -248,7 +269,7 @@ export default function CatalogProductCard() {
                           alt=""
                         />
 
-                        <p className="text-white text-[14px]">ADD</p>
+                        <p className="text-white text-[16px]">ADD</p>
                       </button>
                     </div>
                   </div>

@@ -1,15 +1,30 @@
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { addProductToBasketHost } from "../utils/Hosts"
 
-export default function CatalogItem({ isMobile, setMenuTask }) {
+export default function CatalogItem({ isMobile, setMenuTask, item, currentUser }) {
   const navigate = useNavigate();
+
+  const addBasketFunc = async() => {
+
+    if(!currentUser) {
+      return
+    };
+
+    const res = await axios.post(addProductToBasketHost, {
+        myId: currentUser?.id,
+        productId: item.id
+    })
+
+  }
 
   return (
     <>
       <div
-        className="w-full mt-7 max-md:mt-3  
+        className={`w-full mt-7 max-md:mt-3  
                      flex flex-col justify-start
                     items-center relative rounded-[15px] 
-                    max-md:rounded-[5vw] border-1 border-gray-300 before:content-['-30%']
+                    max-md:rounded-[5vw] border-1 border-gray-300 before:content-['-${item?.sale_percent}%']
                     before:absolute before:z-1 before:left-0 before:top-[25px]
                     before:w-[80px] before:h-[30px] before:bg-[#f33]
                     before:text-white before:flex before:justify-center
@@ -19,17 +34,22 @@ export default function CatalogItem({ isMobile, setMenuTask }) {
                      max-md:before:rounded-tl-[25px] 
                      max-md:before:rounded-br-[30px] 
                      max-md:before:bg-[#e33b41] 
-                     [body.dark_&]:border-[#FFF4]"
+                     [body.dark_&]:border-[#FFF4] 
+                     ${item?.sale_percent === 0 ? 
+                      'before:hidden' :
+                      ''
+                     }`}
+
         onClick={() => {
-          isMobile ? setMenuTask(true) : navigate(`/catalog/hi`);
+          isMobile ? setMenuTask(true) : navigate(`/catalog/${item.id}`);
         }}
       >
         <span
-          className="max-md:w-full 
+          className="max-md:w-full max-h-[30vh] 
          rounded-[15px] overflow-hidden group"
         >
           <img
-            src="https://bonee.blob.core.windows.net/images/a0bcdc66-7da3-0c1a-3887-396ce30bd05a_2.webp"
+            src={item.image_url}
             className="group-hover:scale-110 duration-500"
             alt="slider item img"
           />
@@ -41,7 +61,7 @@ export default function CatalogItem({ isMobile, setMenuTask }) {
                                  text-[18px] uppercase mt-3 mb-10 max-md:mb-3 
                                  text-center max-md:mt-0"
           >
-            Combo Pepperoni
+            {item.title}
           </p>
         </div>
 
@@ -53,14 +73,16 @@ export default function CatalogItem({ isMobile, setMenuTask }) {
             className="text-[#e33b41] text-[17px] font-[800] 
            leading-[15px] max-md:text-[#FF3333]"
           >
-            8,800
+            {item.price}
           </p>
 
           <p
             className="text-[#9d9d9d] line-through 
           text-[calc(14px+.3vw)"
           >
-            11,000
+            {
+              item.old_price === 0 ? '' : item.old_price
+            }
           </p>
         </span>
 
@@ -80,15 +102,24 @@ export default function CatalogItem({ isMobile, setMenuTask }) {
         >
           <button className="w-[50%] cursor-pointer bg-[#3d3d3d]">
             <p className="text-[#e33b41] text-[17px] font-[800] leading-[15px]">
-              8,800
+              {item.price}
             </p>
 
-            <p className="text-[#9d9d9d] text-[12px] line-through">11,000</p>
+            <p className="text-[#9d9d9d] text-[12px] line-through ">
+              {
+                item.old_price === 0 ? '' : item.old_price
+              }
+            </p>
+
           </button>
 
           <button
             className="w-[50%] cursor-pointer bg-[#e33b41]
-                          flex justify-center items-center gap-2 hover:opacity-90"
+                          flex justify-center items-center gap-2 hover:opacity-90" 
+            onClick={(evt) => {
+              evt.stopPropagation()
+              addBasketFunc()
+            }}
           >
             <img
               src="https://www.pizza-hut.am/assets/images/app_2/basketPlus.svg"

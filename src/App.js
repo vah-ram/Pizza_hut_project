@@ -23,31 +23,31 @@ function App() {
     const location = useLocation();
 
     const [isMobile, setIsMobile] = useState('');
-    const [currentUser, setCurrentUser] = useState(true)//Added
+    const [currentUser, setCurrentUser] = useState(null)
 
-    // useEffect(() => {
-    //     const verify = async () => {
-    //         try {
-    //             const token = localStorage.getItem("token");
+    useEffect(() => {
+        const verify = async () => {
+            try {
+                const token = localStorage.getItem("token");
     
-    //             if (!token) {
-    //                 return setCurrentUser('');
-    //             }
+                if (!token) {
+                    return setCurrentUser('');
+                }
     
-    //             const res = await axios.get(verifyProfileHost, {
-    //                 params: { token }
-    //             });
+                const res = await axios.get(verifyProfileHost, {
+                    params: { token }
+                });
     
-    //             setCurrentUser(res.data.status ? res.data.user : '');
+                setCurrentUser(res.data.status ? res.data.user : '');
     
-    //         } catch (err) {
-    //             console.error(err);
-    //         }
-    //     };
+            } catch (err) {
+                console.error(err);
+            }
+        };
     
-    //     verify();
+        verify();
     
-    // }, [location.pathname]);
+    }, [location.pathname]);
 
     useEffect(() => {
 
@@ -74,13 +74,13 @@ function App() {
                 <Route path="/signIn" element={<Login />} />
                 <Route path="/signUp" element={<Register />} />
                 <Route path="/search" element={<MobileSearch />} />
-                <Route path="/product/:productId" element={<ProductCard />} />
-                <Route path="/catalog/:catalogId" element={<CatalogProductCard />} />
+                <Route path="/product/:productId" element={<ProductCard isMobile={isMobile} currentUser={currentUser}/>} />
+                <Route path="/catalog/:catalogId" element={<CatalogProductCard isMobile={isMobile} currentUser={currentUser}/>} />
                 <Route path="/catalogs/:type" element={<AllCatalogs isMobile={isMobile} currentUser={currentUser}/>} />
                 <Route path="/feedback" element={<FeedBack isMobile={isMobile} currentUser={currentUser} />} />
                 <Route path="/profile/:page" element={<Profile isMobile={isMobile} currentUser={currentUser} />} />
                 <Route path="/basket" element={<Basket isMobile={isMobile} currentUser={currentUser} />} />
-                <Route path="/location" element={<Location />} />
+                <Route path="/location" element={<Location isMobile={isMobile} currentUser={currentUser}/>} />
                 <Route path="/about-us" element={<AboutUs isMobile={isMobile} currentUser={currentUser}/>} />
                 <Route path="/terms-and-conditions" element={<TermsConditions />} />
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />

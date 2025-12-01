@@ -44,7 +44,7 @@ function SliderCategories() {
                     <div className="flex gap-3 h-full items-center">
                             <span 
                                 className="text-[#e33b41] text-[16px] cursor-pointer"
-                                onClick={() => navigate('/catalogs/special-offers')}>
+                                onClick={() => navigate('/catalogs/special_offer')}>
                                 {t("see_all")}
                             </span>
 

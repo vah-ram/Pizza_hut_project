@@ -28,7 +28,7 @@ function Project({ isMobile, currentUser }) {
           <button 
               className="w-[250px] h-[42px] flex items-center justify-center
               rounded-[10px] bg-[#3d3d3d] cursor-pointer hover:bg-[#e33b41]"
-                onClick={() => navigate('/catalogs/special-offers')}>
+                onClick={() => navigate('/catalogs/special_offer')}>
               <p className="text-white text-[17px]
                font-[500] uppercase">
                   {t("allproducts")}

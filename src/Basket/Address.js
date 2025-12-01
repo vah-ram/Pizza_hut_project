@@ -13,7 +13,8 @@ export default function Address({ setAddressActive }) {
           className="w-[50vw] max-w-[500px] p-[15px] rounded-[15px] 
                 bg-white relative w-full 
                 max-sm:max-w-full max-md:rounded-[6vw] 
-                pb-5 mt-auto"
+                pb-5 mt-auto 
+                [body.dark_&]:bg-[#2e2e2e]"
         >
           <button
             className="w-[40px] h-[40px] flex items-center justify-center

@@ -1,14 +1,19 @@
 import { useNavigate } from "react-router-dom";
 
-export default function CatalogItemTable({ isMobile, setMenuTask }) {
+export default function CatalogItemTable({ isMobile, setMenuTask, item }) {
   const navigate = useNavigate();
 
   return (
     <div
-      className="w-full mt-3 gap-2 
+      className={`w-full mt-3 gap-2 
                     flex flex-row justify-start 
                     items-center relative  
-                    border-b-1 border-gray-300 before:content-['-30%']
+                    border-b-1 border-gray-300 
+                    before:content-['${
+                      item?.sale_percent ? 
+                      '-' + item?.sale_percent + '%' : 
+                      ''
+                    }']
                     before:absolute before:top-0 before:z-[1] 
                     before:w-[80px] before:h-[30px] before:bg-[#f33]
                     before:text-white before:flex before:justify-center
@@ -17,7 +22,7 @@ export default function CatalogItemTable({ isMobile, setMenuTask }) {
                      max-md:before:rounded-tl-[2vw] 
                      max-md:before:rounded-br-[30px] 
                      max-md:before:bg-[#e33b41] 
-                     [body.dark_&]:border-[#FFF4]"
+                     [body.dark_&]:border-[#FFF4]`}
       onClick={() => {
         isMobile ? setMenuTask(true) : navigate(`/catalog/hi`);
       }}
@@ -29,7 +34,7 @@ export default function CatalogItemTable({ isMobile, setMenuTask }) {
          border-[#ebebeb] [body.dark_&]:border-[#FFF4]"
       >
         <img
-          src="https://bonee.blob.core.windows.net/images/a0bcdc66-7da3-0c1a-3887-396ce30bd05a_2.webp"
+          src={item?.image_url}
           className="w-full h-full 
           duration-700 rounded-[6vw] rounded-tl-[2vw]"
           alt="slider item img"
@@ -41,7 +46,7 @@ export default function CatalogItemTable({ isMobile, setMenuTask }) {
           className="absolute top-0 left-0 text-[#515151] 
           font-[600] text-[calc(14px+.3vw)] [body.dark_&]:text-white"
         >
-          Combo Pepperoni
+          {item?.title}
         </h2>
 
         <span
@@ -52,14 +57,20 @@ export default function CatalogItemTable({ isMobile, setMenuTask }) {
             className="text-[#9d9d9d] line-through font-[400]  
           text-[calc(12px+.3vw)]"
           >
-            4,500
+           {
+            item?.old_price === 0 
+            ?
+            ''
+            :
+            item?.old_price.toLocaleString()
+           }
           </p>
 
           <p
             className="text-[#FF3333] font-[600] 
             text-[calc(12px+.3vw)]"
           >
-            3,000
+            {item?.price.toLocaleString()}
           </p>
         </span>
 
