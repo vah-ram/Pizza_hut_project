@@ -7,7 +7,7 @@ function MobileMenu({ currentUser }) {
 
   const menuItems = document.querySelectorAll("footer .menuItem");
 
-  const [orderActive, setOrderActive] = useState(null);
+  const [active, setActive] = useState("delivery");
 
   menuItems.forEach((elem) => {
     elem.addEventListener("click", () => {
@@ -19,7 +19,7 @@ function MobileMenu({ currentUser }) {
 
   return (
     <>
-      {orderActive ? (
+      {active ? (
         <div
           className="hidden fixed inset-0 z-[100] bg-black/40 
             items-center justify-center max-md:flex"
@@ -77,39 +77,53 @@ function MobileMenu({ currentUser }) {
         gap-2"
         >
           <button
-            className={`w-[19vw] h-[19vw] flex 
-                  flex-col gap-1 items-center justify-center 
-                   bg-[#e33b41] rounded-full 
-                  shadow-md cursor-pointer absolute bottom-0`}>
+            onClick={() => setActive("dine")}
+            className={`
+              w-[19vw] h-[19vw] flex flex-col gap-1 items-center justify-center
+              rounded-full shadow-md cursor-pointer absolute bottom-0
+              bg-[#e33b41] transition-all duration-300
+              ${
+                active === "dine"
+                  ? "-translate-y-[20vh] z-20"
+                  : "-translate-y-[0vh] z-20"
+              }
+          `}
+          >
             <img
               src="https://pizza-hut.am/assets/images/app_2/dineIN.svg"
-              className="w-[6vh] h-[6vh] max-sm:w-[4vh] max-sm:h-[4vh]"
+              className="w-[6vh] h-[6vh]"
               alt=""
             />
-
             <p className="text-[2vw] text-white font-[600] uppercase">
-              Order now
+              DINE-IN
             </p>
           </button>
 
           <button
-            className="w-[19vw] h-[19vw] flex 
-                  flex-col gap-1 items-center justify-center 
-                   bg-blue-500 rounded-full 
-                  shadow-md cursor-pointer absolute bottom-0">
+            onClick={() => setActive("delivery")}
+            className={`
+              w-[19vw] h-[19vw] flex flex-col gap-1 items-center justify-center
+              rounded-full shadow-md cursor-pointer absolute bottom-0
+              bg-blue-500 transition-all duration-300
+              ${
+                active === "delivery"
+                  ? "-translate-y-[20vh] z-20"
+                  : "translate-y-[0vh] z-10"
+              }
+          `}
+          >
             <img
               src="https://www.pizza-hut.am/assets/images/app_2/delivery.svg"
               className="w-[50%] h-[45%]"
               alt=""
             />
-
             <p className="text-[2vw] text-white font-[600] uppercase">
               {t("delivery")}
             </p>
           </button>
         </div>
 
-      <button
+        <button
           className="flex flex-col gap-1 justify-center items-center cursor-pointer"
           onClick={() => navigate("/basket")}
         >
