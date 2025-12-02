@@ -4,20 +4,24 @@ import MobileMenu from "../MobileMenuBar/MobileMenu";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import BasketItem from "./BasketItem";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CountrySelect from "../CountrySelect/CountrySelect";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 import Payment from "./Payment";
 import Address from "./Address";
+import { getProductsBasketHost, host } from "../utils/Hosts";
+import axios from "axios";
 
-function Basket({ isMobile, currentUser }) {
+function Basket({ isMobile, currentUser, currentLang }) {
   const navigate = useNavigate();
 
   const [openCalendar, setOpenCalendar] = useState(null);
-  const [basketProducts, setBasketProducts] = useState(["history", "mi"]);
+  const [basketProducts, setBasketProducts] = useState([]);
   const [paymentActive, setPaymentActive] = useState(null);
   const [addressActive, setAddressActive] = useState(null);
+  const [totalPrice, setTotalPrice] = useState(null);
+  const [deletedItem, setDeletedItem] = useState(null);
 
   const [calendarDate, setCalendarDate] = useState(new Date());
 
@@ -38,30 +42,56 @@ function Basket({ isMobile, currentUser }) {
 
   const { t } = useTranslation();
 
+  useEffect(() => {
+    setBasketProducts((prevs) =>
+      prevs.filter((item) => {
+        return item.id !== deletedItem.id;
+      })
+    );
+  }, [deletedItem]);
+
+  useEffect(() => {
+    const callBasket = async () => {
+      if (!currentUser) {
+        return;
+      }
+
+      const res = await axios.get(getProductsBasketHost, {
+        params: {
+          myId: currentUser?.id,
+        },
+      });
+
+      if (res.data.status) {
+        setBasketProducts(res.data.products);
+      } else {
+        console.log(res.data.message);
+      }
+    };
+    callBasket();
+  }, [currentUser]);
+
+  useEffect(() => {
+    setTotalPrice(
+      basketProducts.reduce((total, item) => {
+        return total + item.price;
+      }, 0)
+    );
+  }, [basketProducts]);
+
   return (
     <>
       <MobileMenu currentUser={currentUser} />
 
-      {
-        paymentActive 
-        ?
-          <Payment setPaymentActive={setPaymentActive}/>
-        :
-        ''
-      }
+      {paymentActive ? <Payment setPaymentActive={setPaymentActive} /> : ""}
 
-      {
-        addressActive 
-        ?
-        <Address setAddressActive={setAddressActive}/>
-        :
-        ''
-      }
+      {addressActive ? <Address setAddressActive={setAddressActive} /> : ""}
 
       {isMobile ? (
         <div
-          className="w-full h-[60px] hidden absolute top-0 left-0 shadow-md
-                                justify-center items-center max-md:flex "
+          className="w-full h-[60px] hidden fixed z-[1] top-0 left-0 shadow-md
+                                justify-center items-center max-md:flex 
+                                bg-white [body.dark_&]:bg-[#2e2e2e]"
         >
           <button
             className="w-[40px] h-[40px] flex items-center justify-center
@@ -84,9 +114,9 @@ function Basket({ isMobile, currentUser }) {
       )}
 
       {basketProducts.length > 0 ? (
-        <section className="w-full h-auto px-[3vw] pt-[120px] max-md:pt-[30px] max-md:pb-[15vh]">
+        <section className="w-full h-auto px-[4vw] pt-[120px] max-md:pt-[30px] max-md:pb-[15vh]">
           <span className="w-full flex gap-5 items-center mt-5 [body.isMobile_&]:hidden">
-            <a 
+            <a
               href=""
               className="text-[16px] text-[#9D9D9D] cursor-pointer
                         [body.dark_&]:text-white"
@@ -254,9 +284,15 @@ function Basket({ isMobile, currentUser }) {
               </div>
 
               <div className="flex flex-col">
-                <BasketItem />
-
-                <BasketItem />
+                {basketProducts.map((item, i) => (
+                  <BasketItem
+                    item={item}
+                    index={i}
+                    currentUser={currentUser}
+                    currentLang={currentLang}
+                    setDeletedItem={setDeletedItem}
+                  />
+                ))}
               </div>
 
               <span
@@ -270,7 +306,7 @@ function Basket({ isMobile, currentUser }) {
 
                 <a
                   className="text-[calc(14px+.3vw)] text-[#e33b41] font-[600] 
-                  cursor-pointer" 
+                  cursor-pointer"
                   onClick={() => setAddressActive(true)}
                 >
                   Select Address
@@ -295,7 +331,7 @@ function Basket({ isMobile, currentUser }) {
                 [body.dark_&]:text-[#9d9d9d] 
                 font-[600]"
                 >
-                  4,950
+                  {totalPrice?.toLocaleString()}
                 </a>
               </span>
             </div>
@@ -421,7 +457,7 @@ function Basket({ isMobile, currentUser }) {
                             bg-[rgba(227,59,65,0.1)] rounded-[15px] border-1 border-red-500  
                             flex items-center justify-between cursor-pointer 
                             max-md:py-[13px] max-md:border-transparent 
-                            [body.dark_&]:border-[#FFF4]" 
+                            [body.dark_&]:border-[#FFF4]"
                 onClick={() => setPaymentActive(true)}
               >
                 <p className="text-[calc(12px+.3vw)] text-[#e33b41]">
@@ -476,8 +512,8 @@ function Basket({ isMobile, currentUser }) {
                             bg-[rgba(227,59,65,0.1)] rounded-[15px] border-1 border-red-500  
                             flex items-center justify-between cursor-pointer 
                             max-md:py-[13px] max-md:border-transparent 
-                            [body.dark_&]:border-[#FFF4]" 
-                            onClick={() => setAddressActive(true)}
+                            [body.dark_&]:border-[#FFF4]"
+                onClick={() => setAddressActive(true)}
               >
                 <p className="text-[calc(12px+.3vw)] text-[#e33b41]">
                   Add Address
@@ -644,10 +680,11 @@ function Basket({ isMobile, currentUser }) {
                 >
                   {t("registration_agree_text")}
 
-                  <a href="/terms-and-conditions" className="text-[#e33b41] font-[600]">
-
+                  <a
+                    href="/terms-and-conditions"
+                    className="text-[#e33b41] font-[600]"
+                  >
                     {t("registration_terms")}
-
                   </a>
 
                   {t("registration_and_text")}
@@ -656,9 +693,7 @@ function Basket({ isMobile, currentUser }) {
                     href="/privacy-policy"
                     className="text-[#e33b41] font-[600]"
                   >
-
                     {t("registration_privacy")}
-
                   </a>
                 </p>
 
@@ -685,7 +720,7 @@ function Basket({ isMobile, currentUser }) {
             <div className="flex flex-col items-center">
               <img
                 src="https://www.pizza-hut.am/assets/images/app_2/basketEmpty.svg"
-                className="w-[35vw]"
+                className="w-[15vw]"
               />
 
               <p

@@ -41,16 +41,6 @@ i18n
 
           //Slider offers
           offer_special_offer: "Special Offers",
-          offer_meatlover: "Combo for Meat Lovers",
-          offer_pizza_set: "Pizza Set",
-          offer_combo_3_pizzas: "Combo with 3×27 cm pizzas",
-          offer_combo_nuggets: "Combo Pizza x Nuggets Box",
-          offer_cheese_bites_combo: "Cheese bites combo",
-          offer_my_box_veggie: "My Box Veggie",
-          offer_my_box_pepperoni: "My Box Pepperoni",
-          offer_my_box_chicken_bbq: "My Box Chicken BBQ",
-          offer_popular_combo: "Popular Combo",
-          offer_combo_pepperoni: "Combo Pepperoni",
 
           //Menu Links
           menu_home: "Home",
@@ -136,16 +126,6 @@ i18n
 
           //Slider offers
           offer_special_offer: "Специальные предложения",
-          offer_meatlover: "Комбо Для Любителей Мяса",
-          offer_pizza_set: "Пицца Сет",
-          offer_combo_3_pizzas: "Комбо из 3 пицц 27 см",
-          offer_combo_nuggets: "Комбо Пицца + Наггетсы",
-          offer_cheese_bites_combo: "Комбо с сырными шариками",
-          offer_my_box_veggie: "Мой Бокс Овощной",
-          offer_my_box_pepperoni: "Мой Бокс Пепперони",
-          offer_my_box_chicken_bbq: "Мой Бокс Чикен BBQ",
-          offer_popular_combo: "Популярное комбо",
-          offer_combo_pepperoni: "Комбо Пепперони",
           
           //Menu Links
           menu_home: "Главная",
@@ -231,16 +211,6 @@ i18n
 
           //Slider offers
           offer_special_offer: "Հատուկ առաջարկներ",
-          offer_meatlover: "Կոմբո Մսի Սիրահարների համար",
-          offer_pizza_set: "Պիցցա Սեթ",
-          offer_combo_3_pizzas: "Կոմբո 3 միջին պիցցաներով",
-          offer_combo_nuggets: "Պիցցա + Նագեթս տուփ",
-          offer_cheese_bites_combo: "Չիզ բայթս փաթեթ",
-          offer_my_box_veggie: "Իմ Բոքս Վեգգի",
-          offer_my_box_pepperoni: "Իմ Բոքս Պեպերոնի",
-          offer_my_box_chicken_bbq: "Իմ Բոքս Չիքեն BBQ",
-          offer_popular_combo: "Հանրաճանաչ փաթեթ",
-          offer_combo_pepperoni: "Պեպերոնի փաթեթ",
 
           //Menu Links
           menu_home: "Գլխավոր",

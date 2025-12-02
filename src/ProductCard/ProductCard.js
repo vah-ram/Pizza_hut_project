@@ -1,12 +1,16 @@
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Project from "../Project";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { getProductByIdHost, addProductToBasketHost } from "../utils/Hosts";
+import axios from "axios";
 
-function ProductCard({ isMobile, currentUser }) {
+function ProductCard({ isMobile, currentUser, currentLang }) {
   const navigate = useNavigate();
 
   const [basketInt, setBasketInt] = useState(1);
   const [viewImage, setViewImage] = useState(null);
+  const { productId } = useParams();
+  const [product, setProduct] = useState(null);
 
   useEffect(() => {
     const pizzaTypes = document.querySelectorAll(".pizza_types .typePizza");
@@ -22,9 +26,33 @@ function ProductCard({ isMobile, currentUser }) {
     });
   }, []);
 
+  useEffect(() => {
+    const callFunc = async () => {
+      const res = await axios.get(getProductByIdHost, {
+        params: { productId: productId },
+      });
+
+      if (res.data) {
+        setProduct(res.data.product);
+      }
+    };
+    callFunc();
+  }, [productId]);
+
+  const addBasketFunc = async () => {
+    if (!currentUser || !product) {
+      return;
+    }
+
+    await axios.post(addProductToBasketHost, {
+      myId: currentUser?.id,
+      productId: product.id,
+    });
+  };
+
   return (
     <>
-      <Project isMobile={isMobile} currentUser={currentUser}/>
+      <Project isMobile={isMobile} currentUser={currentUser} />
 
       {viewImage ? (
         <div
@@ -79,11 +107,11 @@ function ProductCard({ isMobile, currentUser }) {
             <div className="w-full flex gap-5">
               <div className="w-[40%] h-auto group overflow-hidden">
                 <span
-                  className="imgSpan relative flex w-[30vw] h-[30vw] 
+                  className={`relative flex w-[30vw] h-[30vw] 
                     cursor-pointer justify-center items-center 
-                    bg-[url('https://bonee.blob.core.windows.net/images/3cb64dce-f9bc-6b0a-dd0f-dc785729de67_2.webp')] 
+                    bg-[url('${product?.image_url}')] 
                     bg-cover hover:opacity-75 
-                    rounded-xl"
+                    rounded-xl`}
                   onClick={() => setViewImage(true)}
                 >
                   <img
@@ -109,7 +137,13 @@ function ProductCard({ isMobile, currentUser }) {
                     className="uppercase text-[calc(18px+.3vw)]
                                   text-[#515151] font-[700] mt-2 [body.dark_&]:text-white"
                   >
-                    Combo for Meat Lovers
+                    {currentLang === "en"
+                      ? product?.title
+                      : currentLang === "ru"
+                      ? product?.title_ru
+                      : currentLang === "am"
+                      ? product?.title_am
+                      : ""}
                   </h2>
 
                   <button
@@ -142,11 +176,13 @@ function ProductCard({ isMobile, currentUser }) {
                   className="mt-5 text-[18px] text-[#9D9D9D]
                           font-[400]"
                 >
-                  Meat Lovers 33 sm. (Tomato sauce, mozzarella cheese,
-                  pepperoni, beef, bacon, ham.) Spicy Meat 33 sm. (Tomato sauce,
-                  mozzarella cheese, ham, pepperoni, jalapeno pepper.) Chicken
-                  BBQ 33 sm. (Barbeque sauce, chicken breast, bacon, onion,
-                  mushrooms, Bulgarian pepper, mozzarella cheese.)
+                  {currentLang === "en"
+                    ? product?.description
+                    : currentLang === "ru"
+                    ? product?.description_ru
+                    : currentLang === "am"
+                    ? product?.description_am
+                    : ""}
                 </p>
 
                 <h3
@@ -200,14 +236,14 @@ function ProductCard({ isMobile, currentUser }) {
                         className="text-[#e33b41] text-[25px] font-[500]
                                       font-sans leading-[15px]"
                       >
-                        8,800
+                        {product?.price.toLocaleString()}
                       </p>
 
                       <p
                         className="text-[#9d9d9d] text-[23px]
                                       line-through"
                       >
-                        11,000
+                        {product?.old_price.toLocaleString()}
                       </p>
                     </span>
 
@@ -244,7 +280,10 @@ function ProductCard({ isMobile, currentUser }) {
                         className="w-[120px] h-[40px] cursor-pointer
                                           bg-[#e33b41] flex justify-center items-center
                                           gap-2 hover:opacity-90 rounded-lg z-[1]"
-                        onClick={() => navigate("/basket")}
+                        onClick={() => {
+                          navigate("/basket")
+                          addBasketFunc()
+                        }}
                       >
                         <img
                           src="	https://pizza-hut.am/assets/images/app_2/basketWhite.svg"
@@ -384,8 +423,7 @@ function ProductCard({ isMobile, currentUser }) {
                     <button
                       className="w-[50%] cursor-pointer bg-[#e33b41]
                                           flex justify-center
-                                          items-center gap-2 hover:opacity-90"
-                    >
+                                          items-center gap-2 hover:opacity-90">
                       <img
                         src="	https://pizza-hut.am/assets/images/app_2/basketWhite.svg"
                         className="w-[22px] h-[30px]"

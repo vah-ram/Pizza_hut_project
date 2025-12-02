@@ -8,8 +8,8 @@ import CatalogItem from "./CatalogItem";
 import LanguageBar from "../LanguageBar/LanguageBar";
 import MobileCatalogMenu from "./MobileCatalogMenu";
 import CatalogItemTable from "./CatalogItemTable";
-import axios from "axios"
-import { getProductHost } from "../utils/Hosts"
+import axios from "axios";
+import { getProductHost } from "../utils/Hosts";
 
 function AllCatalogs({ isMobile, currentUser }) {
   const navigate = useNavigate();
@@ -19,25 +19,26 @@ function AllCatalogs({ isMobile, currentUser }) {
   const [menuTask, setMenuTask] = useState(false);
   const [gridOrTask, setGridOrTask] = useState("grid");
   const [products, setProducts] = useState([]);
+  const [currentProduct, setCurrentProduct] = useState(null);
 
   useEffect(() => {
+    const getProducts = async () => {
+      const productType = type === "" || !type ? "special_offer" : type
 
-    const getProducts = async() => {
-      
-      const res = await axios.get(getProductHost, {
-        params: {type: type}
-      });
+      try {
+        const res = await axios.get(getProductHost, {
+          params: { type: productType },
+        });
 
-      if(res) {
-        setProducts(res.data.products)
-      } else {
-        console.log("Error")
+        if (res.data.products) {
+          setProducts(res.data.products);
+        }
+      } catch (err) {
+        console.error(err);
       }
-
     };
 
-    getProducts()
-
+    getProducts();
   }, [type]);
 
   useEffect(() => {
@@ -53,7 +54,7 @@ function AllCatalogs({ isMobile, currentUser }) {
       });
     });
 
-   const directions = document.querySelectorAll(".directionDiv .directionBtn");
+    const directions = document.querySelectorAll(".directionDiv .directionBtn");
 
     directions.forEach((item, i) => {
       item.addEventListener("click", () => {
@@ -64,8 +65,7 @@ function AllCatalogs({ isMobile, currentUser }) {
         item.classList.add("active");
       });
     });
-
-  })
+  });
 
   const [loading, setLoading] = useState(false);
 
@@ -124,7 +124,7 @@ function AllCatalogs({ isMobile, currentUser }) {
       textKey: "categorie_salads",
     },
     {
-      key: "burgers_sandwiches",
+      key: "burgers-sandwiches",
       imageUrl:
         "https://bonee.blob.core.windows.net/images/d51ed5d9-6431-0c2f-4266-fa3a0a85d8d0_3.webp",
       route: "/catalogs/burgers-sandwiches",
@@ -230,72 +230,161 @@ function AllCatalogs({ isMobile, currentUser }) {
             <button
               className="directionBtn w-[40px] h-[40px] flex items-center 
                 justify-center cursor-pointer bg-transparent active
-                 [.active]:bg-[rgb(235,235,235)] rounded-[12px]" 
-                 onClick={() => setGridOrTask("grid")}
+                 [.active]:bg-[rgb(235,235,235)] rounded-[12px]"
+              onClick={() => setGridOrTask("grid")}
             >
-
-              {
-                gridOrTask === "grid" 
-                ?
-                  <svg
-                    width="32"
-                    height="32"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <rect x="6.5" y="5" width="5" height="5" fill="#e33b41" />
-                    <rect x="13" y="5" width="5" height="5" fill="#e33b41" />
-                    <rect x="6.5" y="11.5" width="5" height="5" fill="#e33b41" />
-                    <rect x="13" y="11.5" width="5" height="5" fill="#e33b41" />
-                  </svg>
-                :
-                  <svg
-                    width="32"
-                    height="32"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <rect x="6.5" y="5" width="5" height="5" fill="#9E9E9E" />
-                    <rect x="13" y="5" width="5" height="5" fill="#9E9E9E" />
-                    <rect x="6.5" y="11.5" width="5" height="5" fill="#9E9E9E" />
-                    <rect x="13" y="11.5" width="5" height="5" fill="#9E9E9E" />
-                  </svg>
-              }
-              
+              {gridOrTask === "grid" ? (
+                <svg
+                  width="32"
+                  height="32"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect x="6.5" y="5" width="5" height="5" fill="#e33b41" />
+                  <rect x="13" y="5" width="5" height="5" fill="#e33b41" />
+                  <rect x="6.5" y="11.5" width="5" height="5" fill="#e33b41" />
+                  <rect x="13" y="11.5" width="5" height="5" fill="#e33b41" />
+                </svg>
+              ) : (
+                <svg
+                  width="32"
+                  height="32"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect x="6.5" y="5" width="5" height="5" fill="#9E9E9E" />
+                  <rect x="13" y="5" width="5" height="5" fill="#9E9E9E" />
+                  <rect x="6.5" y="11.5" width="5" height="5" fill="#9E9E9E" />
+                  <rect x="13" y="11.5" width="5" height="5" fill="#9E9E9E" />
+                </svg>
+              )}
             </button>
 
             <button
               className="directionBtn w-[40px] h-[40px] flex items-center 
               justify-center cursor-pointer bg-transparent  
-              [.active]:bg-[rgb(235,235,235)] rounded-[12px]" 
+              [.active]:bg-[rgb(235,235,235)] rounded-[12px]"
               onClick={() => setGridOrTask("task")}
             >
-              {
-                gridOrTask === "task" 
-                ?
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" >
-                  <rect x="3" y="4" width="3" height="4" rx="0.5" fill="#e33b41" />
-                  <rect x="3" y="10" width="3" height="4" rx="0.5" fill="#e33b41"/>
-                  <rect  x="3"  y="16"  width="3"  height="4"  rx="0.5"  fill="#e33b41"/>
+              {gridOrTask === "task" ? (
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect
+                    x="3"
+                    y="4"
+                    width="3"
+                    height="4"
+                    rx="0.5"
+                    fill="#e33b41"
+                  />
+                  <rect
+                    x="3"
+                    y="10"
+                    width="3"
+                    height="4"
+                    rx="0.5"
+                    fill="#e33b41"
+                  />
+                  <rect
+                    x="3"
+                    y="16"
+                    width="3"
+                    height="4"
+                    rx="0.5"
+                    fill="#e33b41"
+                  />
 
-                  <rect  x="8"  y="4"  width="13"  height="4"  rx="0.5"  fill="#e33b41"/>
-                  <rect  x="8"  y="10"  width="13"  height="4"  rx="0.5"  fill="#e33b41"/>
-                  <rect  x="8"  y="16"  width="13"  height="4"  rx="0.5"  fill="#e33b41"/>
+                  <rect
+                    x="8"
+                    y="4"
+                    width="13"
+                    height="4"
+                    rx="0.5"
+                    fill="#e33b41"
+                  />
+                  <rect
+                    x="8"
+                    y="10"
+                    width="13"
+                    height="4"
+                    rx="0.5"
+                    fill="#e33b41"
+                  />
+                  <rect
+                    x="8"
+                    y="16"
+                    width="13"
+                    height="4"
+                    rx="0.5"
+                    fill="#e33b41"
+                  />
                 </svg>
-              :
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" >
-                  <rect x="3" y="4" width="3" height="4" rx="0.5" fill="#9E9E9E" />
-                  <rect x="3" y="10" width="3" height="4" rx="0.5" fill="#9E9E9E"/>
-                  <rect  x="3"  y="16"  width="3"  height="4"  rx="0.5"  fill="#9E9E9E"/>
+              ) : (
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect
+                    x="3"
+                    y="4"
+                    width="3"
+                    height="4"
+                    rx="0.5"
+                    fill="#9E9E9E"
+                  />
+                  <rect
+                    x="3"
+                    y="10"
+                    width="3"
+                    height="4"
+                    rx="0.5"
+                    fill="#9E9E9E"
+                  />
+                  <rect
+                    x="3"
+                    y="16"
+                    width="3"
+                    height="4"
+                    rx="0.5"
+                    fill="#9E9E9E"
+                  />
 
-                  <rect  x="8"  y="4"  width="13"  height="4"  rx="0.5"  fill="#9E9E9E"/>
-                  <rect  x="8"  y="10"  width="13"  height="4"  rx="0.5"  fill="#9E9E9E"/>
-                  <rect  x="8"  y="16"  width="13"  height="4"  rx="0.5"  fill="#9E9E9E"/>
+                  <rect
+                    x="8"
+                    y="4"
+                    width="13"
+                    height="4"
+                    rx="0.5"
+                    fill="#9E9E9E"
+                  />
+                  <rect
+                    x="8"
+                    y="10"
+                    width="13"
+                    height="4"
+                    rx="0.5"
+                    fill="#9E9E9E"
+                  />
+                  <rect
+                    x="8"
+                    y="16"
+                    width="13"
+                    height="4"
+                    rx="0.5"
+                    fill="#9E9E9E"
+                  />
                 </svg>
-              }
-              
+              )}
             </button>
           </div>
 
@@ -414,14 +503,14 @@ function AllCatalogs({ isMobile, currentUser }) {
                     [body.dark_&]:bg-[#2e2e2e] [body.isMobile_&]:hidden
                     [body.isMobile_&]:top-[0px] [body.isMobile_&]:mt-0 "
         >
-          {categories.map((cat) => (
+          {categories.map((item) => (
             <div
-              key={cat.key}
-              className="w-[7.5vw] h-[5vw] flex rounded-[1vw] relative bg-cover
-               cursor-pointer product [.active]:border-[#e33b41] [.active]:border-3 
-               overflow-hidden"
-              style={{ backgroundImage: `url(${cat.imageUrl})` }}
-              onClick={() => navigate(cat.route)}
+              key={item.key}
+              className={`w-[7.5vw] h-[5vw] flex rounded-[1vw] relative bg-cover
+               cursor-pointer product 
+               overflow-hidden ${item.key === type ? 'border-3 border-[#e33b41]' : ''}`}
+              style={{ backgroundImage: `url(${item.imageUrl})` }}
+              onClick={() => navigate(item.route)}
             >
               <span
                 className="w-full h-[40px] absolute bottom-0 flex
@@ -431,7 +520,7 @@ function AllCatalogs({ isMobile, currentUser }) {
                   className="uppercase text-[calc(8px+.3vw)] 
                   text-white text-center"
                 >
-                  {t(cat.textKey)}
+                  {t(item.textKey)}
                 </p>
               </span>
             </div>
@@ -457,32 +546,27 @@ function AllCatalogs({ isMobile, currentUser }) {
           >
             {true ? (
               <>
-                
-                {
-                  
-                  gridOrTask === "grid" ?
-                    products.map((item,i) => (
-
-                    <CatalogItem 
-                      isMobile={isMobile} 
-                      setMenuTask={setMenuTask} 
-                      id={i}
-                      item={item} 
-                      currentUser={currentUser} />
+                {gridOrTask === "grid"
+                  ? products.map((item, i) => (
+                      <CatalogItem
+                        isMobile={isMobile}
+                        setMenuTask={setMenuTask}
+                        id={i}
+                        item={item}
+                        currentUser={currentUser} 
+                        setCurrentProduct={setCurrentProduct}
+                      />
                     ))
-
-                  :
-
-                  products.map((item,i) => (
-
-                      <CatalogItemTable 
-                        isMobile={isMobile} 
-                        setMenuTask={setMenuTask} 
-                        id={i} 
-                        item={item} 
-                        currentUser={currentUser} />
-                    ))
-                }
+                  : products.map((item, i) => (
+                      <CatalogItemTable
+                        isMobile={isMobile}
+                        setMenuTask={setMenuTask}
+                        id={i}
+                        item={item}
+                        currentUser={currentUser} 
+                        setCurrentProduct={setCurrentProduct}
+                      />
+                    ))}
               </>
             ) : (
               ""
@@ -496,7 +580,7 @@ function AllCatalogs({ isMobile, currentUser }) {
 
       <MobileCatalogMenu/>
 
-      {menuTask ? <MobileProductCard setMenuTask={setMenuTask}/> : ""}
+      {menuTask ? <MobileProductCard setMenuTask={setMenuTask} currentProduct={currentProduct}/> : ""}
     </>
   );
 }

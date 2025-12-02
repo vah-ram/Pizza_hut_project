@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import i18next from "i18next";
 
-export default function MobileProductCard({ setMenuTask }) {
+export default function MobileProductCard({ setMenuTask, currentProduct }) {
   const navigate = useNavigate();
   const [basketInt, setBasketInt] = useState(1);
+  const [currentLang, setCurrentLang] = useState(i18next.language);
+  const [viewImage, setViewImage] = useState(null);
 
   useEffect(() => {
     const pizzaTypes = document.querySelectorAll(".mobile_pizza_types .typePizza");
@@ -19,8 +22,47 @@ export default function MobileProductCard({ setMenuTask }) {
     });
   }, []);
 
+  useEffect(() => {
+    const onLangChange = (lng) => {
+      setCurrentLang(lng);
+    };
+
+    i18next.on("languageChanged", onLangChange);
+
+    return () => i18next.off("languageChanged", onLangChange);
+  }, []);
+
   return (
     <>
+
+    {viewImage ? (
+        <div
+          className="fixed inset-0 z-[150] bg-black/95 flex
+            items-center justify-center 
+            p-[15px]"
+        >
+          <img
+            src={currentProduct?.image_url}
+            className="w-auto h-auto object-cover group-hover:opacity-80"
+            alt="slider item img"
+          />
+
+          <button
+            className="w-[40px] h-[40px] absolute right-[15px] 
+                        top-[15px] flex items-center justify-center rounded-xl
+                        absolute cursor-pointer border-1 border-[#ebebeb]"
+            onClick={() => setViewImage(false)}
+          >
+            <img
+              src="https://pizza-hut.am/assets/images/app_2/close.svg"
+              className="w-[16px] h-[16px]"
+            />
+          </button>
+        </div>
+      ) : (
+        ""
+      )}
+
       <div
         className="fixed inset-0 z-[120] bg-black/40 hidden 
             items-center justify-center max-md:flex"
@@ -29,9 +71,11 @@ export default function MobileProductCard({ setMenuTask }) {
           className="w-full h-full relative top-13 rounded-t-[45px] overflow-hidden bg-white 
         [body.dark_&]:bg-[#2e2e2e] pb-60 overflow-y-scroll"
         >
-          <span className="w-full h-[50vh]">
+          <span 
+            className="w-full h-[50vh] cursor-pointer" 
+            onClick={() => setViewImage(true)}>
             <img
-              src="https://bonee.blob.core.windows.net/images/a0bcdc66-7da3-0c1a-3887-396ce30bd05a_3.webp"
+              src={currentProduct?.image_url}
               className="w-full h-full object-cover"
             />
           </span>
@@ -64,7 +108,14 @@ export default function MobileProductCard({ setMenuTask }) {
                             text-[#515151] font-[700] mt-2 [body.dark_&]:text-white 
                             pl-[3vw] mt-4"
           >
-            Combo for Meat Lovers
+            {currentLang === "en"
+              ? currentProduct?.title
+              : currentLang === "ru"
+              ? currentProduct?.title_ru
+              : currentLang === "am"
+              ? currentProduct?.title_am
+              : ""
+            }
           </h2>
 
           <span className="flex gap-2 items-center pl-[3vw] mt-4">
@@ -73,15 +124,16 @@ export default function MobileProductCard({ setMenuTask }) {
                    leading-[15px] 
                                  text-[calc(18px+.3vw)]"
             >
-              8,800
+              {currentProduct?.price.toLocaleString()}
             </p>
 
             <p
-              className="text-[#9d9d9d] text-[23px]
+              className={`text-[#9d9d9d] text-[23px]
                                 line-through 
-                                text-[calc(16px+.3vw)]"
+                                text-[calc(16px+.3vw)] 
+                                ${currentProduct?.old_price === 0 ? 'hidden' : ''}`}
             >
-              11,000
+              {currentProduct?.old_price.toLocaleString()}
             </p>
           </span>
 
@@ -89,8 +141,14 @@ export default function MobileProductCard({ setMenuTask }) {
             className="mt-5 text-[18px] text-[#9D9D9D]
                         font-[400] pl-[3vw]"
           >
-            1 pcs. Pepperoni lovers pizza, 1 pcs. Big Crispers, 2 pcs. Coca-Cola
-            0.25
+            {currentLang === "en"
+              ? currentProduct?.description
+              : currentLang === "ru"
+              ? currentProduct?.description_ru
+              : currentLang === "am"
+              ? currentProduct?.description_am
+              : ""
+            }
           </p>
 
           <h3

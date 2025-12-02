@@ -55,7 +55,7 @@ function HeaderMenu({ isMobile, currentUser }) {
   return (
     <>
       <header
-        className="w-full h-[80px] flex items-center justify-between px-[3vw] fixed
+        className="w-full h-[80px] flex items-center justify-between px-[4vw] fixed
                top-0 bg-[#FFF] z-[100] max-md:shadow-[0_0_5px_0_gray] max-md:h-[60px]
                 [body.dark_&]:bg-[#2e2e2e] [body.dark_&]:max-md:shadow-[0_0_2px_0_white]"
       >

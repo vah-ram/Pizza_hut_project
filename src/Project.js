@@ -6,9 +6,8 @@ import MobilePizzaMenu from "./MobilePizzaMenu/MobilePizzaMenu";
 import AboutMenu from "./AboutMenu/AboutMenu";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { host } from "./utils/Hosts"
 
-function Project({ isMobile, currentUser }) {
+function Project({ isMobile, currentUser, currentLang }) {
     const navigate = useNavigate();
 
     const { t } = useTranslation();
@@ -20,7 +19,7 @@ function Project({ isMobile, currentUser }) {
 
         <MobileMenu currentUser={currentUser}/>
 
-          <MobilePizzaMenu />
+        <MobilePizzaMenu />
 
       <section 
         className="w-full h-[175px] px-20 flex items-center justify-between 
@@ -62,7 +61,7 @@ function Project({ isMobile, currentUser }) {
 
       <SliderCategories isMobile={isMobile}/>
 
-      <SliderOffers isMobile={isMobile}/>
+      <SliderOffers currentLang={currentLang}/>
 
       <AboutMenu />
 

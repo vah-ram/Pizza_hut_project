@@ -1,9 +1,16 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { addProductToBasketHost } from "../utils/Hosts"
+import { useEffect, useState } from "react";
+import i18next from "i18next";
 
-export default function CatalogItem({ isMobile, setMenuTask, item, currentUser }) {
+export default function CatalogItem({ isMobile, setMenuTask, item, currentUser, setCurrentProduct }) {
   const navigate = useNavigate();
+  const [currentLang, setCurrentLang] = useState(i18next.language);
+
+  useEffect(() => {
+    setCurrentProduct(item)
+  }, [item]);
 
   const addBasketFunc = async() => {
 
@@ -11,12 +18,23 @@ export default function CatalogItem({ isMobile, setMenuTask, item, currentUser }
       return
     };
 
-    const res = await axios.post(addProductToBasketHost, {
+    await axios.post(addProductToBasketHost, {
         myId: currentUser?.id,
         productId: item.id
     })
 
   }
+
+  useEffect(() => {
+    const onLangChange = (lng) => {
+      setCurrentLang(lng);
+    };
+
+    i18next.on("languageChanged", onLangChange);
+
+    return () => i18next.off("languageChanged", onLangChange);
+  }, []);
+  
 
   return (
     <>
@@ -25,32 +43,39 @@ export default function CatalogItem({ isMobile, setMenuTask, item, currentUser }
                      flex flex-col justify-start
                     items-center relative rounded-[15px] 
                     max-md:rounded-[5vw] border-1 border-gray-300 before:content-['-${item?.sale_percent}%']
-                    before:absolute before:z-1 before:left-0 before:top-[25px]
+                    before:absolute before:z-1 before:left-[-5px] before:top-[25px]
                     before:w-[80px] before:h-[30px] before:bg-[#f33]
                     before:text-white before:flex before:justify-center
-                     before:items-center before:rounded-tr-[8px]
-                     before:rounded-br-[8px] before:text-[16px] cursor-pointer 
-                     max-md:before:top-[-.5px] max-md:before:left-[-.5px] 
-                     max-md:before:rounded-tl-[25px] 
-                     max-md:before:rounded-br-[30px] 
-                     max-md:before:bg-[#e33b41] 
-                     [body.dark_&]:border-[#FFF4] 
-                     ${item?.sale_percent === 0 ? 
-                      'before:hidden' :
-                      ''
-                     }`}
+                    before:items-center before:rounded-[8px] before:text-[16px] cursor-pointer 
+                    max-md:before:top-[-.5px] max-md:before:left-[-.5px] 
+                    max-md:before:rounded-tl-[25px] 
+                    max-md:before:rounded-br-[30px] 
+                    max-md:before:bg-[#e33b41] 
+                    [body.dark_&]:border-[#FFF4] 
+                    ${item?.sale_percent === 0 ? 
+                     'before:hidden' :
+                     ''
+                    }`}
 
         onClick={() => {
-          isMobile ? setMenuTask(true) : navigate(`/catalog/${item.id}`);
-        }}
+        if (isMobile) {
+          setCurrentProduct(item);
+          setMenuTask(true);
+        } else {
+          navigate(`/catalog/${item.id}`);
+        }
+      }}
+
       >
         <span
-          className="max-md:w-full max-h-[30vh] 
-         rounded-[15px] overflow-hidden group"
+          className="w-full h-[30vh] 
+         rounded-[15px] overflow-hidden group 
+         flex justify-center"
         >
           <img
-            src={item.image_url}
-            className="group-hover:scale-110 duration-500"
+            src={item?.image_url}
+            className={`group-hover:scale-110 duration-500 h-full 
+              ${item.product_type === "beverages" ? 'w-auto' : 'w-full'}`}
             alt="slider item img"
           />
         </span>
@@ -61,7 +86,16 @@ export default function CatalogItem({ isMobile, setMenuTask, item, currentUser }
                                  text-[18px] uppercase mt-3 mb-10 max-md:mb-3 
                                  text-center max-md:mt-0"
           >
-            {item.title}
+            {
+              currentLang === "en" 
+              ?
+              item?.title
+              : currentLang === "ru" 
+              ? item?.title_ru 
+              : currentLang === "am" 
+              ? item?.title_am 
+              : ''
+            }
           </p>
         </div>
 
@@ -73,7 +107,7 @@ export default function CatalogItem({ isMobile, setMenuTask, item, currentUser }
             className="text-[#e33b41] text-[17px] font-[800] 
            leading-[15px] max-md:text-[#FF3333]"
           >
-            {item.price}
+            {item?.price}
           </p>
 
           <p
@@ -81,7 +115,7 @@ export default function CatalogItem({ isMobile, setMenuTask, item, currentUser }
           text-[calc(14px+.3vw)"
           >
             {
-              item.old_price === 0 ? '' : item.old_price
+              item?.old_price === 0 ? '' : item?.old_price
             }
           </p>
         </span>
@@ -91,7 +125,16 @@ export default function CatalogItem({ isMobile, setMenuTask, item, currentUser }
           hidden max-md:flex text-[calc(12px+.3vw)] bg-[#e33b41] 
           rounded-[3vw] text-white py-[7px] 
           items-center justify-center mb-[10px] 
-          uppercase cursor-pointer"
+          uppercase cursor-pointer" 
+          onClick={() => {
+          if (isMobile) {
+            addBasketFunc()
+            setCurrentProduct(item);
+            setMenuTask(true);
+          } else {
+            navigate(`/catalog/${item.id}`);
+          }
+        }}
         >
           Add
         </button>
@@ -102,12 +145,12 @@ export default function CatalogItem({ isMobile, setMenuTask, item, currentUser }
         >
           <button className="w-[50%] cursor-pointer bg-[#3d3d3d]">
             <p className="text-[#e33b41] text-[17px] font-[800] leading-[15px]">
-              {item.price}
+              {item?.price}
             </p>
 
             <p className="text-[#9d9d9d] text-[12px] line-through ">
               {
-                item.old_price === 0 ? '' : item.old_price
+                item?.old_price === 0 ? '' : item?.old_price
               }
             </p>
 
@@ -116,10 +159,11 @@ export default function CatalogItem({ isMobile, setMenuTask, item, currentUser }
           <button
             className="w-[50%] cursor-pointer bg-[#e33b41]
                           flex justify-center items-center gap-2 hover:opacity-90" 
-            onClick={(evt) => {
-              evt.stopPropagation()
+            onClick={() => {
               addBasketFunc()
-            }}
+              setCurrentProduct(item);
+              setMenuTask(true);
+          }}
           >
             <img
               src="https://www.pizza-hut.am/assets/images/app_2/basketPlus.svg"

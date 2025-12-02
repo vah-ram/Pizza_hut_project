@@ -1,117 +1,37 @@
+import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import axios from "axios";
+import { getProductHost } from "../utils/Hosts";
 
-function SliderOffers() {
+function SliderOffers({ currentLang }) {
   const navigate = useNavigate();
+  const [products, setProducts] = useState([]);
 
   const { t } = useTranslation();
 
-  const offerSliderItems = [
-    {
-      id: 1,
-      productId: "jkabsfi4r34123",
-      image:
-        "https://bonee.blob.core.windows.net/images/3cb64dce-f9bc-6b0a-dd0f-dc785729de67_2.webp",
-      titleKey: "offer_meatlover",
-      originalPrice: 11000,
-      discountedPrice: 8800,
-      discountPercent: 20,
-    },
-    {
-      id: 2,
-      productId: "pizza_set_123",
-      image:
-        "https://bonee.blob.core.windows.net/images/9fee2d36-e47d-ad17-a565-6416e6a07967_2.webp",
-      titleKey: "offer_pizza_set",
-      originalPrice: 11000,
-      discountedPrice: 8800,
-      discountPercent: 20,
-    },
-    {
-      id: 3,
-      productId: "combo_3_pizzas",
-      image:
-        "https://bonee.blob.core.windows.net/images/4f0eb176-764e-f85d-3ca1-187d69950caf_2.webp",
-      titleKey: "offer_combo_3_pizzas",
-      originalPrice: 11000,
-      discountedPrice: 8800,
-      discountPercent: 20,
-    },
-    {
-      id: 4,
-      productId: "combo_nuggets",
-      image:
-        "https://bonee.blob.core.windows.net/images/5099df6d-c31b-e13a-8be7-4255899eadb0_2.webp",
-      titleKey: "offer_combo_nuggets",
-      originalPrice: 11000,
-      discountedPrice: 8800,
-      discountPercent: 20,
-    },
-    {
-      id: 5,
-      productId: "cheese_bites_combo",
-      image:
-        "https://bonee.blob.core.windows.net/images/b18f7687-3969-d5a2-2f1f-a3324071d48a_2.webp",
-      titleKey: "offer_cheese_bites_combo",
-      originalPrice: 11000,
-      discountedPrice: 8800,
-      discountPercent: 20,
-    },
-    {
-      id: 6,
-      productId: "my_box_veggie",
-      image:
-        "https://bonee.blob.core.windows.net/images/8fb639c4-4a17-2cbf-962f-5d885f9a69db_2.webp",
-      titleKey: "offer_my_box_veggie",
-      originalPrice: 11000,
-      discountedPrice: 8800,
-      discountPercent: 20,
-    },
-    {
-      id: 7,
-      productId: "my_box_pepperoni",
-      image:
-        "https://bonee.blob.core.windows.net/images/38e8d04f-8759-c627-a751-ff787ce16598_2.webp",
-      titleKey: "offer_my_box_pepperoni",
-      originalPrice: 11000,
-      discountedPrice: 8800,
-      discountPercent: 20,
-    },
-    {
-      id: 8,
-      productId: "my_box_chicken_bbq",
-      image:
-        "https://bonee.blob.core.windows.net/images/2d3522c7-dd5e-d8e3-cf19-1d1831c8e48b_2.webp",
-      titleKey: "offer_my_box_chicken_bbq",
-      originalPrice: 11000,
-      discountedPrice: 8800,
-      discountPercent: 20,
-    },
-    {
-      id: 9,
-      productId: "popular_combo",
-      image:
-        "https://bonee.blob.core.windows.net/images/fc8e5871-4282-7903-b56a-dc88a0954be5_2.webp",
-      titleKey: "offer_popular_combo",
-      originalPrice: 11000,
-      discountedPrice: 8800,
-      discountPercent: 30,
-    },
-    {
-      id: 10,
-      productId: "combo_pepperoni",
-      image:
-        "https://bonee.blob.core.windows.net/images/a0bcdc66-7da3-0c1a-3887-396ce30bd05a_2.webp",
-      titleKey: "offer_combo_pepperoni",
-      originalPrice: 11000,
-      discountedPrice: 8800,
-      discountPercent: 30,
-    },
-  ];
+    useEffect(() => {
+    const getProducts = async () => {
+
+      try {
+        const res = await axios.get(getProductHost, {
+          params: { type: "special_offer" },
+        });
+
+        if (res.data.products) {
+          setProducts(res.data.products);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    getProducts();
+  }, []);
 
   return (
     <>
@@ -171,21 +91,24 @@ function SliderOffers() {
               nextEl: ".pizza-next-btn",
             }}
           >
-            {offerSliderItems.map((item) => (
-              <SwiperSlide key={item.id} className="!w-[307px] shrink-0">
+            {products?.map((item) => (
+              <SwiperSlide key={item?.id} className="!w-[307px] shrink-0">
                 <div
-                  className={`w-[307px] h-[385px] shrink-0 flex flex-col justify-start items-center 
-                                relative rounded-[20px] border-1 border-gray-300 
-                                before:content-['-${item.discountPercent}%'] before:absolute before:z-10
-                                before:left-0 before:top-[25px] before:w-[80px] before:h-[30px]
-                                before:bg-[#f33] before:text-white before:flex before:justify-center 
-                                before:items-center before:rounded-tr-[8px] before:rounded-br-[8px] 
-                                before:text-[16px] cursor-pointer`}
-                  onClick={() => navigate(`/product/${item.productId}`)}
+                  className={`
+                    w-[307px] h-[385px] shrink-0 flex flex-col justify-start items-center 
+                    relative rounded-[20px] border border-gray-300
+                    before:content-['-${item?.sale_percent}\\%'] before:absolute before:z-10
+                    before:left-[-7px] before:top-[25px] before:w-[80px] before:h-[30px]
+                    before:bg-[#f33] before:text-white before:flex before:justify-center 
+                    before:items-center before:rounded-[8px] 
+                    before:text-[16px] cursor-pointer
+                  `}
+                  onClick={() => navigate(`/product/${item.id}`)}
                 >
+
                   <span className="w-[305px] h-[305px] rounded-[20px] overflow-hidden group">
                     <img
-                      src={item.image}
+                      src={item.image_url}
                       className="group-hover:scale-110 duration-500"
                       alt="slider item img"
                     />
@@ -193,27 +116,32 @@ function SliderOffers() {
 
                   <div className="w-full flex justify-center items-center mt-2">
                     <p className="text-[#515151] [body.dark_&]:text-white font-[600] text-[18px] uppercase text-center">
-                      {t(item.titleKey)}
+                      {
+                        currentLang === "en" 
+                        ?
+                        item?.title
+                        : currentLang === "ru" 
+                        ? item?.title_ru 
+                        : currentLang === "am" 
+                        ? item?.title_am 
+                        : ''
+                      }
                     </p>
                   </div>
 
                   <div className="w-[90%] h-[44px] absolute bottom-[-22px] rounded-[10px] flex overflow-hidden">
                     <button className="w-[50%] cursor-pointer bg-[#3d3d3d]">
                       <p className="text-[#e33b41] text-[17px] font-[800] leading-[15px]">
-                        {item.discountedPrice.toLocaleString()}
+                        {item.price}
                       </p>
 
                       <p className="text-[#9d9d9d] text-[12px] line-through">
-                        {item.originalPrice.toLocaleString()}
+                        {item.old_price}
                       </p>
                     </button>
 
                     <button className="w-[50%] cursor-pointer bg-[#e33b41] flex justify-center items-center
-                     gap-2 hover:opacity-90" 
-                     onClick={(e) => {
-                        e.stopPropagation()
-                        navigate('/basket')
-                     }}>
+                     gap-2 hover:opacity-90">
                       <img
                         src="./Img/pizza-store-icon.svg"
                         className="w-[22px] h-[30px]"

@@ -1,7 +1,39 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import i18next from "i18next";
+import { addProductToBasketHost } from "../utils/Hosts"
+import axios from "axios";
 
-export default function CatalogItemTable({ isMobile, setMenuTask, item }) {
+export default function CatalogItemTable({ isMobile, setMenuTask, item, currentUser, setCurrentProduct }) {
   const navigate = useNavigate();
+    const [currentLang, setCurrentLang] = useState(i18next.language);
+
+  useEffect(() => {
+    setCurrentProduct(item)
+  }, [item]);
+
+  useEffect(() => {
+    const onLangChange = (lng) => {
+      setCurrentLang(lng);
+    };
+
+    i18next.on("languageChanged", onLangChange);
+
+    return () => i18next.off("languageChanged", onLangChange);
+  }, []);
+
+  const addBasketFunc = async() => {
+
+    if(!currentUser) {
+      return
+    };
+
+    await axios.post(addProductToBasketHost, {
+        myId: currentUser?.id,
+        productId: item.id
+    })
+
+  }
 
   return (
     <div
@@ -22,10 +54,20 @@ export default function CatalogItemTable({ isMobile, setMenuTask, item }) {
                      max-md:before:rounded-tl-[2vw] 
                      max-md:before:rounded-br-[30px] 
                      max-md:before:bg-[#e33b41] 
-                     [body.dark_&]:border-[#FFF4]`}
-      onClick={() => {
-        isMobile ? setMenuTask(true) : navigate(`/catalog/hi`);
-      }}
+                     [body.dark_&]:border-[#FFF4] 
+                     ${item?.sale_percent === 0 ? 
+                      'before:hidden' :
+                      ''
+                     }`}
+              onClick={() => {
+              if (isMobile) {
+                setCurrentProduct(item);
+                setMenuTask(true);
+              } else {
+                navigate(`/catalog/${item.id}`);
+              }
+            }}
+
     >
       <span
         className="w-[30vw] h-[30vw] 
@@ -46,7 +88,14 @@ export default function CatalogItemTable({ isMobile, setMenuTask, item }) {
           className="absolute top-0 left-0 text-[#515151] 
           font-[600] text-[calc(14px+.3vw)] [body.dark_&]:text-white"
         >
-          {item?.title}
+          {currentLang === "en"
+              ? item?.title
+              : currentLang === "ru"
+              ? item?.title_ru
+              : currentLang === "am"
+              ? item?.title_am
+              : ""
+            }
         </h2>
 
         <span
@@ -74,10 +123,20 @@ export default function CatalogItemTable({ isMobile, setMenuTask, item }) {
           </p>
         </span>
 
-        <button className="absolute right-0 bottom-0 
-        text-[calc(12px+.3vw)] bg-[#e33b41] text-white uppercase  
-        p-[7px] min-w-[70px] h-[34px] flex items-center justify-center border-none 
-        cursor-pointer rounded-[10px]">
+        <button 
+          className="absolute right-0 bottom-0 
+          text-[calc(12px+.3vw)] bg-[#e33b41] text-white uppercase  
+          p-[7px] min-w-[70px] h-[34px] flex items-center justify-center border-none 
+          cursor-pointer rounded-[10px]" 
+          onClick={() => {
+            if (isMobile) {
+              addBasketFunc()
+              setCurrentProduct(item);
+              setMenuTask(true);
+            } else {
+              navigate(`/catalog/${item.id}`);
+            }
+          }}>
           Add
         </button>
       </div>

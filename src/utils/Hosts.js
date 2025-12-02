@@ -8,4 +8,5 @@ export const addFeedbackHost = `${host}/feedback/add`;
 export const getProductHost = `${host}/product/get-products`;
 export const getProductByIdHost = `${host}/product/get-product`;
 export const addProductToBasketHost = `${host}/product/add-product-basket`;
-
+export const deleteProductToBasketHost = `${host}/product/delete-product-basket`;
+export const getProductsBasketHost = `${host}/product/get-products-basket`;

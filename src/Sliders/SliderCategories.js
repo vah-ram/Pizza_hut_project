@@ -107,7 +107,7 @@ function SliderCategories() {
                         <div
                         className="w-[14w] h-[14vw] max-h-[14vw] 
                         relative rounded-[40px] overflow-hidden group"
-                            onClick={() => navigate('/catalogs/special-offers')}>
+                            onClick={() => navigate('/catalogs/special_offer')}>
                             <img
                                 src="https://bonee.blob.core.windows.net/images/f57285e4-5fcc-f853-b25f-1a2e99f65082_1.jpg"
                                 className="group-hover:scale-110 duration-500 flex"

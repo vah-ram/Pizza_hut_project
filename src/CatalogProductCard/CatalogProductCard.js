@@ -2,10 +2,12 @@ import AllCatalogs from "../AllCatalogs/AllCatalogs";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { getProductByIdHost } from "../utils/Hosts";
+import { getProductByIdHost, addProductToBasketHost } from "../utils/Hosts";
+import i18next from "i18next";
 
 export default function CatalogProductCard({ isMobile, currentUser }) {
   const navigate = useNavigate();
+  const [currentLang, setCurrentLang] = useState(i18next.language);
 
   const [basketInt, setBasketInt] = useState(1);
   const [viewImage, setViewImage] = useState(null);
@@ -36,6 +38,29 @@ export default function CatalogProductCard({ isMobile, currentUser }) {
       });
     });
   }, []);
+
+  useEffect(() => {
+    const onLangChange = (lng) => {
+      setCurrentLang(lng);
+    };
+
+    i18next.on("languageChanged", onLangChange);
+
+    return () => i18next.off("languageChanged", onLangChange);
+  }, []);
+
+  const addBasketFunc = async() => {
+
+    if(!currentUser) {
+      return
+    };
+
+    await axios.post(addProductToBasketHost, {
+        myId: currentUser?.id,
+        productId: product.id
+    })
+
+  }
 
   return (
     <>
@@ -91,7 +116,7 @@ export default function CatalogProductCard({ isMobile, currentUser }) {
                       rounded-xl bg-[#FFF] p-5 pb-5 overflow-scroll
                       [&::-webkit-scrollbar]:hidden [body.dark_&]:bg-[#2E2E2E]"
           >
-            <div className="w-full flex">
+            <div className="w-full flex gap-10">
               <div className="w-[40%] h-auto group overflow-hidden">
                 <span
                   className={`imgSpan relative flex w-[30vw] h-[30vw] 
@@ -110,7 +135,9 @@ export default function CatalogProductCard({ isMobile, currentUser }) {
                   <div
                     className={`absolute top-10 left-2 bg-red-500 text-white text-sm  
                             px-3 py-1 rounded-r-md flex justify-center items-center w-[80px] 
-                            flex ${product?.sale_percent === 0 ? "hidden" : ""}`}
+                            flex ${
+                              product?.sale_percent === 0 ? "hidden" : ""
+                            }`}
                   >
                     -{product?.sale_percent === 0 ? "" : product?.sale_percent}%
                   </div>
@@ -123,7 +150,14 @@ export default function CatalogProductCard({ isMobile, currentUser }) {
                     className="uppercase text-[calc(18px+.3vw)]
                                   text-[#515151] font-[700] mt-2 [body.dark_&]:text-white"
                   >
-                    {product?.title}
+                    {currentLang === "en"
+                      ? product?.title
+                      : currentLang === "ru"
+                      ? product?.title_ru
+                      : currentLang === "am"
+                      ? product?.title_am
+                      : ""
+                    }
                   </h2>
 
                   <button
@@ -157,17 +191,31 @@ export default function CatalogProductCard({ isMobile, currentUser }) {
                   className="mt-5 text-[18px] text-[#9D9D9D]
                           font-[400]"
                 >
-                  {product?.description}
+                  {currentLang === "en"
+                    ? product?.description
+                    : currentLang === "ru"
+                    ? product?.description_ru
+                    : currentLang === "am"
+                    ? product?.description_am
+                    : ""}
                 </p>
 
                 <h3
-                  className="uppercase text-[calc(16px+.3vw)] font-[600]
-                              text-[#515151] mt-20 [body.dark_&]:text-white"
+                  className={`uppercase text-[calc(16px+.3vw)] font-[600]
+                              text-[#515151] mt-20 [body.dark_&]:text-white 
+                              ${
+                                product?.product_type !== "pizzas"
+                                  ? "hidden"
+                                  : "flex"
+                              }`}
                 >
                   Pizza Type
                 </h3>
 
-                <div className="flex gap-2 mt-3 pizza_types">
+                <div
+                  className={`gap-2 mt-3 pizza_types 
+                  ${product?.product_type !== "pizzas" ? "hidden" : "flex"}`}
+                >
                   <button
                     className="uppercase px-[15px] py-[5px] 
                                   text-[#9D9D9D] border border-1
@@ -210,9 +258,10 @@ export default function CatalogProductCard({ isMobile, currentUser }) {
                       <p
                         className={`text-[#e33b41] text-[25px] font-[500]
                                       font-sans leading-[15px] 
-                                      ${product?.old_price === 0
-                                          ? "text-gray-600 font-[400]"
-                                          : ''
+                                      ${
+                                        product?.old_price === 0
+                                          ? "text-gray-600 font-[400] [body.dark_&]:text-white"
+                                          : ""
                                       }`}
                       >
                         {product?.price.toLocaleString()}
@@ -261,7 +310,10 @@ export default function CatalogProductCard({ isMobile, currentUser }) {
                         className="w-[120px] h-[40px] cursor-pointer
                                           bg-[#e33b41] flex justify-center items-center
                                           gap-2 hover:opacity-90 rounded-lg z-[1]"
-                        onClick={() => navigate("/basket")}
+                        onClick={() => {
+                          addBasketFunc()
+                          navigate("/basket")
+                        }}
                       >
                         <img
                           src="	https://pizza-hut.am/assets/images/app_2/basketWhite.svg"
