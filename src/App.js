@@ -6,7 +6,7 @@ import Register from "./authorization/Register";
 import Login from "./authorization/Login";
 import Basket from "./Basket/Basket";
 import AllCatalogs from "./AllCatalogs/AllCatalogs";
-import { verifyProfileHost } from "./utils/Hosts.js";
+import { verifyProfileHost, getProductsBasketHost } from "./utils/Hosts.js";
 import axios from "axios";
 import Location from "./Location/Location.js";
 import ProductCard from "./ProductCard/ProductCard";
@@ -18,6 +18,7 @@ import PrivacyPolicy from "./SecondaryMenuGroup/PrivacyPolicy";
 import MobileSearch from "./MobileSearch/MobileSearch";
 import CatalogProductCard from "./CatalogProductCard/CatalogProductCard.js";
 import i18next from "i18next";
+import Admin from "./Admin/Admin.js";
 
 function App() {
   const location = useLocation();
@@ -25,6 +26,7 @@ function App() {
   const [isMobile, setIsMobile] = useState("");
   const [currentUser, setCurrentUser] = useState(null);
   const [currentLang, setCurrentLang] = useState(i18next.language);
+  const [basketProducts, setBasketProducts] = useState([]);
 
   useEffect(() => {
     const verify = async () => {
@@ -39,7 +41,10 @@ function App() {
           params: { token },
         });
 
-        setCurrentUser(res.data.status ? res.data.user : "");
+        if(res.data.status) {
+          setCurrentUser(res.data.user);
+        }
+
       } catch (err) {
         console.error(err);
       }
@@ -74,16 +79,39 @@ function App() {
     return () => i18next.off("languageChanged", onLangChange);
   }, []);
 
+  useEffect(() => {
+    const callBasket = async () => {
+      if (!currentUser) {
+        return;
+      }
+
+      const res = await axios.get(getProductsBasketHost, {
+        params: {
+          myId: currentUser?.id,
+        },
+      });
+
+      if (res.data.status) {
+        setBasketProducts(res.data.products);
+      } else {
+        console.log(res.data.message);
+      }
+    };
+    callBasket();
+  }, [currentUser]);
+
   return (
     <>
       <Routes>
+        <Route path="/admin-panel" element={<Admin currentUser={currentUser}/>} />
         <Route
           path="/"
           element={
             <Project
               isMobile={isMobile}
               currentUser={currentUser}
-              currentLang={currentLang}
+              currentLang={currentLang} 
+              basketProducts={basketProducts}
             />
           }
         />

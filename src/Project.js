@@ -6,18 +6,25 @@ import MobilePizzaMenu from "./MobilePizzaMenu/MobilePizzaMenu";
 import AboutMenu from "./AboutMenu/AboutMenu";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
 
-function Project({ isMobile, currentUser, currentLang }) {
+function Project({ isMobile, currentUser, currentLang, basketProducts }) {
     const navigate = useNavigate();
 
     const { t } = useTranslation();
 
+    useEffect(() => {
+      if(currentUser?.role === "Admin") {
+        navigate('/admin-panel')
+      }
+    }, [currentUser]);
+
   return (
       <main className="duration-300 relative">
 
-        <HeaderMenu isMobile={isMobile} currentUser={currentUser}/>
+        <HeaderMenu isMobile={isMobile} currentUser={currentUser} basketProducts={basketProducts}/>
 
-        <MobileMenu currentUser={currentUser}/>
+        <MobileMenu currentUser={currentUser} basketProducts={basketProducts}/>
 
         <MobilePizzaMenu />
 

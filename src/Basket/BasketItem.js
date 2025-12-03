@@ -11,8 +11,8 @@ function BasketItem({ item, currentUser, currentLang, setDeletedItem }) {
 
     const res = await axios.delete(deleteProductToBasketHost, {
       data: {
-        myId: currentUser.id,
-        productId: item.id,
+        myId: currentUser?.id,
+        productId: item?.id,
       },
     });
 

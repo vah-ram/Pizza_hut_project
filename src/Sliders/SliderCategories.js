@@ -2,7 +2,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css"
 import "swiper/css/navigation"
 import { Navigation } from "swiper/modules"
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useRef } from "react";
 
@@ -32,7 +32,7 @@ function SliderCategories() {
                 <div className="flex justify-between">
                     <div className="flex gap-4">
                         <img 
-                            src="./Img/categories-icon.svg" 
+                            src="https://bonee.blob.core.windows.net/company-type/Assets/categories.svg" 
                             className="w-[35px] h-[35px]" 
                             alt="categories icon"/>
                         <p className="text-[25px] text-[#515151]

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
@@ -6,8 +6,32 @@ export default function MobileCatalogMenu() {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
+  const [active, setActive] = useState(null);
+  const [dineIn, setDineIn] = useState(() => {
+
+    if(localStorage.getItem("dine_in")) {
+      return localStorage.getItem("dine_in");
+    } else {
+      return "delivery"
+    }
+    
+  });
+
+  useEffect(() => {
+    localStorage.setItem("dine_in", dineIn);
+  }, [dineIn])
+
   return (
     <>
+      {active ? (
+        <div
+          className="hidden fixed inset-0 z-[90] bg-black/40 
+            items-center justify-center max-md:flex"
+        ></div>
+      ) : (
+        ""
+      )}
+
       <div
         className="w-full h-[55px] px-[15px] py-[7px] 
             hidden items-center 
@@ -16,23 +40,63 @@ export default function MobileCatalogMenu() {
             [body.dark_&]:shadow-[0px_-2px_7px_0px_#0005] 
             [body.dark_&]:bg-[#2e2e2e] pl-[10vw]"
       >
-        <div className="flex flex-col items-center">
-          <button
-            className="w-[19vw] h-[19vw] flex 
-                            flex-col gap-1 items-center justify-center 
-                            bg-blue-500 rounded-full 
-                            shadow-md cursor-pointer absolute bottom-[35px]"
+        <div className="flex flex-col items-center left-[0]">
+          <div
+            className="w-[19vw] flex flex-col absolute bottom-10 
+            gap-2"
           >
-            <img
-              src="https://www.pizza-hut.am/assets/images/app_2/delivery.svg"
-              className="w-[50%] h-[45%]"
-              alt=""
-            />
+            <button
+              onClick={() => {
+                setDineIn("dine")
+                setActive(!active)
+              }}
+              className={`
+                w-[19vw] h-[19vw] flex flex-col gap-1 items-center justify-center
+                rounded-full shadow-md cursor-pointer absolute bottom-0
+                bg-[#e33b41] transition-all duration-300
+                ${
+                  dineIn === "delivery"
+                    ? active ? "bottom-[14vh] z-20" : "bottom-[0]"
+                    : "bottom-[0] z-30 shadow-lg"
+                }
+            `}
+            >
+              <img
+                src="https://pizza-hut.am/assets/images/app_2/dineIN.svg"
+                className="w-[6vh] h-[6vh]"
+                alt=""
+              />
+              <p className="text-[2vw] text-white font-[600] uppercase">
+                DINE-IN
+              </p>
+            </button>
 
-            <p className="text-[2vw] text-white font-[600] uppercase">
-              {t("delivery")}
-            </p>
-          </button>
+            <button
+              onClick={() => {
+                setDineIn("delivery")
+                setActive(!active)
+              }}
+              className={`
+                w-[19vw] h-[19vw] flex flex-col gap-1 items-center justify-center
+                rounded-full shadow-md cursor-pointer absolute bottom-0
+                bg-blue-500 transition-all duration-300
+                ${
+                  dineIn === "delivery"
+                    ? "bottom-[0] z-30 shadow-lg"
+                    : active ? "bottom-[14vh] z-20" : "bottom-[0]"
+                }
+            `}
+            >
+              <img
+                src="https://www.pizza-hut.am/assets/images/app_2/delivery.svg"
+                className="w-[50%] h-[45%]"
+                alt=""
+              />
+              <p className="text-[2vw] text-white font-[600] uppercase">
+                {t("delivery")}
+              </p>
+            </button>
+          </div>
 
           <p className="text-[calc(14px+.3vw)] text-[#9d9d9d] mt-3">Service</p>
         </div>

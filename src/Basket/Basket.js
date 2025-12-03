@@ -10,11 +10,13 @@ import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 import Payment from "./Payment";
 import Address from "./Address";
-import { getProductsBasketHost, host } from "../utils/Hosts";
+import { getProductsBasketHost } from "../utils/Hosts";
 import axios from "axios";
 
 function Basket({ isMobile, currentUser, currentLang }) {
   const navigate = useNavigate();
+
+  const isDineIn = localStorage.getItem("dine_in");
 
   const [openCalendar, setOpenCalendar] = useState(null);
   const [basketProducts, setBasketProducts] = useState([]);
@@ -45,35 +47,34 @@ function Basket({ isMobile, currentUser, currentLang }) {
   useEffect(() => {
     setBasketProducts((prevs) =>
       prevs.filter((item) => {
-        return item.id !== deletedItem.id;
+        return item?.id !== deletedItem?.id;
       })
     );
   }, [deletedItem]);
 
   useEffect(() => {
-    const callBasket = async () => {
-      if (!currentUser) {
-        return;
-      }
 
-      const res = await axios.get(getProductsBasketHost, {
-        params: {
-          myId: currentUser?.id,
-        },
-      });
+      const callBasket = async () => {
+        if (!currentUser) return;
 
-      if (res.data.status) {
-        setBasketProducts(res.data.products);
-      } else {
-        console.log(res.data.message);
-      }
-    };
-    callBasket();
-  }, [currentUser]);
+        const res = await axios.get(getProductsBasketHost, {
+          params: { myId: currentUser.id },
+        });
+
+        if (res.data.status) {
+          setBasketProducts(res.data.products);
+        } else {
+          console.log(res.data.message);
+        }
+      };
+
+      callBasket();
+
+  }, [currentUser, isDineIn]);
 
   useEffect(() => {
     setTotalPrice(
-      basketProducts.reduce((total, item) => {
+      basketProducts?.reduce((total, item) => {
         return total + item.price;
       }, 0)
     );
@@ -81,7 +82,7 @@ function Basket({ isMobile, currentUser, currentLang }) {
 
   return (
     <>
-      <MobileMenu currentUser={currentUser} />
+      <MobileMenu currentUser={currentUser} basketProducts={basketProducts} />
 
       {paymentActive ? <Payment setPaymentActive={setPaymentActive} /> : ""}
 
@@ -89,7 +90,7 @@ function Basket({ isMobile, currentUser, currentLang }) {
 
       {isMobile ? (
         <div
-          className="w-full h-[60px] hidden fixed z-[1] top-0 left-0 shadow-md
+          className="w-full h-[60px] hidden fixed z-[50] top-0 left-0 shadow-md
                                 justify-center items-center max-md:flex 
                                 bg-white [body.dark_&]:bg-[#2e2e2e]"
         >
@@ -106,14 +107,18 @@ function Basket({ isMobile, currentUser, currentLang }) {
           </button>
 
           <h2 className="text-[17px] text-[#515151] font-[600] uppercase [body.dark_&]:text-white">
-            Delivery Confirmation
+            {
+              isDineIn === "delivery"
+              ? "Delivery Confirmation"
+              : "Dine-in confirmation"
+            }
           </h2>
         </div>
       ) : (
         <HeaderMenu isMobile={isMobile} currentUser={currentUser} />
       )}
 
-      {basketProducts.length > 0 ? (
+      {basketProducts?.length > 0 ? (
         <section className="w-full h-auto px-[4vw] pt-[120px] max-md:pt-[30px] max-md:pb-[15vh]">
           <span className="w-full flex gap-5 items-center mt-5 [body.isMobile_&]:hidden">
             <a
@@ -138,7 +143,10 @@ function Basket({ isMobile, currentUser, currentLang }) {
             className="w-full h-full flex mt-5 gap-[60px] pb-10 pt-5 max-md:flex-col 
           max-md:gap-[20px]"
           >
-            <div className="hidden gap-10 relative max-md:flex">
+            <div
+              className={`hidden gap-10 relative max-md:flex 
+              ${isDineIn === "delivery" ? "" : "max-md:hidden"}`}
+            >
               <span className="flex flex-col">
                 <p className="text-[calc(10px+.3vw)] text-[#9d9d9d]">Order</p>
 
@@ -193,7 +201,10 @@ function Basket({ isMobile, currentUser, currentLang }) {
               </div>
             </div>
 
-            <div className="hidden gap-10 relative max-md:flex">
+            <div
+              className={`hidden gap-10 relative max-md:flex 
+              ${isDineIn === "delivery" ? "" : "max-md:hidden"}`}
+            >
               <span className="flex flex-col">
                 <p className="text-[calc(10px+.3vw)] text-[#9d9d9d]">Order</p>
 
@@ -284,7 +295,7 @@ function Basket({ isMobile, currentUser, currentLang }) {
               </div>
 
               <div className="flex flex-col">
-                {basketProducts.map((item, i) => (
+                {basketProducts?.map((item, i) => (
                   <BasketItem
                     item={item}
                     index={i}
@@ -296,9 +307,10 @@ function Basket({ isMobile, currentUser, currentLang }) {
               </div>
 
               <span
-                className="w-full flex justify-between py-[5px] 
+                className={`w-full flex justify-between py-[5px] 
                             border-b-1 border-[#ebebeb] mt-5 
-                            [body.dark_&]:border-[#FFF4]"
+                            [body.dark_&]:border-[#FFF4] 
+                            ${isDineIn === "delivery" ? "" : "max-md:hidden"}`}
               >
                 <p className="text-[calc(14px+.3vw)] text-[#9d9d9d]">
                   Delivery Fee
@@ -311,6 +323,32 @@ function Basket({ isMobile, currentUser, currentLang }) {
                 >
                   Select Address
                 </a>
+              </span>
+
+              <span
+                className={`w-full flex justify-between py-[5px] 
+                            border-b-1 border-[#ebebeb] mt-5 
+                            [body.dark_&]:border-[#FFF4] 
+                            ${isDineIn === "delivery" ? "hidden" : ""}`}
+              >
+                <p className="text-[calc(14px+.3vw)] text-[#9d9d9d]">
+                  Subtotal
+                </p>
+
+                <p className="text-[calc(14px+.3vw)] text-[#9d9d9d]">3,200</p>
+              </span>
+
+              <span
+                className={`w-full flex justify-between py-[5px] 
+                            border-b-1 border-[#ebebeb]  
+                            [body.dark_&]:border-[#FFF4] 
+                            ${isDineIn === "delivery" ? "hidden" : ""}`}
+              >
+                <p className="text-[calc(14px+.3vw)] text-[#9d9d9d]">
+                  Service Fee or VAT (10%)
+                </p>
+
+                <p className="text-[calc(14px+.3vw)] text-[#9d9d9d]">320</p>
               </span>
 
               <span
@@ -337,10 +375,11 @@ function Basket({ isMobile, currentUser, currentLang }) {
             </div>
 
             <div
-              className="w-[40%] h-full rounded-[15px] border-1 
+              className={`w-[40%] h-full rounded-[15px] border-1 
                     border-[#ebebeb] p-[15px] flex flex-col gap-5 
                     max-md:w-full max-md:border-none max-md:p-0 
-                    [body.dark_&]:border-[#FFF]"
+                    [body.dark_&]:border-[#FFF] 
+                    ${isDineIn === "delivery" ? "" : "max-md:hidden"}`}
             >
               <div className="flex gap-10 relative max-md:hidden">
                 <span className="flex flex-col">
@@ -457,7 +496,7 @@ function Basket({ isMobile, currentUser, currentLang }) {
                             bg-[rgba(227,59,65,0.1)] rounded-[15px] border-1 border-red-500  
                             flex items-center justify-between cursor-pointer 
                             max-md:py-[13px] max-md:border-transparent 
-                            [body.dark_&]:border-[#FFF4]"
+                            [body.dark_&]:border-[#FFF4] "
                 onClick={() => setPaymentActive(true)}
               >
                 <p className="text-[calc(12px+.3vw)] text-[#e33b41]">
@@ -661,7 +700,7 @@ function Basket({ isMobile, currentUser, currentLang }) {
 
                 <span
                   className="flex flex-col text-center p-[15px] pb-[25px] rounded-[12px]
-               border-1 border-[#e33b41] gap-3 mt-6"
+                  border-1 border-[#e33b41] gap-3 mt-6"
                 >
                   <p className="uppercase text-[calc(18px+.3vw)] text-[#e33b41]">
                     Special note
@@ -707,6 +746,20 @@ function Basket({ isMobile, currentUser, currentLang }) {
                 </button>
               </div>
             </div>
+
+            <span
+              className={`flex flex-col text-center p-[15px] pb-[25px] rounded-[12px]
+                border-1 border-[#e33b41] gap-3 mt-6 
+                ${isDineIn === "delivery" ? "hidden" : ""}`}
+            >
+              <p className="uppercase text-[calc(18px+.3vw)] text-[#e33b41]">
+                Special note
+              </p>
+
+              <p className="text-[#9d9d9d] text-[calc(16px+.3vw)]">
+                To confirm your order please call waiter
+              </p>
+            </span>
           </div>
         </section>
       ) : (

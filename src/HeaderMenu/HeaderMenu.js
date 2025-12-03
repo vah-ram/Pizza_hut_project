@@ -4,7 +4,7 @@ import LanguageBar from "../LanguageBar/LanguageBar";
 import FeedbackMenuBar from "../FeedbackMenuBar/FeedbackMenuBar";
 import { useTranslation } from "react-i18next";
 
-function HeaderMenu({ isMobile, currentUser }) {
+function HeaderMenu({ isMobile, currentUser, basketProducts }) {
   const navigate = useNavigate();
 
   const [language, setLanguage] = useState("en");
@@ -56,7 +56,7 @@ function HeaderMenu({ isMobile, currentUser }) {
     <>
       <header
         className="w-full h-[80px] flex items-center justify-between px-[4vw] fixed
-               top-0 bg-[#FFF] z-[100] max-md:shadow-[0_0_5px_0_gray] max-md:h-[60px]
+               top-0 bg-[#FFF] z-[110] max-md:shadow-[0_0_5px_0_gray] max-md:h-[60px]
                 [body.dark_&]:bg-[#2e2e2e] [body.dark_&]:max-md:shadow-[0_0_2px_0_white]"
       >
         <div
@@ -227,11 +227,17 @@ function HeaderMenu({ isMobile, currentUser }) {
           </button>
 
           <button
-            className="w-auto h-auto cursor-pointer
-                         relative after:content-['0'] after:absolute
+            className={`w-auto h-auto cursor-pointer
+                         relative 
+                         after:content-['${ 
+                            basketProducts?.length == undefined 
+                            ? 0 
+                            : basketProducts?.length
+                          }'] 
+                        after:absolute
                           after:right-[-5px] after:top-[-5px] after:w-[20px] after:h-[20px]
                           after:rounded-full after:bg-[#e33b41] after:flex after:justify-center
-                           after:items-center after:text-white max-md:hidden"
+                           after:items-center after:text-white max-md:hidden`}
             onClick={() => navigate("/basket")}
           >
             <img

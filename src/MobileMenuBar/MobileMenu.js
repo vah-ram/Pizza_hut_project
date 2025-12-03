@@ -1,13 +1,31 @@
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-function MobileMenu({ currentUser }) {
+function MobileMenu({ currentUser, basketProducts }) {
   const navigate = useNavigate();
 
   const menuItems = document.querySelectorAll("footer .menuItem");
+  const [changingDinIn, setChangingDinIn] = useState(false);
+  const [active, setActive] = useState(null);
+  const [dineIn, setDineIn] = useState(() => {
 
-  const [active, setActive] = useState("delivery");
+    if(localStorage.getItem("dine_in")) {
+      return localStorage.getItem("dine_in");
+    } else {
+      return "delivery"
+    }
+    
+  });
+
+  useEffect(() => {
+    localStorage.setItem("dine_in", dineIn);
+    
+    if(dineIn !== "delivery") {
+      setChangingDinIn(true);
+    }
+
+  }, [dineIn]);
 
   menuItems.forEach((elem) => {
     elem.addEventListener("click", () => {
@@ -19,6 +37,35 @@ function MobileMenu({ currentUser }) {
 
   return (
     <>
+      {
+        changingDinIn 
+        ? 
+          (
+            <div className="hidden fixed inset-0 z-[150] bg-black/40 
+                items-center justify-center max-md:flex p-2"
+            >
+              
+              <div className="w-full flex flex-col relative 
+              bg-white rounded-[30px] p-[15px]">
+                  <button
+                    className="w-[40px] h-[40px] flex items-center justify-center
+                                border-1 border-gray-200 rounded-xl outline-none absolute left-5
+                                cursor-pointer"
+                    onClick={() => setChangingDinIn(false)}
+                  >
+                    <img
+                      src="https://pizza-hut.am/assets/images/app_2/close.svg"
+                      className="w-[30%]"
+                    />
+                  </button>
+              </div>
+
+            </div>
+          )
+        :
+        ''
+      }
+
       {active ? (
         <div
           className="hidden fixed inset-0 z-[100] bg-black/40 
@@ -55,7 +102,8 @@ function MobileMenu({ currentUser }) {
 
         <button
           className="flex flex-col gap-1 justify-center 
-                        items-center cursor-pointer mr-3 menuItem"
+                        items-center cursor-pointer mr-3 menuItem 
+                        mr-10"
           onClick={() => navigate("/about-us")}
         >
           <img
@@ -74,18 +122,21 @@ function MobileMenu({ currentUser }) {
 
         <div
           className="w-[19vw] flex flex-col absolute bottom-10 
-        gap-2"
+          gap-2"
         >
           <button
-            onClick={() => setActive("dine")}
+            onClick={() => {
+              setDineIn("dine")
+              setActive(!active)
+            }}
             className={`
               w-[19vw] h-[19vw] flex flex-col gap-1 items-center justify-center
               rounded-full shadow-md cursor-pointer absolute bottom-0
               bg-[#e33b41] transition-all duration-300
               ${
-                active === "dine"
-                  ? "-translate-y-[20vh] z-20"
-                  : "-translate-y-[0vh] z-20"
+                dineIn === "delivery"
+                  ? active ? "bottom-[16vh] z-20" : "bottom-[0]"
+                  : "bottom-[0] z-30 shadow-lg"
               }
           `}
           >
@@ -100,15 +151,18 @@ function MobileMenu({ currentUser }) {
           </button>
 
           <button
-            onClick={() => setActive("delivery")}
+            onClick={() => {
+              setDineIn("delivery")
+              setActive(!active)
+            }}
             className={`
               w-[19vw] h-[19vw] flex flex-col gap-1 items-center justify-center
               rounded-full shadow-md cursor-pointer absolute bottom-0
               bg-blue-500 transition-all duration-300
               ${
-                active === "delivery"
-                  ? "-translate-y-[20vh] z-20"
-                  : "translate-y-[0vh] z-10"
+                dineIn === "delivery"
+                  ? "bottom-[0] z-30 shadow-lg"
+                  : active ? "bottom-[16vh] z-20" : "bottom-[0]"
               }
           `}
           >
@@ -124,15 +178,22 @@ function MobileMenu({ currentUser }) {
         </div>
 
         <button
-          className="flex flex-col gap-1 justify-center items-center cursor-pointer"
+          className="flex flex-col gap-1 justify-center items-center cursor-pointer 
+          ml-10"
           onClick={() => navigate("/basket")}
         >
           <span
-            className="w-[27px] h-[27px] relative after:content-['0'] after:absolute
+            className={`w-[27px] h-[27px] relative 
+                    after:content-['${ 
+                      basketProducts?.length === undefined 
+                      ? 0 
+                      : basketProducts?.length
+                    }']
+                    after:absolute
                     after:w-[17px] after:h-[17px]
                     after:flex after:justify-center after:items-center after:text-[#515151]
                     after:text-[11px] after:top-[-7px] after:right-[-5px] 
-                    [body.dark_&]:after:text-white menuItem"
+                    [body.dark_&]:after:text-white menuItem`}
           >
             <img
               src="https://bonee.blob.core.windows.net/company-type/Assets/basket.svg"
