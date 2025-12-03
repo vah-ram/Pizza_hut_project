@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom"
+import { useTranslation } from "react-i18next";
 
 export default function Address({ setAddressActive }) {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   return (
     <>
@@ -39,7 +41,7 @@ export default function Address({ setAddressActive }) {
 
             <p 
                 className="uppercase text-white">
-                     + Add Address
+                     + {t("add_address")}
             </p>
 
           </button>

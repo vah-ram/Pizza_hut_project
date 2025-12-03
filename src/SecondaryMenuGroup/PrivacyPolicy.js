@@ -1,24 +1,26 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 function PrivacyPolicy() {
+  const { t } = useTranslation();
   return (
     <>
       <div className="body mx-auto w-[60%] pt-20 [body.dark_&]:text-white ">
-        <p class="title text-[20px]">
-          <strong>PRIVACY POLICY</strong>
+        <p className="title text-[20px]">
+          <strong>{t("privacy_policy_title")}</strong>
         </p>
-        <p class="mt-10">Last updated September 20, 2023</p>
-        <p class="mt-5">
+        <p className="mt-10">{t("privacy_last_updated")}</p>
+        <p className="mt-5">
           {" "}
-          Thank you for choosing to be part of our community{" "}
+          Thank you for choosing to be part of our community {" "}
           <strong>(“Company”, “we”, “us”, or “our”).</strong>
           We are committed to protecting your personal information and your
           right to privacy. If you have any questions or concerns about our
           policy, or our practices with regards to your personal information,
-          please contact us at{" "}
+          please contact us at {" "}
           <a href="mailto:info@bonee.net">info@bonee.net</a>.
         </p>
-        <p class="mt-5">
+        <p className="mt-5">
           When you visit our website www.bonee.net, and use our services, you
           trust us with your personal information. We take your privacy very
           seriously. In this privacy notice, we describe our privacy policy. We
@@ -28,116 +30,110 @@ function PrivacyPolicy() {
           important. If there are any terms in this privacy policy that you do
           not agree with, please discontinue use of our Sites and our services.
         </p>
-        <p class="mt-5">
+        <p className="mt-5">
           This privacy policy applies to all information collected through our
           website and/or any related services, sales, marketing or events (we
           refer to them collectively in this privacy policy as the
           <strong>"Sites"</strong>).
         </p>
-        <p class="mb-10">
+        <p className="mb-10">
           <strong>
             Please read this privacy policy carefully as it will help you make
             informed decisions about sharing your personal information with us.
           </strong>
         </p>
-        <p class="mt-5">
-          <strong class="heading_1">TABLE OF CONTENTS</strong>
+        <p className="mt-5">
+          <strong className="heading_1">{t("privacy_toc")}</strong>
         </p>
-        <ol class="mt-5">
+        <ol className="mt-5">
           <li>
             <p>
-              <a href="#inf1">WHAT INFORMATION DO WE COLLECT?</a>
+              <a href="#inf1">{t("privacy_toc_1")}</a>
             </p>
           </li>
           <li>
             <p>
-              <a href="#inf2">HOW DO WE USE YOUR INFORMATION?</a>
+              <a href="#inf2">{t("privacy_toc_2")}</a>
             </p>
           </li>
           <li>
             <p>
-              <a href="#inf3">WILL YOUR INFORMATION BE SHARED WITH ANYONE?</a>
+              <a href="#inf3">{t("privacy_toc_3")}</a>
             </p>
           </li>
           <li>
             <p>
-              <a href="#inf4">WHO WILL YOUR INFORMATION BE SHARED WITH? </a>
+              <a href="#inf4">{t("privacy_toc_4")}</a>
             </p>
           </li>
           <li>
             <p>
-              <a href="#inf5">DATA DELETION REQUEST </a>
+              <a href="#inf5">{t("privacy_toc_5")}</a>
             </p>
           </li>
           <li>
             <p>
-              <a href="#inf6">
-                DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?{" "}
-              </a>
+              <a href="#inf6">{t("privacy_toc_6")} </a>
             </p>
           </li>
           <li>
             <p>
-              <a href="#inf7">DO WE USE GOOGLE MAPS? </a>
+              <a href="#inf7">{t("privacy_toc_7")} </a>
             </p>
           </li>
           <li>
             <p>
-              <a href="#inf8">
-                IS YOUR INFORMATION TRANSFERRED INTERNATIONALLY?{" "}
-              </a>
+              <a href="#inf8">{t("privacy_toc_8")} </a>
             </p>
           </li>
           <li>
             <p>
-              <a href="#inf9">WHAT IS OUR STANCE ON THIRD-PARTY WEBSITES?</a>
+              <a href="#inf9">{t("privacy_toc_9")}</a>
             </p>
           </li>
           <li>
             <p>
-              <a href="#inf10">HOW LONG DO WE KEEP YOUR INFORMATION? </a>
+              <a href="#inf10">{t("privacy_toc_10")} </a>
             </p>
           </li>
           <li>
             <p>
-              <a href="#inf11">HOW DO WE KEEP YOUR INFORMATION SAFE? </a>
+              <a href="#inf11">{t("privacy_toc_11")} </a>
             </p>
           </li>
           <li>
             <p>
-              <a href="#inf12">DO WE COLLECT INFORMATION FROM MINORS? </a>
+              <a href="#inf12">{t("privacy_toc_12")} </a>
             </p>
           </li>
           <li>
             <p>
-              <a href="#inf13">WHAT ARE YOUR PRIVACY RIGHTS?</a>
+              <a href="#inf13">{t("privacy_toc_13")}</a>
             </p>
           </li>
           <li>
             <p>
-              <a href="#inf14">CONTROLS FOR DO-NOT-TRACK FEATURES </a>
+              <a href="#inf14">{t("privacy_toc_14")} </a>
             </p>
           </li>
           <li>
             <p>
-              <a href="#inf15">
-                DO CALIFORNIA RESIDENTS HAVE SPECIFIC PRIVACY RIGHTS?
-              </a>
+              <a href="#inf15">{t("privacy_toc_15")}</a>
             </p>
           </li>
           <li>
             <p>
-              <a href="#inf16">DO WE MAKE UPDATES TO THIS POLICY? </a>
+              <a href="#inf16">{t("privacy_toc_16")} </a>
             </p>
           </li>
           <li>
             <p>
-              <a href="#inf17">TERMS OF SERVICE </a>
+              <a href="#inf17">{t("privacy_toc_17")} </a>
             </p>
           </li>
           <li>
             <p>
-              <a href="#inf18">HOW CAN YOU CONTACT US ABOUT THIS POLICY? </a>
+              <a href="#inf18">{t("privacy_toc_18")} </a>
             </p>
           </li>
         </ol>
@@ -149,7 +145,6 @@ function PrivacyPolicy() {
           provide to us such as name, address, contact information, passwords
           and security data, and payment information.
         </p>{" "}
-        -->
         <p class="mt-5">
           We collect personal information that you voluntarily provide to us
           when registering at the Sites expressing an interest in obtaining
@@ -278,7 +273,7 @@ function PrivacyPolicy() {
               Sites that may contain personal information. Prior to posting a
               testimonial, we will obtain your consent to use your name and
               testimonial. If you wish to update, or delete your testimonial,
-              please contact us at{" "}
+              please contact us at {" "}
               <a href="mailto:info@bonee.net">info@bonee.net</a> and be sure to
               include your name, testimonial location, and contact information.
             </p>

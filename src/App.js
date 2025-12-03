@@ -18,40 +18,39 @@ import PrivacyPolicy from "./SecondaryMenuGroup/PrivacyPolicy";
 import MobileSearch from "./MobileSearch/MobileSearch";
 import CatalogProductCard from "./CatalogProductCard/CatalogProductCard.js";
 import i18next from "i18next";
-import Admin from "./Admin/Admin.js";
 
 function App() {
   const location = useLocation();
 
   const [isMobile, setIsMobile] = useState("");
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState(true);
   const [currentLang, setCurrentLang] = useState(i18next.language);
   const [basketProducts, setBasketProducts] = useState([]);
 
-  useEffect(() => {
-    const verify = async () => {
-      try {
-        const token = localStorage.getItem("token");
+  // useEffect(() => {
+  //   const verify = async () => {
+  //     try {
+  //       const token = localStorage.getItem("token");
 
-        if (!token) {
-          return setCurrentUser("");
-        }
+  //       if (!token) {
+  //         return setCurrentUser("");
+  //       }
 
-        const res = await axios.get(verifyProfileHost, {
-          params: { token },
-        });
+  //       const res = await axios.get(verifyProfileHost, {
+  //         params: { token },
+  //       });
 
-        if(res.data.status) {
-          setCurrentUser(res.data.user);
-        }
+  //       if(res.data.status) {
+  //         setCurrentUser(res.data.user);
+  //       }
 
-      } catch (err) {
-        console.error(err);
-      }
-    };
+  //     } catch (err) {
+  //       console.error(err);
+  //     }
+  //   };
 
-    verify();
-  }, [location.pathname]);
+  //   verify();
+  // }, [location.pathname]);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -103,7 +102,6 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/admin-panel" element={<Admin currentUser={currentUser}/>} />
         <Route
           path="/"
           element={

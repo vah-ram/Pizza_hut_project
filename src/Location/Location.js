@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function Location({ isMobile, currentUser }) {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [activeMap, setActiveMap] = useState(false);
@@ -137,11 +139,11 @@ export default function Location({ isMobile, currentUser }) {
             font-[600] [body.dark_&]:text-white
           "
           >
-            Add Address
+            {t("add_address")}
           </h2>
 
           <p className="text-[calc(12px+.3vw)] text-[#9d9d9d]">
-            Street name and building number
+            {t("street_name_building_number")}
             <b className="text-[#e33b41]"> *</b>
           </p>
 
@@ -151,7 +153,7 @@ export default function Location({ isMobile, currentUser }) {
           >
             <input
               type="text"
-              placeholder="Enter street name and building number"
+              placeholder={t("enter_street_and_building")}
               className="w-full text-[calc(14px+.3vw)] outline-none 
               border-none [body.dark_&]:text-white"
             />
@@ -178,7 +180,7 @@ export default function Location({ isMobile, currentUser }) {
               className="text-[calc(14px+.3vw)] text-[#515151] 
               font-[600] ml-1 [body.dark_&]:text-white"
             >
-              Current address
+              {t("current_address")}
             </p>
           </button>
 
@@ -205,7 +207,7 @@ export default function Location({ isMobile, currentUser }) {
             </svg>
 
             <p className="uppercase text-[#e33b41] text-[calc(14px+.3vw)]">
-              Use a map and pin your location
+              {t("use_map_pin")}
             </p>
           </button>
         </div>
@@ -221,7 +223,7 @@ export default function Location({ isMobile, currentUser }) {
               to="/"
               className="text-[calc(10px+.3vw)] [body.dark_&]:text-white"
             >
-              Main page
+              {t("main_page")}
             </Link>
 
             <img
@@ -233,7 +235,7 @@ export default function Location({ isMobile, currentUser }) {
               to="/basket"
               className="text-[calc(10px+.3vw)] [body.dark_&]:text-white"
             >
-              Basket
+              {t("basket")}
             </Link>
 
             <img
@@ -246,7 +248,7 @@ export default function Location({ isMobile, currentUser }) {
                         text-[#e33b41] cursor-default 
                         [body.dark_&]:text-[#9d9d9d]"
             >
-              Add Address
+              {t("add_address")}
             </Link>
           </span>
 
@@ -254,7 +256,7 @@ export default function Location({ isMobile, currentUser }) {
             className="text-[calc(18px+.3vw)] uppercase text-[#515151] 
                         mt-12 [body.dark_&]:text-white"
           >
-            Add Address
+            {t("add_address")}
           </h2>
 
           <div className="w-full flex gap-5 items-center mt-3 addressBtns">
@@ -267,10 +269,10 @@ export default function Location({ isMobile, currentUser }) {
                         [body.dark_&]:text-[#9d9d9d] [.active]:[body.dark_&]:text-[#ce4a57] 
                         [body.dark_&]:border-[#9d9d9d] [.active]:[body.dark_&]:border-[#ce4a57]"
             >
-              Search by address
+              {t("search_by_address")}
             </button>
 
-            <p className="uppercase [body.dark_&]:text-white">or</p>
+            <p className="uppercase [body.dark_&]:text-white">{t("or_text")}</p>
 
             <button
               className="addressBtn w-full px-[15px] py-[10px] 
@@ -281,7 +283,7 @@ export default function Location({ isMobile, currentUser }) {
                         [body.dark_&]:text-[#9d9d9d] [.active]:[body.dark_&]:text-[#ce4a57] 
                         [body.dark_&]:border-[#9d9d9d] [.active]:[body.dark_&]:border-[#ce4a57]"
             >
-              Mark on the map
+              {t("mark_on_map")}
             </button>
           </div>
 
@@ -293,7 +295,7 @@ export default function Location({ isMobile, currentUser }) {
           >
             <input
               type="text"
-              placeholder="Enter street name and building number"
+              placeholder={t("enter_street_and_building")}
               className="w-full text-[calc(10px+.3vw)] 
                             border-none outline-none 
                              [body.dark_&]:text-white"
@@ -304,7 +306,7 @@ export default function Location({ isMobile, currentUser }) {
             className="text-[calc(10px+.3vw)] 
            text-[#515151] mt-7 [body.dark_&]:text-white"
           >
-            Additional instructions for the courier
+            {t("additional_instructions_for_courier")}
           </label>
 
           <textarea
@@ -314,7 +316,7 @@ export default function Location({ isMobile, currentUser }) {
                          text-[calc(10px+.3vw)] min-h-[100px] 
                          mt-2 [body.dark_&]:border-[#565656] 
                           [body.dark_&]:text-white"
-            placeholder="Entrance / floor / appartment / entrance code / other."
+            placeholder={t("additional_instructions_placeholder")}
           ></textarea>
 
           <ul className="flex gap-3 w-full mt-5">
@@ -356,7 +358,7 @@ export default function Location({ isMobile, currentUser }) {
                 navigate(-1);
               }}
             >
-              Close
+              {t("close")}
             </button>
 
             <button
@@ -365,7 +367,7 @@ export default function Location({ isMobile, currentUser }) {
                 flex items-center justify-center 
                 rounded-[15px] opacity-75"
             >
-              Save
+              {t("save")}
             </button>
           </div>
         </div>

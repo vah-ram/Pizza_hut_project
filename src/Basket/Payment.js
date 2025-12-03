@@ -1,6 +1,8 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 export default function Payment({ setPaymentActive }) {
+  const { t } = useTranslation();
   return (
     <>
       <div
@@ -31,7 +33,7 @@ export default function Payment({ setPaymentActive }) {
                         text-[#515151] uppercase mt-16 
                         [body.dark_&]:text-white"
           >
-            Payment Methods
+            {t("payment_methods")}
           </h2>
 
           <button
@@ -52,7 +54,7 @@ export default function Payment({ setPaymentActive }) {
             </svg>
 
             <p className="capitalize text-[#515151] [body.dark_&]:text-white"
-            >Cash</p>
+            >{t("cash")}</p>
           </button>
 
           <button
@@ -66,7 +68,7 @@ export default function Payment({ setPaymentActive }) {
                 className="w-[25px]"/>
 
             <p className="capitalize text-[#515151] [body.dark_&]:text-white"
-            >Ineco</p>
+            >{t("ineco")}</p>
           </button>
 
           <button
@@ -80,7 +82,7 @@ export default function Payment({ setPaymentActive }) {
                 className="w-[25px] rounded-md"/>
 
             <p className="capitalize text-[#515151] [body.dark_&]:text-white"
-            >Idram</p>
+            >{t("idram")}</p>
           </button>
 
           <button
@@ -102,7 +104,7 @@ export default function Payment({ setPaymentActive }) {
 
 
             <p className="capitalize text-[#515151] [body.dark_&]:text-white"
-            >POS Terminal</p>
+            >{t("pos_terminal")}</p>
           </button>
         </div>
       </div>

@@ -1,10 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
 import { deleteProductToBasketHost } from "../utils/Hosts";
+import { useTranslation } from "react-i18next";
 
 function BasketItem({ item, currentUser, currentLang, setDeletedItem }) {
   const [basketInt, setBasketInt] = useState(1);
   const [isDeleting, setIsDeleting] = useState(null);
+  const { t } = useTranslation();
 
   const deleteBasketItemFunc = async () => {
     if (!item || !currentUser) return;
@@ -36,7 +38,7 @@ function BasketItem({ item, currentUser, currentLang, setDeletedItem }) {
               className="text-center flex justify-center items-center 
             text-[16px] text-[#fff]"
             >
-              Are you sure you want to delete this product from Basket?
+              {t("confirm_delete")}
             </p>
 
             <div
@@ -51,7 +53,7 @@ function BasketItem({ item, currentUser, currentLang, setDeletedItem }) {
                   setIsDeleting(false);
                 }}
               >
-                Yes
+                {t("yes")}
               </button>
 
               <button
@@ -59,7 +61,7 @@ function BasketItem({ item, currentUser, currentLang, setDeletedItem }) {
                 text-[#fff] font-[700] p-[4px] cursor-pointer"
                 onClick={() => setIsDeleting(false)}
               >
-                No
+                {t("no")}
               </button>
             </div>
           </div>
