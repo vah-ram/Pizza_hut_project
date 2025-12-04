@@ -10,6 +10,7 @@ import MobileCatalogMenu from "./MobileCatalogMenu";
 import CatalogItemTable from "./CatalogItemTable";
 import axios from "axios";
 import { getProductHost } from "../utils/Hosts";
+import { Toaster } from "sonner";
 
 function AllCatalogs({ isMobile, currentUser }) {
   const navigate = useNavigate();
@@ -177,7 +178,7 @@ function AllCatalogs({ isMobile, currentUser }) {
                              border-r-transparent border-b-transparent
                             border-[#E33B41] animate-spin flex
                             justify-center items-center 
-                            max-md:w-[4rem] max-md:h-[4rem]"
+                            max-md:w-[4rem] max-md:h-[4rem]"z
             >
               <span
                 className="w-[5rem] h-[5rem] rounded-full border-3
@@ -532,7 +533,13 @@ function AllCatalogs({ isMobile, currentUser }) {
             className="text-[25px] text-[#515151]
                          [body.dark_&]:text-white font-[600] uppercase"
           >
-            {t("offer_special_offer")}
+            {
+              categories.map(item => {
+                if(item.key === type) {
+                  return t(item.textKey)
+                }
+              })
+            }
           </h2>
 
           <div
@@ -581,6 +588,8 @@ function AllCatalogs({ isMobile, currentUser }) {
       <MobileCatalogMenu/>
 
       {menuTask ? <MobileProductCard setMenuTask={setMenuTask} currentProduct={currentProduct}/> : ""}
+
+      <Toaster richColors/>
     </>
   );
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-export default function Payment({ setPaymentActive }) {
+export default function Payment({ setPaymentActive, setPaymentMethod }) {
   const { t } = useTranslation();
   return (
     <>
@@ -40,7 +40,11 @@ export default function Payment({ setPaymentActive }) {
             className="w-full max-h-[60px] border-1 
             border-[#ebebeb] mt-[40px] p-[15px] 
             rounded-[15px] flex items-center 
-            gap-5 cursor-pointer"
+            gap-5 cursor-pointer" 
+            onClick={() => {
+              setPaymentMethod(t("cash"))
+              setPaymentActive(false)
+            }}
           >
             <svg width="25" height="290" viewBox="0 0 370 290" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Money icon">
                 <rect x="10" y="30" width="350" height="230" rx="28" ry="28" fill="none" stroke="#646464ff" stroke-width="22"/>
@@ -61,7 +65,11 @@ export default function Payment({ setPaymentActive }) {
             className="w-full max-h-[60px] border-1 
             border-[#ebebeb] mt-5 p-[15px] 
             rounded-[15px] flex items-center 
-            gap-5 cursor-pointer"
+            gap-5 cursor-pointer" 
+            onClick={() => {
+              setPaymentMethod(t("ineco"))
+              setPaymentActive(false)
+            }}
           >
             <img 
                 src="https://play-lh.googleusercontent.com/ixddLgBD0FPvyQo1KpVhy7LzuNmKM2iqX0JlF9I3Qt4Vsh77RWmcs1ynD8kCwRoQCg" 
@@ -75,7 +83,11 @@ export default function Payment({ setPaymentActive }) {
             className="w-full max-h-[60px] border-1 
             border-[#ebebeb] mt-5 p-[15px] 
             rounded-[15px] flex items-center 
-            gap-5 cursor-pointer"
+            gap-5 cursor-pointer" 
+            onClick={() => {
+              setPaymentMethod(t("idram"))
+              setPaymentActive(false)
+            }}
           >
             <img 
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToGPwonm-hJJoN5aZU4ek9Tiv3ykwmJbP7b6w7hTvA77JHgXJor_jb7oMTstHM86h7z2Y&usqp=CAU" 
@@ -89,7 +101,11 @@ export default function Payment({ setPaymentActive }) {
             className="w-full max-h-[60px] border-1 
             border-[#ebebeb] mt-5 p-[15px] 
             rounded-[15px] flex items-center 
-            gap-5 cursor-pointer"
+            gap-5 cursor-pointer" 
+            onClick={() => {
+              setPaymentMethod(t("pos_terminal"))
+              setPaymentActive(false)
+            }}
           >
             <svg width="25" height="290" viewBox="0 0 370 290" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Money icon">
                 <rect x="10" y="30" width="350" height="230" rx="28" ry="28" fill="none" stroke="#646464ff" stroke-width="22"/>

@@ -43,7 +43,10 @@ export default function MobileProductCard({ setMenuTask, currentProduct }) {
         >
           <img
             src={currentProduct?.image_url}
-            className="w-auto h-auto object-cover group-hover:opacity-80"
+            className={`
+                w-auto h-auto object-cover group-hover:opacity-80 
+                ${currentProduct?.product_type === "beverages" ? "scale-70" : ""}
+              `}
             alt="slider item img"
           />
 
@@ -72,11 +75,12 @@ export default function MobileProductCard({ setMenuTask, currentProduct }) {
         [body.dark_&]:bg-[#2e2e2e] pb-60 overflow-y-scroll"
         >
           <span 
-            className="w-full h-[50vh] cursor-pointer" 
+            className="w-full h-[50vh] cursor-pointer flex item-center justify-center" 
             onClick={() => setViewImage(true)}>
             <img
               src={currentProduct?.image_url}
-              className="w-full h-full object-cover"
+              className={` 
+                ${currentProduct?.product_type !== "beverages" ? "object-cover w-full h-full" : ""}`}
             />
           </span>
 

@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
 
-function Project({ isMobile, currentUser, currentLang, basketProducts }) {
+function Project({ isMobile, currentUser, currentLang }) {
     const navigate = useNavigate();
 
     const { t } = useTranslation();
@@ -22,9 +22,9 @@ function Project({ isMobile, currentUser, currentLang, basketProducts }) {
   return (
       <main className="duration-300 relative">
 
-        <HeaderMenu isMobile={isMobile} currentUser={currentUser} basketProducts={basketProducts}/>
+        <HeaderMenu isMobile={isMobile} currentUser={currentUser}/>
 
-        <MobileMenu currentUser={currentUser} basketProducts={basketProducts}/>
+        <MobileMenu currentUser={currentUser}/>
 
         <MobilePizzaMenu />
 

@@ -83,7 +83,7 @@ function ProductCard({ isMobile, currentUser, currentLang }) {
       )}
 
       <div
-        className="fixed inset-0 z-[100] bg-black/40 flex
+        className="fixed inset-0 z-[120] bg-black/40 flex
             items-center justify-center max-md:hidden"
       >
         <div className="relative w-[80%] h-[85%]">

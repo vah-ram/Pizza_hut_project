@@ -1,32 +1,44 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { addProductToBasketHost } from "../utils/Hosts"
+import { addProductToBasketHost } from "../utils/Hosts";
 import { useEffect, useState } from "react";
 import i18next from "i18next";
-import { socket } from "../socket";
+import { toast } from "sonner";
+import { useTranslation } from "react-i18next";
 
-export default function CatalogItem({ isMobile, setMenuTask, item, currentUser, setCurrentProduct }) {
+export default function CatalogItem({
+  isMobile,
+  setMenuTask,
+  item,
+  currentUser,
+  setCurrentProduct,
+}) {
   const navigate = useNavigate();
   const [currentLang, setCurrentLang] = useState(i18next.language);
   const dineIn = localStorage.getItem("dine_in");
 
+  const { t } = useTranslation();
+
   useEffect(() => {
-    setCurrentProduct(item)
+    setCurrentProduct(item);
   }, [item]);
 
-  const addBasketFunc = async() => {
+  const addBasketFunc = async () => {
+    if (!currentUser) {
+      return;
+    }
 
-      if(!currentUser) {
-        return;
-      };
+    const res = await axios.post(addProductToBasketHost, {
+      myId: currentUser?.id,
+      productId: item.id,
+      type: dineIn,
+    });
 
-      await axios.post(addProductToBasketHost, {
-          myId: currentUser?.id,
-          productId: item.id,
-          type: dineIn
-      });
+    if(res.data.status) {
+      toast.success(t("add_basket_text"))
+    }
 
-  }
+  };
 
   useEffect(() => {
     const onLangChange = (lng) => {
@@ -37,14 +49,16 @@ export default function CatalogItem({ isMobile, setMenuTask, item, currentUser, 
 
     return () => i18next.off("languageChanged", onLangChange);
   }, []);
-  
+
   return (
     <>
       <div
         className={`w-full mt-7 max-md:mt-3  
                      flex flex-col justify-start
                     items-center relative rounded-[15px] 
-                    max-md:rounded-[5vw] border-1 border-gray-300 before:content-['-${item?.sale_percent}%']
+                    max-md:rounded-[5vw] border-1 border-gray-300 before:content-['-${
+                      item?.sale_percent
+                    }%']
                     before:absolute before:z-1 before:left-[-5px] before:top-[25px]
                     before:w-[80px] before:h-[30px] before:bg-[#f33]
                     before:text-white before:flex before:justify-center
@@ -54,50 +68,42 @@ export default function CatalogItem({ isMobile, setMenuTask, item, currentUser, 
                     max-md:before:rounded-br-[30px] 
                     max-md:before:bg-[#e33b41] 
                     [body.dark_&]:border-[#FFF4] 
-                    ${item?.sale_percent === 0 ? 
-                     'before:hidden' :
-                     ''
-                    }`}
-
+                    ${item?.sale_percent === 0 ? "before:hidden" : ""} 
+                    ${item?.product_type === "beverages" ? "max-md:h-[40vw]" : ""}`}
         onClick={() => {
-        if (isMobile) {
-          setCurrentProduct(item);
-          setMenuTask(true);
-        } else {
-          navigate(`/catalog/${item.id}`);
-        }
-      }}
-
+          if (isMobile) {
+            setCurrentProduct(item);
+            setMenuTask(true);
+          } else {
+            navigate(`/catalog/${item.id}`);
+          }
+        }}
       >
         <span
-          className="w-full h-[30vh] 
-         rounded-[15px] overflow-hidden group 
-         flex justify-center"
-        >
+          className="w-full h-[20vw] max-md:h-full  
+          rounded-[15px] overflow-hidden group 
+          flex justify-center"
+          >
           <img
             src={item?.image_url}
-            className={`group-hover:scale-110 duration-500 h-full 
-              ${item.product_type === "beverages" ? 'w-auto' : 'w-full'}`}
+            className="group-hover:scale-110 duration-500" 
             alt="slider item img"
           />
         </span>
 
-        <div className="w-full h-auto flex justify-center items-center mt-2">
+        <div className="w-full h-auto flex justify-center items-center mt-auto">
           <p
             className="[body.dark_&]:text-white text-[#515151] font-[600]
                                  text-[18px] uppercase mt-3 mb-10 max-md:mb-3 
                                  text-center max-md:mt-0"
           >
-            {
-              currentLang === "en" 
-              ?
-              item?.title
-              : currentLang === "ru" 
-              ? item?.title_ru 
-              : currentLang === "am" 
-              ? item?.title_am 
-              : ''
-            }
+            {currentLang === "en"
+              ? item?.title
+              : currentLang === "ru"
+              ? item?.title_ru
+              : currentLang === "am"
+              ? item?.title_am
+              : ""}
           </p>
         </div>
 
@@ -116,9 +122,7 @@ export default function CatalogItem({ isMobile, setMenuTask, item, currentUser, 
             className="text-[#9d9d9d] line-through 
           text-[calc(14px+.3vw)"
           >
-            {
-              item?.old_price === 0 ? '' : item?.old_price
-            }
+            {item?.old_price === 0 ? "" : item?.old_price}
           </p>
         </span>
 
@@ -127,16 +131,16 @@ export default function CatalogItem({ isMobile, setMenuTask, item, currentUser, 
           hidden max-md:flex text-[calc(12px+.3vw)] bg-[#e33b41] 
           rounded-[3vw] text-white py-[7px] 
           items-center justify-center mb-[10px] 
-          uppercase cursor-pointer" 
+          uppercase cursor-pointer"
           onClick={() => {
-          if (isMobile) {
-            addBasketFunc()
-            setCurrentProduct(item);
-            setMenuTask(true);
-          } else {
-            navigate(`/catalog/${item.id}`);
-          }
-        }}
+            if (isMobile) {
+              addBasketFunc();
+              setCurrentProduct(item);
+              setMenuTask(true);
+            } else {
+              navigate(`/catalog/${item.id}`);
+            }
+          }}
         >
           Add
         </button>
@@ -151,21 +155,18 @@ export default function CatalogItem({ isMobile, setMenuTask, item, currentUser, 
             </p>
 
             <p className="text-[#9d9d9d] text-[12px] line-through ">
-              {
-                item?.old_price === 0 ? '' : item?.old_price
-              }
+              {item?.old_price === 0 ? "" : item?.old_price}
             </p>
-
           </button>
 
           <button
             className="w-[50%] cursor-pointer bg-[#e33b41]
-                          flex justify-center items-center gap-2 hover:opacity-90" 
+                          flex justify-center items-center gap-2 hover:opacity-90"
             onClick={() => {
-              addBasketFunc()
+              addBasketFunc();
               setCurrentProduct(item);
               setMenuTask(true);
-          }}
+            }}
           >
             <img
               src="https://www.pizza-hut.am/assets/images/app_2/basketPlus.svg"
@@ -177,6 +178,7 @@ export default function CatalogItem({ isMobile, setMenuTask, item, currentUser, 
           </button>
         </div>
       </div>
+
     </>
   );
 }

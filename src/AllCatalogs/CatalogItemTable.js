@@ -6,7 +6,8 @@ import axios from "axios";
 
 export default function CatalogItemTable({ isMobile, setMenuTask, item, currentUser, setCurrentProduct }) {
   const navigate = useNavigate();
-    const [currentLang, setCurrentLang] = useState(i18next.language);
+  const [currentLang, setCurrentLang] = useState(i18next.language);
+  const dineIn = localStorage.getItem("dine_in");
 
   useEffect(() => {
     setCurrentProduct(item)
@@ -24,14 +25,15 @@ export default function CatalogItemTable({ isMobile, setMenuTask, item, currentU
 
   const addBasketFunc = async() => {
 
-    if(!currentUser) {
-      return
-    };
+      if(!currentUser) {
+        return;
+      };
 
-    await axios.post(addProductToBasketHost, {
-        myId: currentUser?.id,
-        productId: item.id
-    })
+      await axios.post(addProductToBasketHost, {
+          myId: currentUser?.id,
+          productId: item.id,
+          type: dineIn
+      });
 
   }
 

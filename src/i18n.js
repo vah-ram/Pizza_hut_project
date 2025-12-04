@@ -115,6 +115,7 @@ i18n
           promo_code_placeholder: "Do you have promo code?",
           apply: "Apply",
           special_note: "Special note",
+          basket_special_note_text: "Clicking \u201cSubmit\u201d, you agree to the general terms, conditions and Privacy Policy of pizza-hut.am",
           submit: "Submit",
           your_basket_empty: "Your Basket is Empty",
           menu_btn: "Menu",
@@ -230,6 +231,9 @@ i18n
           close: "Close",
           save: "Save",
           or_text: "or",
+
+          //added-basket
+          add_basket_text: "Item Added"
         }
       },
 
@@ -341,6 +345,7 @@ i18n
           promo_code_placeholder: "У вас есть промокод?",
           apply: "Применить",
           special_note: "Особое примечание",
+          basket_special_note_text: "Нажимая \u00abОтправить\u00bb, вы соглашаетесь с общими условиями и Политикой конфиденциальности pizza-hut.am",
           submit: "Отправить",
           your_basket_empty: "Ваша корзина пуста",
           menu_btn: "Меню",
@@ -351,7 +356,7 @@ i18n
           cash: "Наличные",
           ineco: "Инэко",
           idram: "Идрам",
-          pos_terminal: "POS-терминал",
+          pos_terminal: "POS Терминал",
 
           // Terms & Conditions section
           terms_title: "Условия обслуживания для клиентов",
@@ -456,6 +461,9 @@ i18n
           close: "Закрыть",
           save: "Сохранить",
           or_text: "или",
+
+          //added-basket
+          add_basket_text: "Продукт добавлен"
         }
       },
 
@@ -567,6 +575,7 @@ i18n
           promo_code_placeholder: "Ունե՞ք պրոմոկոդ",
           apply: "Կիրառել",
           special_note: "Հատուկ նշում",
+          basket_special_note_text: "Սեղմելով «Հաստատել», դուք համաձայնում եք pizza-hut.am-ի ընդհանուր պայմաններին և գաղտնիության քաղաքականությանը",
           submit: "Հաստատել",
           your_basket_empty: "Ձեր զամբյուղը դատարկ է",
           menu_btn: "Մենյու",
@@ -598,7 +607,7 @@ i18n
           purchases_p4: "Bonee-ը 자체 առաքիչ չէ. Գործընկերը կարող է սահմանել առաքման հասանելի տարածքը և չառաքել բոլոր հասցեներ։",
           prices_title: "Գները",
           prices_p: "Ապրանքների գները տրամադրվում են գործընկերների կողմից և կարող են փոփոխվել ցանկացած պահի։ Փոփոխությունները վերաբերում են միայն նոր պատվերներին. հաստատված պատվերների գները չեն փոխվում։",
-          chargeback_title: "Չա�‍րջբեք / Վերադարձի քաղաքականություն",
+          chargeback_title: "Չարջբեք / Վերադարձի քաղաքականություն",
           chargeback_p: "Վերադարձները կատարվում են գործընկերների վերադարձի քաղաքականության համաձայն։ Վճարումների հետ կապված հարցերի դեպքում դիմեք գործընկերոջը։",
           links_title: "Հղումներ այլ կայքեր",
           links_p1: "Մեր Սերվիսում կարող են լինել հղումներ երրորդ կողմի կայքերի կամ ծառայությունների, որոնց բովանդակության և քաղաքականությունների համար Bonee-ը պատասխանատու չէ։",
@@ -682,6 +691,9 @@ i18n
           close: "Փակել",
           save: "Պահպանել",
           or_text: "կամ",
+
+          //added-basket
+          add_basket_text: "Պրոդուկտը ավելացվեց զամբյուղ"
         }
       }
     },

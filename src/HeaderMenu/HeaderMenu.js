@@ -3,11 +3,15 @@ import { useState, useEffect } from "react";
 import LanguageBar from "../LanguageBar/LanguageBar";
 import FeedbackMenuBar from "../FeedbackMenuBar/FeedbackMenuBar";
 import { useTranslation } from "react-i18next";
+import axios from "axios";
+import { getProductsBasketHost } from "../utils/Hosts";
 
-function HeaderMenu({ isMobile, currentUser, basketProducts }) {
+function HeaderMenu({ isMobile, currentUser }) {
   const navigate = useNavigate();
 
+  const isDineIn = localStorage.getItem("dine_in");
   const [language, setLanguage] = useState("en");
+  const [basketProducts, setBasketProducts] = useState([]);
 
   const [modeValue, setModeValue] = useState(() => {
     return localStorage.getItem("darkMode") === "true";
@@ -51,6 +55,26 @@ function HeaderMenu({ isMobile, currentUser, basketProducts }) {
   };
 
   const { t } = useTranslation();
+
+  useEffect(() => {
+
+      const callBasket = async () => {
+        if (!currentUser || !isDineIn) return;
+
+        const res = await axios.get(getProductsBasketHost, {
+          params: { myId: currentUser.id, type: isDineIn },
+        });
+
+        if (res.data.status) {
+          setBasketProducts(res.data.products);
+        } else {
+          console.log(res.data.message);
+        }
+      };
+
+      callBasket();
+
+  }, [currentUser, isDineIn]);
 
   return (
     <>

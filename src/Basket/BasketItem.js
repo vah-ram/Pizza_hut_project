@@ -137,7 +137,7 @@ function BasketItem({ item, currentUser, currentLang, setDeletedItem }) {
                 className="text-[calc(12px+.3vw)] font-[600] 
                             text-[#515151] [body.dark_&]:text-white"
               >
-                {item?.price.toLocaleString()}
+                {item.price?.toLocaleString()}
               </p>
             </li>
 

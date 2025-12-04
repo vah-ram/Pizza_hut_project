@@ -2,8 +2,9 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { GoogleMap, Marker } from "@react-google-maps/api"
 
-export default function Location({ isMobile, currentUser }) {
+export default function Location({ isMobile, currentUser, setSelectedAddress }) {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
@@ -11,6 +12,7 @@ export default function Location({ isMobile, currentUser }) {
   const [activeMap, setActiveMap] = useState(false);
 
   useEffect(() => {
+
     const addressBtns = document.querySelectorAll(".addressBtns .addressBtn");
 
     addressBtns.forEach((item, i) => {
@@ -22,11 +24,12 @@ export default function Location({ isMobile, currentUser }) {
         item.classList.add("active");
       });
     });
+    
   }, []);
 
   const buttons = [
     {
-      label: "Home",
+      label: t("home_label"),
       svg: (
         <svg
           width="20"
@@ -52,7 +55,7 @@ export default function Location({ isMobile, currentUser }) {
       ),
     },
     {
-      label: "Work",
+      label: t("work_label"),
       svg: (
         <svg
           width="20"
@@ -72,7 +75,7 @@ export default function Location({ isMobile, currentUser }) {
       ),
     },
     {
-      label: "Other",
+      label: t("other_label"),
       svg: (
         <svg
           width="20"

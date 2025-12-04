@@ -1,31 +1,28 @@
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
+import axios from "axios";
+import { getProductsBasketHost } from "../utils/Hosts";
 
-function MobileMenu({ currentUser, basketProducts }) {
+function MobileMenu({ currentUser }) {
   const navigate = useNavigate();
 
   const menuItems = document.querySelectorAll("footer .menuItem");
-  const [changingDinIn, setChangingDinIn] = useState(false);
   const [active, setActive] = useState(null);
-  const [dineIn, setDineIn] = useState(() => {
+  const isDineIn = localStorage.getItem("dine_in");
+  const [basketProducts, setBasketProducts] = useState([]);
 
-    if(localStorage.getItem("dine_in")) {
+  const [dineIn, setDineIn] = useState(() => {
+    if (localStorage.getItem("dine_in")) {
       return localStorage.getItem("dine_in");
     } else {
-      return "delivery"
+      return "delivery";
     }
-    
   });
 
   useEffect(() => {
     localStorage.setItem("dine_in", dineIn);
-    
-    if(dineIn !== "delivery") {
-      setChangingDinIn(true);
-    }
-
-  }, [dineIn]);
+  }, [active]);
 
   menuItems.forEach((elem) => {
     elem.addEventListener("click", () => {
@@ -35,36 +32,50 @@ function MobileMenu({ currentUser, basketProducts }) {
 
   const { t } = useTranslation();
 
+  useEffect(() => {
+    const callBasket = async () => {
+      if (!currentUser || !isDineIn) return;
+
+      const res = await axios.get(getProductsBasketHost, {
+        params: { myId: currentUser.id, type: isDineIn },
+      });
+
+      if (res.data.status) {
+        setBasketProducts(res.data.products);
+      } else {
+        console.log(res.data.message);
+      }
+    };
+
+    callBasket();
+  }, [currentUser, isDineIn]);
+
   return (
     <>
-      {
-        changingDinIn 
-        ? 
-          (
-            <div className="hidden fixed inset-0 z-[150] bg-black/40 
+      {false ? (
+        <div
+          className="hidden fixed inset-0 z-[150] bg-black/40 
                 items-center justify-center max-md:flex p-2"
-            >
-              
-              <div className="w-full flex flex-col relative 
-              bg-white rounded-[30px] p-[15px]">
-                  <button
-                    className="w-[40px] h-[40px] flex items-center justify-center
+        >
+          <div
+            className="w-full flex flex-col relative 
+              bg-white rounded-[30px] p-[15px]"
+          >
+            <button
+              className="w-[40px] h-[40px] flex items-center justify-center
                                 border-1 border-gray-200 rounded-xl outline-none absolute left-5
                                 cursor-pointer"
-                    onClick={() => setChangingDinIn(false)}
-                  >
-                    <img
-                      src="https://pizza-hut.am/assets/images/app_2/close.svg"
-                      className="w-[30%]"
-                    />
-                  </button>
-              </div>
-
-            </div>
-          )
-        :
-        ''
-      }
+            >
+              <img
+                src="https://pizza-hut.am/assets/images/app_2/close.svg"
+                className="w-[30%]"
+              />
+            </button>
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
 
       {active ? (
         <div
@@ -122,27 +133,35 @@ function MobileMenu({ currentUser, basketProducts }) {
 
         <div
           className="w-[19vw] flex flex-col absolute bottom-10 
-          gap-2"
+          gap-4"
         >
           <button
             onClick={() => {
-              setDineIn("dine")
-              setActive(!active)
+              setDineIn("dine");
+              setActive(!active);
+
+              if (dineIn === "delivery") {
+                if (active) {
+                  window.location.reload();
+                }
+              }
             }}
-            className={`
+            className={` 
               w-[19vw] h-[19vw] flex flex-col gap-1 items-center justify-center
               rounded-full shadow-md cursor-pointer absolute bottom-0
               bg-[#e33b41] transition-all duration-300
               ${
                 dineIn === "delivery"
-                  ? active ? "bottom-[16vh] z-20" : "bottom-[0]"
+                  ? active
+                    ? "bottom-[22vw] z-20"
+                    : "bottom-[0]"
                   : "bottom-[0] z-30 shadow-lg"
               }
           `}
           >
             <img
               src="https://pizza-hut.am/assets/images/app_2/dineIN.svg"
-              className="w-[6vh] h-[6vh]"
+              className="w-[50%] h-[45%]"
               alt=""
             />
             <p className="text-[2vw] text-white font-[600] uppercase">
@@ -152,8 +171,14 @@ function MobileMenu({ currentUser, basketProducts }) {
 
           <button
             onClick={() => {
-              setDineIn("delivery")
-              setActive(!active)
+              setDineIn("delivery");
+              setActive(!active);
+
+              if (dineIn !== "delivery") {
+                if (active) {
+                  window.location.reload();
+                }
+              }
             }}
             className={`
               w-[19vw] h-[19vw] flex flex-col gap-1 items-center justify-center
@@ -162,7 +187,9 @@ function MobileMenu({ currentUser, basketProducts }) {
               ${
                 dineIn === "delivery"
                   ? "bottom-[0] z-30 shadow-lg"
-                  : active ? "bottom-[16vh] z-20" : "bottom-[0]"
+                  : active
+                  ? "bottom-[22vw] z-20"
+                  : "bottom-[0]"
               }
           `}
           >
@@ -184,10 +211,10 @@ function MobileMenu({ currentUser, basketProducts }) {
         >
           <span
             className={`w-[27px] h-[27px] relative 
-                    after:content-['${ 
-                      basketProducts?.length === undefined 
-                      ? 0 
-                      : basketProducts?.length
+                    after:content-['${
+                      basketProducts?.length === undefined
+                        ? 0
+                        : basketProducts?.length
                     }']
                     after:absolute
                     after:w-[17px] after:h-[17px]

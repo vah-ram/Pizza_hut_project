@@ -16,46 +16,61 @@ import AboutMenu from "../AboutMenu/AboutMenu";
 import HeaderMenu from "../HeaderMenu/HeaderMenu";
 import MobileMenu from "../MobileMenuBar/MobileMenu";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 export default function AboutUs({ isMobile, currentUser }) {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+
   return (
     <>
       {!isMobile ? <HeaderMenu /> : ""}
 
-      <MobileMenu currentUser={currentUser}/>
+      <MobileMenu currentUser={currentUser} />
+
+      <button
+        className="w-[40px] h-[40px] bg-[rgba(0,0,0,0.5)] rounded-[12px] 
+            flex items-center justify-center fixed left-[15px] top-[15px] 
+            cursor-pointer" 
+        onClick={() => navigate(-1)}
+      >
+        <img
+          src="https://pizza-hut.am/assets/images/app_2/arrowWhite.svg"
+          className="w-[18px] h-[18px]"
+        />
+      </button>
+
+      <button
+        className="w-[40px] h-[40px] bg-[rgba(0,0,0,0.5)] rounded-[12px] 
+            flex items-center justify-center fixed right-[15px] top-[15px] 
+            cursor-pointer"
+      >
+        <img
+          src="https://pizza-hut.am/assets/images/app_2/logOutWhite.svg"
+          className="w-[18px] h-[18px]"
+        />
+      </button>
 
       <img
-        className="w-full h-[100vh] bg-[url('https://bonee.blob.core.windows.net/images/7339654b-13cf-1d41-7128-9a075997cecb_3.webp')]
+        className="w-full h-[100vh] max-md:h-[60vw] bg-[url('https://bonee.blob.core.windows.net/images/7339654b-13cf-1d41-7128-9a075997cecb_3.webp')]
                 bg-cover"
       />
 
-      <div className="w-full py-10 max-w-7xl mx-auto [body.dark_&]:text-white">
-        {/* Title */}
-        <h1 className="text-2xl font-semibold mb-6">{t("aboutus_page_title")}</h1>
+      <div className="w-full py-10 max-w-7xl mx-auto [body.dark_&]:text-white p-[15px]">
+        <h1 className="text-2xl font-semibold mb-6">
+          {t("aboutus_page_title")}
+        </h1>
 
-        {/* Description */}
-        <p className="mb-4">
-          {t("aboutus_p1")}
-        </p>
+        <p className="mb-4">{t("aboutus_p1")}</p>
 
-        <p className="mb-4">
-          {t("aboutus_p2")}
-        </p>
+        <p className="mb-4">{t("aboutus_p2")}</p>
 
-        <p className="mb-4">
-          {t("aboutus_p3")}
-        </p>
+        <p className="mb-4">{t("aboutus_p3")}</p>
 
-        <p className="mb-8">
-          {t("aboutus_p4")}
-        </p>
+        <p className="mb-8">{t("aboutus_p4")}</p>
 
-        {/* 2 Column Layout */}
         <div className="grid md:grid-cols-2 gap-10">
-          {/* LEFT COLUMN */}
           <div>
-            {/* Location */}
             <div className="mb-8">
               <div className="flex items-center gap-2 mb-2">
                 <MdLocationOn className="text-xl text-red-600" />
@@ -76,7 +91,6 @@ export default function AboutUs({ isMobile, currentUser }) {
               </div>
             </div>
 
-            {/* Phones */}
             <div className="mb-8">
               <div className="flex items-center gap-2 mb-2">
                 <MdPhone className="text-xl text-red-600" />
@@ -85,7 +99,6 @@ export default function AboutUs({ isMobile, currentUser }) {
               <p>060505505</p>
             </div>
 
-            {/* Website */}
             <div className="mb-8">
               <div className="flex items-center gap-2 mb-2">
                 <MdLanguage className="text-xl text-red-600" />
@@ -99,7 +112,6 @@ export default function AboutUs({ isMobile, currentUser }) {
               </a>
             </div>
 
-            {/* Email */}
             <div>
               <div className="flex items-center gap-2 mb-2">
                 <MdEmail className="text-xl text-red-600" />
@@ -109,38 +121,39 @@ export default function AboutUs({ isMobile, currentUser }) {
             </div>
           </div>
 
-          {/* RIGHT COLUMN */}
           <div>
-            {/* Working Hours */}
             <div className="mb-8">
               <div className="flex items-center gap-2 mb-2">
                 <MdAccessTime className="text-xl text-red-600" />
-                <h2 className="font-semibold">{t("working_days_times_title")}</h2>
+                <h2 className="font-semibold">
+                  {t("working_days_times_title")}
+                </h2>
               </div>
 
               <div className="flex flex-col gap-1">
-                {[ 
-                t("sunday"),
-                t("monday"),
-                t("tuesday"),
-                t("wednesday"),
-                t("thursday"),
-                t("friday"),
-                t("saturday"),
+                {[
+                  t("sunday"),
+                  t("monday"),
+                  t("tuesday"),
+                  t("wednesday"),
+                  t("thursday"),
+                  t("friday"),
+                  t("saturday"),
                 ].map((day) => (
-                <div key={day} className="flex justify-between w-full">
-                <span>{day}</span>
-                <span className="text-gray-700">10:00 - 23:00</span>
-                </div>
+                  <div key={day} className="flex justify-between w-full">
+                    <span>{day}</span>
+                    <span className="text-gray-700">10:00 - 23:00</span>
+                  </div>
                 ))}
               </div>
             </div>
 
-            {/* Facility Features */}
             <div>
               <div className="flex items-center gap-2 mb-2">
                 <FaWifi className="text-xl text-red-600" />
-                <h2 className="font-semibold">{t("facility_features_title")}</h2>
+                <h2 className="font-semibold">
+                  {t("facility_features_title")}
+                </h2>
               </div>
 
               <div className="flex items-center gap-4 text-red-600 text-xl">

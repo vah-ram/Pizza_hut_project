@@ -22,35 +22,36 @@ import i18next from "i18next";
 function App() {
   const location = useLocation();
 
+  const isDineIn = localStorage.getItem("dine_in");
   const [isMobile, setIsMobile] = useState("");
-  const [currentUser, setCurrentUser] = useState(true);
+  const [currentUser, setCurrentUser] = useState(null);
   const [currentLang, setCurrentLang] = useState(i18next.language);
-  const [basketProducts, setBasketProducts] = useState([]);
+  const [selectedAddress, setSelectedAddress] = useState("");
 
-  // useEffect(() => {
-  //   const verify = async () => {
-  //     try {
-  //       const token = localStorage.getItem("token");
+  useEffect(() => {
+    const verify = async () => {
+      try {
+        const token = localStorage.getItem("token");
 
-  //       if (!token) {
-  //         return setCurrentUser("");
-  //       }
+        if (!token) {
+          return setCurrentUser("");
+        }
 
-  //       const res = await axios.get(verifyProfileHost, {
-  //         params: { token },
-  //       });
+        const res = await axios.get(verifyProfileHost, {
+          params: { token },
+        });
 
-  //       if(res.data.status) {
-  //         setCurrentUser(res.data.user);
-  //       }
+        if(res.data.status) {
+          setCurrentUser(res.data.user);
+        }
 
-  //     } catch (err) {
-  //       console.error(err);
-  //     }
-  //   };
+      } catch (err) {
+        console.error(err);
+      }
+    };
 
-  //   verify();
-  // }, [location.pathname]);
+    verify();
+  }, [location.pathname]);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -78,27 +79,6 @@ function App() {
     return () => i18next.off("languageChanged", onLangChange);
   }, []);
 
-  useEffect(() => {
-    const callBasket = async () => {
-      if (!currentUser) {
-        return;
-      }
-
-      const res = await axios.get(getProductsBasketHost, {
-        params: {
-          myId: currentUser?.id,
-        },
-      });
-
-      if (res.data.status) {
-        setBasketProducts(res.data.products);
-      } else {
-        console.log(res.data.message);
-      }
-    };
-    callBasket();
-  }, [currentUser]);
-
   return (
     <>
       <Routes>
@@ -109,7 +89,6 @@ function App() {
               isMobile={isMobile}
               currentUser={currentUser}
               currentLang={currentLang} 
-              basketProducts={basketProducts}
             />
           }
         />
@@ -144,11 +123,13 @@ function App() {
         />
         <Route
           path="/basket"
-          element={<Basket isMobile={isMobile} currentUser={currentUser} currentLang={currentLang}/>}
+          element={<Basket isMobile={isMobile} currentUser={currentUser} currentLang={currentLang} 
+          selectedAddress={selectedAddress}/>}
         />
         <Route
           path="/location"
-          element={<Location isMobile={isMobile} currentUser={currentUser} />}
+          element={<Location isMobile={isMobile} currentUser={currentUser} setSelectedAddress={setSelectedAddress}
+/>}
         />
         <Route
           path="/about-us"

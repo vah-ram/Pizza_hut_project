@@ -8,18 +8,16 @@ export default function MobileCatalogMenu() {
 
   const [active, setActive] = useState(null);
   const [dineIn, setDineIn] = useState(() => {
-
-    if(localStorage.getItem("dine_in")) {
+    if (localStorage.getItem("dine_in")) {
       return localStorage.getItem("dine_in");
     } else {
-      return "delivery"
+      return "delivery";
     }
-    
   });
 
   useEffect(() => {
     localStorage.setItem("dine_in", dineIn);
-  }, [dineIn])
+  }, [dineIn]);
 
   return (
     <>
@@ -47,8 +45,14 @@ export default function MobileCatalogMenu() {
           >
             <button
               onClick={() => {
-                setDineIn("dine")
-                setActive(!active)
+                setDineIn("dine");
+                setActive(!active);
+
+                if (dineIn === "delivery") {
+                  if (active) {
+                    window.location.reload();
+                  }
+                }
               }}
               className={`
                 w-[19vw] h-[19vw] flex flex-col gap-1 items-center justify-center
@@ -56,14 +60,16 @@ export default function MobileCatalogMenu() {
                 bg-[#e33b41] transition-all duration-300
                 ${
                   dineIn === "delivery"
-                    ? active ? "bottom-[14vh] z-20" : "bottom-[0]"
+                    ? active
+                      ? "bottom-[22vw] z-20"
+                      : "bottom-[0]"
                     : "bottom-[0] z-30 shadow-lg"
                 }
             `}
             >
               <img
                 src="https://pizza-hut.am/assets/images/app_2/dineIN.svg"
-                className="w-[6vh] h-[6vh]"
+                className="w-[50%] h-[45%]"
                 alt=""
               />
               <p className="text-[2vw] text-white font-[600] uppercase">
@@ -73,8 +79,14 @@ export default function MobileCatalogMenu() {
 
             <button
               onClick={() => {
-                setDineIn("delivery")
-                setActive(!active)
+                setDineIn("delivery");
+                setActive(!active);
+
+                if (dineIn !== "delivery") {
+                  if (active) {
+                    window.location.reload();
+                  }
+                }
               }}
               className={`
                 w-[19vw] h-[19vw] flex flex-col gap-1 items-center justify-center
@@ -83,7 +95,9 @@ export default function MobileCatalogMenu() {
                 ${
                   dineIn === "delivery"
                     ? "bottom-[0] z-30 shadow-lg"
-                    : active ? "bottom-[14vh] z-20" : "bottom-[0]"
+                    : active
+                    ? "bottom-[22vw] z-20"
+                    : "bottom-[0]"
                 }
             `}
             >

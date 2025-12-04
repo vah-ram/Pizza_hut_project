@@ -12,8 +12,9 @@ import Payment from "./Payment";
 import Address from "./Address";
 import { getProductsBasketHost } from "../utils/Hosts";
 import axios from "axios";
+import { socket } from "../socket";
 
-function Basket({ isMobile, currentUser, currentLang }) {
+function Basket({ isMobile, currentUser, currentLang, selectedAddress }) {
   const navigate = useNavigate();
 
   const isDineIn = localStorage.getItem("dine_in");
@@ -24,6 +25,7 @@ function Basket({ isMobile, currentUser, currentLang }) {
   const [addressActive, setAddressActive] = useState(null);
   const [totalPrice, setTotalPrice] = useState(null);
   const [deletedItem, setDeletedItem] = useState(null);
+  const [paymenMethod, setPaymentMethod] = useState(null);
 
   const [calendarDate, setCalendarDate] = useState(new Date());
 
@@ -44,6 +46,14 @@ function Basket({ isMobile, currentUser, currentLang }) {
 
   const { t } = useTranslation();
 
+  const orderFunc = async() => {
+    if(!selectedTime || !selectedAddress) {
+      return;
+    };
+
+    alert("its ok!")
+  }
+
   useEffect(() => {
     setBasketProducts((prevs) =>
       prevs.filter((item) => {
@@ -52,13 +62,14 @@ function Basket({ isMobile, currentUser, currentLang }) {
     );
   }, [deletedItem]);
 
+  //get basket products
   useEffect(() => {
 
       const callBasket = async () => {
-        if (!currentUser) return;
+        if (!currentUser || !isDineIn) return;
 
         const res = await axios.get(getProductsBasketHost, {
-          params: { myId: currentUser.id },
+          params: { myId: currentUser.id, type: isDineIn },
         });
 
         if (res.data.status) {
@@ -84,7 +95,7 @@ function Basket({ isMobile, currentUser, currentLang }) {
     <>
       <MobileMenu currentUser={currentUser} basketProducts={basketProducts} />
 
-      {paymentActive ? <Payment setPaymentActive={setPaymentActive} /> : ""}
+      {paymentActive ? <Payment setPaymentActive={setPaymentActive} setPaymentMethod={setPaymentMethod}/> : ""}
 
       {addressActive ? <Address setAddressActive={setAddressActive} /> : ""}
 
@@ -109,8 +120,8 @@ function Basket({ isMobile, currentUser, currentLang }) {
           <h2 className="text-[17px] text-[#515151] font-[600] uppercase [body.dark_&]:text-white">
             {
               isDineIn === "delivery"
-              ? "Delivery Confirmation"
-              : "Dine-in confirmation"
+              ? t("delivery_confirmation")
+              : t("dinein_confirmation")
             }
           </h2>
         </div>
@@ -148,13 +159,13 @@ function Basket({ isMobile, currentUser, currentLang }) {
               ${isDineIn === "delivery" ? "" : "max-md:hidden"}`}
             >
               <span className="flex flex-col">
-                <p className="text-[calc(10px+.3vw)] text-[#9d9d9d]">Order</p>
+                <p className="text-[calc(10px+.3vw)] text-[#9d9d9d]">{t("order")}</p>
 
                 <h2
                   className="uppercase text-[calc(16px+.3vw)] font-[600] text-[#515151] 
                 [body.dark_&]:text-white"
                 >
-                  Date
+                  {t("date")}
                 </h2>
               </span>
 
@@ -206,13 +217,13 @@ function Basket({ isMobile, currentUser, currentLang }) {
               ${isDineIn === "delivery" ? "" : "max-md:hidden"}`}
             >
               <span className="flex flex-col">
-                <p className="text-[calc(10px+.3vw)] text-[#9d9d9d]">Order</p>
+                <p className="text-[calc(10px+.3vw)] text-[#9d9d9d]">{t("order")}</p>
 
                 <h2
                   className="uppercase text-[calc(16px+.3vw)] font-[600] text-[#515151] 
                 [body.dark_&]:text-white "
                 >
-                  Time
+                  {t("time")}
                 </h2>
               </span>
 
@@ -264,31 +275,31 @@ function Basket({ isMobile, currentUser, currentLang }) {
                 className="hidden max-md:block uppercase mt-2 text-[#515151] font-[600] 
               [body.dark_&]:text-white"
               >
-                Selected menu
+                {t("selected_menu")}
               </h2>
 
               <div
                 className="w-full flex justify-between border-b-1
                          border-[#ebebeb] pb-[15px] max-md:hidden"
               >
-                <p className="text-[#9d9d9d] text-[calc(12px+.3vw)]">Product</p>
+                <p className="text-[#9d9d9d] text-[calc(12px+.3vw)]">{t("product")}</p>
 
                 <ul className="flex gap-[5vw]">
                   <li>
                     <p className="text-[#9d9d9d] text-[calc(12px+.3vw)]">
-                      Quantity
+                      {t("quantity")}
                     </p>
                   </li>
 
                   <li>
                     <p className="text-[#9d9d9d] text-[calc(12px+.3vw)]">
-                      Price
+                      {t("price")}
                     </p>
                   </li>
 
                   <li>
                     <p className="text-[#9d9d9d] text-[calc(12px+.3vw)]">
-                      Remove
+                      {t("remove")}
                     </p>
                   </li>
                 </ul>
@@ -313,7 +324,7 @@ function Basket({ isMobile, currentUser, currentLang }) {
                             ${isDineIn === "delivery" ? "" : "max-md:hidden"}`}
               >
                 <p className="text-[calc(14px+.3vw)] text-[#9d9d9d]">
-                  Delivery Fee
+                  {t("delivery_fee")}
                 </p>
 
                 <a
@@ -321,7 +332,7 @@ function Basket({ isMobile, currentUser, currentLang }) {
                   cursor-pointer"
                   onClick={() => setAddressActive(true)}
                 >
-                  Select Address
+                  {t("select_address")}
                 </a>
               </span>
 
@@ -332,7 +343,7 @@ function Basket({ isMobile, currentUser, currentLang }) {
                             ${isDineIn === "delivery" ? "hidden" : ""}`}
               >
                 <p className="text-[calc(14px+.3vw)] text-[#9d9d9d]">
-                  Subtotal
+                  {t("subtotal")}
                 </p>
 
                 <p className="text-[calc(14px+.3vw)] text-[#9d9d9d]">3,200</p>
@@ -345,7 +356,7 @@ function Basket({ isMobile, currentUser, currentLang }) {
                             ${isDineIn === "delivery" ? "hidden" : ""}`}
               >
                 <p className="text-[calc(14px+.3vw)] text-[#9d9d9d]">
-                  Service Fee or VAT (10%)
+                  {t("service_fee_vat")}
                 </p>
 
                 <p className="text-[calc(14px+.3vw)] text-[#9d9d9d]">320</p>
@@ -361,7 +372,7 @@ function Basket({ isMobile, currentUser, currentLang }) {
                 [body.dark_&]:text-[#9d9d9d] 
                 font-[600]"
                 >
-                  Total
+                  {t("total")}
                 </p>
 
                 <a
@@ -383,13 +394,13 @@ function Basket({ isMobile, currentUser, currentLang }) {
             >
               <div className="flex gap-10 relative max-md:hidden">
                 <span className="flex flex-col">
-                  <p className="text-[calc(10px+.3vw)] text-[#9d9d9d]">Order</p>
+                  <p className="text-[calc(10px+.3vw)] text-[#9d9d9d]">{t("order")}</p>
 
                   <h2
                     className="uppercase text-[calc(12px+.3vw)] font-[600] text-[#515151] 
                   [body.dark_&]:text-white"
                   >
-                    Date
+                    {t("date")}
                   </h2>
                 </span>
 
@@ -438,13 +449,13 @@ function Basket({ isMobile, currentUser, currentLang }) {
 
               <div className="flex gap-10 relative max-md:hidden">
                 <span className="flex flex-col">
-                  <p className="text-[calc(10px+.3vw)] text-[#9d9d9d]">Order</p>
+                  <p className="text-[calc(10px+.3vw)] text-[#9d9d9d]">{t("order")}</p>
 
                   <h2
                     className="uppercase text-[calc(12px+.3vw)] font-[600] text-[#515151] 
                   [body.dark_&]:text-white"
                   >
-                    Time
+                    {t("time")}
                   </h2>
                 </span>
 
@@ -500,7 +511,7 @@ function Basket({ isMobile, currentUser, currentLang }) {
                 onClick={() => setPaymentActive(true)}
               >
                 <p className="text-[calc(12px+.3vw)] text-[#e33b41]">
-                  Select the payment method
+                  {paymenMethod ? paymenMethod : t("select_payment_method")}
                 </p>
 
                 <svg
@@ -538,11 +549,11 @@ function Basket({ isMobile, currentUser, currentLang }) {
                   className="uppercase text-[calc(12px+.3vw)] 
                 [body.dark_&]:text-white max-md:text-[calc(16px+.3vw)]"
                 >
-                  Delivery Information
+                  {t("delivery_information")}
                 </h2>
 
                 <p className="text-[calc(10px+.3vw)] text-[#9d9d9d]">
-                  Please add or select delivery address
+                  {t("please_add_or_select_address")}
                 </p>
               </span>
 
@@ -555,7 +566,7 @@ function Basket({ isMobile, currentUser, currentLang }) {
                 onClick={() => setAddressActive(true)}
               >
                 <p className="text-[calc(12px+.3vw)] text-[#e33b41]">
-                  Add Address
+                  {t("add_address")}
                 </p>
 
                 <svg
@@ -593,11 +604,11 @@ function Basket({ isMobile, currentUser, currentLang }) {
                   className="uppercase text-[calc(12px+.3vw)] 
                 [body.dark_&]:text-white max-md:text-[calc(16px+.3vw)]"
                 >
-                  Personal Information
+                  {t("personal_info")}
                 </h2>
 
                 <p className="text-[calc(10px+.3vw)] text-[#9d9d9d]">
-                  Please fill the information
+                  {t("please_fill_information")}
                 </p>
               </span>
 
@@ -656,7 +667,7 @@ function Basket({ isMobile, currentUser, currentLang }) {
                 </div>
 
                 <textarea
-                  placeholder="Add any special instructions"
+                  placeholder={t("special_instructions_placeholder")}
                   className="w-full h-[150px] mt-6 border-1 
                     border-[#ebebeb] p-[15px] rounded-[15px] 
                     outline-none [body.dark_&]:text-white 
@@ -686,7 +697,7 @@ function Basket({ isMobile, currentUser, currentLang }) {
 
                   <input
                     type="text"
-                    placeholder="Do you have promo code?"
+                    placeholder={t("promo_code_placeholder")}
                     className="outline-none border-none ml-2 w-full"
                   />
 
@@ -694,7 +705,7 @@ function Basket({ isMobile, currentUser, currentLang }) {
                     className="p-[10px] w-[125px] h-[50px] bg-[#e33b41] rounded-[15px] 
                 text-white ml-auto cursor-[pointer]"
                   >
-                    Apply
+                    {t("apply")}
                   </button>
                 </div>
 
@@ -703,13 +714,11 @@ function Basket({ isMobile, currentUser, currentLang }) {
                   border-1 border-[#e33b41] gap-3 mt-6"
                 >
                   <p className="uppercase text-[calc(18px+.3vw)] text-[#e33b41]">
-                    Special note
+                    {t("special_note")}
                   </p>
 
                   <p className="text-[#9d9d9d] text-[calc(16px+.3vw)]">
-                    Clicking “Submit”, you agree to the general terms,
-                    conditions <br />
-                    and Privacy Policy of pizza-hut.am
+                    {t("basket_special_note_text")}
                   </p>
                 </span>
 
@@ -740,9 +749,10 @@ function Basket({ isMobile, currentUser, currentLang }) {
                   type="submit"
                   className="w-full max-h-[50px] p-[15px] rounded-[15px] bg-[#e33b41]
                                 uppercase text-white cursor-pointer
-                                 opacity-75 mt-8"
+                                 opacity-75 mt-8" 
+                  onClick={() => orderFunc()}
                 >
-                  Submit
+                  {t("submit")}
                 </button>
               </div>
             </div>
@@ -753,11 +763,11 @@ function Basket({ isMobile, currentUser, currentLang }) {
                 ${isDineIn === "delivery" ? "hidden" : ""}`}
             >
               <p className="uppercase text-[calc(18px+.3vw)] text-[#e33b41]">
-                Special note
+                {t("special_note")}
               </p>
 
               <p className="text-[#9d9d9d] text-[calc(16px+.3vw)]">
-                To confirm your order please call waiter
+                {t("confirm_call_waiter")}
               </p>
             </span>
           </div>
@@ -773,14 +783,14 @@ function Basket({ isMobile, currentUser, currentLang }) {
             <div className="flex flex-col items-center">
               <img
                 src="https://www.pizza-hut.am/assets/images/app_2/basketEmpty.svg"
-                className="w-[15vw]"
+                className="w-[20vw]"
               />
 
               <p
                 className="mt-[1.5rem] text-[calc(12px+.3vw)] 
             font-[600] text-[#515151] uppercase"
               >
-                Your Basket is Empty
+                {t("your_basket_empty")}
               </p>
 
               <button
@@ -789,7 +799,7 @@ function Basket({ isMobile, currentUser, currentLang }) {
                bg-[#e33b41] w-[250px] py-4 text-[13px] cursor-pointer"
                 onClick={() => navigate("/")}
               >
-                Menu
+                {t("menu_btn")}
               </button>
             </div>
           </div>
