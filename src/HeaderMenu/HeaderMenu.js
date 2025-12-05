@@ -142,7 +142,7 @@ function HeaderMenu({ isMobile, currentUser }) {
             onClick={callDarkAndLightMode}
           >
             <span
-              className="w-[21px] h-[21px] shrink-0 block 
+              className="w-[20px] h-[20px] shrink-0 block 
                         rounded-full bg-[#e33b41]"
             />
 

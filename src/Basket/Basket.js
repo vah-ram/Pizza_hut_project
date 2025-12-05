@@ -12,9 +12,8 @@ import Payment from "./Payment";
 import Address from "./Address";
 import { getProductsBasketHost } from "../utils/Hosts";
 import axios from "axios";
-import { socket } from "../socket";
 
-function Basket({ isMobile, currentUser, currentLang, selectedAddress }) {
+function Basket({ isMobile, currentUser, currentLang, toOrderingData }) {
   const navigate = useNavigate();
 
   const isDineIn = localStorage.getItem("dine_in");
@@ -47,11 +46,12 @@ function Basket({ isMobile, currentUser, currentLang, selectedAddress }) {
   const { t } = useTranslation();
 
   const orderFunc = async() => {
-    if(!selectedTime || !selectedAddress) {
+    if(!selectedTime || !toOrderingData) {
       return;
     };
 
-    alert("its ok!")
+    alert(JSON.stringify(toOrderingData))
+
   }
 
   useEffect(() => {
@@ -312,7 +312,8 @@ function Basket({ isMobile, currentUser, currentLang, selectedAddress }) {
                     index={i}
                     currentUser={currentUser}
                     currentLang={currentLang}
-                    setDeletedItem={setDeletedItem}
+                    setDeletedItem={setDeletedItem} 
+                    type={isDineIn}
                   />
                 ))}
               </div>
@@ -758,8 +759,8 @@ function Basket({ isMobile, currentUser, currentLang, selectedAddress }) {
             </div>
 
             <span
-              className={`flex flex-col text-center p-[15px] pb-[25px] rounded-[12px]
-                border-1 border-[#e33b41] gap-3 mt-6 
+              className={`hidden flex-col text-center p-[15px] pb-[25px] rounded-[12px]
+                border-1 border-[#e33b41] gap-3 mt-6 max-md:flex 
                 ${isDineIn === "delivery" ? "hidden" : ""}`}
             >
               <p className="uppercase text-[calc(18px+.3vw)] text-[#e33b41]">

@@ -53,23 +53,26 @@ export default function CatalogItem({
   return (
     <>
       <div
-        className={`w-full mt-7 max-md:mt-3  
-                     flex flex-col justify-start
-                    items-center relative rounded-[15px] 
-                    max-md:rounded-[5vw] border-1 border-gray-300 before:content-['-${
-                      item?.sale_percent
-                    }%']
-                    before:absolute before:z-1 before:left-[-5px] before:top-[25px]
-                    before:w-[80px] before:h-[30px] before:bg-[#f33]
-                    before:text-white before:flex before:justify-center
-                    before:items-center before:rounded-[8px] before:text-[16px] cursor-pointer 
-                    max-md:before:top-[-.5px] max-md:before:left-[-.5px] 
-                    max-md:before:rounded-tl-[25px] 
-                    max-md:before:rounded-br-[30px] 
-                    max-md:before:bg-[#e33b41] 
-                    [body.dark_&]:border-[#FFF4] 
-                    ${item?.sale_percent === 0 ? "before:hidden" : ""} 
-                    ${item?.product_type === "beverages" ? "max-md:h-[40vw]" : ""}`}
+        className={`
+          w-full h-auto 
+          mt-7 max-md:mt-3  
+          flex flex-col justify-start
+          items-center relative rounded-[15px] 
+          max-md:rounded-[5vw] border-1 border-gray-300 before:content-['-${
+            item?.sale_percent
+          }%']
+          before:absolute before:z-1 before:left-[-5px] before:top-[25px]
+          before:w-[80px] before:h-[30px] before:bg-[#f33]
+          before:text-white before:flex before:justify-center
+          before:items-center before:rounded-[8px] before:text-[16px] cursor-pointer 
+          max-md:before:top-[-.5px] max-md:before:left-[-.5px] 
+          max-md:before:rounded-tl-[25px] 
+          max-md:before:rounded-br-[30px] 
+          max-md:before:bg-[#e33b41] 
+          [body.dark_&]:border-[#FFF4] 
+          ${item?.sale_percent === 0 ? "before:hidden" : ""} 
+          ${item?.product_type === "beverages" ? "max-md:h-[40vw]" : ""}`}
+        
         onClick={() => {
           if (isMobile) {
             setCurrentProduct(item);
@@ -86,7 +89,7 @@ export default function CatalogItem({
           >
           <img
             src={item?.image_url}
-            className="group-hover:scale-110 duration-500" 
+            className="group-hover:scale-110 duration-500 w-full h-auto" 
             alt="slider item img"
           />
         </span>
@@ -151,7 +154,7 @@ export default function CatalogItem({
         >
           <button className="w-[50%] cursor-pointer bg-[#3d3d3d]">
             <p className="text-[#e33b41] text-[17px] font-[800] leading-[15px]">
-              {item?.price}
+              {item.price?.toLocaleString()}
             </p>
 
             <p className="text-[#9d9d9d] text-[12px] line-through ">

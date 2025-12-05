@@ -14,6 +14,7 @@ function Register() {
   const [verificationActive, setVerificationActive] = useState(false);
   const [verificationCode, setVerificationCode] = useState(null);
   const [timer, setTimer] = useState(120);
+  const [embedCode, setEmbedCode] = useState("+374");
 
   const [user, setUser] = useState({
     name: "",
@@ -34,7 +35,8 @@ function Register() {
     if (
       !user.name ||
       !user.surname ||
-      !phoneNumber ||
+      !phoneNumber || 
+      !embedCode ||
       !user.email ||
       !user.password ||
       !user.confirmPassword
@@ -95,6 +97,7 @@ function Register() {
     const res = await axios.post(registerHost, {
       name: user.name,
       surname: user.surname,
+      embedCode: embedCode,
       phonenumber: phoneNumber,
       email: user.email,
       password: user.password,
@@ -229,7 +232,7 @@ function Register() {
             >
               <h2
                 className="text-[#515151] text-[calc(20px+.3vw)] font-[600]
-                                    uppercase"
+                                    uppercase [body.dark_&]:text-white"
               >
                 Verification
               </h2>
@@ -246,7 +249,8 @@ function Register() {
                   type="tel"
                   maxLength={1}
                   className="rounded-lg border-1 border-gray-200
-                                            w-[40px] h-[40px] outline-none text-center"
+                                            w-[40px] h-[40px] outline-none text-center 
+                                            [body.dark_&]:text-white"
                   onChange={(e) => handleInput(e, "first", "second")}
                 />
 
@@ -255,7 +259,8 @@ function Register() {
                   type="tel"
                   maxLength={1}
                   className="rounded-lg border-1 border-gray-200
-                                            w-[40px] h-[40px] outline-none text-center"
+                                            w-[40px] h-[40px] outline-none text-center 
+                                            [body.dark_&]:text-white"
                   onChange={(e) => handleInput(e, "second", "third")}
                 />
 
@@ -264,7 +269,8 @@ function Register() {
                   type="tel"
                   maxLength={1}
                   className="rounded-lg border-1 border-gray-200
-                                            w-[40px] h-[40px] outline-none text-center"
+                                            w-[40px] h-[40px] outline-none text-center 
+                                            [body.dark_&]:text-white"
                   onChange={(e) => handleInput(e, "third", "fourth")}
                 />
 
@@ -273,12 +279,13 @@ function Register() {
                   type="tel"
                   maxLength={1}
                   className="rounded-lg border-1 border-gray-200
-                                            w-[40px] h-[40px] outline-none text-center"
+                                            w-[40px] h-[40px] outline-none text-center 
+                                            [body.dark_&]:text-white"
                   onChange={(e) => handleInput(e, "fourth", null)}
                 />
               </div>
 
-              <p className="mt-3">
+              <p className="mt-3 [body.dark_&]:text-white">
                 {timer <= 0 ? (
                   <a
                     onClick={(evt) => {
@@ -410,7 +417,7 @@ function Register() {
 
               <div className="w-[60%] flex gap-2 max-lg:w-[80%] max-md:w-[95%]">
                 <div className="w-[110px] mt-5">
-                  <CountrySelect />
+                  <CountrySelect embedCode={embedCode} setEmbedCode={setEmbedCode}/>
                 </div>
 
                 <div

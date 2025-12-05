@@ -26,7 +26,7 @@ function App() {
   const [isMobile, setIsMobile] = useState("");
   const [currentUser, setCurrentUser] = useState(null);
   const [currentLang, setCurrentLang] = useState(i18next.language);
-  const [selectedAddress, setSelectedAddress] = useState("");
+  const [toOrderingData, setToOrderingData] = useState({});
 
   useEffect(() => {
     const verify = async () => {
@@ -124,11 +124,11 @@ function App() {
         <Route
           path="/basket"
           element={<Basket isMobile={isMobile} currentUser={currentUser} currentLang={currentLang} 
-          selectedAddress={selectedAddress}/>}
+          toOrderingData={toOrderingData}/>}
         />
         <Route
           path="/location"
-          element={<Location isMobile={isMobile} currentUser={currentUser} setSelectedAddress={setSelectedAddress}
+          element={<Location isMobile={isMobile} currentUser={currentUser} setToOrderingData={setToOrderingData}
 />}
         />
         <Route

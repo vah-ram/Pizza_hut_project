@@ -3,11 +3,14 @@ import { useNavigate } from "react-router-dom";
 import i18next from "i18next";
 import { addProductToBasketHost } from "../utils/Hosts"
 import axios from "axios";
+import { useTranslation } from "react-i18next";
+import { toast } from "sonner";
 
 export default function CatalogItemTable({ isMobile, setMenuTask, item, currentUser, setCurrentProduct }) {
   const navigate = useNavigate();
   const [currentLang, setCurrentLang] = useState(i18next.language);
   const dineIn = localStorage.getItem("dine_in");
+  const { t } = useTranslation();
 
   useEffect(() => {
     setCurrentProduct(item)
@@ -29,11 +32,15 @@ export default function CatalogItemTable({ isMobile, setMenuTask, item, currentU
         return;
       };
 
-      await axios.post(addProductToBasketHost, {
+      const res = await axios.post(addProductToBasketHost, {
           myId: currentUser?.id,
           productId: item.id,
           type: dineIn
       });
+
+      if(res.data.status) {
+        toast.success(t("add_basket_text"))
+      }
 
   }
 

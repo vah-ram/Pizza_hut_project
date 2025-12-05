@@ -28,7 +28,7 @@ function SliderCategories() {
 
   return (
     <>
-      <section className="w-full px-17 mt-3 max-lg:px-4 max-md:hidden">
+      <section className="w-full px-[4vw] mt-3 max-md:hidden">
         <div className="flex justify-between">
           <div className="flex gap-4">
             <img
@@ -112,7 +112,7 @@ function SliderCategories() {
             <SwiperSlide>
               <div
                 className="w-[14w] h-[14vw] max-h-[14vw] 
-                        relative rounded-[40px] overflow-hidden group"
+                        relative rounded-[2vw] overflow-hidden group"
                 onClick={() => navigate("/catalogs/special_offer")}
               >
                 <img
@@ -135,7 +135,7 @@ function SliderCategories() {
             <SwiperSlide>
               <div
                 className="w-[14w] h-[14vw] max-h-[14vw] relative
-                        rounded-[40px] overflow-hidden group"
+                        rounded-[2vw] overflow-hidden group"
                 onClick={() => navigate("/catalogs/melts")}
               >
                 <img
@@ -158,7 +158,7 @@ function SliderCategories() {
             <SwiperSlide>
               <div
                 className="w-[14w] h-[14vw] max-h-[14vw] 
-                            relative rounded-[40px]
+                            relative rounded-[2vw]
                              overflow-hidden group"
                 onClick={() => navigate("/catalogs/pizzas")}
               >
@@ -182,7 +182,7 @@ function SliderCategories() {
             <SwiperSlide>
               <div
                 className="w-[14w] h-[14vw] max-h-[14vw] 
-                                relative rounded-[40px]
+                                relative rounded-[2vw]
                                 overflow-hidden group"
                 onClick={() => navigate("/catalogs/pizza-hot-dog")}
               >
@@ -206,7 +206,7 @@ function SliderCategories() {
             <SwiperSlide>
               <div
                 className="w-[14w] h-[14vw] max-h-[14vw] relative
-                            rounded-[40px] overflow-hidden group"
+                            rounded-[2vw] overflow-hidden group"
                 onClick={() => navigate("/catalogs/salads")}
               >
                 <img
@@ -229,7 +229,7 @@ function SliderCategories() {
             <SwiperSlide>
               <div
                 className="w-[14w] h-[14vw] max-h-[14vw] relative
-                            rounded-[40px] overflow-hidden group"
+                            rounded-[2vw] overflow-hidden group"
                 onClick={() => navigate("/catalogs/burgers-sandwiches")}
               >
                 <img
@@ -252,7 +252,7 @@ function SliderCategories() {
             <SwiperSlide>
               <div
                 className="w-[14w] h-[14vw] max-h-[14vw] relative
-                                rounded-[40px] overflow-hidden group"
+                                rounded-[2vw] overflow-hidden group"
                 onClick={() => navigate("/catalogs/snacks")}
               >
                 <img
@@ -275,7 +275,7 @@ function SliderCategories() {
             <SwiperSlide>
               <div
                 className="w-[14w] h-[14vw] max-h-[14vw] relative
-                            rounded-[40px] overflow-hidden group"
+                            rounded-[2vw] overflow-hidden group"
                 onClick={() => navigate("/catalogs/desserts")}
               >
                 <img
@@ -297,7 +297,8 @@ function SliderCategories() {
 
             <SwiperSlide>
               <div
-                className="w-[14w] h-[14vw] max-h-[14vw] relative rounded-[40px]
+                className="w-[14w] h-[14vw] max-h-[14vw] relative 
+                            rounded-[2vw]
                             overflow-hidden group"
                 onClick={() => navigate("/catalogs/beverages")}
               >
@@ -320,7 +321,7 @@ function SliderCategories() {
 
             <SwiperSlide>
               <div
-                className="w-[14w] h-[14vw] max-h-[14vw] relative rounded-[40px]
+                className="w-[14w] h-[14vw] max-h-[14vw] relative rounded-[2vw]
                             overflow-hidden group"
                 onClick={() => navigate("/catalogs/sauces")}
               >

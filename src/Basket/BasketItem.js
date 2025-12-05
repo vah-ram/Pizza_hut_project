@@ -3,7 +3,7 @@ import axios from "axios";
 import { deleteProductToBasketHost } from "../utils/Hosts";
 import { useTranslation } from "react-i18next";
 
-function BasketItem({ item, currentUser, currentLang, setDeletedItem }) {
+function BasketItem({ item, currentUser, currentLang, setDeletedItem, type }) {
   const [basketInt, setBasketInt] = useState(1);
   const [isDeleting, setIsDeleting] = useState(null);
   const { t } = useTranslation();
@@ -15,6 +15,7 @@ function BasketItem({ item, currentUser, currentLang, setDeletedItem }) {
       data: {
         myId: currentUser?.id,
         productId: item?.id,
+        type: type
       },
     });
 

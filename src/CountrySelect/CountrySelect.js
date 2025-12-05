@@ -1,8 +1,7 @@
 import { useState } from "react";
 
-export default function CountrySelect() {
+export default function CountrySelect({ embedCode, setEmbedCode }) {
   const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState("+374");
   const [search, setSearch] = useState("");
 
   const countries = [
@@ -264,7 +263,7 @@ export default function CountrySelect() {
           className="text-[#2e2e2e]
                 [body.dark_&]:text-white"
         >
-          {selected}
+          {embedCode}
         </span>
 
         <img
@@ -307,7 +306,7 @@ export default function CountrySelect() {
               <li
                 key={c.code}
                 onClick={() => {
-                  setSelected(c.code);
+                  setEmbedCode(c.code);
                   setOpen(false);
                 }}
                 className="px-3 py-2 hover:opacity-75

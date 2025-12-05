@@ -11,6 +11,7 @@ function ProductCard({ isMobile, currentUser, currentLang }) {
   const [viewImage, setViewImage] = useState(null);
   const { productId } = useParams();
   const [product, setProduct] = useState(null);
+  const dineIn = localStorage.getItem("dine_in");
 
   useEffect(() => {
     const pizzaTypes = document.querySelectorAll(".pizza_types .typePizza");
@@ -47,6 +48,7 @@ function ProductCard({ isMobile, currentUser, currentLang }) {
     await axios.post(addProductToBasketHost, {
       myId: currentUser?.id,
       productId: product.id,
+      type: dineIn
     });
   };
 

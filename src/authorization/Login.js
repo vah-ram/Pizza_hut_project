@@ -5,6 +5,7 @@ import { toast, Toaster } from "sonner";
 import axios from "axios";
 import MobileMenu from "../MobileMenuBar/MobileMenu";
 import { useTranslation } from "react-i18next";
+import GoogleLogin from "./GoogleLogin";
 
 function Login() {
   const navigate = useNavigate();
@@ -39,6 +40,30 @@ function Login() {
 
         return;
       }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const onSuccessGoogleAuth = async(credetential) => {
+
+    try {
+      const res = await axios.get(loginHost, {
+        params: { credetential },
+      });
+
+      if (res.data.status) {
+          localStorage.setItem("token", res.data.token);
+          navigate("/");
+      } else {
+        toast.error(res.data.message, {
+          position: "bottom-right",
+          duration: 3000,
+        });
+
+        return;
+      }
+
     } catch (error) {
       console.error(error);
     }
@@ -248,33 +273,16 @@ function Login() {
             <span className="w-full h-[1px] bg-gray-300" />
           </div>
 
+          <GoogleLogin onSuccessGoogleAuth={onSuccessGoogleAuth}/>
+            
           <button 
             type="button"
             className="w-[60%] mt-5 flex gap-5 items-center px-3 py-3 rounded-[15px]
                             border border-1 border-gray-200 relative cursor-pointer [body.dark_&]:border-[#FFF3]
                              max-md:w-[95%]"
-          >
-            <img
-              src="/Img/google-social-icon.png"
-              className="w-[30px] h-[30px]"
-              alt="Email"
-            />
-
-            <p className="uppercase [body.dark_&]:text-white max-lg:text-[1.5vw] max-md:text-[16px]">
-              {t("login_continue_google")}
-            </p>
-
-            <img
-              src="https://pizza-hut.am/assets/images/app_2/arrowLightGrey.svg"
-              className="rotate-[180deg] w-[15px] h-[15px] absolute right-5"
-            />
-          </button>
-
-          <button 
-            type="button"
-            className="w-[60%] mt-5 flex gap-5 items-center px-3 py-3 rounded-[15px]
-                            border border-1 border-gray-200 relative cursor-pointer [body.dark_&]:border-[#FFF3]
-                             max-md:w-[95%]"
+            onClick={() => {
+              navigate('/')
+            }}
           >
             <img
               src="/Img/guest-icon.png"

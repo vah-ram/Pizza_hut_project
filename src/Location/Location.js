@@ -1,15 +1,30 @@
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import React, { useCallback, useRef, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { GoogleMap, Marker } from "@react-google-maps/api"
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 
-export default function Location({ isMobile, currentUser, setSelectedAddress }) {
+export default function Location({ isMobile, currentUser, setToOrderingData }) {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
+const containerStyle = {
+  width: "100%",
+  height: "100%",
+};
+
+const defaultCenter = {
+  lat: 40.178, 
+  lng: 44.512,
+};
+
   const [activeIndex, setActiveIndex] = useState(0);
   const [activeMap, setActiveMap] = useState(false);
+  const [selectedAddress,setSelectedAddress] = useState(null);
+  const [streetName, setStreetName] = useState(null);
+  const [instructions, setInstructions] = useState(null);
+  const [orderPlace, setOrderPlace] = useState("Home");
+  const [saveActive, setSaveActive] = useState(null);
 
   useEffect(() => {
 
@@ -27,9 +42,69 @@ export default function Location({ isMobile, currentUser, setSelectedAddress }) 
     
   }, []);
 
+  const mapRef = useRef(null);
+  const [markerPos, setMarkerPos] = useState(defaultCenter);
+
+  const onLoad = useCallback((map) => {
+    mapRef.current = map;
+  }, []);
+
+  const handleClick = async (event) => {
+    const lat = event.latLng.lat();
+    const lng = event.latLng.lng();
+    setMarkerPos({ lat, lng });
+
+    setSelectedAddress("Yerevan, Armenia");
+
+    const geocoder = new window.google.maps.Geocoder();
+
+    geocoder.geocode(
+      { location: { lat: lat, lng: lng } },
+      (results, status) => {
+
+        if (status === "OK") {
+          if (results[0]) {
+            const address = results[0].formatted_address;
+            alert(address);
+          } else {
+            alert("No results found");
+          }
+        } else {
+          alert("Geocoder failed: " + status);
+        }
+
+      }
+    );
+  };
+
+  useEffect(() => {
+    if (selectedAddress) {
+      console.log("Selected address:", selectedAddress);
+    }
+
+    if (!streetName || !instructions || !selectedAddress || !orderPlace) {
+      setSaveActive(true);
+    } else {
+      setSaveActive(false);
+    }
+
+  }, [streetName, instructions, selectedAddress, orderPlace]);
+
+
+  const saveInstructionsData = () => {
+
+    if (!streetName || !instructions || !selectedAddress || !orderPlace) {
+      return;
+    } else {
+      setSaveActive(false);
+    }
+
+  }
+
   const buttons = [
     {
       label: t("home_label"),
+      place: "Home",
       svg: (
         <svg
           width="20"
@@ -56,6 +131,7 @@ export default function Location({ isMobile, currentUser, setSelectedAddress }) 
     },
     {
       label: t("work_label"),
+      place: "Work",
       svg: (
         <svg
           width="20"
@@ -76,6 +152,7 @@ export default function Location({ isMobile, currentUser, setSelectedAddress }) 
     },
     {
       label: t("other_label"),
+      place: "Other",
       svg: (
         <svg
           width="20"
@@ -301,7 +378,10 @@ export default function Location({ isMobile, currentUser, setSelectedAddress }) 
               placeholder={t("enter_street_and_building")}
               className="w-full text-[calc(10px+.3vw)] 
                             border-none outline-none 
-                             [body.dark_&]:text-white"
+                             [body.dark_&]:text-white" 
+              onChange={(evt) => {
+                setStreetName(evt.target.value)
+              }}
             />
           </div>
 
@@ -319,14 +399,20 @@ export default function Location({ isMobile, currentUser, setSelectedAddress }) 
                          text-[calc(10px+.3vw)] min-h-[100px] 
                          mt-2 [body.dark_&]:border-[#565656] 
                           [body.dark_&]:text-white"
-            placeholder={t("additional_instructions_placeholder")}
+            placeholder={t("additional_instructions_placeholder")} 
+            onChange={(evt) => {
+              setInstructions(evt.target.value)
+            }}
           ></textarea>
 
           <ul className="flex gap-3 w-full mt-5">
             {buttons.map((btn, index) => (
               <li key={index} className="w-full">
                 <button
-                  onClick={() => setActiveIndex(index)}
+                  onClick={() => {
+                    setActiveIndex(index)
+                    setOrderPlace(btn.place)
+                  }}
                   className={`w-full gap-2 flex justify-center items-center p-[8px] rounded-[12px] border border-[#ebebeb] cursor-pointer
                   ${
                     activeIndex === index
@@ -365,10 +451,12 @@ export default function Location({ isMobile, currentUser, setSelectedAddress }) 
             </button>
 
             <button
-              className="w-full p-[15px] 
+              className={`w-full p-[15px] 
                 bg-[#ce4a57] text-white cursor-default 
                 flex items-center justify-center 
-                rounded-[15px] opacity-75"
+                rounded-[15px] opacity-75 
+                ${saveActive ? 'opacity-100 cursor-pointer' : ''}`}
+              onClick={() => saveInstructionsData()}
             >
               {t("save")}
             </button>
@@ -379,14 +467,19 @@ export default function Location({ isMobile, currentUser, setSelectedAddress }) 
           className={`w-[50%] h-full max-md:w-full  
           ${activeMap ? "" : "max-md:hidden"}`}
         >
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1563416.714472416!2d43.71882285162848!3d40.06318082537997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40155684e773bac7%3A0xd0b4757aeb822d23!2z0JDRgNC80LXQvdC40Y8!5e0!3m2!1sru!2sam!4v1764513359243!5m2!1sru!2sam"
-            width="100%"
-            height="100%"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-          ></iframe>
+          <LoadScript 
+            googleMapsApiKey="AIzaSyDDc-vgFaK-DFYmDEHzFyt-1alaJHuhmng" 
+            libraries={["places", "geometry"]}>
+            <GoogleMap
+              mapContainerStyle={containerStyle}
+              center={defaultCenter}
+              zoom={12}
+              onLoad={onLoad}
+              onClick={handleClick}
+            >
+              <Marker position={markerPos} />
+            </GoogleMap>
+        </LoadScript>
         </div>
       </section>
     </>

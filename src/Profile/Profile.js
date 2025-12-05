@@ -28,7 +28,7 @@ function Profile({ isMobile, currentUser }) {
     return localStorage.getItem("darkMode") === "true";
   });
 
-    const { t } = useTranslation();
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (page === "orders") {
@@ -80,11 +80,10 @@ function Profile({ isMobile, currentUser }) {
                 pb-[80px]"
       >
         <div
-          className={`w-[30%] flex flex-col border-r-1
-                        border-[#ebebeb] max-md:w-full [body.dark_&]:border-[#FFF4]
-                        max-md:border-none ${
-                          selectedPage ? "max-md:hidden" : ""
-                        }`}
+          className={`w-[30%] max-md:pb-20 flex flex-col border-r-1
+                        border-[#ebebeb] max-md:w-full [body.dark_&]:border-[#FFF4]  
+                        max-md:border-transparent [body.dark_&]:max-md:border-[#FFF4] 
+                        ${selectedPage ? "max-md:hidden" : ""}`}
         >
           {isMobile ? (
             <div
@@ -99,13 +98,16 @@ function Profile({ isMobile, currentUser }) {
               >
                 <img
                   src="https://pizza-hut.am/assets/images/app_2/arrow.svg"
-                  className="w-[20px] h-[20px]" 
+                  className="w-[20px] h-[20px]"
                   alt=""
                 />
               </button>
 
-              <h2 className="text-[17px] text-[#515151] font-[600] uppercase [body.dark_&]:text-white">
-              {t("profile_page_title")}
+              <h2
+                className="text-[calc(16px+.3vw)] text-[#515151] font-[600] 
+              uppercase [body.dark_&]:text-white"
+              >
+                {t("profile_page_title")}
               </h2>
             </div>
           ) : (
@@ -130,20 +132,21 @@ function Profile({ isMobile, currentUser }) {
               alt=""
             />
 
-            <a 
-              className="text-[#e33b41] text-[16px]">
+            <a className="text-[#e33b41] text-[16px]">
               {page?.substring(0, 1).toUpperCase()}
               {page?.substring(1)}
             </a>
           </span>
 
-          <div className="w-full justify-between hidden max-md:flex ">
+          <div className="w-full justify-between hidden max-md:flex">
             <div className="flex flex-col">
-              <p className="text-[#9D9D9D] text-[calc(14px+.3vw)]">{t("welcome")}</p>
+              <p className="text-[#9D9D9D] text-[calc(14px+.3vw)]">
+                {t("welcome")}
+              </p>
 
               <h2
                 className="text-[#515151] text-[calc(16px+.3vw)] font-[600]
-                                [body.dark_&]:text-white"
+                                [body.dark_&]:text-white max-md:text-[calc(18px+.3vw)]"
               >
                 {currentUser?.name} {currentUser?.surname}
               </h2>
@@ -161,7 +164,7 @@ function Profile({ isMobile, currentUser }) {
                 onClick={() => callDarkAndLightMode()}
               >
                 <span
-                  className={`w-[22px] h-[22px] block rounded-full
+                  className={`w-[20px] h-[20px] block rounded-full
                                  bg-[#e33b41] ${modeValue ? "ml-auto" : ""}`}
                 />
               </button>
@@ -194,7 +197,8 @@ function Profile({ isMobile, currentUser }) {
 
                 <p
                   className="uppercase text-[calc(12px+.3vw)]
-                                text-[#515151] [body.dark_&]:text-white"
+                                text-[#515151] [body.dark_&]:text-white 
+                                max-md:text-[calc(14px+.3vw)]"
                 >
                   {t("orders_history")}
                 </p>
@@ -225,7 +229,8 @@ function Profile({ isMobile, currentUser }) {
 
                 <p
                   className="uppercase text-[calc(12px+.3vw)]
-                                 text-[#515151] [body.dark_&]:text-white"
+                                 text-[#515151] [body.dark_&]:text-white 
+                                 max-md:text-[calc(14px+.3vw)]"
                 >
                   {t("reviews")}
                 </p>
@@ -266,7 +271,8 @@ function Profile({ isMobile, currentUser }) {
 
                 <p
                   className="uppercase text-[calc(12px+.3vw)]
-                                text-[#515151] [body.dark_&]:text-white"
+                                text-[#515151] [body.dark_&]:text-white 
+                                max-md:text-[calc(14px+.3vw)]"
                 >
                   {t("my_profile")}
                 </p>
@@ -297,7 +303,8 @@ function Profile({ isMobile, currentUser }) {
 
                 <p
                   className="uppercase text-[calc(12px+.3vw)]
-                                text-[#515151] [body.dark_&]:text-white"
+                                text-[#515151] [body.dark_&]:text-white 
+                                max-md:text-[calc(14px+.3vw)]"
                 >
                   {t("my_address")}
                 </p>
@@ -327,10 +334,11 @@ function Profile({ isMobile, currentUser }) {
                 />
 
                 <p
-                className="uppercase text-[calc(12px+.3vw)]  
-                text-[#515151] [body.dark_&]:text-white"
+                  className="uppercase text-[calc(12px+.3vw)]  
+                  text-[#515151] [body.dark_&]:text-white 
+                  max-md:text-[calc(14px+.3vw)]"
                 >
-                {t("payment_method")}
+                  {t("payment_method")}
                 </p>
               </span>
 
@@ -368,7 +376,8 @@ function Profile({ isMobile, currentUser }) {
 
                 <p
                   className="uppercase text-[calc(12px+.3vw)]
-                                text-[#515151] [body.dark_&]:text-white"
+                                text-[#515151] [body.dark_&]:text-white 
+                                max-md:text-[calc(14px+.3vw)]"
                 >
                   {t("terms_conditions")}
                 </p>
@@ -399,7 +408,8 @@ function Profile({ isMobile, currentUser }) {
 
                 <p
                   className="uppercase text-[calc(12px+.3vw)]
-                                text-[#515151] [body.dark_&]:text-white"
+                                text-[#515151] [body.dark_&]:text-white 
+                                max-md:text-[calc(14px+.3vw)]"
                 >
                   {t("privacy_policy")}
                 </p>
@@ -430,7 +440,8 @@ function Profile({ isMobile, currentUser }) {
 
                 <p
                   className="uppercase text-[calc(12px+.3vw)]
-                                text-[#515151] [body.dark_&]:text-white"
+                                text-[#515151] [body.dark_&]:text-white 
+                                max-md:text-[calc(14px+.3vw)]"
                 >
                   {t("support")}
                 </p>
@@ -458,7 +469,8 @@ function Profile({ isMobile, currentUser }) {
 
                 <p
                   className="uppercase text-[calc(12px+.3vw)]
-                                text-[#515151] [body.dark_&]:text-white"
+                                text-[#515151] [body.dark_&]:text-white 
+                                max-md:text-[calc(14px+.3vw)]"
                 >
                   {t("logout")}
                 </p>

@@ -233,7 +233,22 @@ i18n
           or_text: "or",
 
           //added-basket
-          add_basket_text: "Item Added"
+          add_basket_text: "Item Added",
+
+          // Profile/MyProfile form labels
+          profile_information_tab: "Information",
+          profile_change_password_tab: "Change Password",
+          profile_name: "Name",
+          profile_surname: "Surname",
+          profile_email: "Email",
+          profile_phone_number: "Phone Number",
+          profile_cancel: "Cancel",
+          profile_save: "Save",
+          profile_edit: "Edit",
+          profile_old_password: "Old password",
+          profile_new_password: "New password",
+          profile_confirm_new_password: "Confirm new password",
+          profile_change_password_button: "Change Password"
         }
       },
 
@@ -308,7 +323,7 @@ i18n
 
           login_or: "ИЛИ",
           login_continue_google: "ПРОДОЛЖИТЬ ЧЕРЕЗ GOOGLE",
-          login_continue_guest: "ПРОДОЛЖИТ�� КАК ГОСТЬ",
+          login_continue_guest: "ПРОДОЛЖИТЬ КАК ГОСТЬ",
 
           //Feedback Links
           feedback_request_title: "Отправить запрос",
@@ -418,7 +433,7 @@ i18n
           payment_method: "Способ оплаты",
           payment_methods: "Способы оплаты",
           other: "Другое",
-          terms_conditions: "Услов��я и положения",
+          terms_conditions: "Условия и положения",
           privacy_policy: "Политика конфиденциальности",
           support: "Поддержка",
           logout: "Выйти",
@@ -444,7 +459,7 @@ i18n
           privacy_toc_15: "ЕСТЬ ЛИ У ЖИТЕЛЕЙ КАЛИФОРНИИ ОСОБЫЕ ПРАВА?",
           privacy_toc_16: "МЫ ОБНОВЛЯЕМ ЭТУ ПОЛИТИКУ?",
           privacy_toc_17: "УСЛОВИЯ ОБСЛУЖИВАНИЯ",
-          privacy_toc_18: "КАК С НАМИ С��ЯЗАТЬСЯ ПО ПОВОДУ ЭТОЙ ПОЛИТИКИ?",
+          privacy_toc_18: "КАК С НАМИ СВЯЗАТЬСЯ ПО ПОВОДУ ЭТОЙ ПОЛИТИКИ?",
 
           // Location section
           street_name_building_number: "Улица и номер дома",
@@ -463,7 +478,22 @@ i18n
           or_text: "или",
 
           //added-basket
-          add_basket_text: "Продукт добавлен"
+          add_basket_text: "Продукт добавлен",
+
+          // Profile/MyProfile form labels
+          profile_information_tab: "Информация",
+          profile_change_password_tab: "Сменить пароль",
+          profile_name: "Имя",
+          profile_surname: "Фамилия",
+          profile_email: "Электронная почта",
+          profile_phone_number: "Номер телефона",
+          profile_cancel: "Отмена",
+          profile_save: "Сохранить",
+          profile_edit: "Редактировать",
+          profile_old_password: "Старый пароль",
+          profile_new_password: "Новый пароль",
+          profile_confirm_new_password: "Подтвердите новый пароль",
+          profile_change_password_button: "Сменить пароль"
         }
       },
 
@@ -693,7 +723,22 @@ i18n
           or_text: "կամ",
 
           //added-basket
-          add_basket_text: "Պրոդուկտը ավելացվեց զամբյուղ"
+          add_basket_text: "Պրոդուկտը ավելացվեց զամբյուղ",
+
+          // Profile/MyProfile form labels
+          profile_information_tab: "Տեղեկություն",
+          profile_change_password_tab: "Փոխել գաղտնաբառը",
+          profile_name: "Անուն",
+          profile_surname: "Ազգանուն",
+          profile_email: "Էլ. հասցե",
+          profile_phone_number: "Հեռախոսահամար",
+          profile_cancel: "Չեղարկել",
+          profile_save: "Պահպանել",
+          profile_edit: "Խմբագրել",
+          profile_old_password: "Հին գաղտնաբառ",
+          profile_new_password: "Նոր գաղտնաբառ",
+          profile_confirm_new_password: "Հաստատել նոր գաղտնաբառը",
+          profile_change_password_button: "Փոխել գաղտնաբառը"
         }
       }
     },

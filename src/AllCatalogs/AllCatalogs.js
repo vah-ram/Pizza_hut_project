@@ -24,7 +24,7 @@ function AllCatalogs({ isMobile, currentUser }) {
 
   useEffect(() => {
     const getProducts = async () => {
-      const productType = type === "" || !type ? "special_offer" : type
+      const productType = type === "" || !type ? "special_offer" : type;
 
       try {
         const res = await axios.get(getProductHost, {
@@ -178,7 +178,8 @@ function AllCatalogs({ isMobile, currentUser }) {
                              border-r-transparent border-b-transparent
                             border-[#E33B41] animate-spin flex
                             justify-center items-center 
-                            max-md:w-[4rem] max-md:h-[4rem]"z
+                            max-md:w-[4rem] max-md:h-[4rem]"
+              z
             >
               <span
                 className="w-[5rem] h-[5rem] rounded-full border-3
@@ -497,49 +498,56 @@ function AllCatalogs({ isMobile, currentUser }) {
           </form>
         </div>
 
-        <div
-          className="w-full h-[100px] flex
-                    justify-center sticky top-[80px]  
-                    gap-[3vh] mt-2 products z-[101] bg-white
-                    [body.dark_&]:bg-[#2e2e2e] [body.isMobile_&]:hidden
-                    [body.isMobile_&]:top-[0px] [body.isMobile_&]:mt-0 "
-        >
-          {categories.map((item) => (
-            <div
-              key={item.key}
-              className={`w-[7.5vw] h-[5vw] flex rounded-[1vw] relative bg-cover
-               cursor-pointer product 
-               overflow-hidden ${item.key === type ? 'border-3 border-[#e33b41]' : ''}`}
-              style={{ backgroundImage: `url(${item.imageUrl})` }}
-              onClick={() => navigate(item.route)}
-            >
-              <span
-                className="w-full h-[40px] absolute bottom-0 flex
-               items-center justify-center bg-[#0016]"
+        <div className="w-full flex
+                      justify-center sticky top-[80px] mt-2 products z-[101] bg-white
+                      [body.dark_&]:bg-[#2e2e2e] [body.isMobile_&]:hidden
+                      [body.isMobile_&]:top-[0px] [body.isMobile_&]:mt-0 ">
+          <div
+            className="w-[87vw] gap-[2vw] flex
+                      justify-center mt-2 products z-[101] bg-white
+                      [body.dark_&]:bg-[#2e2e2e] [body.isMobile_&]:hidden
+                      [body.isMobile_&]:top-[0px] [body.isMobile_&]:mt-0 "
+          >
+            {categories.map((item) => (
+              <div
+                key={item.key}
+                className={`w-[7.5vw] h-[5vw] flex rounded-[1vw] relative bg-cover
+                cursor-pointer product 
+                overflow-hidden ${
+                  item.key === type ? "border-3 border-[#e33b41]" : ""
+                }`}
+                style={{ backgroundImage: `url(${item.imageUrl})` }}
+                onClick={() => navigate(item.route)}
               >
-                <p
-                  className="uppercase text-[calc(8px+.3vw)] 
-                  text-white text-center"
+                <span
+                  className="w-full h-[40px] absolute bottom-0 flex
+                items-center justify-center bg-[#0016]"
                 >
-                  {t(item.textKey)}
-                </p>
-              </span>
-            </div>
-          ))}
+                  <p
+                    className="uppercase text-[calc(8px+.3vw)] 
+                    text-white text-center"
+                  >
+                    {t(item.textKey)}
+                  </p>
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
 
-        <footer className="w-full flex flex-col mt-[1vw] max-md:pt-[30px] [body.dark_&]:bg-[#2e2e2e]">
+        <footer
+          className="w-full flex flex-col mt-[1vw] max-md:pt-[30px] 
+        [body.dark_&]:bg-[#2e2e2e]"
+        >
           <h2
             className="text-[25px] text-[#515151]
                          [body.dark_&]:text-white font-[600] uppercase"
           >
-            {
-              categories.map(item => {
-                if(item.key === type) {
-                  return t(item.textKey)
-                }
-              })
-            }
+            {categories.map((item) => {
+              if (item.key === type) {
+                return t(item.textKey);
+              }
+            })}
           </h2>
 
           <div
@@ -560,7 +568,7 @@ function AllCatalogs({ isMobile, currentUser }) {
                         setMenuTask={setMenuTask}
                         id={i}
                         item={item}
-                        currentUser={currentUser} 
+                        currentUser={currentUser}
                         setCurrentProduct={setCurrentProduct}
                       />
                     ))
@@ -570,7 +578,7 @@ function AllCatalogs({ isMobile, currentUser }) {
                         setMenuTask={setMenuTask}
                         id={i}
                         item={item}
-                        currentUser={currentUser} 
+                        currentUser={currentUser}
                         setCurrentProduct={setCurrentProduct}
                       />
                     ))}
@@ -585,11 +593,18 @@ function AllCatalogs({ isMobile, currentUser }) {
       <AboutMenu />
       <LanguageBar setLanguage={setLanguage} />
 
-      <MobileCatalogMenu/>
+      <MobileCatalogMenu />
 
-      {menuTask ? <MobileProductCard setMenuTask={setMenuTask} currentProduct={currentProduct}/> : ""}
+      {menuTask ? (
+        <MobileProductCard
+          setMenuTask={setMenuTask}
+          currentProduct={currentProduct}
+        />
+      ) : (
+        ""
+      )}
 
-      <Toaster richColors/>
+      <Toaster richColors />
     </>
   );
 }
